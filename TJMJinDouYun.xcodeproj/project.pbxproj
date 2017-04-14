@@ -28,6 +28,14 @@
 		99F1C0FF1EA0CF0600415F0C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 99F1C0FE1EA0CF0600415F0C /* Info.plist */; };
 		99F1C1041EA0CF2900415F0C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99F1C1001EA0CF2900415F0C /* LaunchScreen.storyboard */; };
 		99F1C1051EA0CF2900415F0C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99F1C1021EA0CF2900415F0C /* Main.storyboard */; };
+		99F1C1671EA0DBB200415F0C /* baiduNaviSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 99F1C1551EA0DBB200415F0C /* baiduNaviSDK.bundle */; };
+		99F1C1681EA0DBB200415F0C /* baiduNaviSDK.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99F1C1561EA0DBB200415F0C /* baiduNaviSDK.xcassets */; };
+		99F1C1691EA0DBB200415F0C /* libbaiduNaviSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F1C1611EA0DBB200415F0C /* libbaiduNaviSDK.a */; };
+		99F1C16A1EA0DBB200415F0C /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 99F1C1621EA0DBB200415F0C /* readme.txt */; };
+		99F1C16B1EA0DBB200415F0C /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F1C1641EA0DBB200415F0C /* libcrypto.a */; };
+		99F1C16C1EA0DBB200415F0C /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F1C1651EA0DBB200415F0C /* libssl.a */; };
+		99F1C16D1EA0DBB200415F0C /* updatelog.txt in Resources */ = {isa = PBXBuildFile; fileRef = 99F1C1661EA0DBB200415F0C /* updatelog.txt */; };
+		B3430058D86B1BD9C99AB40E /* libPods-TJMJinDouYun.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2165414574D4411C9A83DA /* libPods-TJMJinDouYun.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		704ED3F31667CEAB6D7BC8CB /* Pods-TJMJinDouYun.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TJMJinDouYun.release.xcconfig"; path = "Pods/Target Support Files/Pods-TJMJinDouYun/Pods-TJMJinDouYun.release.xcconfig"; sourceTree = "<group>"; };
 		99F1C0801EA0CEB800415F0C /* TJMJinDouYun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TJMJinDouYun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99F1C0841EA0CEB800415F0C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		99F1C0991EA0CEB800415F0C /* TJMJinDouYunTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TJMJinDouYunTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,6 +100,24 @@
 		99F1C0FE1EA0CF0600415F0C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		99F1C1011EA0CF2900415F0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		99F1C1031EA0CF2900415F0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		99F1C1551EA0DBB200415F0C /* baiduNaviSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = baiduNaviSDK.bundle; sourceTree = "<group>"; };
+		99F1C1561EA0DBB200415F0C /* baiduNaviSDK.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = baiduNaviSDK.xcassets; sourceTree = "<group>"; };
+		99F1C1581EA0DBB200415F0C /* BNaviModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNaviModel.h; sourceTree = "<group>"; };
+		99F1C1591EA0DBB200415F0C /* BNCommonDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNCommonDef.h; sourceTree = "<group>"; };
+		99F1C15A1EA0DBB200415F0C /* BNCoreServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNCoreServices.h; sourceTree = "<group>"; };
+		99F1C15B1EA0DBB200415F0C /* BNLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNLocation.h; sourceTree = "<group>"; };
+		99F1C15C1EA0DBB200415F0C /* BNLocationManagerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNLocationManagerProtocol.h; sourceTree = "<group>"; };
+		99F1C15D1EA0DBB200415F0C /* BNRoutePlanManagerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRoutePlanManagerProtocol.h; sourceTree = "<group>"; };
+		99F1C15E1EA0DBB200415F0C /* BNRoutePlanModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRoutePlanModel.h; sourceTree = "<group>"; };
+		99F1C15F1EA0DBB200415F0C /* BNStrategyManagerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNStrategyManagerProtocol.h; sourceTree = "<group>"; };
+		99F1C1601EA0DBB200415F0C /* BNUIManagerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNUIManagerProtocol.h; sourceTree = "<group>"; };
+		99F1C1611EA0DBB200415F0C /* libbaiduNaviSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaiduNaviSDK.a; sourceTree = "<group>"; };
+		99F1C1621EA0DBB200415F0C /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
+		99F1C1641EA0DBB200415F0C /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
+		99F1C1651EA0DBB200415F0C /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
+		99F1C1661EA0DBB200415F0C /* updatelog.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = updatelog.txt; sourceTree = "<group>"; };
+		CE2165414574D4411C9A83DA /* libPods-TJMJinDouYun.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TJMJinDouYun.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF32F0CFE86D49786C5A2869 /* Pods-TJMJinDouYun.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TJMJinDouYun.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TJMJinDouYun/Pods-TJMJinDouYun.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +125,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99F1C16C1EA0DBB200415F0C /* libssl.a in Frameworks */,
+				99F1C1691EA0DBB200415F0C /* libbaiduNaviSDK.a in Frameworks */,
+				B3430058D86B1BD9C99AB40E /* libPods-TJMJinDouYun.a in Frameworks */,
+				99F1C16B1EA0DBB200415F0C /* libcrypto.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,6 +149,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		889BC0A7E9955FB8187A2A77 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CE2165414574D4411C9A83DA /* libPods-TJMJinDouYun.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		99F1C0771EA0CEB800415F0C = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +164,8 @@
 				99F1C09C1EA0CEB800415F0C /* TJMJinDouYunTests */,
 				99F1C0A71EA0CEB800415F0C /* TJMJinDouYunUITests */,
 				99F1C0811EA0CEB800415F0C /* Products */,
+				D8C8147D2A0C1E675CA3EF9C /* Pods */,
+				889BC0A7E9955FB8187A2A77 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -243,6 +284,7 @@
 		99F1C0C51EA0CEE000415F0C /* 第三方库 */ = {
 			isa = PBXGroup;
 			children = (
+				99F1C1541EA0DBB200415F0C /* BaiduNaviSDK */,
 				99F1C0C61EA0CEE000415F0C /* NSString+MD5.h */,
 				99F1C0C71EA0CEE000415F0C /* NSString+MD5.m */,
 			);
@@ -407,6 +449,54 @@
 			path = AppDelegate;
 			sourceTree = "<group>";
 		};
+		99F1C1541EA0DBB200415F0C /* BaiduNaviSDK */ = {
+			isa = PBXGroup;
+			children = (
+				99F1C1551EA0DBB200415F0C /* baiduNaviSDK.bundle */,
+				99F1C1561EA0DBB200415F0C /* baiduNaviSDK.xcassets */,
+				99F1C1571EA0DBB200415F0C /* inc */,
+				99F1C1611EA0DBB200415F0C /* libbaiduNaviSDK.a */,
+				99F1C1621EA0DBB200415F0C /* readme.txt */,
+				99F1C1631EA0DBB200415F0C /* thirdlibs */,
+				99F1C1661EA0DBB200415F0C /* updatelog.txt */,
+			);
+			path = BaiduNaviSDK;
+			sourceTree = "<group>";
+		};
+		99F1C1571EA0DBB200415F0C /* inc */ = {
+			isa = PBXGroup;
+			children = (
+				99F1C1581EA0DBB200415F0C /* BNaviModel.h */,
+				99F1C1591EA0DBB200415F0C /* BNCommonDef.h */,
+				99F1C15A1EA0DBB200415F0C /* BNCoreServices.h */,
+				99F1C15B1EA0DBB200415F0C /* BNLocation.h */,
+				99F1C15C1EA0DBB200415F0C /* BNLocationManagerProtocol.h */,
+				99F1C15D1EA0DBB200415F0C /* BNRoutePlanManagerProtocol.h */,
+				99F1C15E1EA0DBB200415F0C /* BNRoutePlanModel.h */,
+				99F1C15F1EA0DBB200415F0C /* BNStrategyManagerProtocol.h */,
+				99F1C1601EA0DBB200415F0C /* BNUIManagerProtocol.h */,
+			);
+			path = inc;
+			sourceTree = "<group>";
+		};
+		99F1C1631EA0DBB200415F0C /* thirdlibs */ = {
+			isa = PBXGroup;
+			children = (
+				99F1C1641EA0DBB200415F0C /* libcrypto.a */,
+				99F1C1651EA0DBB200415F0C /* libssl.a */,
+			);
+			path = thirdlibs;
+			sourceTree = "<group>";
+		};
+		D8C8147D2A0C1E675CA3EF9C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DF32F0CFE86D49786C5A2869 /* Pods-TJMJinDouYun.debug.xcconfig */,
+				704ED3F31667CEAB6D7BC8CB /* Pods-TJMJinDouYun.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -414,9 +504,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 99F1C0AD1EA0CEB800415F0C /* Build configuration list for PBXNativeTarget "TJMJinDouYun" */;
 			buildPhases = (
+				738834C17CD3C56ED1F2331F /* [CP] Check Pods Manifest.lock */,
 				99F1C07C1EA0CEB800415F0C /* Sources */,
 				99F1C07D1EA0CEB800415F0C /* Frameworks */,
 				99F1C07E1EA0CEB800415F0C /* Resources */,
+				97ED38BC82216DDAB8D0F2DD /* [CP] Embed Pods Frameworks */,
+				FF836F4C0026353E8A1C399C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -513,8 +606,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99F1C16D1EA0DBB200415F0C /* updatelog.txt in Resources */,
+				99F1C1681EA0DBB200415F0C /* baiduNaviSDK.xcassets in Resources */,
 				99F1C1041EA0CF2900415F0C /* LaunchScreen.storyboard in Resources */,
+				99F1C1671EA0DBB200415F0C /* baiduNaviSDK.bundle in Resources */,
 				99F1C0FF1EA0CF0600415F0C /* Info.plist in Resources */,
+				99F1C16A1EA0DBB200415F0C /* readme.txt in Resources */,
 				99F1C0FD1EA0CEFA00415F0C /* Assets.xcassets in Resources */,
 				99F1C1051EA0CF2900415F0C /* Main.storyboard in Resources */,
 			);
@@ -535,6 +632,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		738834C17CD3C56ED1F2331F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		97ED38BC82216DDAB8D0F2DD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TJMJinDouYun/Pods-TJMJinDouYun-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FF836F4C0026353E8A1C399C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TJMJinDouYun/Pods-TJMJinDouYun-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		99F1C07C1EA0CEB800415F0C /* Sources */ = {
@@ -702,6 +847,7 @@
 		};
 		99F1C0AE1EA0CEB800415F0C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF32F0CFE86D49786C5A2869 /* Pods-TJMJinDouYun.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TJMJinDouYun/Info.plist;
@@ -720,6 +866,7 @@
 		};
 		99F1C0AF1EA0CEB800415F0C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 704ED3F31667CEAB6D7BC8CB /* Pods-TJMJinDouYun.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TJMJinDouYun/Info.plist;
