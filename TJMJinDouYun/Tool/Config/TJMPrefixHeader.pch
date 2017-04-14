@@ -1,0 +1,56 @@
+//
+//  TJMPrefixHeader.pch
+//  TJMJinDouYun
+//
+//  Created by Jiaming Tu on 2017/4/11.
+//  Copyright © 2017年 zhongzhichuangying. All rights reserved.
+//
+
+#ifndef TJMPrefixHeader_pch
+#define TJMPrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+//百度地图
+#import <BaiduMapAPI_Base/BMKBaseComponent.h>//引入base相关所有的头文件
+
+#import <BaiduMapAPI_Map/BMKMapComponent.h>//引入地图功能所有的头文件
+
+#import <BaiduMapAPI_Search/BMKSearchComponent.h>//引入检索功能所有的头文件
+
+#import <BaiduMapAPI_Cloud/BMKCloudSearchComponent.h>//引入云检索功能所有的头文件
+
+#import <BaiduMapAPI_Location/BMKLocationComponent.h>//引入定位功能所有的头文件
+
+#import <BaiduMapAPI_Utils/BMKUtilsComponent.h>//引入计算工具所有的头文件
+
+#import <BaiduMapAPI_Radar/BMKRadarComponent.h>//引入周边雷达功能所有的头文件
+
+#import <BaiduMapAPI_Map/BMKMapView.h>//只引入所需的单个头文件
+
+//导航模块
+#import "BNCoreServices.h"
+//导入Config
+#import "TJMConfig.h"
+//导入Api
+#import "TJMApi.h"
+//导入工具类
+
+//文件管理
+#import "TJMSandBoxManager.h"
+
+//导入类别
+//正则判断
+#import "NSString+RegEx.h"
+
+//导入第三方 及 第三方分装
+#import <MJExtension.h>
+//请求
+#import "TJMRequestHandle.h"
+//提示框
+#import "TJMHUDHandle.h"
+//导入Model
+#import "TJMTokenModel.h"
+#import "ProvinceData.h"
+
+#endif /* TJMPrefixHeader_pch */

@@ -2,13 +2,14 @@
 //  AppDelegate.m
 //  TJMJinDouYun
 //
-//  Created by Jiaming Tu on 2017/4/14.
+//  Created by Jiaming Tu on 2017/4/11.
 //  Copyright © 2017年 zhongzhichuangying. All rights reserved.
 //
 
 #import "AppDelegate.h"
-
-@interface AppDelegate ()
+#import "AppDelegate+SDKSevice.h"
+#import "AppDelegate+APPService.h"
+@interface AppDelegate ()<BMKGeneralDelegate>
 
 @end
 
@@ -17,9 +18,50 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    // Add the navigation controller's view to the window and display.
+    
+    //登录验证
+    [self checkLoggingStatusWithToken];
+    
+    
+#warning 需写在block里
+    __weak AppDelegate *weakSelf = self;
+    self.InitBaiduMapEngine = ^() {
+        [weakSelf startBaiduMapEngine];
+    };
+    
+    self.InitNaviServices = ^() {
+        [weakSelf startBaiduMapNaviServicesWithResult:^{
+            NSLog(@"异步开启成功");
+            weakSelf.GetResult();
+        }];
+    };
+    
     return YES;
 }
-
+#pragma mark BMKGeneralDelegate
+/**
+ *返回网络错误
+ *@param iError 错误号
+ */
+- (void)onGetNetworkState:(int)iError {
+    if (iError == 0) {
+        NSLog(@"网络正常");
+    }else {
+        NSLog(@"网络出错,%@",@(iError));
+    }
+}
+/**
+ *返回授权验证错误
+ *@param iError 错误号 : 为0时验证通过，具体参考BMKPermissionCheckResultCode
+ */
+- (void)onGetPzermissionState:(int)iError {
+    if (iError == 0) {
+        NSLog(@"验证成功");
+    }else {
+        NSLog(@"验证失败,%d",iError);
+    }
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
