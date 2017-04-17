@@ -1,25 +1,22 @@
 //
-//  PhotoPickerViewController.m
+//  HomepageViewController.m
 //  TJMJinDouYun
 //
 //  Created by Jiaming Tu on 2017/4/17.
 //  Copyright © 2017年 zhongzhichuangying. All rights reserved.
 //
 
-#import "PhotoPickerViewController.h"
+#import "HomepageViewController.h"
 
-@interface PhotoPickerViewController ()
+@interface HomepageViewController ()
 
 @end
 
-@implementation PhotoPickerViewController
+@implementation HomepageViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    //判断权限、获取权限
-    
-    
 }
 
 - (void)didReceiveMemoryWarning {

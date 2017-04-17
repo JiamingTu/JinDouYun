@@ -57,6 +57,7 @@
 		99F1C19C1EA45A4A00415F0C /* 33333.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F1C19A1EA45A4A00415F0C /* 33333.png */; };
 		99F1C19E1EA45AAD00415F0C /* 44444.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F1C19D1EA45AAD00415F0C /* 44444.png */; };
 		99F1C1A21EA4AAA800415F0C /* PhotoPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C1A11EA4AAA800415F0C /* PhotoPickerViewController.m */; };
+		99F1C1ED1EA4C38F00415F0C /* HomepageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C1EC1EA4C38F00415F0C /* HomepageViewController.m */; };
 		B3430058D86B1BD9C99AB40E /* libPods-TJMJinDouYun.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2165414574D4411C9A83DA /* libPods-TJMJinDouYun.a */; };
 /* End PBXBuildFile section */
 
@@ -162,6 +163,8 @@
 		99F1C19D1EA45AAD00415F0C /* 44444.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 44444.png; sourceTree = "<group>"; };
 		99F1C1A01EA4AAA800415F0C /* PhotoPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoPickerViewController.h; path = "图片选择/Controller/PhotoPickerViewController.h"; sourceTree = "<group>"; };
 		99F1C1A11EA4AAA800415F0C /* PhotoPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoPickerViewController.m; path = "图片选择/Controller/PhotoPickerViewController.m"; sourceTree = "<group>"; };
+		99F1C1EB1EA4C38F00415F0C /* HomepageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomepageViewController.h; path = "主页/Controller/HomepageViewController.h"; sourceTree = "<group>"; };
+		99F1C1EC1EA4C38F00415F0C /* HomepageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomepageViewController.m; path = "主页/Controller/HomepageViewController.m"; sourceTree = "<group>"; };
 		CE2165414574D4411C9A83DA /* libPods-TJMJinDouYun.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TJMJinDouYun.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF32F0CFE86D49786C5A2869 /* Pods-TJMJinDouYun.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TJMJinDouYun.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TJMJinDouYun/Pods-TJMJinDouYun.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -260,6 +263,7 @@
 		99F1C0821EA0CEB800415F0C /* TJMJinDouYun */ = {
 			isa = PBXGroup;
 			children = (
+				99F1C1E71EA4C17500415F0C /* 主页 */,
 				99F1C0EC1EA0CEFA00415F0C /* AppDelegate */,
 				99F1C0B61EA0CEE000415F0C /* Tool */,
 				99F1C0D01EA0CEFA00415F0C /* 地图 */,
@@ -606,6 +610,39 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		99F1C1E71EA4C17500415F0C /* 主页 */ = {
+			isa = PBXGroup;
+			children = (
+				99F1C1E91EA4C1A400415F0C /* Controller */,
+				99F1C1EA1EA4C1AB00415F0C /* Model */,
+				99F1C1E81EA4C19D00415F0C /* View */,
+			);
+			name = "主页";
+			sourceTree = "<group>";
+		};
+		99F1C1E81EA4C19D00415F0C /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		99F1C1E91EA4C1A400415F0C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				99F1C1EB1EA4C38F00415F0C /* HomepageViewController.h */,
+				99F1C1EC1EA4C38F00415F0C /* HomepageViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		99F1C1EA1EA4C1AB00415F0C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		D8C8147D2A0C1E675CA3EF9C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -814,6 +851,7 @@
 				99F1C0FB1EA0CEFA00415F0C /* AppDelegate+SDKSevice.m in Sources */,
 				99F1C1961EA44F8600415F0C /* TJMVehicleData.m in Sources */,
 				99F1C0F71EA0CEFA00415F0C /* TJMUploadViewController.m in Sources */,
+				99F1C1ED1EA4C38F00415F0C /* HomepageViewController.m in Sources */,
 				99F1C0CD1EA0CEE000415F0C /* TJMRequestHandle.m in Sources */,
 				99F1C1931EA44ED700415F0C /* TJMProvinceData.m in Sources */,
 				99F1C0F41EA0CEFA00415F0C /* TJMBaiduMapViewController.m in Sources */,

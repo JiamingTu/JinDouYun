@@ -97,8 +97,6 @@
  */
 + (void)enumerateAssetsInAssetCollection:(PHAssetCollection *)assetCollection original:(BOOL)original localIdentifier:(NSString *)locaIdentifier info:(photoInfo)pInfo
 {
-    
-    
     PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
     // 同步获得图片, 只会返回1张图片
     options.synchronous = YES;
@@ -120,10 +118,6 @@
                 pInfo(result,asset);
             }];
         }
-        
-        
-        
-        
         
     }
 }
