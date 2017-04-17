@@ -17,11 +17,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [TJMRRequestH getUploadRelevantInfoWithType:TJMFreeManGetCityApi form:nil success:^(id successObj) {
-        
-    } fail:^(NSString *failString) {
-        
-    }];
+//    [TJMRRequestH getUploadRelevantInfoWithType:TJMFreeManGetVehicle form:nil success:^(id successObj) {
+//        
+//    } fail:^(NSString *failString) {
+//        
+//    }];
+    
+    
 }
 - (IBAction)dismiss:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];

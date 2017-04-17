@@ -36,7 +36,13 @@ typedef void(^FailBlock)(NSString *failString);
 - (void)accountCheckWithForm:(NSDictionary *)form checkType:(NSString *)type success:(SuccessBlock)success fail:(FailBlock)failure;
 
 /*
- *自由人上传资料
+ *自由人获取已开通地域 和 交通工具
  */
 - (void)getUploadRelevantInfoWithType:(NSString *)type form:(NSDictionary *)form success:(SuccessBlock)success fail:(FailBlock)failure;
+/*
+ *自由人上传资料
+ */
+- (void)uploadFreeManInfoWithForm:(NSDictionary *)form photos:(NSDictionary *)photos success:(SuccessBlock)success fail:(FailBlock)FailBlock;
+
+
 @end

@@ -51,6 +51,6 @@
 #import "TJMHUDHandle.h"
 //导入Model
 #import "TJMTokenModel.h"
-#import "ProvinceData.h"
-
+#import "TJMProvinceData.h"
+#import "TJMVehicleData.h"
 #endif /* TJMPrefixHeader_pch */

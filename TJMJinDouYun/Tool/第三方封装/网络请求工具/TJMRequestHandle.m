@@ -111,11 +111,18 @@
         [self.manager GET:URLString parameters:form progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             NSLog(@"%@",responseObject);
             //省市
-            ProvinceData *provinceData = [ProvinceData mj_objectWithKeyValues:responseObject];
-            Province *province = [provinceData.data firstObject];
-            City *city = province.cities[0];
-            Area *area = city.areas[0];
-            NSLog(@"%@--%@--%@",province.provinceName,city.cityName,area.areaName);
+//            TJMProvinceData *provinceData = [TJMProvinceData mj_objectWithKeyValues:responseObject];
+//            TJMProvince *province = [provinceData.data firstObject];
+//            TJMCity *city = province.cities[0];
+//            TJMArea *area = city.areas[0];
+//            NSLog(@"%@--%@--%@",province.provinceName,city.cityName,area.areaName);
+            
+            //交通工具
+            TJMVehicleData *vehicleData = [TJMVehicleData mj_objectWithKeyValues:responseObject];
+            for (TJMVehicle *vehicle in vehicleData.data) {
+                NSLog(@"%@",vehicle.toolName);
+            }
+            
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             NSLog(@"请求失败，%@",error);
         }];
@@ -124,13 +131,39 @@
         NSLog(@"token不存在 重新登录");
     }
 }
-#pragma mark - 上传自由人资料信息
-- (void)uploadFreeManInfoWithForm:(NSDictionary *)form photos:(NSDictionary *)photos success:(SuccessBlock)success fail(FailBlock)FailBlock {
+#pragma mark 上传自由人资料信息
+- (void)uploadFreeManInfoWithForm:(NSDictionary *)form photos:(NSDictionary *)photos success:(SuccessBlock)success fail:(FailBlock)FailBlock {
+    TJMTokenModel *tokenModel = [TJMSandBoxManager getTokenModel];
+    if (tokenModel) {
+        [self.manager.requestSerializer setValue:tokenModel.token forHTTPHeaderField:@"Authorization"];
+        
+        //获取路径
+        NSString *URLString = [TJMApiBasicAddress stringByAppendingString:TJMFreeManUploadInfo];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:URLString]];
+        [self.manager POST:URLString parameters:form constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+            
+            //拼接图片
+            [photos.allValues enumerateObjectsUsingBlock:^(UIImage * _Nonnull image, NSUInteger idx, BOOL * _Nonnull stop) {
+                
+                NSData *imageData = UIImagePNGRepresentation(image);
+                
+                NSString *imageName = photos.allKeys[idx];
+                [formData appendPartWithFileData:imageData name:imageName fileName:[NSString stringWithFormat:@"%@.png",imageName] mimeType:@"image/png"];
+                
+            }];
+            
+        } progress:^(NSProgress * _Nonnull uploadProgress) {
+            
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            NSLog(@"%@",responseObject);
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"%@",error);
+        }];
+    }
     
-    [self.manager.requestSerializer setValue:tokenModel.token forHTTPHeaderField:@"Authorization"];
     
 }
-
+#pragma  mark 获取自由人资料
 
 #pragma  mark - sign 处理
 - (NSDictionary *)signWithDictionary:(NSDictionary *)dictionary {

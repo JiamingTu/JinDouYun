@@ -1,22 +1,22 @@
 //
-//  ProvinceData.h
+//  TJMProvinceData.h
 //  TJMJinDouYun
 //
-//  Created by Jiaming Tu on 2017/4/14.
+//  Created by Jiaming Tu on 2017/4/17.
 //  Copyright © 2017年 zhongzhichuangying. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@interface ProvinceData : NSObject
+@interface TJMProvinceData : NSObject
 
-@property (nonatomic,strong) NSArray *data;
+@property (nonatomic,copy) NSArray *data;
 
 @end
 
-@interface Province : NSObject
+@interface TJMProvince : NSObject
 
-@property (nonatomic,strong) NSArray *cities;
+@property (nonatomic,copy) NSArray *cities;
 @property (nonatomic,strong) NSNumber *enable;
 @property (nonatomic,strong) NSNumber *provinceCode;
 @property (nonatomic,strong) NSNumber *provinceId;
@@ -24,9 +24,9 @@
 
 @end
 
-@interface City : NSObject
+@interface TJMCity : NSObject
 
-@property (nonatomic,strong) NSArray *areas;
+@property (nonatomic,copy) NSArray *areas;
 @property (nonatomic,strong) NSNumber *cityCode;
 @property (nonatomic,strong) NSNumber *cityId;
 @property (nonatomic,strong) NSNumber *enable;
@@ -35,7 +35,7 @@
 
 @end
 
-@interface Area : NSObject
+@interface TJMArea : NSObject
 
 @property (nonatomic,strong) NSNumber *areaCode;
 @property (nonatomic,strong) NSNumber *areaId;

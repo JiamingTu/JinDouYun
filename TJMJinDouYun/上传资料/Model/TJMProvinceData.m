@@ -1,42 +1,42 @@
 //
-//  ProvinceData.m
+//  TJMProvinceData.m
 //  TJMJinDouYun
 //
-//  Created by Jiaming Tu on 2017/4/14.
+//  Created by Jiaming Tu on 2017/4/17.
 //  Copyright © 2017年 zhongzhichuangying. All rights reserved.
 //
 
-#import "ProvinceData.h"
+#import "TJMProvinceData.h"
 
-@implementation ProvinceData
+@implementation TJMProvinceData
 
 + (NSDictionary *)objectClassInArray {
     return @{
-             @"data" : @"Province"
+             @"data" : @"TJMProvince"
              };
 }
 
 @end
 
-@implementation Province
+@implementation TJMProvince
 
 + (NSDictionary *)objectClassInArray {
     return @{
-             @"cities" : @"City"
+             @"cities" : @"TJMCity"
              };
 }
 @end
 
-@implementation City
+@implementation TJMCity
 
 + (NSDictionary *)objectClassInArray {
     return @{
-             @"areas" : @"Area"
+             @"areas" : @"TJMArea"
              };
 }
 @end
 
-@implementation Area
+@implementation TJMArea
 
 
 
