@@ -56,6 +56,7 @@
 		99F1C19B1EA45A4A00415F0C /* 22222.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F1C1991EA45A4A00415F0C /* 22222.png */; };
 		99F1C19C1EA45A4A00415F0C /* 33333.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F1C19A1EA45A4A00415F0C /* 33333.png */; };
 		99F1C19E1EA45AAD00415F0C /* 44444.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F1C19D1EA45AAD00415F0C /* 44444.png */; };
+		99F1C1A21EA4AAA800415F0C /* PhotoPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C1A11EA4AAA800415F0C /* PhotoPickerViewController.m */; };
 		B3430058D86B1BD9C99AB40E /* libPods-TJMJinDouYun.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2165414574D4411C9A83DA /* libPods-TJMJinDouYun.a */; };
 /* End PBXBuildFile section */
 
@@ -159,6 +160,8 @@
 		99F1C1991EA45A4A00415F0C /* 22222.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 22222.png; sourceTree = "<group>"; };
 		99F1C19A1EA45A4A00415F0C /* 33333.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 33333.png; sourceTree = "<group>"; };
 		99F1C19D1EA45AAD00415F0C /* 44444.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 44444.png; sourceTree = "<group>"; };
+		99F1C1A01EA4AAA800415F0C /* PhotoPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoPickerViewController.h; path = "图片选择/Controller/PhotoPickerViewController.h"; sourceTree = "<group>"; };
+		99F1C1A11EA4AAA800415F0C /* PhotoPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoPickerViewController.m; path = "图片选择/Controller/PhotoPickerViewController.m"; sourceTree = "<group>"; };
 		CE2165414574D4411C9A83DA /* libPods-TJMJinDouYun.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TJMJinDouYun.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF32F0CFE86D49786C5A2869 /* Pods-TJMJinDouYun.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TJMJinDouYun.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TJMJinDouYun/Pods-TJMJinDouYun.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -446,6 +449,7 @@
 		99F1C0DE1EA0CEFA00415F0C /* 上传资料 */ = {
 			isa = PBXGroup;
 			children = (
+				99F1C19F1EA4AA3B00415F0C /* 图片选择 */,
 				99F1C0DF1EA0CEFA00415F0C /* Controller */,
 				99F1C0E21EA0CEFA00415F0C /* Model */,
 				99F1C0E51EA0CEFA00415F0C /* View */,
@@ -567,6 +571,39 @@
 				99F1C1651EA0DBB200415F0C /* libssl.a */,
 			);
 			path = thirdlibs;
+			sourceTree = "<group>";
+		};
+		99F1C19F1EA4AA3B00415F0C /* 图片选择 */ = {
+			isa = PBXGroup;
+			children = (
+				99F1C1A31EA4AAAE00415F0C /* Controller */,
+				99F1C1A51EA4AAC200415F0C /* Model */,
+				99F1C1A41EA4AABA00415F0C /* View */,
+			);
+			name = "图片选择";
+			sourceTree = "<group>";
+		};
+		99F1C1A31EA4AAAE00415F0C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				99F1C1A01EA4AAA800415F0C /* PhotoPickerViewController.h */,
+				99F1C1A11EA4AAA800415F0C /* PhotoPickerViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		99F1C1A41EA4AABA00415F0C /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		99F1C1A51EA4AAC200415F0C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		D8C8147D2A0C1E675CA3EF9C /* Pods */ = {
@@ -773,6 +810,7 @@
 			files = (
 				99F1C0FA1EA0CEFA00415F0C /* AppDelegate+APPService.m in Sources */,
 				99F1C0CC1EA0CEE000415F0C /* TJMHUDHandle.m in Sources */,
+				99F1C1A21EA4AAA800415F0C /* PhotoPickerViewController.m in Sources */,
 				99F1C0FB1EA0CEFA00415F0C /* AppDelegate+SDKSevice.m in Sources */,
 				99F1C1961EA44F8600415F0C /* TJMVehicleData.m in Sources */,
 				99F1C0F71EA0CEFA00415F0C /* TJMUploadViewController.m in Sources */,

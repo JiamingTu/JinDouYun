@@ -7,6 +7,11 @@
 //
 
 #import "AppDelegate.h"
+#import <Photos/Photos.h>
+
+typedef void(^authBlock)(BOOL isAuth);
+typedef void(^photoInfo)(UIImage *image,PHAsset *asset);
+
 
 @interface AppDelegate (APPService)
 /*
