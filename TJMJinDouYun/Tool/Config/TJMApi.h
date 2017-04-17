@@ -118,7 +118,7 @@
  *    Authorization     ->header
  *    CarrierId         ->path
  */
-
+//[NSString stringWithFormat:@"/carrier/info/%@",CarrierId]
 #define TJMFreeManGetInfo(CarrierId) @"/carrier/info/"CarrierId
 
 #endif /* TJMApi_h */

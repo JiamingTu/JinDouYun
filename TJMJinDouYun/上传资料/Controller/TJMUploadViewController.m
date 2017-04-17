@@ -17,12 +17,38 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-//    [TJMRRequestH getUploadRelevantInfoWithType:TJMFreeManGetVehicle form:nil success:^(id successObj) {
+//    [TJMRRequestH getUploadRelevantInfoWithType:TJMFreeManGetCity form:nil success:^(id successObj) {
 //        
 //    } fail:^(NSString *failString) {
 //        
 //    }];
     
+    UIImage *image1 = [UIImage imageNamed:@"11111"];
+    UIImage *image2 = [UIImage imageNamed:@"22222"];
+    UIImage *image3 = [UIImage imageNamed:@"33333"];
+    UIImage *image4 = [UIImage imageNamed:@"44444"];
+    NSDictionary *photos = @{@"photo":image1,@"personCardPhoto":image2,@"frontCardPhoto":image3,@"backCardPhoto":image4};
+    
+    NSDictionary *form = @{@"realName":@"小样",
+                           @"idCard":@"350481199011200011",
+                           @"concact":@"大样",
+                           @"concactMobile":@"13345678901",
+                           @"areaId":@(3),
+                           @"toolId":@(1),
+                           @"carrierId":@(3)};
+    
+//    [TJMRRequestH uploadFreeManInfoWithForm:form photos:photos success:^(id successObj) {
+//        
+//    } fail:^(NSString *failString) {
+//        
+//    }];
+    
+    //获取自由人资料
+//    [TJMRRequestH getUploadRelevantInfoWithType:TJMFreeManGetInfo(@"3") form:nil success:^(id successObj) {
+//    
+//    } fail:^(NSString *failString) {
+//        
+//    }];
     
 }
 - (IBAction)dismiss:(id)sender {

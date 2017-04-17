@@ -11,7 +11,7 @@
 
 @interface TJMRequestHandle ()
 
-@property (nonatomic,weak) AFHTTPSessionManager *manager;
+@property (nonatomic,strong) AFHTTPSessionManager *manager;
 
 @end
 
@@ -22,7 +22,6 @@
     if (!_manager) {
         self.manager = [AFHTTPSessionManager manager];
         _manager.responseSerializer = [AFJSONResponseSerializer serializer];
-        _manager.requestSerializer = [AFJSONRequestSerializer serializer];
     }
     return _manager;
 }
@@ -74,6 +73,7 @@
     NSString *URLStirng = [TJMApiBasicAddress stringByAppendingString:type];
     //得到完整的请求参数
     NSDictionary *parameters = [self signWithDictionary:form];
+    NSLog(@"请求参数：%@",parameters);
     //网络请求
     [self.manager POST:URLStirng parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -106,25 +106,27 @@
     if (tokenModel) {
         //token存在 继续获取
         NSLog(@"token存在");
+        self.manager.requestSerializer = [AFJSONRequestSerializer serializer];
         //设置请求头
         [self.manager.requestSerializer setValue:tokenModel.token forHTTPHeaderField:@"Authorization"];
         [self.manager GET:URLString parameters:form progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             NSLog(@"%@",responseObject);
             //省市
-//            TJMProvinceData *provinceData = [TJMProvinceData mj_objectWithKeyValues:responseObject];
-//            TJMProvince *province = [provinceData.data firstObject];
-//            TJMCity *city = province.cities[0];
-//            TJMArea *area = city.areas[0];
-//            NSLog(@"%@--%@--%@",province.provinceName,city.cityName,area.areaName);
+            TJMProvinceData *provinceData = [TJMProvinceData mj_objectWithKeyValues:responseObject];
+            TJMProvince *province = [provinceData.data firstObject];
+            TJMCity *city = province.cities[0];
+            TJMArea *area = city.areas[0];
+            NSLog(@"%@--%@--%@",province.provinceName,city.cityName,area.areaId);
             
             //交通工具
             TJMVehicleData *vehicleData = [TJMVehicleData mj_objectWithKeyValues:responseObject];
             for (TJMVehicle *vehicle in vehicleData.data) {
                 NSLog(@"%@",vehicle.toolName);
             }
-            
+            _manager = nil;
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             NSLog(@"请求失败，%@",error);
+            _manager = nil;
         }];
     } else {
         //token不存在 重新登录
@@ -135,13 +137,14 @@
 - (void)uploadFreeManInfoWithForm:(NSDictionary *)form photos:(NSDictionary *)photos success:(SuccessBlock)success fail:(FailBlock)FailBlock {
     TJMTokenModel *tokenModel = [TJMSandBoxManager getTokenModel];
     if (tokenModel) {
+        NSLog(@"userId:%@",tokenModel.userId);
+        self.manager.requestSerializer = [AFJSONRequestSerializer serializer];
         [self.manager.requestSerializer setValue:tokenModel.token forHTTPHeaderField:@"Authorization"];
         
         //获取路径
         NSString *URLString = [TJMApiBasicAddress stringByAppendingString:TJMFreeManUploadInfo];
-        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:URLString]];
+        
         [self.manager POST:URLString parameters:form constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-            
             //拼接图片
             [photos.allValues enumerateObjectsUsingBlock:^(UIImage * _Nonnull image, NSUInteger idx, BOOL * _Nonnull stop) {
                 
@@ -149,16 +152,20 @@
                 
                 NSString *imageName = photos.allKeys[idx];
                 [formData appendPartWithFileData:imageData name:imageName fileName:[NSString stringWithFormat:@"%@.png",imageName] mimeType:@"image/png"];
-                
             }];
             
         } progress:^(NSProgress * _Nonnull uploadProgress) {
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             NSLog(@"%@",responseObject);
+            _manager = nil;
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             NSLog(@"%@",error);
+            _manager = nil;
         }];
+    } else {
+        //token不存在 重新登录
+        NSLog(@"token不存在 重新登录");
     }
     
     

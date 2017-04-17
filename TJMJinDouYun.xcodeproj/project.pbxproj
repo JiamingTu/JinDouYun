@@ -53,6 +53,9 @@
 		99F1C1931EA44ED700415F0C /* TJMProvinceData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C1921EA44ED700415F0C /* TJMProvinceData.m */; };
 		99F1C1961EA44F8600415F0C /* TJMVehicleData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C1951EA44F8600415F0C /* TJMVehicleData.m */; };
 		99F1C1981EA4591A00415F0C /* 11111.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F1C1971EA4591A00415F0C /* 11111.png */; };
+		99F1C19B1EA45A4A00415F0C /* 22222.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F1C1991EA45A4A00415F0C /* 22222.png */; };
+		99F1C19C1EA45A4A00415F0C /* 33333.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F1C19A1EA45A4A00415F0C /* 33333.png */; };
+		99F1C19E1EA45AAD00415F0C /* 44444.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F1C19D1EA45AAD00415F0C /* 44444.png */; };
 		B3430058D86B1BD9C99AB40E /* libPods-TJMJinDouYun.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2165414574D4411C9A83DA /* libPods-TJMJinDouYun.a */; };
 /* End PBXBuildFile section */
 
@@ -153,6 +156,9 @@
 		99F1C1941EA44F8600415F0C /* TJMVehicleData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMVehicleData.h; sourceTree = "<group>"; };
 		99F1C1951EA44F8600415F0C /* TJMVehicleData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMVehicleData.m; sourceTree = "<group>"; };
 		99F1C1971EA4591A00415F0C /* 11111.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 11111.png; path = "../../Tool/第三方封装/HUD工具/11111.png"; sourceTree = "<group>"; };
+		99F1C1991EA45A4A00415F0C /* 22222.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 22222.png; sourceTree = "<group>"; };
+		99F1C19A1EA45A4A00415F0C /* 33333.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 33333.png; sourceTree = "<group>"; };
+		99F1C19D1EA45AAD00415F0C /* 44444.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 44444.png; sourceTree = "<group>"; };
 		CE2165414574D4411C9A83DA /* libPods-TJMJinDouYun.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TJMJinDouYun.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF32F0CFE86D49786C5A2869 /* Pods-TJMJinDouYun.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TJMJinDouYun.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TJMJinDouYun/Pods-TJMJinDouYun.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -251,16 +257,13 @@
 		99F1C0821EA0CEB800415F0C /* TJMJinDouYun */ = {
 			isa = PBXGroup;
 			children = (
+				99F1C0EC1EA0CEFA00415F0C /* AppDelegate */,
 				99F1C0B61EA0CEE000415F0C /* Tool */,
 				99F1C0D01EA0CEFA00415F0C /* 地图 */,
 				99F1C0D61EA0CEFA00415F0C /* 登录 */,
 				99F1C0DE1EA0CEFA00415F0C /* 上传资料 */,
 				99F1C0E61EA0CEFA00415F0C /* 注册 */,
-				99F1C0EC1EA0CEFA00415F0C /* AppDelegate */,
-				99F1C0F31EA0CEFA00415F0C /* Assets.xcassets */,
-				99F1C1001EA0CF2900415F0C /* LaunchScreen.storyboard */,
 				99F1C1021EA0CF2900415F0C /* Main.storyboard */,
-				99F1C0FE1EA0CF0600415F0C /* Info.plist */,
 				99F1C0831EA0CEB800415F0C /* Supporting Files */,
 			);
 			path = TJMJinDouYun;
@@ -269,6 +272,9 @@
 		99F1C0831EA0CEB800415F0C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				99F1C0F31EA0CEFA00415F0C /* Assets.xcassets */,
+				99F1C1001EA0CF2900415F0C /* LaunchScreen.storyboard */,
+				99F1C0FE1EA0CF0600415F0C /* Info.plist */,
 				99F1C0841EA0CEB800415F0C /* main.m */,
 			);
 			name = "Supporting Files";
@@ -451,6 +457,9 @@
 			isa = PBXGroup;
 			children = (
 				99F1C1971EA4591A00415F0C /* 11111.png */,
+				99F1C1991EA45A4A00415F0C /* 22222.png */,
+				99F1C19A1EA45A4A00415F0C /* 33333.png */,
+				99F1C19D1EA45AAD00415F0C /* 44444.png */,
 				99F1C0E01EA0CEFA00415F0C /* TJMUploadViewController.h */,
 				99F1C0E11EA0CEFA00415F0C /* TJMUploadViewController.m */,
 			);
@@ -678,14 +687,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99F1C19E1EA45AAD00415F0C /* 44444.png in Resources */,
 				99F1C16D1EA0DBB200415F0C /* updatelog.txt in Resources */,
 				99F1C1681EA0DBB200415F0C /* baiduNaviSDK.xcassets in Resources */,
 				99F1C1041EA0CF2900415F0C /* LaunchScreen.storyboard in Resources */,
 				99F1C1671EA0DBB200415F0C /* baiduNaviSDK.bundle in Resources */,
 				99F1C1981EA4591A00415F0C /* 11111.png in Resources */,
+				99F1C19C1EA45A4A00415F0C /* 33333.png in Resources */,
 				99F1C0FF1EA0CF0600415F0C /* Info.plist in Resources */,
 				99F1C16A1EA0DBB200415F0C /* readme.txt in Resources */,
 				99F1C0FD1EA0CEFA00415F0C /* Assets.xcassets in Resources */,
+				99F1C19B1EA45A4A00415F0C /* 22222.png in Resources */,
 				99F1C1051EA0CF2900415F0C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
