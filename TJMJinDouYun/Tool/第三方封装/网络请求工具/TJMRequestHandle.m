@@ -8,7 +8,7 @@
 
 #import "TJMRequestHandle.h"
 #import "NSString+MD5.h"
-
+#import <CoreLocation/CoreLocation.h>
 @interface TJMRequestHandle ()
 
 @property (nonatomic,strong) AFHTTPSessionManager *manager;
@@ -208,6 +208,22 @@
     return parameters;
     
 }
+
+#pragma  mark - 用户定位
+- (void)getFreeManCoordinateNearByWithCoordinate:(CLLocationCoordinate2D)coordinate success:(SuccessBlock)success fail:(FailBlock)failure {
+    NSString *URLString = [TJMApiBasicAddress stringByAppendingString:TJMGetFreeManCoordinateNearBy];
+    
+    NSDictionary *parameters = @{@"lat":@(coordinate.latitude),@"lng":@(coordinate.longitude)};
+    
+    [self.manager POST:URLString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"%@",responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
+}
+
 
 
 

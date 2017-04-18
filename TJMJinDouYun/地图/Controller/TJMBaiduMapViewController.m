@@ -25,13 +25,14 @@
         _mapView.showsUserLocation = YES;
         _mapView.userTrackingMode = BMKUserTrackingModeFollow;//跟随模式
         _mapView.zoomLevel = 15;
+//        _mapView.delegate = self;
     }
     return _mapView;
 }
 
 - (AppDelegate *)appDelegate {
     if (!_appDelegate) {
-        self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        self.appDelegate = TJMAppDelegate;
     }
     return _appDelegate;
 }
@@ -39,7 +40,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    self.appDelegate.InitBaiduMapEngine();
     //初始化BMKLocationService
     _locService = [[BMKLocationService alloc]init];
     _locService.delegate = self;
@@ -47,9 +48,10 @@
     [_locService startUserLocationService];
     
     [self.view addSubview:self.mapView];
-    
     self.appDelegate.InitNaviServices();
-    [self startNavi];
+    //[self startNavi];
+    
+    
     
 }
 
@@ -63,6 +65,13 @@
 {
     [self.mapView updateLocationData:userLocation];
     NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
+    
+    [TJMRRequestH getFreeManCoordinateNearByWithCoordinate:userLocation.location.coordinate success:^(id successObj) {
+        
+    } fail:^(NSString *failString) {
+        
+    }];
+    
 }
 
 #pragma  mark - 导航

@@ -44,5 +44,8 @@ typedef void(^FailBlock)(NSString *failString);
  */
 - (void)uploadFreeManInfoWithForm:(NSDictionary *)form photos:(NSDictionary *)photos success:(SuccessBlock)success fail:(FailBlock)FailBlock;
 
-
+/*
+ *获取周边自由人
+ */
+- (void)getFreeManCoordinateNearByWithCoordinate:(CLLocationCoordinate2D)coordinate success:(SuccessBlock)success fail:(FailBlock)failure;
 @end

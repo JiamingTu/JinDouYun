@@ -121,4 +121,11 @@
 //[NSString stringWithFormat:@"/carrier/info/%@",CarrierId]
 #define TJMFreeManGetInfo(CarrierId) @"/carrier/info/"CarrierId
 
+#pragma  mark - 获取周围自由人
+/*
+ *
+ */
+#define TJMGetFreeManCoordinateNearBy @"/customer/locations/auth/nearBy"
+
+
 #endif /* TJMApi_h */
