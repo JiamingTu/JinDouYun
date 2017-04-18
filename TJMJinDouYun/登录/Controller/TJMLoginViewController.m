@@ -8,12 +8,12 @@
 
 #import "TJMLoginViewController.h"
 
-@interface TJMLoginViewController ()
+@interface TJMLoginViewController ()<CAAnimationDelegate>
 
 @end
 
 @implementation TJMLoginViewController
-
+#pragma  mark - View life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -43,6 +43,9 @@
 }
 - (IBAction)forgetPasswordAction:(UIButton *)sender {
 }
+
+
+
 
 #pragma  mark - UITextFieldDelegate
 #pragma  mark - UITextFieldDelegate

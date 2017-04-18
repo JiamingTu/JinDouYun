@@ -53,4 +53,9 @@
 #import "TJMTokenModel.h"
 #import "TJMProvinceData.h"
 #import "TJMVehicleData.h"
+
+//appDelegate
+#import "AppDelegate.h"
+#import "AppDelegate+SDKSevice.h"
+#import "AppDelegate+APPService.h"
 #endif /* TJMPrefixHeader_pch */

@@ -18,7 +18,6 @@
 		99F1C0F41EA0CEFA00415F0C /* TJMBaiduMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C0D31EA0CEFA00415F0C /* TJMBaiduMapViewController.m */; };
 		99F1C0F51EA0CEFA00415F0C /* TJMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C0D91EA0CEFA00415F0C /* TJMLoginViewController.m */; };
 		99F1C0F61EA0CEFA00415F0C /* TJMTokenModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C0DC1EA0CEFA00415F0C /* TJMTokenModel.m */; };
-		99F1C0F71EA0CEFA00415F0C /* TJMUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C0E11EA0CEFA00415F0C /* TJMUploadViewController.m */; };
 		99F1C0F91EA0CEFA00415F0C /* TJMRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C0E91EA0CEFA00415F0C /* TJMRegisterViewController.m */; };
 		99F1C0FA1EA0CEFA00415F0C /* AppDelegate+APPService.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C0EE1EA0CEFA00415F0C /* AppDelegate+APPService.m */; };
 		99F1C0FB1EA0CEFA00415F0C /* AppDelegate+SDKSevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C0F01EA0CEFA00415F0C /* AppDelegate+SDKSevice.m */; };
@@ -50,14 +49,19 @@
 		99F1C1891EA445AB00415F0C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F1C1881EA445AB00415F0C /* libc++.tbd */; };
 		99F1C18B1EA445B200415F0C /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F1C18A1EA445B200415F0C /* libsqlite3.0.tbd */; };
 		99F1C18D1EA445BD00415F0C /* libz.1.2.5.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F1C18C1EA445BD00415F0C /* libz.1.2.5.tbd */; };
-		99F1C1931EA44ED700415F0C /* TJMProvinceData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C1921EA44ED700415F0C /* TJMProvinceData.m */; };
-		99F1C1961EA44F8600415F0C /* TJMVehicleData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C1951EA44F8600415F0C /* TJMVehicleData.m */; };
-		99F1C1981EA4591A00415F0C /* 11111.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F1C1971EA4591A00415F0C /* 11111.png */; };
-		99F1C19B1EA45A4A00415F0C /* 22222.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F1C1991EA45A4A00415F0C /* 22222.png */; };
-		99F1C19C1EA45A4A00415F0C /* 33333.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F1C19A1EA45A4A00415F0C /* 33333.png */; };
-		99F1C19E1EA45AAD00415F0C /* 44444.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F1C19D1EA45AAD00415F0C /* 44444.png */; };
-		99F1C1A21EA4AAA800415F0C /* PhotoPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C1A11EA4AAA800415F0C /* PhotoPickerViewController.m */; };
-		99F1C1ED1EA4C38F00415F0C /* HomepageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C1EC1EA4C38F00415F0C /* HomepageViewController.m */; };
+		99F1C2071EA5AA9D00415F0C /* 22222.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F1C1F61EA5AA9D00415F0C /* 22222.png */; };
+		99F1C2081EA5AA9D00415F0C /* 33333.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F1C1F71EA5AA9D00415F0C /* 33333.png */; };
+		99F1C2091EA5AA9D00415F0C /* 44444.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F1C1F81EA5AA9D00415F0C /* 44444.png */; };
+		99F1C20A1EA5AA9D00415F0C /* TJMUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C1FA1EA5AA9D00415F0C /* TJMUploadViewController.m */; };
+		99F1C20B1EA5AA9D00415F0C /* TJMProvinceData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C1FD1EA5AA9D00415F0C /* TJMProvinceData.m */; };
+		99F1C20C1EA5AA9D00415F0C /* TJMVehicleData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C1FF1EA5AA9D00415F0C /* TJMVehicleData.m */; };
+		99F1C20D1EA5AA9D00415F0C /* PhotoPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C2041EA5AA9D00415F0C /* PhotoPickerViewController.m */; };
+		99F1C20F1EA5AADE00415F0C /* 11111.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F1C20E1EA5AADE00415F0C /* 11111.png */; };
+		99F1C2191EA5ABB000415F0C /* ExamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C2181EA5ABB000415F0C /* ExamViewController.m */; };
+		99F1C21C1EA5B77400415F0C /* TJMHomepageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C21B1EA5B77400415F0C /* TJMHomepageViewController.m */; };
+		99F1C2231EA5B7F400415F0C /* TJMHomepageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C2211EA5B7F400415F0C /* TJMHomepageTableViewCell.m */; };
+		99F1C2241EA5B7F400415F0C /* TJMHomepageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99F1C2221EA5B7F400415F0C /* TJMHomepageTableViewCell.xib */; };
+		99F1C22D1EA5E6C600415F0C /* TJMEntryCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C22C1EA5E6C600415F0C /* TJMEntryCheckViewController.m */; };
 		B3430058D86B1BD9C99AB40E /* libPods-TJMJinDouYun.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2165414574D4411C9A83DA /* libPods-TJMJinDouYun.a */; };
 /* End PBXBuildFile section */
 
@@ -107,8 +111,6 @@
 		99F1C0D91EA0CEFA00415F0C /* TJMLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMLoginViewController.m; sourceTree = "<group>"; };
 		99F1C0DB1EA0CEFA00415F0C /* TJMTokenModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMTokenModel.h; sourceTree = "<group>"; };
 		99F1C0DC1EA0CEFA00415F0C /* TJMTokenModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMTokenModel.m; sourceTree = "<group>"; };
-		99F1C0E01EA0CEFA00415F0C /* TJMUploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMUploadViewController.h; sourceTree = "<group>"; };
-		99F1C0E11EA0CEFA00415F0C /* TJMUploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMUploadViewController.m; sourceTree = "<group>"; };
 		99F1C0E81EA0CEFA00415F0C /* TJMRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMRegisterViewController.h; sourceTree = "<group>"; };
 		99F1C0E91EA0CEFA00415F0C /* TJMRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMRegisterViewController.m; sourceTree = "<group>"; };
 		99F1C0ED1EA0CEFA00415F0C /* AppDelegate+APPService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+APPService.h"; sourceTree = "<group>"; };
@@ -153,18 +155,27 @@
 		99F1C1881EA445AB00415F0C /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		99F1C18A1EA445B200415F0C /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		99F1C18C1EA445BD00415F0C /* libz.1.2.5.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.5.tbd; path = usr/lib/libz.1.2.5.tbd; sourceTree = SDKROOT; };
-		99F1C1911EA44ED700415F0C /* TJMProvinceData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMProvinceData.h; sourceTree = "<group>"; };
-		99F1C1921EA44ED700415F0C /* TJMProvinceData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMProvinceData.m; sourceTree = "<group>"; };
-		99F1C1941EA44F8600415F0C /* TJMVehicleData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMVehicleData.h; sourceTree = "<group>"; };
-		99F1C1951EA44F8600415F0C /* TJMVehicleData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMVehicleData.m; sourceTree = "<group>"; };
-		99F1C1971EA4591A00415F0C /* 11111.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 11111.png; path = "../../Tool/第三方封装/HUD工具/11111.png"; sourceTree = "<group>"; };
-		99F1C1991EA45A4A00415F0C /* 22222.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 22222.png; sourceTree = "<group>"; };
-		99F1C19A1EA45A4A00415F0C /* 33333.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 33333.png; sourceTree = "<group>"; };
-		99F1C19D1EA45AAD00415F0C /* 44444.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 44444.png; sourceTree = "<group>"; };
-		99F1C1A01EA4AAA800415F0C /* PhotoPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoPickerViewController.h; path = "图片选择/Controller/PhotoPickerViewController.h"; sourceTree = "<group>"; };
-		99F1C1A11EA4AAA800415F0C /* PhotoPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoPickerViewController.m; path = "图片选择/Controller/PhotoPickerViewController.m"; sourceTree = "<group>"; };
-		99F1C1EB1EA4C38F00415F0C /* HomepageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomepageViewController.h; path = "主页/Controller/HomepageViewController.h"; sourceTree = "<group>"; };
-		99F1C1EC1EA4C38F00415F0C /* HomepageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomepageViewController.m; path = "主页/Controller/HomepageViewController.m"; sourceTree = "<group>"; };
+		99F1C1F61EA5AA9D00415F0C /* 22222.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 22222.png; sourceTree = "<group>"; };
+		99F1C1F71EA5AA9D00415F0C /* 33333.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 33333.png; sourceTree = "<group>"; };
+		99F1C1F81EA5AA9D00415F0C /* 44444.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 44444.png; sourceTree = "<group>"; };
+		99F1C1F91EA5AA9D00415F0C /* TJMUploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMUploadViewController.h; sourceTree = "<group>"; };
+		99F1C1FA1EA5AA9D00415F0C /* TJMUploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMUploadViewController.m; sourceTree = "<group>"; };
+		99F1C1FC1EA5AA9D00415F0C /* TJMProvinceData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMProvinceData.h; sourceTree = "<group>"; };
+		99F1C1FD1EA5AA9D00415F0C /* TJMProvinceData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMProvinceData.m; sourceTree = "<group>"; };
+		99F1C1FE1EA5AA9D00415F0C /* TJMVehicleData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMVehicleData.h; sourceTree = "<group>"; };
+		99F1C1FF1EA5AA9D00415F0C /* TJMVehicleData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMVehicleData.m; sourceTree = "<group>"; };
+		99F1C2031EA5AA9D00415F0C /* PhotoPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoPickerViewController.h; sourceTree = "<group>"; };
+		99F1C2041EA5AA9D00415F0C /* PhotoPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoPickerViewController.m; sourceTree = "<group>"; };
+		99F1C20E1EA5AADE00415F0C /* 11111.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 11111.png; sourceTree = "<group>"; };
+		99F1C2171EA5ABB000415F0C /* ExamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExamViewController.h; path = "入职考核/考试/Controller/ExamViewController.h"; sourceTree = "<group>"; };
+		99F1C2181EA5ABB000415F0C /* ExamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExamViewController.m; path = "入职考核/考试/Controller/ExamViewController.m"; sourceTree = "<group>"; };
+		99F1C21A1EA5B77400415F0C /* TJMHomepageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TJMHomepageViewController.h; path = "主页/Controller/TJMHomepageViewController.h"; sourceTree = "<group>"; };
+		99F1C21B1EA5B77400415F0C /* TJMHomepageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TJMHomepageViewController.m; path = "主页/Controller/TJMHomepageViewController.m"; sourceTree = "<group>"; };
+		99F1C2201EA5B7F400415F0C /* TJMHomepageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TJMHomepageTableViewCell.h; path = "主页/View/TJMHomepageTableViewCell.h"; sourceTree = "<group>"; };
+		99F1C2211EA5B7F400415F0C /* TJMHomepageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TJMHomepageTableViewCell.m; path = "主页/View/TJMHomepageTableViewCell.m"; sourceTree = "<group>"; };
+		99F1C2221EA5B7F400415F0C /* TJMHomepageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TJMHomepageTableViewCell.xib; path = "主页/View/TJMHomepageTableViewCell.xib"; sourceTree = "<group>"; };
+		99F1C22B1EA5E6C600415F0C /* TJMEntryCheckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TJMEntryCheckViewController.h; path = "入职考核/Controller/TJMEntryCheckViewController.h"; sourceTree = "<group>"; };
+		99F1C22C1EA5E6C600415F0C /* TJMEntryCheckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TJMEntryCheckViewController.m; path = "入职考核/Controller/TJMEntryCheckViewController.m"; sourceTree = "<group>"; };
 		CE2165414574D4411C9A83DA /* libPods-TJMJinDouYun.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TJMJinDouYun.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF32F0CFE86D49786C5A2869 /* Pods-TJMJinDouYun.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TJMJinDouYun.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TJMJinDouYun/Pods-TJMJinDouYun.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -268,7 +279,7 @@
 				99F1C1E71EA4C17500415F0C /* 主页 */,
 				99F1C0D01EA0CEFA00415F0C /* 地图 */,
 				99F1C0D61EA0CEFA00415F0C /* 登录 */,
-				99F1C0DE1EA0CEFA00415F0C /* 上传资料 */,
+				99F1C1F31EA5A87C00415F0C /* 入职考核 */,
 				99F1C0E61EA0CEFA00415F0C /* 注册 */,
 				99F1C1021EA0CF2900415F0C /* Main.storyboard */,
 				99F1C0831EA0CEB800415F0C /* Supporting Files */,
@@ -450,48 +461,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		99F1C0DE1EA0CEFA00415F0C /* 上传资料 */ = {
-			isa = PBXGroup;
-			children = (
-				99F1C19F1EA4AA3B00415F0C /* 图片选择 */,
-				99F1C0DF1EA0CEFA00415F0C /* Controller */,
-				99F1C0E21EA0CEFA00415F0C /* Model */,
-				99F1C0E51EA0CEFA00415F0C /* View */,
-			);
-			path = "上传资料";
-			sourceTree = "<group>";
-		};
-		99F1C0DF1EA0CEFA00415F0C /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				99F1C1971EA4591A00415F0C /* 11111.png */,
-				99F1C1991EA45A4A00415F0C /* 22222.png */,
-				99F1C19A1EA45A4A00415F0C /* 33333.png */,
-				99F1C19D1EA45AAD00415F0C /* 44444.png */,
-				99F1C0E01EA0CEFA00415F0C /* TJMUploadViewController.h */,
-				99F1C0E11EA0CEFA00415F0C /* TJMUploadViewController.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		99F1C0E21EA0CEFA00415F0C /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				99F1C1911EA44ED700415F0C /* TJMProvinceData.h */,
-				99F1C1921EA44ED700415F0C /* TJMProvinceData.m */,
-				99F1C1941EA44F8600415F0C /* TJMVehicleData.h */,
-				99F1C1951EA44F8600415F0C /* TJMVehicleData.m */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		99F1C0E51EA0CEFA00415F0C /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		99F1C0E61EA0CEFA00415F0C /* 注册 */ = {
 			isa = PBXGroup;
 			children = (
@@ -577,39 +546,6 @@
 			path = thirdlibs;
 			sourceTree = "<group>";
 		};
-		99F1C19F1EA4AA3B00415F0C /* 图片选择 */ = {
-			isa = PBXGroup;
-			children = (
-				99F1C1A31EA4AAAE00415F0C /* Controller */,
-				99F1C1A51EA4AAC200415F0C /* Model */,
-				99F1C1A41EA4AABA00415F0C /* View */,
-			);
-			name = "图片选择";
-			sourceTree = "<group>";
-		};
-		99F1C1A31EA4AAAE00415F0C /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				99F1C1A01EA4AAA800415F0C /* PhotoPickerViewController.h */,
-				99F1C1A11EA4AAA800415F0C /* PhotoPickerViewController.m */,
-			);
-			name = Controller;
-			sourceTree = "<group>";
-		};
-		99F1C1A41EA4AABA00415F0C /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = View;
-			sourceTree = "<group>";
-		};
-		99F1C1A51EA4AAC200415F0C /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Model;
-			sourceTree = "<group>";
-		};
 		99F1C1E71EA4C17500415F0C /* 主页 */ = {
 			isa = PBXGroup;
 			children = (
@@ -623,6 +559,9 @@
 		99F1C1E81EA4C19D00415F0C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				99F1C2201EA5B7F400415F0C /* TJMHomepageTableViewCell.h */,
+				99F1C2211EA5B7F400415F0C /* TJMHomepageTableViewCell.m */,
+				99F1C2221EA5B7F400415F0C /* TJMHomepageTableViewCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -630,13 +569,157 @@
 		99F1C1E91EA4C1A400415F0C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				99F1C1EB1EA4C38F00415F0C /* HomepageViewController.h */,
-				99F1C1EC1EA4C38F00415F0C /* HomepageViewController.m */,
+				99F1C21A1EA5B77400415F0C /* TJMHomepageViewController.h */,
+				99F1C21B1EA5B77400415F0C /* TJMHomepageViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
 		};
 		99F1C1EA1EA4C1AB00415F0C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		99F1C1F31EA5A87C00415F0C /* 入职考核 */ = {
+			isa = PBXGroup;
+			children = (
+				99F1C2251EA5E55900415F0C /* Controller */,
+				99F1C2271EA5E57E00415F0C /* Model */,
+				99F1C2261EA5E56E00415F0C /* View */,
+				99F1C2101EA5AAF900415F0C /* 考试 */,
+				99F1C1F41EA5AA9D00415F0C /* 上传资料 */,
+			);
+			name = "入职考核";
+			sourceTree = "<group>";
+		};
+		99F1C1F41EA5AA9D00415F0C /* 上传资料 */ = {
+			isa = PBXGroup;
+			children = (
+				99F1C1F51EA5AA9D00415F0C /* Controller */,
+				99F1C1FB1EA5AA9D00415F0C /* Model */,
+				99F1C2001EA5AA9D00415F0C /* View */,
+				99F1C2011EA5AA9D00415F0C /* 图片选择 */,
+			);
+			name = "上传资料";
+			path = "入职考核/上传资料";
+			sourceTree = "<group>";
+		};
+		99F1C1F51EA5AA9D00415F0C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				99F1C20E1EA5AADE00415F0C /* 11111.png */,
+				99F1C1F61EA5AA9D00415F0C /* 22222.png */,
+				99F1C1F71EA5AA9D00415F0C /* 33333.png */,
+				99F1C1F81EA5AA9D00415F0C /* 44444.png */,
+				99F1C1F91EA5AA9D00415F0C /* TJMUploadViewController.h */,
+				99F1C1FA1EA5AA9D00415F0C /* TJMUploadViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		99F1C1FB1EA5AA9D00415F0C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				99F1C1FC1EA5AA9D00415F0C /* TJMProvinceData.h */,
+				99F1C1FD1EA5AA9D00415F0C /* TJMProvinceData.m */,
+				99F1C1FE1EA5AA9D00415F0C /* TJMVehicleData.h */,
+				99F1C1FF1EA5AA9D00415F0C /* TJMVehicleData.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		99F1C2001EA5AA9D00415F0C /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		99F1C2011EA5AA9D00415F0C /* 图片选择 */ = {
+			isa = PBXGroup;
+			children = (
+				99F1C2021EA5AA9D00415F0C /* Controller */,
+				99F1C2051EA5AA9D00415F0C /* Model */,
+				99F1C2061EA5AA9D00415F0C /* View */,
+			);
+			path = "图片选择";
+			sourceTree = "<group>";
+		};
+		99F1C2021EA5AA9D00415F0C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				99F1C2031EA5AA9D00415F0C /* PhotoPickerViewController.h */,
+				99F1C2041EA5AA9D00415F0C /* PhotoPickerViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		99F1C2051EA5AA9D00415F0C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		99F1C2061EA5AA9D00415F0C /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		99F1C2101EA5AAF900415F0C /* 考试 */ = {
+			isa = PBXGroup;
+			children = (
+				99F1C2131EA5AB2900415F0C /* Controller */,
+				99F1C2121EA5AB2100415F0C /* View */,
+				99F1C2111EA5AB1700415F0C /* Model */,
+			);
+			name = "考试";
+			sourceTree = "<group>";
+		};
+		99F1C2111EA5AB1700415F0C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		99F1C2121EA5AB2100415F0C /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		99F1C2131EA5AB2900415F0C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				99F1C2171EA5ABB000415F0C /* ExamViewController.h */,
+				99F1C2181EA5ABB000415F0C /* ExamViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		99F1C2251EA5E55900415F0C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				99F1C22B1EA5E6C600415F0C /* TJMEntryCheckViewController.h */,
+				99F1C22C1EA5E6C600415F0C /* TJMEntryCheckViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		99F1C2261EA5E56E00415F0C /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		99F1C2271EA5E57E00415F0C /* Model */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -761,17 +844,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				99F1C19E1EA45AAD00415F0C /* 44444.png in Resources */,
+				99F1C2091EA5AA9D00415F0C /* 44444.png in Resources */,
 				99F1C16D1EA0DBB200415F0C /* updatelog.txt in Resources */,
 				99F1C1681EA0DBB200415F0C /* baiduNaviSDK.xcassets in Resources */,
 				99F1C1041EA0CF2900415F0C /* LaunchScreen.storyboard in Resources */,
+				99F1C2071EA5AA9D00415F0C /* 22222.png in Resources */,
 				99F1C1671EA0DBB200415F0C /* baiduNaviSDK.bundle in Resources */,
-				99F1C1981EA4591A00415F0C /* 11111.png in Resources */,
-				99F1C19C1EA45A4A00415F0C /* 33333.png in Resources */,
+				99F1C2241EA5B7F400415F0C /* TJMHomepageTableViewCell.xib in Resources */,
+				99F1C2081EA5AA9D00415F0C /* 33333.png in Resources */,
+				99F1C20F1EA5AADE00415F0C /* 11111.png in Resources */,
 				99F1C0FF1EA0CF0600415F0C /* Info.plist in Resources */,
 				99F1C16A1EA0DBB200415F0C /* readme.txt in Resources */,
 				99F1C0FD1EA0CEFA00415F0C /* Assets.xcassets in Resources */,
-				99F1C19B1EA45A4A00415F0C /* 22222.png in Resources */,
 				99F1C1051EA0CF2900415F0C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -846,18 +930,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				99F1C0FA1EA0CEFA00415F0C /* AppDelegate+APPService.m in Sources */,
+				99F1C20D1EA5AA9D00415F0C /* PhotoPickerViewController.m in Sources */,
+				99F1C20B1EA5AA9D00415F0C /* TJMProvinceData.m in Sources */,
+				99F1C20C1EA5AA9D00415F0C /* TJMVehicleData.m in Sources */,
 				99F1C0CC1EA0CEE000415F0C /* TJMHUDHandle.m in Sources */,
-				99F1C1A21EA4AAA800415F0C /* PhotoPickerViewController.m in Sources */,
 				99F1C0FB1EA0CEFA00415F0C /* AppDelegate+SDKSevice.m in Sources */,
-				99F1C1961EA44F8600415F0C /* TJMVehicleData.m in Sources */,
-				99F1C0F71EA0CEFA00415F0C /* TJMUploadViewController.m in Sources */,
-				99F1C1ED1EA4C38F00415F0C /* HomepageViewController.m in Sources */,
+				99F1C21C1EA5B77400415F0C /* TJMHomepageViewController.m in Sources */,
 				99F1C0CD1EA0CEE000415F0C /* TJMRequestHandle.m in Sources */,
-				99F1C1931EA44ED700415F0C /* TJMProvinceData.m in Sources */,
 				99F1C0F41EA0CEFA00415F0C /* TJMBaiduMapViewController.m in Sources */,
+				99F1C2191EA5ABB000415F0C /* ExamViewController.m in Sources */,
+				99F1C22D1EA5E6C600415F0C /* TJMEntryCheckViewController.m in Sources */,
+				99F1C20A1EA5AA9D00415F0C /* TJMUploadViewController.m in Sources */,
 				99F1C0CE1EA0CEE000415F0C /* NSString+MD5.m in Sources */,
 				99F1C0851EA0CEB800415F0C /* main.m in Sources */,
 				99F1C0CB1EA0CEE000415F0C /* TJMSandBoxManager.m in Sources */,
+				99F1C2231EA5B7F400415F0C /* TJMHomepageTableViewCell.m in Sources */,
 				99F1C0F61EA0CEFA00415F0C /* TJMTokenModel.m in Sources */,
 				99F1C0F91EA0CEFA00415F0C /* TJMRegisterViewController.m in Sources */,
 				99F1C0F51EA0CEFA00415F0C /* TJMLoginViewController.m in Sources */,

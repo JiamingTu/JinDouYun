@@ -19,4 +19,10 @@ typedef void(^photoInfo)(UIImage *image,PHAsset *asset);
  */
 - (void)checkLoggingStatusWithToken;
 
+/*
+ * 更改根视图时的淡出动画
+ * @param rootViewController 将要跳转的rootViewController
+ */
+- (void)restoreRootViewController:(UIViewController *)rootViewController;
+
 @end

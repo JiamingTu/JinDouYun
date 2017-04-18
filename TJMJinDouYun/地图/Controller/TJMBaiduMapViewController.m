@@ -18,6 +18,7 @@
 @end
 
 @implementation TJMBaiduMapViewController
+#pragma  mark - lazy loading
 - (BMKMapView *)mapView {
     if (!_mapView) {
         self.mapView = [[BMKMapView alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
@@ -34,7 +35,7 @@
     }
     return _appDelegate;
 }
-
+#pragma  mark - View life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.

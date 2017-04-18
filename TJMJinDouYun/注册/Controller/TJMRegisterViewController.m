@@ -26,7 +26,7 @@
     }
     return _countDownTimer;
 }
-#pragma  mark - view
+#pragma  mark - View life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.

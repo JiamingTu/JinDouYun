@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+
+
 typedef void(^CallBlock)();
 
 typedef void(^ResultBlock)();
@@ -24,6 +26,9 @@ typedef void(^ResultBlock)();
 @property (nonatomic,copy) CallBlock StopNaviServices;
 //调用此block后 在地图页面开启导航
 @property (nonatomic,copy) ResultBlock GetResult;
+
+
+- (void)gangangan;
 
 @end
 
