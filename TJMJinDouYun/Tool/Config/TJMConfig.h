@@ -20,7 +20,7 @@
 #define BaiduMapAK @"dMCzzquQYybYamac5VfEk7fVk0MRLp4b"
 
 //请求类实例
-#define TJMRRequestH [TJMRequestHandle shareRequestHandle]
+#define TJMRequestH [TJMRequestHandle shareRequestHandle]
 #define TJMAppDelegate (AppDelegate *)[UIApplication sharedApplication].delegate
 //获取时间戳
 #define TJMTimestamp [NSString stringWithFormat:@"%ld",time(NULL)*1000]

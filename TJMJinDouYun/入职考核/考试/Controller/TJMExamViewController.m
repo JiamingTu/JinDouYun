@@ -1,22 +1,24 @@
 //
-//  ExamViewController.m
+//  TJMExamViewController.m
 //  TJMJinDouYun
 //
-//  Created by Jiaming Tu on 2017/4/18.
+//  Created by Jiaming Tu on 2017/4/19.
 //  Copyright © 2017年 zhongzhichuangying. All rights reserved.
 //
 
-#import "ExamViewController.h"
+#import "TJMExamViewController.h"
 
-@interface ExamViewController ()
+@interface TJMExamViewController ()
 
 @end
 
-@implementation ExamViewController
-#pragma  mark - View life cycle
+@implementation TJMExamViewController
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [TJMRequestH freeManRandomGenerationTestQuestion];
 }
 
 - (void)didReceiveMemoryWarning {

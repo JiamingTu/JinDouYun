@@ -53,6 +53,7 @@
 #import "TJMTokenModel.h"
 #import "TJMProvinceData.h"
 #import "TJMVehicleData.h"
+#import "TJMTestQuestionData.h"
 
 //appDelegate
 #import "AppDelegate.h"

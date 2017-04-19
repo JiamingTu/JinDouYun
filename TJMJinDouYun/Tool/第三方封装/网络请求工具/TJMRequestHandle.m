@@ -11,21 +11,40 @@
 #import <CoreLocation/CoreLocation.h>
 @interface TJMRequestHandle ()
 
-@property (nonatomic,strong) AFHTTPSessionManager *manager;
-
+@property (nonatomic,strong) AFHTTPSessionManager *httpRequestManager;
+@property (nonatomic,strong) AFHTTPSessionManager *jsonRequestManager;
+@property (nonatomic,strong) TJMTokenModel *tokenModel;
 @end
 
 @implementation TJMRequestHandle
 
 #pragma  mark - lazy loading
-- (AFHTTPSessionManager *)manager {
-    if (!_manager) {
-        self.manager = [AFHTTPSessionManager manager];
-        _manager.responseSerializer = [AFJSONResponseSerializer serializer];
+#pragma  mark 请求参数格式为二进制
+- (AFHTTPSessionManager *)httpRequestManager {
+    if (!_httpRequestManager) {
+        self.httpRequestManager = [AFHTTPSessionManager manager];
+        _httpRequestManager.responseSerializer = [AFJSONResponseSerializer serializer];
+        _httpRequestManager.requestSerializer = [AFHTTPRequestSerializer serializer];
+        _httpRequestManager.requestSerializer.timeoutInterval = 15;
     }
-    return _manager;
+    return _httpRequestManager;
 }
-
+#pragma  mark 请求参数格式为json
+- (AFHTTPSessionManager *)jsonRequestManager {
+    if (!_jsonRequestManager) {
+        self.jsonRequestManager = [AFHTTPSessionManager manager];
+        _jsonRequestManager.responseSerializer = [AFJSONResponseSerializer serializer];
+        _jsonRequestManager.requestSerializer = [AFJSONRequestSerializer serializer];
+        _jsonRequestManager.requestSerializer.timeoutInterval = 15;
+    }
+    return _jsonRequestManager;
+}
+- (TJMTokenModel *)tokenModel {
+    if (!_tokenModel) {
+        self.tokenModel = [TJMSandBoxManager getTokenModel];
+    }
+    return _tokenModel;
+}
 #pragma  mark - 单例
 
 + (TJMRequestHandle *)shareRequestHandle {
@@ -47,8 +66,9 @@
     NSDictionary *noSignParameters = @{@"mobile":number};
     //得到最终的请求参数
     NSDictionary *parameters = [self signWithDictionary:noSignParameters];
-    
-    [self.manager GET:URLString parameters:parameters progress:^(NSProgress * _Nonnull downloadProgress) {
+    //清除auth请求头
+    [self.httpRequestManager.requestSerializer clearAuthorizationHeader];
+    [self.httpRequestManager GET:URLString parameters:parameters progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] isEqualToNumber:@(200)]) {
@@ -73,9 +93,10 @@
     NSString *URLStirng = [TJMApiBasicAddress stringByAppendingString:type];
     //得到完整的请求参数
     NSDictionary *parameters = [self signWithDictionary:form];
-    NSLog(@"请求参数：%@",parameters);
+    //清除auth请求头
+    [self.httpRequestManager.requestSerializer clearAuthorizationHeader];
     //网络请求
-    [self.manager POST:URLStirng parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+    [self.httpRequestManager POST:URLStirng parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         if ([responseObject[@"code"] isEqualToNumber:@(200)]) {
@@ -102,14 +123,12 @@
 #pragma  mark 获取自由人信息
 - (void)getUploadRelevantInfoWithType:(NSString *)type form:(NSDictionary *)form success:(SuccessBlock)success fail:(FailBlock)failure  {
     NSString *URLString = [TJMApiBasicAddress stringByAppendingString:type];
-    TJMTokenModel *tokenModel = [TJMSandBoxManager getTokenModel];
-    if (tokenModel) {
+    if (self.tokenModel) {
         //token存在 继续获取
         NSLog(@"token存在");
-        self.manager.requestSerializer = [AFJSONRequestSerializer serializer];
         //设置请求头
-        [self.manager.requestSerializer setValue:tokenModel.token forHTTPHeaderField:@"Authorization"];
-        [self.manager GET:URLString parameters:form progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [self.jsonRequestManager.requestSerializer setValue:_tokenModel.token forHTTPHeaderField:@"Authorization"];
+        [self.jsonRequestManager GET:URLString parameters:form progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             NSLog(@"%@",responseObject);
             //省市
             TJMProvinceData *provinceData = [TJMProvinceData mj_objectWithKeyValues:responseObject];
@@ -123,10 +142,8 @@
             for (TJMVehicle *vehicle in vehicleData.data) {
                 NSLog(@"%@",vehicle.toolName);
             }
-            _manager = nil;
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             NSLog(@"请求失败，%@",error);
-            _manager = nil;
         }];
     } else {
         //token不存在 重新登录
@@ -135,16 +152,13 @@
 }
 #pragma mark 上传自由人资料信息
 - (void)uploadFreeManInfoWithForm:(NSDictionary *)form photos:(NSDictionary *)photos success:(SuccessBlock)success fail:(FailBlock)FailBlock {
-    TJMTokenModel *tokenModel = [TJMSandBoxManager getTokenModel];
-    if (tokenModel) {
-        NSLog(@"userId:%@",tokenModel.userId);
-        self.manager.requestSerializer = [AFJSONRequestSerializer serializer];
-        [self.manager.requestSerializer setValue:tokenModel.token forHTTPHeaderField:@"Authorization"];
+    if (self.tokenModel) {
+        [self.jsonRequestManager.requestSerializer setValue:_tokenModel.token forHTTPHeaderField:@"Authorization"];
         
         //获取路径
         NSString *URLString = [TJMApiBasicAddress stringByAppendingString:TJMFreeManUploadInfo];
         
-        [self.manager POST:URLString parameters:form constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        [self.jsonRequestManager POST:URLString parameters:form constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
             //拼接图片
             [photos.allValues enumerateObjectsUsingBlock:^(UIImage * _Nonnull image, NSUInteger idx, BOOL * _Nonnull stop) {
                 
@@ -158,10 +172,8 @@
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             NSLog(@"%@",responseObject);
-            _manager = nil;
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             NSLog(@"%@",error);
-            _manager = nil;
         }];
     } else {
         //token不存在 重新登录
@@ -178,7 +190,6 @@
     NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:dictionary];
     //加入时间戳
     [parameters setObject:TJMTimestamp forKey:@"timestamp"];
-    
     //升序得到 健值对应的两个数组
     NSArray *allKeyArray = [parameters allKeys];
     NSArray *afterSortKeyArray = [allKeyArray sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
@@ -209,19 +220,40 @@
     
 }
 
-#pragma  mark - 用户定位
-- (void)getFreeManCoordinateNearByWithCoordinate:(CLLocationCoordinate2D)coordinate success:(SuccessBlock)success fail:(FailBlock)failure {
-    NSString *URLString = [TJMApiBasicAddress stringByAppendingString:TJMGetFreeManCoordinateNearBy];
+#pragma  mark - 自由人定位、客户定位定位
+- (void)getFreeManCoordinateNearByWithCoordinate:(CLLocationCoordinate2D)coordinate withType:(NSString *)type success:(SuccessBlock)success fail:(FailBlock)failure {
+    NSString *URLString = [TJMApiBasicAddress stringByAppendingString:type];
     
     NSDictionary *parameters = @{@"lat":@(coordinate.latitude),@"lng":@(coordinate.longitude)};
-    
-    [self.manager POST:URLString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+    //清除auth请求头
+    [self.httpRequestManager.requestSerializer clearAuthorizationHeader];
+    [self.httpRequestManager POST:URLString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"%@",responseObject);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
     }];
+}
+
+#pragma  mark - 自由人获取题库
+- (void)freeManRandomGenerationTestQuestion {
+    NSString *URLString = [TJMApiBasicAddress stringByAppendingString:TJMRandomGenerationTestQuestion];
+    if (self.tokenModel) {
+        [self.httpRequestManager.requestSerializer setValue:_tokenModel.token forHTTPHeaderField:@"Authorization"];
+        NSDictionary *parameters = @{@"carrierId":@(7)};
+        [self.httpRequestManager POST:URLString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+            
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            NSLog(@"%@",responseObject);
+            TJMTestQuestionData *tqd = [TJMTestQuestionData mj_objectWithKeyValues:responseObject[@"data"]];
+            TJMQuestion *question = tqd.question[0];
+            NSLog(@"%@----%@",question,tqd.config.fullScore);
+            
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"%@",error);
+        }];
+    }
 }
 
 

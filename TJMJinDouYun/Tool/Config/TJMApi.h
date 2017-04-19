@@ -19,64 +19,64 @@
 /*
  *注册验证码 GET
  *Parameters
- *    mobile
- *    timestamp
- *    sign
+ *  mobile
+ *  timestamp
+ *  sign
  */
 #define TJMGetRegisterCode @"/carrier/users/auth/register/code"
 /*
  *注册 POST
  *Parameters
- *    mobile
- *    pwd
- *    timestamp
- *    code
- *    sign
+ *  mobile
+ *  pwd
+ *  timestamp
+ *  code
+ *  sign
  */
 #define TJMRegister @"/carrier/users/auth/register"
 /*
  *登录 POST
  *Parameters
- *    mobile
- *    pwd
- *    timestamp
- *    sign
+ *  mobile
+ *  pwd
+ *  timestamp
+ *  sign
  */
 #define TJMLogin @"/carrier/users/auth/login"
 /*
  *忘记密码验证码 GET
  *Parameters
- *    mobile
- *    timestamp
- *    sign
+ *  mobile
+ *  timestamp
+ *  sign
  */
 #define TJMGetForgetSecretCode @"/carrier/users/auth/forget/code"
 /*
  *快捷登录验证码 GET
  *Parameters
- *    mobile
- *    timestamp
- *    sign
+ *  mobile
+ *  timestamp
+ *  sign
  */
 #define TJMGetLoginCode @"/carrier/users/auth/codeLogin/code"
 /*
  *更改密码 POST
  *Parameters
- *    mobile
- *    pwd
- *    timestamp
- *    code
- *    sign
+ *  mobile
+ *  pwd
+ *  timestamp
+ *  code
+ *  sign
  */
 #define TJMChageSecret @"/carrier/users/auth/codeModify"
 /*
  *快捷登录 POST
  *Parameters
- *    mobile
- *    pwd
- *    timestamp
- *    code
- *    sign
+ *  mobile
+ *  pwd
+ *  timestamp
+ *  code
+ *  sign
  */
 #define TJMCodeLogin @"/carrier/users/auth/codeLogin"
 
@@ -84,30 +84,30 @@
 /*
  *获取已开通省市接口 GET
  *Parameters
- *    Authorization     ->header
+ *  Authorization     ->header
  */
 #define TJMFreeManGetCity @"/carrier/info/area"
 /*
  *获取交通工具接口 GET
  *Parameters
- *    Authorization     ->header
+ *  Authorization     ->header
  */
 #define TJMFreeManGetVehicle @"/carrier/info/tools"
 /*
  *上传资料接口 POST
  *Parameters
- *    Authorization     ->header
- *    photo             ->formData
- *    personCardPhoto   ->formData
- *    frontCardPhoto    ->formData
- *    backCardPhoto     ->formData
- *    realName
- *    idCard
- *    concact
- *    concactMobile
- *    areaId
- *    toolId
- *    carrierId
+ *  Authorization     ->header
+ *  photo             ->formData
+ *  personCardPhoto   ->formData
+ *  frontCardPhoto    ->formData
+ *  backCardPhoto     ->formData
+ *  realName
+ *  idCard
+ *  concact
+ *  concactMobile
+ *  areaId
+ *  toolId
+ *  carrierId
  *
  */
 #define TJMFreeManUploadInfo @"/carrier/info/upload"
@@ -115,17 +115,37 @@
 /*
  *获取自由人信息接口 GET
  *Parameters
- *    Authorization     ->header
- *    CarrierId         ->path
+ *  Authorization     ->header
+ *  CarrierId         ->path
  */
 //[NSString stringWithFormat:@"/carrier/info/%@",CarrierId]
 #define TJMFreeManGetInfo(CarrierId) @"/carrier/info/"CarrierId
 
 #pragma  mark - 获取周围自由人
 /*
- *
+ *获取周围自由人 POST
+ *Parameters
+ *  lat
+ *  lng
  */
-#define TJMGetFreeManCoordinateNearBy @"/customer/locations/auth/nearBy"
+#define TJMFreeManLocationNearby @"/customer/locations/auth/nearBy"
+
+#pragma  mark - 自由人获取题库
+/*
+ *随机生成题库 POST
+ *Parameters
+ *  carrierId
+ */
+#define TJMRandomGenerationTestQuestion @"/carrier/exams"
+
+#pragma  mark - 用户定位
+/*
+ *用户定位 POST
+ *Parameters
+ *  lat
+ *  lng
+ */
+#define TJMCustomerLocationNearby @"/customer/locations/auth/nearBy"
 
 
 #endif /* TJMApi_h */

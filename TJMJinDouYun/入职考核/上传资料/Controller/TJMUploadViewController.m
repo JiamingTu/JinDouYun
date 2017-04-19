@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-//    [TJMRRequestH getUploadRelevantInfoWithType:TJMFreeManGetCity form:nil success:^(id successObj) {
+//    [TJMRequestH getUploadRelevantInfoWithType:TJMFreeManGetCity form:nil success:^(id successObj) {
 //        
 //    } fail:^(NSString *failString) {
 //        
@@ -37,24 +37,22 @@
                            @"toolId":@(1),
                            @"carrierId":@(3)};
     
-//    [TJMRRequestH uploadFreeManInfoWithForm:form photos:photos success:^(id successObj) {
+//    [TJMRequestH uploadFreeManInfoWithForm:form photos:photos success:^(id successObj) {
 //        
 //    } fail:^(NSString *failString) {
 //        
 //    }];
     
     //获取自由人资料
-//    [TJMRRequestH getUploadRelevantInfoWithType:TJMFreeManGetInfo(@"3") form:nil success:^(id successObj) {
+//    [TJMRequestH getUploadRelevantInfoWithType:TJMFreeManGetInfo(@"3") form:nil success:^(id successObj) {
 //    
 //    } fail:^(NSString *failString) {
 //        
 //    }];
     
 }
-- (IBAction)dismiss:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
 
+#pragma  mark - memory warning
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

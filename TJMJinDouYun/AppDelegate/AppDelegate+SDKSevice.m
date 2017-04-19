@@ -72,10 +72,10 @@
      */
     [BNCoreServices_Instance startServicesAsyn:^{
         
-        result();
+        result(YES);
 #warning  异步开启成功后需要回调 然后开始导航
     } fail:^{
-        NSLog(@"异步开启失败");
+        result(NO);
     }];
     /**
      *  启动服务,同步方法,会导致阻塞

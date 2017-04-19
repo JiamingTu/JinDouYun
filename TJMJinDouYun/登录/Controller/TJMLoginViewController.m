@@ -28,7 +28,7 @@
         //判断密码是否为空
         if (self.passwordTF.text != nil) {
             NSDictionary *form = @{@"mobile":self.phoneNumberTF.text,@"pwd":self.passwordTF.text};
-            [TJMRRequestH accountCheckWithForm:form checkType:TJMLogin success:^(id successObj) {
+            [TJMRequestH accountCheckWithForm:form checkType:TJMLogin success:^(id successObj) {
                 //获取并存入token
                 NSDictionary *dict = successObj[@"data"];
                 TJMTokenModel *tokenModel = [[TJMTokenModel alloc]initWithDictionary:dict];

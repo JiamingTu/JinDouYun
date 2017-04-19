@@ -25,17 +25,16 @@
     
     
 #warning 需写在block里
-    __weak AppDelegate *weakSelf = self;
-    self.InitBaiduMapEngine = ^() {
-        [weakSelf startBaiduMapEngine];
-    };
-    
-    self.InitNaviServices = ^() {
-        [weakSelf startBaiduMapNaviServicesWithResult:^{
-            NSLog(@"异步开启成功");
-            weakSelf.GetResult();
-        }];
-    };
+//    __weak AppDelegate *weakSelf = self;
+//    self.InitBaiduMapEngine = ^() {
+//        [weakSelf startBaiduMapEngine];
+//    };
+//    
+//    self.InitNaviServices = ^() {
+//        [weakSelf startBaiduMapNaviServicesWithResult:^(BOOL isOK) {
+//            
+//        }];
+//    };
     
     return YES;
 }

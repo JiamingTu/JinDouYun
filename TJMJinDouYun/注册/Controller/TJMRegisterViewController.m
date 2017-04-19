@@ -46,7 +46,7 @@
         [sender setTitle:@"59秒后再次获取" forState:UIControlStateNormal];
         sender.enabled = NO;
         //请求验证码
-        [TJMRRequestH shrotMessageCheckRequestWithPhoneNumber:_phoneNumberTF.text getCodeType:TJMGetRegisterCode success:^(id successObj) {
+        [TJMRequestH shrotMessageCheckRequestWithPhoneNumber:_phoneNumberTF.text getCodeType:TJMGetRegisterCode success:^(id successObj) {
             
         } fail:^(NSString *failString) {
             
@@ -66,14 +66,14 @@
             if (self.authCodeTF.text.length <= 6) {
                 //提交表单
                 NSDictionary *form = @{@"mobile":_phoneNumberTF.text,@"pwd":_passwordTF.text,@"code":_authCodeTF.text};
-                [TJMRRequestH accountCheckWithForm:form checkType:TJMRegister success:^(id successObj) {
+                [TJMRequestH accountCheckWithForm:form checkType:TJMRegister success:^(id successObj) {
                     
                 } fail:^(NSString *failString) {
                     
                 }];
 //验证码登录
 //              NSDictionary *form = @{@"mobile":_phoneNumberTF.text,@"code":_authCodeTF.text};
-//                [TJMRRequestH accountCheckWithForm:form checkType:TJMCodeLogin success:^(id successObj) {
+//                [TJMRequestH accountCheckWithForm:form checkType:TJMCodeLogin success:^(id successObj) {
 //                    
 //                } fail:^(NSString *failString) {
 //                    

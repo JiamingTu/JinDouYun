@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		99277AA51EA70D6200F32B09 /* TJMTestQuestionData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99277AA41EA70D6200F32B09 /* TJMTestQuestionData.m */; };
+		99277AA81EA70FF800F32B09 /* TJMExamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99277AA71EA70FF800F32B09 /* TJMExamViewController.m */; };
+		99277AAB1EA7513900F32B09 /* TJMCustomerLocationData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99277AAA1EA7513900F32B09 /* TJMCustomerLocationData.m */; };
 		99F1C0851EA0CEB800415F0C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C0841EA0CEB800415F0C /* main.m */; };
 		99F1C09E1EA0CEB800415F0C /* TJMJinDouYunTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C09D1EA0CEB800415F0C /* TJMJinDouYunTests.m */; };
 		99F1C0A91EA0CEB800415F0C /* TJMJinDouYunUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C0A81EA0CEB800415F0C /* TJMJinDouYunUITests.m */; };
@@ -57,7 +60,6 @@
 		99F1C20C1EA5AA9D00415F0C /* TJMVehicleData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C1FF1EA5AA9D00415F0C /* TJMVehicleData.m */; };
 		99F1C20D1EA5AA9D00415F0C /* PhotoPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C2041EA5AA9D00415F0C /* PhotoPickerViewController.m */; };
 		99F1C20F1EA5AADE00415F0C /* 11111.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F1C20E1EA5AADE00415F0C /* 11111.png */; };
-		99F1C2191EA5ABB000415F0C /* ExamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C2181EA5ABB000415F0C /* ExamViewController.m */; };
 		99F1C21C1EA5B77400415F0C /* TJMHomepageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C21B1EA5B77400415F0C /* TJMHomepageViewController.m */; };
 		99F1C2231EA5B7F400415F0C /* TJMHomepageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C2211EA5B7F400415F0C /* TJMHomepageTableViewCell.m */; };
 		99F1C2241EA5B7F400415F0C /* TJMHomepageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99F1C2221EA5B7F400415F0C /* TJMHomepageTableViewCell.xib */; };
@@ -84,6 +86,12 @@
 
 /* Begin PBXFileReference section */
 		704ED3F31667CEAB6D7BC8CB /* Pods-TJMJinDouYun.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TJMJinDouYun.release.xcconfig"; path = "Pods/Target Support Files/Pods-TJMJinDouYun/Pods-TJMJinDouYun.release.xcconfig"; sourceTree = "<group>"; };
+		99277AA31EA70D6200F32B09 /* TJMTestQuestionData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TJMTestQuestionData.h; path = "入职考核/考试/Model/TJMTestQuestionData.h"; sourceTree = "<group>"; };
+		99277AA41EA70D6200F32B09 /* TJMTestQuestionData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TJMTestQuestionData.m; path = "入职考核/考试/Model/TJMTestQuestionData.m"; sourceTree = "<group>"; };
+		99277AA61EA70FF800F32B09 /* TJMExamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TJMExamViewController.h; path = "入职考核/考试/Controller/TJMExamViewController.h"; sourceTree = "<group>"; };
+		99277AA71EA70FF800F32B09 /* TJMExamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TJMExamViewController.m; path = "入职考核/考试/Controller/TJMExamViewController.m"; sourceTree = "<group>"; };
+		99277AA91EA7513900F32B09 /* TJMCustomerLocationData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMCustomerLocationData.h; sourceTree = "<group>"; };
+		99277AAA1EA7513900F32B09 /* TJMCustomerLocationData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMCustomerLocationData.m; sourceTree = "<group>"; };
 		99F1C0801EA0CEB800415F0C /* TJMJinDouYun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TJMJinDouYun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99F1C0841EA0CEB800415F0C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		99F1C0991EA0CEB800415F0C /* TJMJinDouYunTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TJMJinDouYunTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -167,8 +175,6 @@
 		99F1C2031EA5AA9D00415F0C /* PhotoPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoPickerViewController.h; sourceTree = "<group>"; };
 		99F1C2041EA5AA9D00415F0C /* PhotoPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoPickerViewController.m; sourceTree = "<group>"; };
 		99F1C20E1EA5AADE00415F0C /* 11111.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 11111.png; sourceTree = "<group>"; };
-		99F1C2171EA5ABB000415F0C /* ExamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExamViewController.h; path = "入职考核/考试/Controller/ExamViewController.h"; sourceTree = "<group>"; };
-		99F1C2181EA5ABB000415F0C /* ExamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExamViewController.m; path = "入职考核/考试/Controller/ExamViewController.m"; sourceTree = "<group>"; };
 		99F1C21A1EA5B77400415F0C /* TJMHomepageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TJMHomepageViewController.h; path = "主页/Controller/TJMHomepageViewController.h"; sourceTree = "<group>"; };
 		99F1C21B1EA5B77400415F0C /* TJMHomepageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TJMHomepageViewController.m; path = "主页/Controller/TJMHomepageViewController.m"; sourceTree = "<group>"; };
 		99F1C2201EA5B7F400415F0C /* TJMHomepageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TJMHomepageTableViewCell.h; path = "主页/View/TJMHomepageTableViewCell.h"; sourceTree = "<group>"; };
@@ -415,6 +421,8 @@
 		99F1C0D41EA0CEFA00415F0C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				99277AA91EA7513900F32B09 /* TJMCustomerLocationData.h */,
+				99277AAA1EA7513900F32B09 /* TJMCustomerLocationData.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -683,6 +691,8 @@
 		99F1C2111EA5AB1700415F0C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				99277AA31EA70D6200F32B09 /* TJMTestQuestionData.h */,
+				99277AA41EA70D6200F32B09 /* TJMTestQuestionData.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -697,8 +707,8 @@
 		99F1C2131EA5AB2900415F0C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				99F1C2171EA5ABB000415F0C /* ExamViewController.h */,
-				99F1C2181EA5ABB000415F0C /* ExamViewController.m */,
+				99277AA61EA70FF800F32B09 /* TJMExamViewController.h */,
+				99277AA71EA70FF800F32B09 /* TJMExamViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -934,14 +944,16 @@
 				99F1C20B1EA5AA9D00415F0C /* TJMProvinceData.m in Sources */,
 				99F1C20C1EA5AA9D00415F0C /* TJMVehicleData.m in Sources */,
 				99F1C0CC1EA0CEE000415F0C /* TJMHUDHandle.m in Sources */,
+				99277AAB1EA7513900F32B09 /* TJMCustomerLocationData.m in Sources */,
 				99F1C0FB1EA0CEFA00415F0C /* AppDelegate+SDKSevice.m in Sources */,
 				99F1C21C1EA5B77400415F0C /* TJMHomepageViewController.m in Sources */,
+				99277AA81EA70FF800F32B09 /* TJMExamViewController.m in Sources */,
 				99F1C0CD1EA0CEE000415F0C /* TJMRequestHandle.m in Sources */,
 				99F1C0F41EA0CEFA00415F0C /* TJMBaiduMapViewController.m in Sources */,
-				99F1C2191EA5ABB000415F0C /* ExamViewController.m in Sources */,
 				99F1C22D1EA5E6C600415F0C /* TJMEntryCheckViewController.m in Sources */,
 				99F1C20A1EA5AA9D00415F0C /* TJMUploadViewController.m in Sources */,
 				99F1C0CE1EA0CEE000415F0C /* NSString+MD5.m in Sources */,
+				99277AA51EA70D6200F32B09 /* TJMTestQuestionData.m in Sources */,
 				99F1C0851EA0CEB800415F0C /* main.m in Sources */,
 				99F1C0CB1EA0CEE000415F0C /* TJMSandBoxManager.m in Sources */,
 				99F1C2231EA5B7F400415F0C /* TJMHomepageTableViewCell.m in Sources */,

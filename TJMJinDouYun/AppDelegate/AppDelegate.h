@@ -11,7 +11,7 @@
 
 typedef void(^CallBlock)();
 
-typedef void(^ResultBlock)();
+typedef void(^ResultBlock)(BOOL isOK);
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
     BMKMapManager* _mapManager;
@@ -28,7 +28,8 @@ typedef void(^ResultBlock)();
 @property (nonatomic,copy) ResultBlock GetResult;
 
 
-- (void)gangangan;
+
+- (void)isInitNaviServicesOK:(ResultBlock)result;
 
 @end
 
