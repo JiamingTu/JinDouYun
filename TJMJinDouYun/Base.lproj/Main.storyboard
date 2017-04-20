@@ -12,7 +12,7 @@
         <!--Baidu Map View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="TJMBaiduMapViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BaiduMapViewController" id="BYZ-38-t0r" customClass="TJMBaiduMapViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -25,6 +25,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="25" y="84"/>
         </scene>
         <!--Homepage View Controller-->
         <scene sceneID="bDV-uU-yCh">
@@ -151,7 +152,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="注册"/>
                                 <connections>
-                                    <segue destination="qs5-Ub-yc7" kind="push" id="rBA-tL-a9O"/>
+                                    <segue destination="qs5-Ub-yc7" kind="show" id="rBA-tL-a9O"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -299,7 +300,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="VMT-cF-VJS" kind="push" id="3dC-sT-Ov7"/>
+                                            <segue destination="VMT-cF-VJS" kind="show" id="3dC-sT-Ov7"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>

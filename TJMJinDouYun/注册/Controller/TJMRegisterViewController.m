@@ -52,7 +52,7 @@
             
         }];
     } else {
-        NSLog(@"请输入正确的手机号");
+        TJMLog(@"请输入正确的手机号");
     }
     
     
@@ -81,13 +81,13 @@
                 
                 
             }else {
-                NSLog(@"验证码不足6位");
+                TJMLog(@"验证码不足6位");
             }
         }else {
-            NSLog(@"密码不能少于6位");
+            TJMLog(@"密码不能少于6位");
         }
     }else {
-        NSLog(@"请输入正确的手机号");
+        TJMLog(@"请输入正确的手机号");
         [TJMHUDHandle transientNoticeAtView:self.view withMessage:@"请输入正确的手机号"];
     }
     

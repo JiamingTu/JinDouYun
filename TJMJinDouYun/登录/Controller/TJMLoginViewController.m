@@ -18,7 +18,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    NSLog(@"路径：%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]);
+    TJMLog(@"路径：%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]);
 }
 #pragma  mark - 界面按钮方法
 #pragma  mark 登录
@@ -38,7 +38,7 @@
             }];
         }
     }else {
-        NSLog(@"请输入正确的电话号码");
+        TJMLog(@"请输入正确的电话号码");
     }
 }
 - (IBAction)forgetPasswordAction:(UIButton *)sender {

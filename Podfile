@@ -7,4 +7,7 @@ pod "BaiduMapKit"
 pod "AFNetworking"
 pod "MBProgressHUD"
 pod "MJExtension"
+pod "JPush"
+
+
 end

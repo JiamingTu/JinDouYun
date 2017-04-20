@@ -29,7 +29,5 @@ typedef void(^ResultBlock)(BOOL isOK);
 
 
 
-- (void)isInitNaviServicesOK:(ResultBlock)result;
-
 @end
 

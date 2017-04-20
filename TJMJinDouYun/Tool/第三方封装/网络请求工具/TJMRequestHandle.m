@@ -74,16 +74,16 @@
         if ([responseObject[@"code"] isEqualToNumber:@(200)]) {
             //操作成功
             success(responseObject);
-            NSLog(@"%@",responseObject[@"msg"]);
+            TJMLog(@"%@",responseObject[@"msg"]);
         }else {
             //操作失败
             //失败原因
             failure(responseObject[@"msg"]);
-            NSLog(@"获取验证码操作失败");
+            TJMLog(@"获取验证码操作失败");
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         failure(error.localizedDescription);
-        NSLog(@"请求错误，%@",error);
+        TJMLog(@"请求错误，%@",error);
     }];
 }
 
@@ -102,16 +102,16 @@
         if ([responseObject[@"code"] isEqualToNumber:@(200)]) {
             //请求成功
             success(responseObject);
-            NSLog(@"%@",responseObject[@"msg"]);
+            TJMLog(@"%@",responseObject[@"msg"]);
         } else {
             //非网络问题
             failure(responseObject[@"msg"]);
-            NSLog(@"%@",responseObject[@"msg"]);
+            TJMLog(@"%@",responseObject[@"msg"]);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         //网络问题
         failure(error.localizedDescription);
-        NSLog(@"请求失败");
+        TJMLog(@"请求失败");
     }];
     
     
@@ -125,29 +125,29 @@
     NSString *URLString = [TJMApiBasicAddress stringByAppendingString:type];
     if (self.tokenModel) {
         //token存在 继续获取
-        NSLog(@"token存在");
+        TJMLog(@"token存在");
         //设置请求头
         [self.jsonRequestManager.requestSerializer setValue:_tokenModel.token forHTTPHeaderField:@"Authorization"];
         [self.jsonRequestManager GET:URLString parameters:form progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            NSLog(@"%@",responseObject);
+            TJMLog(@"%@",responseObject);
             //省市
             TJMProvinceData *provinceData = [TJMProvinceData mj_objectWithKeyValues:responseObject];
             TJMProvince *province = [provinceData.data firstObject];
             TJMCity *city = province.cities[0];
             TJMArea *area = city.areas[0];
-            NSLog(@"%@--%@--%@",province.provinceName,city.cityName,area.areaId);
+            TJMLog(@"%@--%@--%@",province.provinceName,city.cityName,area.areaId);
             
             //交通工具
             TJMVehicleData *vehicleData = [TJMVehicleData mj_objectWithKeyValues:responseObject];
             for (TJMVehicle *vehicle in vehicleData.data) {
-                NSLog(@"%@",vehicle.toolName);
+                TJMLog(@"%@",vehicle.toolName);
             }
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            NSLog(@"请求失败，%@",error);
+            TJMLog(@"请求失败，%@",error);
         }];
     } else {
         //token不存在 重新登录
-        NSLog(@"token不存在 重新登录");
+        TJMLog(@"token不存在 重新登录");
     }
 }
 #pragma mark 上传自由人资料信息
@@ -171,13 +171,13 @@
         } progress:^(NSProgress * _Nonnull uploadProgress) {
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            NSLog(@"%@",responseObject);
+            TJMLog(@"%@",responseObject);
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            NSLog(@"%@",error);
+            TJMLog(@"%@",error);
         }];
     } else {
         //token不存在 重新登录
-        NSLog(@"token不存在 重新登录");
+        TJMLog(@"token不存在 重新登录");
     }
     
     
@@ -230,7 +230,7 @@
     [self.httpRequestManager POST:URLString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"%@",responseObject);
+        TJMLog(@"%@",responseObject);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
     }];
@@ -241,17 +241,19 @@
     NSString *URLString = [TJMApiBasicAddress stringByAppendingString:TJMRandomGenerationTestQuestion];
     if (self.tokenModel) {
         [self.httpRequestManager.requestSerializer setValue:_tokenModel.token forHTTPHeaderField:@"Authorization"];
-        NSDictionary *parameters = @{@"carrierId":@(7)};
+        NSDictionary *parameters = @{@"carrierId":self.tokenModel.userId};
         [self.httpRequestManager POST:URLString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            NSLog(@"%@",responseObject);
-            TJMTestQuestionData *tqd = [TJMTestQuestionData mj_objectWithKeyValues:responseObject[@"data"]];
-            TJMQuestion *question = tqd.question[0];
-            NSLog(@"%@----%@",question,tqd.config.fullScore);
-            
+            if ([responseObject[@"code"] isEqualToNumber:@(200)]) {
+                //code码正确
+                TJMLog(@"%@",responseObject);
+                TJMTestQuestionData *tqd = [TJMTestQuestionData mj_objectWithKeyValues:responseObject[@"data"]];
+                TJMQuestion *question = tqd.question[0];
+                TJMLog(@"%@----%@",question,tqd.config.fullScore);
+            }
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            NSLog(@"%@",error);
+            TJMLog(@"%@",error);
         }];
     }
 }

@@ -11,6 +11,21 @@
 
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#pragma  mark - 第三方库
+//模型解析
+#import <MJExtension.h>
+//极光推送
+// 引入JPush功能所需头文件
+#import "JPUSHService.h"
+// iOS10注册APNs所需头文件
+#ifdef NSFoundationVersionNumber_iOS_9_x_Max
+#import <UserNotifications/UserNotifications.h>
+#endif
+// 如果需要使用idfa功能所需要引入的头文件（可选）
+//#import <AdSupport/AdSupport.h>
+
+
 //百度地图
 #import <BaiduMapAPI_Base/BMKBaseComponent.h>//引入base相关所有的头文件
 
@@ -43,8 +58,7 @@
 //正则判断
 #import "NSString+RegEx.h"
 
-//导入第三方 及 第三方分装
-#import <MJExtension.h>
+
 //请求
 #import "TJMRequestHandle.h"
 //提示框

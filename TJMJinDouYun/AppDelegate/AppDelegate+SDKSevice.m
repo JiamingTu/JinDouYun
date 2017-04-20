@@ -17,16 +17,16 @@
     // 要使用百度地图，请先启动BaiduMapManager
     _mapManager = [[BMKMapManager alloc]init];
     // 如果要关注网络及授权验证事件，请设定     generalDelegate参数
-    BOOL ret = [_mapManager start:BaiduMapAK  generalDelegate:self];
+    BOOL ret = [_mapManager start:TJMBaiduMapAK  generalDelegate:self];
     if (!ret) {
-        NSLog(@"manager start failed!");
+        TJMLog(@"manager start failed!");
     }
 }
 #pragma  mark 关闭引擎
 - (void)stopBaiduMapEngine {
     BOOL ret = [_mapManager stop];
     if (!ret) {
-        NSLog(@"manager stop failed!");
+        TJMLog(@"manager stop failed!");
     }
 }
 #pragma mark BMKGeneralDelegate
@@ -36,9 +36,9 @@
  */
 - (void)onGetNetworkState:(int)iError {
     if (iError == 0) {
-        NSLog(@"网络正常");
+        TJMLog(@"网络正常");
     }else {
-        NSLog(@"网络出错,%@",@(iError));
+        TJMLog(@"网络出错,%@",@(iError));
     }
 }
 /**
@@ -47,9 +47,9 @@
  */
 - (void)onGetPermissionState:(int)iError {
     if (iError == 0) {
-        NSLog(@"验证成功");
+        TJMLog(@"验证成功");
     }else {
-        NSLog(@"验证失败,%d",iError);
+        TJMLog(@"验证失败,%d",iError);
     }
 }
 
@@ -57,19 +57,12 @@
 #pragma  mari 初始化
 - (void)startBaiduMapNaviServicesWithResult:(ResultBlock)result {
     //初始化导航SDK
-    /**
-     *  初始化服务，需要在AppDelegate的 application:didFinishLaunchingWithOptions:
-     *  中调用
-     *
-     *  @param ak AppKey
-     */
-    [BNCoreServices_Instance initServices:BaiduMapAK];
-    /**
-     *  启动服务,异步方法
-     *
-     *  @param success 启动成功后回调 success block
-     *  @param fail    启动失败后回调 fail block
-     */
+    //初始化服务，需要在AppDelegate的 application:didFinishLaunchingWithOptions:
+    //中调用
+
+    [BNCoreServices_Instance initServices:TJMBaiduMapAK];
+    // 启动服务,异步方法
+
     [BNCoreServices_Instance startServicesAsyn:^{
         
         result(YES);
@@ -77,12 +70,8 @@
     } fail:^{
         result(NO);
     }];
-    /**
-     *  启动服务,同步方法,会导致阻塞
-     *
-     *  @return  启动结果
-     */
-    //    [BNCoreServices_Instance startServices];
+     //启动服务,同步方法,会导致阻塞
+//    [BNCoreServices_Instance startServices];
 }
 #pragma  mark 终止服务
 - (void)stopBaiduMapNaviServices {
@@ -90,9 +79,83 @@
 }
 
 
+#pragma  mark - 极光推送
+#pragma  mark 注册
+- (void)registerJPush {
+    // 注册apns通知 // iOS10
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.0) {
+#ifdef NSFoundationVersionNumber_iOS_9_x_Max
+        JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];
+        entity.types = UNAuthorizationOptionAlert|UNAuthorizationOptionBadge | UNAuthorizationOptionSound;
+        [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];
+#endif
+    }
+    else if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) // iOS8, iOS9
+    {
+        //可以添加自定义categories
+        [JPUSHService registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert) categories:nil];
+    }
+    else // iOS7
+    {
+        //categories 必须为nil
+        [JPUSHService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert) categories:nil];
+    }
 
 
+}
+#pragma  mark - 初始化
+- (void)startJPushWithLaunchOptions:(NSDictionary *)launchOptions {
+    // Optional
+    // 获取IDFA
+    // 如需使用IDFA功能请添加此代码并在初始化方法的advertisingIdentifier参数中填写对应值
+    //NSString *advertisingId = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+    
+    // Required
+    // init Push
+    // notice: 2.1.5版本的SDK新增的注册方法，改成可上报IDFA，如果没有使用IDFA直接传nil
+    // 如需继续使用pushConfig.plist文件声明appKey等配置内容，请依旧使用[JPUSHService setupWithOption:launchOptions]方式初始化。
+    [JPUSHService setupWithOption:launchOptions appKey:TJMJPushAppKey
+                          channel:JPushChannel
+                 apsForProduction:JPushIsProduction];
+}
 
+#pragma mark JPUSHRegisterDelegate
+
+// iOS 10 Support
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(NSInteger))completionHandler {
+    // Required
+    NSDictionary * userInfo = notification.request.content.userInfo;
+    if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        TJMLog(@"%@",userInfo);
+        [JPUSHService handleRemoteNotification:userInfo];
+    }
+    completionHandler(UNNotificationPresentationOptionAlert); // 需要执行这个方法，选择是否提醒用户，有Badge、Sound、Alert三种类型可以选择设置
+}
+
+// iOS 10 Support
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler {
+    // Required
+    NSDictionary * userInfo = response.notification.request.content.userInfo;
+    if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        [JPUSHService handleRemoteNotification:userInfo];
+        TJMLog(@"%@",userInfo);
+    }
+    completionHandler();  // 系统要求执行这个方法
+}
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    
+    // Required, iOS 7 Support
+    [JPUSHService handleRemoteNotification:userInfo];
+    TJMLog(@"%@",userInfo);
+    completionHandler(UIBackgroundFetchResultNewData);
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    
+    // Required,For systems with less than or equal to iOS6
+    [JPUSHService handleRemoteNotification:userInfo];
+    TJMLog(@"%@",userInfo);
+}
 
 
 

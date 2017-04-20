@@ -19,7 +19,7 @@
 #pragma  mark 存入
 + (BOOL)saveTokenToPath:(TJMTokenModel *)tokenModel {
     //讲tokenModel存入document文件夹下
-    NSLog(@"沙盒路径：%@",[self getPath]);
+    TJMLog(@"沙盒路径：%@",[self getPath]);
     BOOL result = [NSKeyedArchiver archiveRootObject:tokenModel toFile:[self getPath]];
     return result;
 }
@@ -37,11 +37,11 @@
         if (result) {
             return YES;
         } else {
-            NSLog(@"删除失败，%@",error);
+            TJMLog(@"删除失败，%@",error);
             return NO;
         }
     } else {
-        NSLog(@"token不存在，重新登录");
+        TJMLog(@"token不存在，重新登录");
         return NO;
     }
 }

@@ -62,13 +62,13 @@
 //处理方向变更信息
 - (void)didUpdateUserHeading:(BMKUserLocation *)userLocation
 {
-    //NSLog(@"heading is %@",userLocation.heading);
+    //TJMLog(@"heading is %@",userLocation.heading);
 }
 //处理位置坐标更新
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
 {
     [self.mapView updateLocationData:userLocation];
-    NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
+    TJMLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
     
     [TJMRequestH getFreeManCoordinateNearByWithCoordinate:userLocation.location.coordinate success:^(id successObj) {
         
@@ -111,13 +111,13 @@
 //算路成功回调
 -(void)routePlanDidFinished:(NSDictionary *)userInfo
 {
-    NSLog(@"算路成功");
+    TJMLog(@"算路成功");
     //路径规划成功，开始导航
     [BNCoreServices_UI showPage:BNaviUI_NormalNavi delegate:self extParams:nil];
 }
 
 - (void)searchDidFinished:(NSDictionary*)userInfo {
-    NSLog(@"算路失败");
+    TJMLog(@"算路失败");
 }
 
 

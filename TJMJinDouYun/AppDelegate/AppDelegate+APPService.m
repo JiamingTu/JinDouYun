@@ -14,10 +14,10 @@
 - (void)checkLoggingStatusWithToken {
     if ([TJMSandBoxManager getTokenModel]) {
         //token 存在 进入首页
-        NSLog(@"token存在 确认登录");
+        TJMLog(@"token存在 确认登录");
     }else {
         //token 进入未登录页面 UIStoryboard
-        NSLog(@"token 不存在");
+        TJMLog(@"token 不存在");
     }
 }
 
@@ -46,14 +46,14 @@
     PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
     switch (status) {
         case PHAuthorizationStatusNotDetermined: {
-            //NSLog(@"不确定的");
+            //TJMLog(@"不确定的");
             [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
                 if (status == PHAuthorizationStatusDenied || status == PHAuthorizationStatusRestricted) {
-                    NSLog(@"限制或者拒绝的");
+                    TJMLog(@"限制或者拒绝的");
                     //请在设置中允许“XXX”访问你的照片
                 }else {
-                    //NSLog(@"允许的");
-                    NSLog(@"%@",[NSThread currentThread]);
+                    //TJMLog(@"允许的");
+                    TJMLog(@"%@",[NSThread currentThread]);
                     //这里是分线程，需要返回主线程刷新UI
                     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                         auth(YES);
@@ -63,15 +63,15 @@
         }
             break;
         case PHAuthorizationStatusAuthorized: {
-            //NSLog(@"允许的");
+            //TJMLog(@"允许的");
             auth(YES);
         } break;
         case PHAuthorizationStatusDenied: {
-            //NSLog(@"禁止的");
+            //TJMLog(@"禁止的");
             auth(NO);
         } break;
         case PHAuthorizationStatusRestricted: {
-            //NSLog(@"限制的");
+            //TJMLog(@"限制的");
             auth(NO);
         } break;
         default:
@@ -91,7 +91,7 @@
     PHFetchResult<PHAssetCollection *> *assetCollections = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
     //遍历相册
     for (PHAssetCollection *assetCollection in assetCollections) {
-        NSLog(@"collectionName:%@",assetCollection);
+        TJMLog(@"collectionName:%@",assetCollection);
         [self enumerateAssetsInAssetCollection:assetCollection original:original localIdentifier:nil info:^(UIImage *image, PHAsset *asset) {
             pInfo(image,asset);
         }];

@@ -92,6 +92,7 @@
 		99277AA71EA70FF800F32B09 /* TJMExamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TJMExamViewController.m; path = "入职考核/考试/Controller/TJMExamViewController.m"; sourceTree = "<group>"; };
 		99277AA91EA7513900F32B09 /* TJMCustomerLocationData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMCustomerLocationData.h; sourceTree = "<group>"; };
 		99277AAA1EA7513900F32B09 /* TJMCustomerLocationData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMCustomerLocationData.m; sourceTree = "<group>"; };
+		99277AAC1EA849CC00F32B09 /* TJMJinDouYun.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TJMJinDouYun.entitlements; sourceTree = "<group>"; };
 		99F1C0801EA0CEB800415F0C /* TJMJinDouYun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TJMJinDouYun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99F1C0841EA0CEB800415F0C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		99F1C0991EA0CEB800415F0C /* TJMJinDouYunTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TJMJinDouYunTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -280,6 +281,7 @@
 		99F1C0821EA0CEB800415F0C /* TJMJinDouYun */ = {
 			isa = PBXGroup;
 			children = (
+				99277AAC1EA849CC00F32B09 /* TJMJinDouYun.entitlements */,
 				99F1C0EC1EA0CEFA00415F0C /* AppDelegate */,
 				99F1C0B61EA0CEE000415F0C /* Tool */,
 				99F1C1E71EA4C17500415F0C /* 主页 */,
@@ -815,7 +817,13 @@
 				TargetAttributes = {
 					99F1C07F1EA0CEB800415F0C = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = EA69B4VRFP;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					99F1C0981EA0CEB800415F0C = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -899,7 +907,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		97ED38BC82216DDAB8D0F2DD /* [CP] Embed Pods Frameworks */ = {
@@ -1111,9 +1119,13 @@
 			baseConfigurationReference = DF32F0CFE86D49786C5A2869 /* Pods-TJMJinDouYun.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = TJMJinDouYun/TJMJinDouYun.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = EA69B4VRFP;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/TJMJinDouYun/Tool/Config/TJMPrefixHeader.pch";
 				INFOPLIST_FILE = TJMJinDouYun/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1132,9 +1144,13 @@
 			baseConfigurationReference = 704ED3F31667CEAB6D7BC8CB /* Pods-TJMJinDouYun.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = TJMJinDouYun/TJMJinDouYun.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = EA69B4VRFP;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/TJMJinDouYun/Tool/Config/TJMPrefixHeader.pch";
 				INFOPLIST_FILE = TJMJinDouYun/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
