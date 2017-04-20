@@ -119,8 +119,8 @@
                  apsForProduction:JPushIsProduction];
 }
 
-#pragma mark JPUSHRegisterDelegate
-
+#pragma mark JPUSHRegisterDelegate 和 旧版本回调
+//以下代理方法只有在点击推送消息后才会调用
 // iOS 10 Support
 - (void)jpushNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(NSInteger))completionHandler {
     // Required
