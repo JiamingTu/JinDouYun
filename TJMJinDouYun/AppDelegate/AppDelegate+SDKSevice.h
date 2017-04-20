@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 
 @interface AppDelegate (SDKSevice)<BMKGeneralDelegate,JPUSHRegisterDelegate>
-
+//百度地图
 /**启动百度地图引擎*/
 - (void)startBaiduMapEngine;
 /**终止百度地图引擎*/

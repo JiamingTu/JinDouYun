@@ -79,6 +79,7 @@
 }
 
 
+
 #pragma  mark - 极光推送
 #pragma  mark 注册
 - (void)registerJPush {
@@ -97,8 +98,10 @@
     }
     else // iOS7
     {
+#if __IPHONE_OS_VERSION_MAX_ALLOWED < __IPHONE_8_0
         //categories 必须为nil
         [JPUSHService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert) categories:nil];
+#endif
     }
 
 

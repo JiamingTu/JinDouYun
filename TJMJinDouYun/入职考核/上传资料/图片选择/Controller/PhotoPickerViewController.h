@@ -10,4 +10,8 @@
 
 @interface PhotoPickerViewController : UIViewController
 
+@property (strong, nonatomic) IBOutlet UIImageView *headImage;
+
+@property (strong, nonatomic) UIActionSheet *actionSheet;
+
 @end

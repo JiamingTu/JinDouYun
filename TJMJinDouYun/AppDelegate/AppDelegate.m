@@ -29,29 +29,7 @@
     
     return YES;
 }
-#pragma mark BMKGeneralDelegate
-/**
- *返回网络错误
- *@param iError 错误号
- */
-- (void)onGetNetworkState:(int)iError {
-    if (iError == 0) {
-        TJMLog(@"网络正常");
-    }else {
-        TJMLog(@"网络出错,%@",@(iError));
-    }
-}
-/**
- *返回授权验证错误
- *@param iError 错误号 : 为0时验证通过，具体参考BMKPermissionCheckResultCode
- */
-- (void)onGetPzermissionState:(int)iError {
-    if (iError == 0) {
-        TJMLog(@"验证成功");
-    }else {
-        TJMLog(@"验证失败,%d",iError);
-    }
-}
+
 
 //上报 deviceToken
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {

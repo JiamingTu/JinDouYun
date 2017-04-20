@@ -1,0 +1,51 @@
+
+/* Class = "UILabel"; text = "点击注册代表您已经阅读了"; ObjectID = "2vP-Iw-SAF"; */
+"2vP-Iw-SAF.text" = "点击注册代表您已经阅读了";
+
+/* Class = "UIButton"; normalTitle = "忘记密码"; ObjectID = "HqJ-BH-hby"; */
+"HqJ-BH-hby.normalTitle" = "忘记密码";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "JJA-bB-z4f"; */
+"JJA-bB-z4f.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "密码："; ObjectID = "NnF-fV-ME4"; */
+"NnF-fV-ME4.text" = "密码：";
+
+/* Class = "UISegmentedControl"; Nnp-r5-kVE.segmentTitles[0] = "密码登录"; ObjectID = "Nnp-r5-kVE"; */
+"Nnp-r5-kVE.segmentTitles[0]" = "密码登录";
+
+/* Class = "UISegmentedControl"; Nnp-r5-kVE.segmentTitles[1] = "短信登录"; ObjectID = "Nnp-r5-kVE"; */
+"Nnp-r5-kVE.segmentTitles[1]" = "短信登录";
+
+/* Class = "UIButton"; normalTitle = "登录"; ObjectID = "TbW-dW-S6J"; */
+"TbW-dW-S6J.normalTitle" = "登录";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "YGa-Rv-ScE"; */
+"YGa-Rv-ScE.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "ZTQ-FL-RS4"; */
+"ZTQ-FL-RS4.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "注册"; ObjectID = "dqQ-wA-CAb"; */
+"dqQ-wA-CAb.normalTitle" = "注册";
+
+/* Class = "UILabel"; text = "手机号："; ObjectID = "feh-aW-qXd"; */
+"feh-aW-qXd.text" = "手机号：";
+
+/* Class = "UILabel"; text = "手机号："; ObjectID = "itl-6F-adr"; */
+"itl-6F-adr.text" = "手机号：";
+
+/* Class = "UIButton"; normalTitle = "筋斗云XXX"; ObjectID = "lae-X9-msW"; */
+"lae-X9-msW.normalTitle" = "筋斗云XXX";
+
+/* Class = "UILabel"; text = "密码："; ObjectID = "s3g-Lt-W2b"; */
+"s3g-Lt-W2b.text" = "密码：";
+
+/* Class = "UILabel"; text = "验证码："; ObjectID = "xwH-Eh-3Og"; */
+"xwH-Eh-3Og.text" = "验证码：";
+
+/* Class = "UIButton"; normalTitle = "获取验证码"; ObjectID = "yMk-EF-MeM"; */
+"yMk-EF-MeM.normalTitle" = "获取验证码";
+
+/* Class = "UIButton"; normalTitle = "注册"; ObjectID = "zPl-nd-Rzu"; */
+"zPl-nd-Rzu.normalTitle" = "注册";
