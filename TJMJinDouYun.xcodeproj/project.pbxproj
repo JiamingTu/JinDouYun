@@ -258,6 +258,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		99E74D181EA98D7F00BFD422 /* 消息中心 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "消息中心";
+			sourceTree = "<group>";
+		};
 		99F1C0771EA0CEB800415F0C = {
 			isa = PBXGroup;
 			children = (
@@ -561,6 +568,7 @@
 		99F1C1E71EA4C17500415F0C /* 主页 */ = {
 			isa = PBXGroup;
 			children = (
+				99E74D181EA98D7F00BFD422 /* 消息中心 */,
 				99F1C1E91EA4C1A400415F0C /* Controller */,
 				99F1C1EA1EA4C1AB00415F0C /* Model */,
 				99F1C1E81EA4C19D00415F0C /* View */,

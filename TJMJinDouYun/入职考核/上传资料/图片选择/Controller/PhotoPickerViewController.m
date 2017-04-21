@@ -7,7 +7,6 @@
 //
 
 #import "PhotoPickerViewController.h"
-
 @interface PhotoPickerViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @end
@@ -73,7 +72,6 @@
         imagePickerController.delegate = self;
         imagePickerController.allowsEditing = YES;
         imagePickerController.sourceType = sourceType;
-        
         [self presentViewController:imagePickerController animated:YES completion:^{
             
         }];
@@ -86,8 +84,13 @@
         
     }];
     
-    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    self.headImage.image = image;
+    NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
+    // 当选择的类型是图片
+    if ([type isEqualToString:@"public.image"])
+    {
+        UIImage* image = [info objectForKey:@"UIImagePickerControllerEditedImage"]; // 裁剪后的图片
+        self.headImage.image = image;
+    }
     
 }
 
