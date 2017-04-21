@@ -1,14 +1,14 @@
 //
-//  TJMCustomerLocationData.m
+//  TJMLocationData.m
 //  TJMJinDouYun
 //
-//  Created by Jiaming Tu on 2017/4/19.
+//  Created by Jiaming Tu on 2017/4/21.
 //  Copyright © 2017年 zhongzhichuangying. All rights reserved.
 //
 
-#import "TJMCustomerLocationData.h"
+#import "TJMLocationData.h"
 
-@implementation TJMCustomerLocationData
+@implementation TJMLocationData
 
 + (NSDictionary *)mj_objectClassInArray {
     return @{
@@ -18,7 +18,7 @@
 
 @end
 
-@implementation TJMCustomerLocation
+@implementation TJMLocation
 
 
 @end

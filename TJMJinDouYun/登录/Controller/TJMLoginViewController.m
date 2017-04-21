@@ -9,10 +9,18 @@
 #import "TJMLoginViewController.h"
 
 @interface TJMLoginViewController ()<CAAnimationDelegate>
-
+@property (nonatomic,strong) AppDelegate *appDelegate;
 @end
 
 @implementation TJMLoginViewController
+
+- (AppDelegate *)appDelegate {
+    if (!_appDelegate) {
+        self.appDelegate = TJMAppDelegate;
+    }
+    return _appDelegate;
+}
+
 #pragma  mark - View life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -28,11 +36,12 @@
         //判断密码是否为空
         if (self.passwordTF.text != nil) {
             NSDictionary *form = @{@"mobile":self.phoneNumberTF.text,@"pwd":self.passwordTF.text};
-            [TJMRequestH accountCheckWithForm:form checkType:TJMLogin success:^(id successObj) {
+            [TJMRequestH accountCheckWithForm:form checkType:TJMLogin success:^(id successObj,NSString *msg) {
                 //获取并存入token
                 NSDictionary *dict = successObj[@"data"];
                 TJMTokenModel *tokenModel = [[TJMTokenModel alloc]initWithDictionary:dict];
                 [TJMSandBoxManager saveTokenToPath:tokenModel];
+                [self.appDelegate setAlias];
             } fail:^(NSString *failString) {
                 
             }];

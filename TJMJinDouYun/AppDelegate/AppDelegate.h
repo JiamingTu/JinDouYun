@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-
+@class AppDelegate;
 typedef void(^CallBlock)();
 
 typedef void(^ResultBlock)(BOOL isOK);

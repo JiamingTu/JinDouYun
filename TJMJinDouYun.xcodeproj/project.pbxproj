@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		99277AA51EA70D6200F32B09 /* TJMTestQuestionData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99277AA41EA70D6200F32B09 /* TJMTestQuestionData.m */; };
 		99277AA81EA70FF800F32B09 /* TJMExamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99277AA71EA70FF800F32B09 /* TJMExamViewController.m */; };
-		99277AAB1EA7513900F32B09 /* TJMCustomerLocationData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99277AAA1EA7513900F32B09 /* TJMCustomerLocationData.m */; };
+		99E74D1E1EA9DAF800BFD422 /* TJMLocationData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E74D1D1EA9DAF800BFD422 /* TJMLocationData.m */; };
+		99E74D201EA9EC4400BFD422 /* category_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E74D1F1EA9EC4400BFD422 /* category_1@2x.png */; };
 		99F1C0851EA0CEB800415F0C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C0841EA0CEB800415F0C /* main.m */; };
 		99F1C09E1EA0CEB800415F0C /* TJMJinDouYunTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C09D1EA0CEB800415F0C /* TJMJinDouYunTests.m */; };
 		99F1C0A91EA0CEB800415F0C /* TJMJinDouYunUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C0A81EA0CEB800415F0C /* TJMJinDouYunUITests.m */; };
@@ -90,11 +91,12 @@
 		99277AA41EA70D6200F32B09 /* TJMTestQuestionData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TJMTestQuestionData.m; path = "入职考核/考试/Model/TJMTestQuestionData.m"; sourceTree = "<group>"; };
 		99277AA61EA70FF800F32B09 /* TJMExamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TJMExamViewController.h; path = "入职考核/考试/Controller/TJMExamViewController.h"; sourceTree = "<group>"; };
 		99277AA71EA70FF800F32B09 /* TJMExamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TJMExamViewController.m; path = "入职考核/考试/Controller/TJMExamViewController.m"; sourceTree = "<group>"; };
-		99277AA91EA7513900F32B09 /* TJMCustomerLocationData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMCustomerLocationData.h; sourceTree = "<group>"; };
-		99277AAA1EA7513900F32B09 /* TJMCustomerLocationData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMCustomerLocationData.m; sourceTree = "<group>"; };
 		99277AAC1EA849CC00F32B09 /* TJMJinDouYun.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TJMJinDouYun.entitlements; sourceTree = "<group>"; };
 		99E74D161EA8BB1700BFD422 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		99E74D171EA8BB1800BFD422 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		99E74D1C1EA9DAF800BFD422 /* TJMLocationData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMLocationData.h; sourceTree = "<group>"; };
+		99E74D1D1EA9DAF800BFD422 /* TJMLocationData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMLocationData.m; sourceTree = "<group>"; };
+		99E74D1F1EA9EC4400BFD422 /* category_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "category_1@2x.png"; sourceTree = "<group>"; };
 		99F1C0801EA0CEB800415F0C /* TJMJinDouYun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TJMJinDouYun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99F1C0841EA0CEB800415F0C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		99F1C0991EA0CEB800415F0C /* TJMJinDouYunTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TJMJinDouYunTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -423,6 +425,7 @@
 		99F1C0D11EA0CEFA00415F0C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				99E74D1F1EA9EC4400BFD422 /* category_1@2x.png */,
 				99F1C0D21EA0CEFA00415F0C /* TJMBaiduMapViewController.h */,
 				99F1C0D31EA0CEFA00415F0C /* TJMBaiduMapViewController.m */,
 			);
@@ -432,8 +435,8 @@
 		99F1C0D41EA0CEFA00415F0C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				99277AA91EA7513900F32B09 /* TJMCustomerLocationData.h */,
-				99277AAA1EA7513900F32B09 /* TJMCustomerLocationData.m */,
+				99E74D1C1EA9DAF800BFD422 /* TJMLocationData.h */,
+				99E74D1D1EA9DAF800BFD422 /* TJMLocationData.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -874,6 +877,7 @@
 			files = (
 				99F1C2091EA5AA9D00415F0C /* 44444.png in Resources */,
 				99F1C16D1EA0DBB200415F0C /* updatelog.txt in Resources */,
+				99E74D201EA9EC4400BFD422 /* category_1@2x.png in Resources */,
 				99F1C1681EA0DBB200415F0C /* baiduNaviSDK.xcassets in Resources */,
 				99F1C1041EA0CF2900415F0C /* LaunchScreen.storyboard in Resources */,
 				99F1C2071EA5AA9D00415F0C /* 22222.png in Resources */,
@@ -962,7 +966,6 @@
 				99F1C20B1EA5AA9D00415F0C /* TJMProvinceData.m in Sources */,
 				99F1C20C1EA5AA9D00415F0C /* TJMVehicleData.m in Sources */,
 				99F1C0CC1EA0CEE000415F0C /* TJMHUDHandle.m in Sources */,
-				99277AAB1EA7513900F32B09 /* TJMCustomerLocationData.m in Sources */,
 				99F1C0FB1EA0CEFA00415F0C /* AppDelegate+SDKSevice.m in Sources */,
 				99F1C21C1EA5B77400415F0C /* TJMHomepageViewController.m in Sources */,
 				99277AA81EA70FF800F32B09 /* TJMExamViewController.m in Sources */,
@@ -971,6 +974,7 @@
 				99F1C22D1EA5E6C600415F0C /* TJMEntryCheckViewController.m in Sources */,
 				99F1C20A1EA5AA9D00415F0C /* TJMUploadViewController.m in Sources */,
 				99F1C0CE1EA0CEE000415F0C /* NSString+MD5.m in Sources */,
+				99E74D1E1EA9DAF800BFD422 /* TJMLocationData.m in Sources */,
 				99277AA51EA70D6200F32B09 /* TJMTestQuestionData.m in Sources */,
 				99F1C0851EA0CEB800415F0C /* main.m in Sources */,
 				99F1C0CB1EA0CEE000415F0C /* TJMSandBoxManager.m in Sources */,

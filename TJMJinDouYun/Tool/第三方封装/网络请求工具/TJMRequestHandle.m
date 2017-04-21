@@ -9,6 +9,9 @@
 #import "TJMRequestHandle.h"
 #import "NSString+MD5.h"
 #import <CoreLocation/CoreLocation.h>
+
+#define TJMRightCode [responseObject[@"code"] isEqualToNumber:@(200)]
+#define TJMResponseMessage responseObject[@"msg"]
 @interface TJMRequestHandle ()
 
 @property (nonatomic,strong) AFHTTPSessionManager *httpRequestManager;
@@ -25,7 +28,7 @@
         self.httpRequestManager = [AFHTTPSessionManager manager];
         _httpRequestManager.responseSerializer = [AFJSONResponseSerializer serializer];
         _httpRequestManager.requestSerializer = [AFHTTPRequestSerializer serializer];
-        _httpRequestManager.requestSerializer.timeoutInterval = 15;
+        _httpRequestManager.requestSerializer.timeoutInterval = 10;
     }
     return _httpRequestManager;
 }
@@ -35,7 +38,7 @@
         self.jsonRequestManager = [AFHTTPSessionManager manager];
         _jsonRequestManager.responseSerializer = [AFJSONResponseSerializer serializer];
         _jsonRequestManager.requestSerializer = [AFJSONRequestSerializer serializer];
-        _jsonRequestManager.requestSerializer.timeoutInterval = 15;
+        _jsonRequestManager.requestSerializer.timeoutInterval = 10;
     }
     return _jsonRequestManager;
 }
@@ -73,7 +76,7 @@
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] isEqualToNumber:@(200)]) {
             //操作成功
-            success(responseObject);
+            success(responseObject,TJMResponseMessage);
             TJMLog(@"%@",responseObject[@"msg"]);
         }else {
             //操作失败
@@ -101,7 +104,7 @@
         
         if ([responseObject[@"code"] isEqualToNumber:@(200)]) {
             //请求成功
-            success(responseObject);
+            success(responseObject,TJMResponseMessage);
             TJMLog(@"%@",responseObject[@"msg"]);
         } else {
             //非网络问题
@@ -230,9 +233,19 @@
     [self.httpRequestManager POST:URLString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if (TJMRightCode) {
+            TJMLog(@"code正确，%@",TJMResponseMessage);
+            //处理
+            TJMLocationData *data = [TJMLocationData mj_objectWithKeyValues:responseObject];
+            success(data,responseObject[@"msg"]);
+        }else {
+            NSLog(@"code错误，%@",TJMResponseMessage);
+            failure(TJMResponseMessage);
+        }
         TJMLog(@"%@",responseObject);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
+        TJMLog(@"%@",error.localizedDescription);
+        failure(error.localizedDescription);
     }];
 }
 
@@ -245,7 +258,7 @@
         [self.httpRequestManager POST:URLString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            if ([responseObject[@"code"] isEqualToNumber:@(200)]) {
+            if (TJMRightCode) {
                 //code码正确
                 TJMLog(@"%@",responseObject);
                 TJMTestQuestionData *tqd = [TJMTestQuestionData mj_objectWithKeyValues:responseObject[@"data"]];
@@ -253,7 +266,7 @@
                 TJMLog(@"%@----%@",question,tqd.config.fullScore);
             }
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            TJMLog(@"%@",error);
+            TJMLog(@"%@",error.localizedDescription);
         }];
     }
 }

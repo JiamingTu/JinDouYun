@@ -19,12 +19,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     // Add the navigation controller's view to the window and display.
-    
     //登录验证
     [self checkLoggingStatusWithToken];
     //极光推送
     [self registerJPush];
     [self startJPushWithLaunchOptions:launchOptions];
+    
     
     
     return YES;

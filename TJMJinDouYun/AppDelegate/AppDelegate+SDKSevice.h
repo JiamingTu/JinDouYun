@@ -21,6 +21,8 @@
 //极光推送
 /**注册*/
 - (void)registerJPush;
+/**设置别名*/
+- (void)setAlias;
 /**初始化*/
 - (void)startJPushWithLaunchOptions:(NSDictionary *)launchOptions;
 @end

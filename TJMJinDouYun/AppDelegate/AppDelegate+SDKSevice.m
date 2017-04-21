@@ -59,10 +59,8 @@
     //初始化导航SDK
     //初始化服务，需要在AppDelegate的 application:didFinishLaunchingWithOptions:
     //中调用
-
     [BNCoreServices_Instance initServices:TJMBaiduMapAK];
     // 启动服务,异步方法
-
     [BNCoreServices_Instance startServicesAsyn:^{
         
         result(YES);
@@ -103,10 +101,23 @@
         [JPUSHService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert) categories:nil];
 #endif
     }
-
-
+    [JPUSHService registrationIDCompletionHandler:^(int resCode, NSString *registrationID) {
+        TJMLog(@"+++++++++rescode: %d, \nregistrationID: %@, ", resCode, registrationID);
+        if ([TJMSandBoxManager getTokenModel]) {
+            [self setAlias];
+        }
+        
+    }];
 }
-#pragma  mark - 初始化
+
+#pragma  mark 设置别名
+- (void)setAlias {
+    NSNumber *userId = [TJMSandBoxManager getTokenModel].userId;
+    [JPUSHService setTags:nil alias:userId.description fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias) {
+        TJMLog(@"+++++++++rescode: %d, \ntags: %@, \nalias: %@\n", iResCode, iTags, iAlias);
+    }];
+}
+#pragma  mark 初始化
 - (void)startJPushWithLaunchOptions:(NSDictionary *)launchOptions {
     // Optional
     // 获取IDFA
@@ -120,6 +131,8 @@
     [JPUSHService setupWithOption:launchOptions appKey:TJMJPushAppKey
                           channel:JPushChannel
                  apsForProduction:JPushIsProduction];
+    
+    
 }
 
 #pragma mark JPUSHRegisterDelegate 和 旧版本回调

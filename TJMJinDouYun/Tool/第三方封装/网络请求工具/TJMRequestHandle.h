@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <AFNetworking.h>
 
-typedef void(^SuccessBlock)(id successObj);
+typedef void(^SuccessBlock)(id successObj,NSString *msg);
 typedef void(^FailBlock)(NSString *failString);
 @interface TJMRequestHandle : NSObject
 
@@ -45,9 +45,10 @@ typedef void(^FailBlock)(NSString *failString);
 - (void)uploadFreeManInfoWithForm:(NSDictionary *)form photos:(NSDictionary *)photos success:(SuccessBlock)success fail:(FailBlock)FailBlock;
 
 /*
- *获取周边自由人
+ *获取周边自由人，顾客定位
+ * @param type TJMCustomerLocationNearby or TJMFreeManLocationNearby
  */
-- (void)getFreeManCoordinateNearByWithCoordinate:(CLLocationCoordinate2D)coordinate success:(SuccessBlock)success fail:(FailBlock)failure;
+- (void)getFreeManCoordinateNearByWithCoordinate:(CLLocationCoordinate2D)coordinate withType:(NSString *)type success:(SuccessBlock)success fail:(FailBlock)failure;
 /*
  *自由人随机生成题库
  */
