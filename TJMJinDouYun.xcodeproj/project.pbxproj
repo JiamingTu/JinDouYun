@@ -9,8 +9,11 @@
 /* Begin PBXBuildFile section */
 		99277AA51EA70D6200F32B09 /* TJMTestQuestionData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99277AA41EA70D6200F32B09 /* TJMTestQuestionData.m */; };
 		99277AA81EA70FF800F32B09 /* TJMExamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99277AA71EA70FF800F32B09 /* TJMExamViewController.m */; };
+		998CBB9C1EADA60F00CB6478 /* zbar-line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 998CBB991EADA60F00CB6478 /* zbar-line@2x.png */; };
+		998CBBA01EADB08A00CB6478 /* TJMOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 998CBB9F1EADB08A00CB6478 /* TJMOverlayView.m */; };
 		99E74D1E1EA9DAF800BFD422 /* TJMLocationData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E74D1D1EA9DAF800BFD422 /* TJMLocationData.m */; };
 		99E74D201EA9EC4400BFD422 /* category_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E74D1F1EA9EC4400BFD422 /* category_1@2x.png */; };
+		99EF36A41EAD808B005D103B /* TJMScanQRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EF36A31EAD808B005D103B /* TJMScanQRCodeViewController.m */; };
 		99F1C0851EA0CEB800415F0C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C0841EA0CEB800415F0C /* main.m */; };
 		99F1C09E1EA0CEB800415F0C /* TJMJinDouYunTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C09D1EA0CEB800415F0C /* TJMJinDouYunTests.m */; };
 		99F1C0A91EA0CEB800415F0C /* TJMJinDouYunUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C0A81EA0CEB800415F0C /* TJMJinDouYunUITests.m */; };
@@ -92,11 +95,16 @@
 		99277AA61EA70FF800F32B09 /* TJMExamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TJMExamViewController.h; path = "入职考核/考试/Controller/TJMExamViewController.h"; sourceTree = "<group>"; };
 		99277AA71EA70FF800F32B09 /* TJMExamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TJMExamViewController.m; path = "入职考核/考试/Controller/TJMExamViewController.m"; sourceTree = "<group>"; };
 		99277AAC1EA849CC00F32B09 /* TJMJinDouYun.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TJMJinDouYun.entitlements; sourceTree = "<group>"; };
+		998CBB991EADA60F00CB6478 /* zbar-line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zbar-line@2x.png"; sourceTree = "<group>"; };
+		998CBB9E1EADB08A00CB6478 /* TJMOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TJMOverlayView.h; path = "扫描二维码/View/TJMOverlayView.h"; sourceTree = "<group>"; };
+		998CBB9F1EADB08A00CB6478 /* TJMOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TJMOverlayView.m; path = "扫描二维码/View/TJMOverlayView.m"; sourceTree = "<group>"; };
 		99E74D161EA8BB1700BFD422 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		99E74D171EA8BB1800BFD422 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		99E74D1C1EA9DAF800BFD422 /* TJMLocationData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMLocationData.h; sourceTree = "<group>"; };
 		99E74D1D1EA9DAF800BFD422 /* TJMLocationData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMLocationData.m; sourceTree = "<group>"; };
 		99E74D1F1EA9EC4400BFD422 /* category_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "category_1@2x.png"; sourceTree = "<group>"; };
+		99EF36A21EAD808B005D103B /* TJMScanQRCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TJMScanQRCodeViewController.h; path = "扫描二维码/Controller/TJMScanQRCodeViewController.h"; sourceTree = "<group>"; };
+		99EF36A31EAD808B005D103B /* TJMScanQRCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TJMScanQRCodeViewController.m; path = "扫描二维码/Controller/TJMScanQRCodeViewController.m"; sourceTree = "<group>"; };
 		99F1C0801EA0CEB800415F0C /* TJMJinDouYun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TJMJinDouYun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99F1C0841EA0CEB800415F0C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		99F1C0991EA0CEB800415F0C /* TJMJinDouYunTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TJMJinDouYunTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -267,6 +275,42 @@
 			name = "消息中心";
 			sourceTree = "<group>";
 		};
+		99EF369B1EAD7F6F005D103B /* 二维码扫描 */ = {
+			isa = PBXGroup;
+			children = (
+				99EF369E1EAD7F93005D103B /* Controller */,
+				99EF369D1EAD7F8D005D103B /* View */,
+				99EF369C1EAD7F86005D103B /* Model */,
+			);
+			name = "二维码扫描";
+			sourceTree = "<group>";
+		};
+		99EF369C1EAD7F86005D103B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		99EF369D1EAD7F8D005D103B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				998CBB991EADA60F00CB6478 /* zbar-line@2x.png */,
+				998CBB9E1EADB08A00CB6478 /* TJMOverlayView.h */,
+				998CBB9F1EADB08A00CB6478 /* TJMOverlayView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		99EF369E1EAD7F93005D103B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				99EF36A21EAD808B005D103B /* TJMScanQRCodeViewController.h */,
+				99EF36A31EAD808B005D103B /* TJMScanQRCodeViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		99F1C0771EA0CEB800415F0C = {
 			isa = PBXGroup;
 			children = (
@@ -295,6 +339,7 @@
 				99277AAC1EA849CC00F32B09 /* TJMJinDouYun.entitlements */,
 				99F1C0EC1EA0CEFA00415F0C /* AppDelegate */,
 				99F1C0B61EA0CEE000415F0C /* Tool */,
+				99EF369B1EAD7F6F005D103B /* 二维码扫描 */,
 				99F1C1E71EA4C17500415F0C /* 主页 */,
 				99F1C0D01EA0CEFA00415F0C /* 地图 */,
 				99F1C0D61EA0CEFA00415F0C /* 登录 */,
@@ -884,6 +929,7 @@
 				99F1C1671EA0DBB200415F0C /* baiduNaviSDK.bundle in Resources */,
 				99F1C2241EA5B7F400415F0C /* TJMHomepageTableViewCell.xib in Resources */,
 				99F1C2081EA5AA9D00415F0C /* 33333.png in Resources */,
+				998CBB9C1EADA60F00CB6478 /* zbar-line@2x.png in Resources */,
 				99F1C20F1EA5AADE00415F0C /* 11111.png in Resources */,
 				99F1C0FF1EA0CF0600415F0C /* Info.plist in Resources */,
 				99F1C16A1EA0DBB200415F0C /* readme.txt in Resources */,
@@ -968,12 +1014,14 @@
 				99F1C0CC1EA0CEE000415F0C /* TJMHUDHandle.m in Sources */,
 				99F1C0FB1EA0CEFA00415F0C /* AppDelegate+SDKSevice.m in Sources */,
 				99F1C21C1EA5B77400415F0C /* TJMHomepageViewController.m in Sources */,
+				998CBBA01EADB08A00CB6478 /* TJMOverlayView.m in Sources */,
 				99277AA81EA70FF800F32B09 /* TJMExamViewController.m in Sources */,
 				99F1C0CD1EA0CEE000415F0C /* TJMRequestHandle.m in Sources */,
 				99F1C0F41EA0CEFA00415F0C /* TJMBaiduMapViewController.m in Sources */,
 				99F1C22D1EA5E6C600415F0C /* TJMEntryCheckViewController.m in Sources */,
 				99F1C20A1EA5AA9D00415F0C /* TJMUploadViewController.m in Sources */,
 				99F1C0CE1EA0CEE000415F0C /* NSString+MD5.m in Sources */,
+				99EF36A41EAD808B005D103B /* TJMScanQRCodeViewController.m in Sources */,
 				99E74D1E1EA9DAF800BFD422 /* TJMLocationData.m in Sources */,
 				99277AA51EA70D6200F32B09 /* TJMTestQuestionData.m in Sources */,
 				99F1C0851EA0CEB800415F0C /* main.m in Sources */,
