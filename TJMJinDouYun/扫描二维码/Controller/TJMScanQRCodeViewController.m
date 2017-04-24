@@ -73,13 +73,16 @@
         _previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:self.session];
         _previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
         _previewLayer.frame = self.view.bounds;
-        //添加扫描图层
+//        添加扫描图层
         _overLayView = [[TJMOverlayView alloc]initWithFrame:_previewLayer.frame];
         _overLayView.transparentArea = CGRectMake((TJMScreenWidth - 220)/2,100,220,220);
         [_previewLayer addSublayer:_overLayView.layer];
+
+
     }
     return _previewLayer;
 }
+#pragma  mark - config input & output
 /**
  *  配置输入输出设置
  */

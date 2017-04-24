@@ -52,6 +52,7 @@
     [self.appDelegate startBaiduMapEngine];
     //初始化BMKLocationService
     _locService = [[BMKLocationService alloc]init];
+    _locService.desiredAccuracy = 100;
     _locService.delegate = self;
     //启动LocationService
     [_locService startUserLocationService];
