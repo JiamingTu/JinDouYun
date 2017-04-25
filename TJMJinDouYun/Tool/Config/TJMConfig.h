@@ -31,7 +31,7 @@ static BOOL const JPushIsProduction = NO;
 static BOOL const JPushIsProduction = YES;
 #endif
 //请求类实例
-#define TJMRequestH [TJMRequestHandle shareRequestHandle]
+#define TJMRequestH [TJMRequestHandle sharedRequestHandle]
 #define TJMAppDelegate (AppDelegate *)[UIApplication sharedApplication].delegate
 
 //获取时间戳

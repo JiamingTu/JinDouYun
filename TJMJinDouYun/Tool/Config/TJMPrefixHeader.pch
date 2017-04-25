@@ -47,10 +47,14 @@
 #import "AppDelegate+APPService.h"
 
 #pragma  mark - 配置文件
+//单例宏
+#import "TJMSingleton.h"
 //导入Config
 #import "TJMConfig.h"
 //导入Api
 #import "TJMApi.h"
+
+
 #pragma  mark - 工具
 
 //文件管理

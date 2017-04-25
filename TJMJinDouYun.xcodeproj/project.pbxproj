@@ -13,6 +13,7 @@
 		998CBBA01EADB08A00CB6478 /* TJMOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 998CBB9F1EADB08A00CB6478 /* TJMOverlayView.m */; };
 		99E74D1E1EA9DAF800BFD422 /* TJMLocationData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E74D1D1EA9DAF800BFD422 /* TJMLocationData.m */; };
 		99E74D201EA9EC4400BFD422 /* category_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E74D1F1EA9EC4400BFD422 /* category_1@2x.png */; };
+		99E81B7B1EAF39D800BB0875 /* TJMPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81B7A1EAF39D800BB0875 /* TJMPickerView.m */; };
 		99EF36A41EAD808B005D103B /* TJMScanQRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EF36A31EAD808B005D103B /* TJMScanQRCodeViewController.m */; };
 		99F1C0851EA0CEB800415F0C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C0841EA0CEB800415F0C /* main.m */; };
 		99F1C09E1EA0CEB800415F0C /* TJMJinDouYunTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C09D1EA0CEB800415F0C /* TJMJinDouYunTests.m */; };
@@ -103,6 +104,9 @@
 		99E74D1C1EA9DAF800BFD422 /* TJMLocationData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMLocationData.h; sourceTree = "<group>"; };
 		99E74D1D1EA9DAF800BFD422 /* TJMLocationData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMLocationData.m; sourceTree = "<group>"; };
 		99E74D1F1EA9EC4400BFD422 /* category_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "category_1@2x.png"; sourceTree = "<group>"; };
+		99E81B791EAF39D800BB0875 /* TJMPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMPickerView.h; sourceTree = "<group>"; };
+		99E81B7A1EAF39D800BB0875 /* TJMPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMPickerView.m; sourceTree = "<group>"; };
+		99E81B7C1EAF50DC00BB0875 /* TJMSingleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TJMSingleton.h; sourceTree = "<group>"; };
 		99EF36A21EAD808B005D103B /* TJMScanQRCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TJMScanQRCodeViewController.h; path = "扫描二维码/Controller/TJMScanQRCodeViewController.h"; sourceTree = "<group>"; };
 		99EF36A31EAD808B005D103B /* TJMScanQRCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TJMScanQRCodeViewController.m; path = "扫描二维码/Controller/TJMScanQRCodeViewController.m"; sourceTree = "<group>"; };
 		99F1C0801EA0CEB800415F0C /* TJMJinDouYun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TJMJinDouYun.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -398,6 +402,7 @@
 				99F1C0B81EA0CEE000415F0C /* TJMApi.h */,
 				99F1C0B91EA0CEE000415F0C /* TJMConfig.h */,
 				99F1C0BA1EA0CEE000415F0C /* TJMPrefixHeader.pch */,
+				99E81B7C1EAF50DC00BB0875 /* TJMSingleton.h */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -701,6 +706,8 @@
 		99F1C2001EA5AA9D00415F0C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				99E81B791EAF39D800BB0875 /* TJMPickerView.h */,
+				99E81B7A1EAF39D800BB0875 /* TJMPickerView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1013,6 +1020,7 @@
 				99F1C20C1EA5AA9D00415F0C /* TJMVehicleData.m in Sources */,
 				99F1C0CC1EA0CEE000415F0C /* TJMHUDHandle.m in Sources */,
 				99F1C0FB1EA0CEFA00415F0C /* AppDelegate+SDKSevice.m in Sources */,
+				99E81B7B1EAF39D800BB0875 /* TJMPickerView.m in Sources */,
 				99F1C21C1EA5B77400415F0C /* TJMHomepageViewController.m in Sources */,
 				998CBBA01EADB08A00CB6478 /* TJMOverlayView.m in Sources */,
 				99277AA81EA70FF800F32B09 /* TJMExamViewController.m in Sources */,

@@ -20,7 +20,10 @@ typedef void(^FailBlock)(NSString *failString);
  *
  *
  */
-+ (TJMRequestHandle *)shareRequestHandle;
+
+SingletonH(RequestHandle)
+
+
 
 /*
  *短息验证(注册、忘记密码、快捷登录验证)

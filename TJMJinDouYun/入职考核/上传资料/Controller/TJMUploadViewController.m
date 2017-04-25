@@ -7,12 +7,21 @@
 //
 
 #import "TJMUploadViewController.h"
-
+#import "TJMPickerView.h"
 @interface TJMUploadViewController ()
+
+@property (nonatomic,strong) TJMPickerView *pickerView;
 
 @end
 
 @implementation TJMUploadViewController
+#pragma  mark - lazy loading 
+- (TJMPickerView *)pickerView {
+    if (!_pickerView) {
+        self.pickerView = [[TJMPickerView alloc]init];
+    }
+    return _pickerView;
+}
 #pragma  mark - View life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -23,11 +32,11 @@
 //        
 //    }];
     
-    UIImage *image1 = [UIImage imageNamed:@"11111"];
-    UIImage *image2 = [UIImage imageNamed:@"22222"];
-    UIImage *image3 = [UIImage imageNamed:@"33333"];
-    UIImage *image4 = [UIImage imageNamed:@"44444"];
-    NSDictionary *photos = @{@"photo":image1,@"personCardPhoto":image2,@"frontCardPhoto":image3,@"backCardPhoto":image4};
+//    UIImage *image1 = [UIImage imageNamed:@"11111"];
+//    UIImage *image2 = [UIImage imageNamed:@"22222"];
+//    UIImage *image3 = [UIImage imageNamed:@"33333"];
+//    UIImage *image4 = [UIImage imageNamed:@"44444"];
+//    NSDictionary *photos = @{@"photo":image1,@"personCardPhoto":image2,@"frontCardPhoto":image3,@"backCardPhoto":image4};
     
     NSDictionary *form = @{@"realName":@"小样",
                            @"idCard":@"350481199011200011",
@@ -49,6 +58,12 @@
 //    } fail:^(NSString *failString) {
 //        
 //    }];
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(100, 100, 100, 30)];
+    label.text = @"hahha";
+    label.backgroundColor = [UIColor blueColor];
+    [self.view addSubview:label];
+    [self.view addSubview:self.pickerView];
+    
     
 }
 

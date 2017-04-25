@@ -50,14 +50,8 @@
 }
 #pragma  mark - 单例
 
-+ (TJMRequestHandle *)shareRequestHandle {
-    static TJMRequestHandle *_handle = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _handle = [[TJMRequestHandle alloc]init];
-    });
-    return _handle;
-}
+SingletonM(RequestHandle)
+
 
 #pragma  mark - 请求方法
 #pragma  mark - 自由人登录、注册、验证码
