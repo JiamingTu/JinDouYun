@@ -48,7 +48,7 @@ typedef void(^FailBlock)(NSString *failString);
  *获取周边自由人，顾客定位
  * @param type TJMCustomerLocationNearby or TJMFreeManLocationNearby
  */
-- (void)getFreeManCoordinateNearByWithCoordinate:(CLLocationCoordinate2D)coordinate withType:(NSString *)type success:(SuccessBlock)success fail:(FailBlock)failure;
+- (void)freeManOrCustomerLocationWithCoordinate:(CLLocationCoordinate2D)coordinate withType:(NSString *)type success:(SuccessBlock)success fail:(FailBlock)failure;
 /*
  *自由人随机生成题库
  */

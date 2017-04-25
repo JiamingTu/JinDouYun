@@ -12,6 +12,13 @@
 {
     TJMOverlayView *_overLayView;
 }
+/*
+ AVCaptureSession 会话对象。此类作为硬件设备输入输出信息的桥梁，承担实时获取设备数据的责任
+ AVCaptureDeviceInput 设备输入类。这个类用来表示输入数据的硬件设备，配置抽象设备的port
+ AVCaptureMetadataOutput 输出类。这个支持二维码、条形码等图像数据的识别
+ AVCaptureVideoPreviewLayer 图层类。用来快速呈现摄像头获取的原始数据
+ 二维码扫描功能的实现步骤是创建好会话对象，用来获取从硬件设备输入的数据，并实时显示在界面上。在扫描到相应图像数据的时候，通过AVCaptureVideoPreviewLayer类型进行返回
+ */
 @property (nonatomic,strong) AVCaptureSession *session;
 @property (nonatomic,strong) AVCaptureDeviceInput *input;
 @property (nonatomic,strong) AVCaptureMetadataOutput *output;

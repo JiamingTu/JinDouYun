@@ -11,7 +11,7 @@
 @interface TJMTokenModel : NSObject<NSCoding>
 
 @property (nonatomic,copy) NSString *token;
-@property (nonatomic,copy) NSNumber *userId;
+@property (nonatomic,strong) NSNumber *userId;
 @property (nonatomic,copy) NSDate *createDate;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;

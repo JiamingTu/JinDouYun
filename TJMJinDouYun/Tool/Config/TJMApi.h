@@ -80,6 +80,34 @@
  */
 #define TJMCodeLogin @"/carrier/users/auth/codeLogin"
 
+#pragma  mark 开工相关
+/*
+ *开工 PUT
+ *Parameters
+ *  carrierId          ->path
+ */
+#define TJMStartWork(carrierId) [@"/carrier/users/start/" stringByAppendingString:carrierId]
+/*
+ *收工 PUT
+ *Parameters
+ *  carrierId          ->path
+ */
+#define TJMStopWork(carrierId) [@"/carrier/users/stop/" stringByAppendingString:carrierId]
+/*
+ *获取当前开工时间 GET
+ *Parameters
+ *  carrierId          ->path
+ */
+#define TJMCurrentWorkTime(carrierId) [@"/carrier/users/currentWorkTime/" stringByAppendingString:carrierId]
+/*
+ *获取开工总时间 GET
+ *Parameters
+ *  carrierId          ->path
+ */
+#define TJMTotalWorkTime(carrierId) [@"/carrier/users/totalWorkTime/" stringByAppendingString:carrierId]
+
+
+
 #pragma  mark - 自由人上传资料
 /*
  *获取已开通省市接口 GET
@@ -119,16 +147,16 @@
  *  CarrierId         ->path
  */
 //[NSString stringWithFormat:@"/carrier/info/%@",CarrierId]
-#define TJMFreeManGetInfo(CarrierId) @"/carrier/info/"CarrierId
+#define TJMFreeManGetInfo(carrierId) [@"/carrier/info/" stringByAppendingString:carrierId]
 
-#pragma  mark - 获取周围自由人
+#pragma  mark - 自由人上传定位
 /*
- *获取周围自由人 POST
+ *自由人上传定位 POST
  *Parameters
  *  lat
  *  lng
  */
-#define TJMFreeManLocationNearby @"/customer/locations/auth/nearBy"
+#define TJMUploadFreeManLocation @"/carrier/locations"
 
 #pragma  mark - 自由人获取题库
 /*

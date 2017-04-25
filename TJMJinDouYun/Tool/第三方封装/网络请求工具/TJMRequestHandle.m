@@ -119,6 +119,77 @@
     
     
 }
+#pragma  mark sign 处理
+- (NSDictionary *)signWithDictionary:(NSDictionary *)dictionary {
+    //变为可变数组
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:dictionary];
+    //加入时间戳
+    [parameters setObject:TJMTimestamp forKey:@"timestamp"];
+    //升序得到 健值对应的两个数组
+    NSArray *allKeyArray = [parameters allKeys];
+    NSArray *afterSortKeyArray = [allKeyArray sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        NSComparisonResult resuest = [obj1 compare:obj2];
+        return resuest;
+    }];
+    //通过排列的key值获取value
+    NSMutableArray *valueArray = [NSMutableArray array];
+    for (NSString *sortsing in afterSortKeyArray) {
+        NSString *valueString = [parameters objectForKey:sortsing];
+        [valueArray addObject:valueString];
+    }
+    //健值合并
+    NSMutableArray *signArray = [NSMutableArray array];
+    for (int i = 0 ; i < afterSortKeyArray.count; i++) {
+        NSString *keyValue = [NSString stringWithFormat:@"%@%@",afterSortKeyArray[i],valueArray[i]];
+        [signArray addObject:keyValue];
+    }
+    //signString用于签名的原始参数集合
+    NSString *signString = [signArray componentsJoinedByString:@""];
+    //秘钥拼接
+    signString = [NSString stringWithFormat:@"%@%@%@",TJMSecretKey,signString,TJMSecretKey];
+    //MD5加密
+    signString = [signString MD5];
+    //添加健值  sign
+    [parameters setObject:signString forKey:@"sign"];
+    return parameters;
+    
+}
+
+#pragma  mark 开工/收工
+- (void)putFreeManWorkingStatusWithType:(NSString *)type
+                                success:(SuccessBlock)success
+                                   fail:(FailBlock)failure {
+    NSString *carrierId = self.tokenModel.userId.description;
+    NSString *path = [type isEqualToString:@"Start"] ? TJMStartWork(carrierId) : TJMStopWork(carrierId);
+    NSString *URLString = [TJMApiBasicAddress stringByAppendingString:path];
+    [self.httpRequestManager.requestSerializer clearAuthorizationHeader];
+    [_httpRequestManager PUT:URLString parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if (TJMRightCode) {
+            TJMLog(@"%@",TJMResponseMessage);
+        } else {
+            
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
+}
+- (void)getFreeManWorkingTimeWithType:(NSString *)type
+                              success:(SuccessBlock)success
+                                 fail:(FailBlock)failure {
+    NSString *carrierId = self.tokenModel.userId.description;
+    NSString *path = [type isEqualToString:@"CurrentTime"] ? TJMCurrentWorkTime(carrierId) : TJMTotalWorkTime(carrierId);
+    NSString *URLString = [TJMApiBasicAddress stringByAppendingString:path];
+    [self.httpRequestManager.requestSerializer clearAuthorizationHeader];
+    [_httpRequestManager GET:URLString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if (TJMRightCode) {
+            TJMLog(@"%@",TJMResponseMessage);
+        } else {
+            
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
+}
 
 #pragma  mark - 自由人上传资料
 #pragma  mark 获取已开通省市县接口
@@ -185,51 +256,22 @@
     
     
 }
-#pragma  mark 获取自由人资料
 
-#pragma  mark - sign 处理
-- (NSDictionary *)signWithDictionary:(NSDictionary *)dictionary {
-    //变为可变数组
-    NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:dictionary];
-    //加入时间戳
-    [parameters setObject:TJMTimestamp forKey:@"timestamp"];
-    //升序得到 健值对应的两个数组
-    NSArray *allKeyArray = [parameters allKeys];
-    NSArray *afterSortKeyArray = [allKeyArray sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-        NSComparisonResult resuest = [obj1 compare:obj2];
-        return resuest;
-    }];
-    //通过排列的key值获取value
-    NSMutableArray *valueArray = [NSMutableArray array];
-    for (NSString *sortsing in afterSortKeyArray) {
-        NSString *valueString = [parameters objectForKey:sortsing];
-        [valueArray addObject:valueString];
-    }
-    //健值合并
-    NSMutableArray *signArray = [NSMutableArray array];
-    for (int i = 0 ; i < afterSortKeyArray.count; i++) {
-        NSString *keyValue = [NSString stringWithFormat:@"%@%@",afterSortKeyArray[i],valueArray[i]];
-        [signArray addObject:keyValue];
-    }
-    //signString用于签名的原始参数集合
-    NSString *signString = [signArray componentsJoinedByString:@""];
-    //秘钥拼接
-    signString = [NSString stringWithFormat:@"%@%@%@",TJMSecretKey,signString,TJMSecretKey];
-    //MD5加密
-    signString = [signString MD5];
-    //添加健值  sign
-    [parameters setObject:signString forKey:@"sign"];
-    return parameters;
-    
-}
+
 
 #pragma  mark - 自由人定位、客户定位定位
-- (void)getFreeManCoordinateNearByWithCoordinate:(CLLocationCoordinate2D)coordinate withType:(NSString *)type success:(SuccessBlock)success fail:(FailBlock)failure {
+- (void)freeManOrCustomerLocationWithCoordinate:(CLLocationCoordinate2D)coordinate withType:(NSString *)type success:(SuccessBlock)success fail:(FailBlock)failure {
     NSString *URLString = [TJMApiBasicAddress stringByAppendingString:type];
-    
-    NSDictionary *parameters = @{@"lat":@(coordinate.latitude),@"lng":@(coordinate.longitude)};
-    //清除auth请求头
-    [self.httpRequestManager.requestSerializer clearAuthorizationHeader];
+    //三元运算，根据type 得到不同的请求参数
+    NSDictionary *parameters = [type isEqualToString:TJMUploadFreeManLocation] ?
+    @{@"lat":@(coordinate.latitude),
+      @"lng":@(coordinate.longitude),
+@"carrierId":self.tokenModel.userId}
+    :
+    @{@"lat":@(coordinate.latitude),
+      @"lng":@(coordinate.longitude)};
+    //三元运算，根据type 设置请求头
+    [type isEqualToString:TJMUploadFreeManLocation] ? [self.httpRequestManager.requestSerializer setValue:self.tokenModel.token forHTTPHeaderField:@"Authorization"] : [self.httpRequestManager.requestSerializer clearAuthorizationHeader];
     [self.httpRequestManager POST:URLString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -242,7 +284,7 @@
             NSLog(@"code错误，%@",TJMResponseMessage);
             failure(TJMResponseMessage);
         }
-        TJMLog(@"%@",responseObject);
+        NSLog(@"%@:%@",TJMResponseMessage,responseObject);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         TJMLog(@"%@",error.localizedDescription);
         failure(error.localizedDescription);

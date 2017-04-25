@@ -52,7 +52,9 @@
     [self.appDelegate startBaiduMapEngine];
     //初始化BMKLocationService
     _locService = [[BMKLocationService alloc]init];
-    _locService.desiredAccuracy = 100;
+    //每移动100米 就调用一次代理
+    _locService.distanceFilter = 100;
+    _locService.pausesLocationUpdatesAutomatically = NO;
     _locService.delegate = self;
     //启动LocationService
     [_locService startUserLocationService];
@@ -79,13 +81,19 @@
 {
     [self.mapView updateLocationData:userLocation];
     TJMLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
-    
-    [TJMRequestH getFreeManCoordinateNearByWithCoordinate:userLocation.location.coordinate withType:TJMFreeManLocationNearby success:^(id successObj,NSString *msg) {
-        [self addAnnotationWithModel:successObj];
+    //定位之后上传自由人的位置
+    [TJMRequestH freeManOrCustomerLocationWithCoordinate:userLocation.location.coordinate withType:TJMUploadFreeManLocation success:^(id successObj, NSString *msg) {
+        
     } fail:^(NSString *failString) {
         
     }];
-    
+    //获取附近顾客坐标
+//    [TJMRequestH freeManOrCustomerLocationWithCoordinate:userLocation.location.coordinate withType:TJMCustomerLocationNearby success:^(id successObj, NSString *msg) {
+//        
+//    } fail:^(NSString *failString) {
+//    
+//    }];
+    [_locService stopUserLocationService];
 }
 
 
