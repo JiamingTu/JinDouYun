@@ -25,7 +25,9 @@ typedef void(^ResultBlock)(BOOL isOK);
 @property (nonatomic,copy) CallBlock StopNaviServices;
 //调用此block后 在地图页面开启导航
 @property (nonatomic,copy) ResultBlock GetResult;
-
+//屏幕适配
+@property (nonatomic,assign) CGFloat autoSizeScaleX;
+@property (nonatomic,assign) CGFloat autoSizeScaleY;
 
 
 @end

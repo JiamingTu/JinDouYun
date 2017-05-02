@@ -25,4 +25,5 @@ typedef void(^photoInfo)(UIImage *image,PHAsset *asset);
  */
 - (void)restoreRootViewController:(UIViewController *)rootViewController;
 
+
 @end

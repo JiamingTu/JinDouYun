@@ -24,8 +24,7 @@
     //极光推送
     [self registerJPush];
     [self startJPushWithLaunchOptions:launchOptions];
-    
-    
+
     
     return YES;
 }

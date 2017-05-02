@@ -40,6 +40,8 @@
 
 //导航模块
 #import "BNCoreServices.h"
+//字体自适应
+#import "UIFont+runtime.h"
 #pragma  mark - appDelegate
 //appDelegate
 #import "AppDelegate.h"
@@ -63,7 +65,8 @@
 //导入类别
 //正则判断
 #import "NSString+RegEx.h"
-
+#import "UIViewController+Config.h"
+#import "UINavigationBar+BackgroundColor.h"
 //第三方分装
 //请求
 #import "TJMRequestHandle.h"

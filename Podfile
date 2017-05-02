@@ -8,6 +8,6 @@ pod "AFNetworking"
 pod "MBProgressHUD"
 pod "MJExtension"
 pod "JPush"
-
+pod "SwipeBack"
 
 end

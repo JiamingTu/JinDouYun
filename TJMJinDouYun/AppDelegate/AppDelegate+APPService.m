@@ -7,17 +7,23 @@
 //
 
 #import "AppDelegate+APPService.h"
-
+#import "TJMTabBarViewController.h"
 @implementation AppDelegate (APPService)
 #pragma  mark - 确认登录状态
 //确认登录状态（是否存在token）
 - (void)checkLoggingStatusWithToken {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     if ([TJMSandBoxManager getTokenModel]) {
         //token 存在 进入首页
         TJMLog(@"token存在 确认登录");
+        TJMTabBarViewController *tabBarC = [storyboard instantiateViewControllerWithIdentifier:@"TJMTabBarController"];
+        self.window.rootViewController = tabBarC;
+        
     }else {
         //token 进入未登录页面 UIStoryboard
         TJMLog(@"token 不存在");
+        UINavigationController *uncheckedNaviC = [storyboard instantiateViewControllerWithIdentifier:@"TJMUncheckedNaviController"];
+        self.window.rootViewController = uncheckedNaviC;
     }
 }
 
@@ -140,6 +146,7 @@
         
     }
 }
+
 
 
 

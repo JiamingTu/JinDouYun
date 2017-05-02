@@ -1,0 +1,51 @@
+//
+//  TJMTabBarViewController.m
+//  TJMJinDouYun
+//
+//  Created by Jiaming Tu on 2017/4/28.
+//  Copyright © 2017年 zhongzhichuangying. All rights reserved.
+//
+
+#import "TJMTabBarViewController.h"
+
+@interface TJMTabBarViewController ()
+
+@end
+
+@implementation TJMTabBarViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    
+    
+     [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:TJMFUIColorFromRGB(0xffdf22),NSForegroundColorAttributeName, nil] forState:UIControlStateSelected];
+    for (UITabBarItem *item in self.tabBar.items) {
+        item.image = [item.image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        item.selectedImage = [item.selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    }
+}
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    UITabBar *tabBar = [UITabBar appearance];
+
+    tabBar.clipsToBounds = YES;
+}
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end
