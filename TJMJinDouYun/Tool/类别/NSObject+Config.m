@@ -11,7 +11,7 @@
 @implementation NSObject (Config)
 
 
-- (void)resetVerticalConstrains:(NSLayoutConstraint *)constrain, ... NS_REQUIRES_NIL_TERMINATION  {
+- (void)resetVerticalConstraints:(NSLayoutConstraint *)constrain, ... NS_REQUIRES_NIL_TERMINATION  {
     if (constrain) {
         // 取出第一个参数
         constrain.constant *= TJMHeightRatio;
@@ -30,7 +30,7 @@
         va_end(args);
     }
 }
-- (void)resetHorizontalConstrains:(NSLayoutConstraint *)constrain, ... NS_REQUIRES_NIL_TERMINATION  {
+- (void)resetHorizontalConstraints:(NSLayoutConstraint *)constrain, ... NS_REQUIRES_NIL_TERMINATION  {
     if (constrain) {
         // 取出第一个参数
         constrain.constant *= TJMWidthRatio;
@@ -81,6 +81,9 @@
     } else if ([unknownClass isKindOfClass:[UITextField class]]) {
         UITextField *textField = unknownClass;
         textField.font = [UIFont systemFontOfSize:fontSize];
+    }else if ([unknownClass isKindOfClass:[UITextView class]]) {
+        UITextView *textView = unknownClass;
+        textView.font = [UIFont systemFontOfSize:fontSize];
     }
 }
 

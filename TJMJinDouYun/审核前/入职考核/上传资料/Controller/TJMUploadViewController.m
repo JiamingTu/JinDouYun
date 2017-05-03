@@ -16,7 +16,17 @@
 @property (nonatomic,strong) TJMPickerView *pickerView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic,strong) TJMUserInfos *userInfo;
+@property (weak, nonatomic) IBOutlet UILabel *reminderLabel;
+@property (weak, nonatomic) IBOutlet UIButton *userProtocolButton;
 
+//竖直
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *checkBtnConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *checkBtnHeightConstraint;
+
+
+
+//水平
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *userProtocolConstraint;
 
 @end
 
@@ -71,9 +81,22 @@
 //        
 //    }];
 //    [self.view addSubview:self.pickerView];
-    self.tableView.estimatedRowHeight = 50;
-    
+    [self resetConstraints];
+    [self configViews];
 }
+
+#pragma  mark - 设置页面
+- (void)configViews {
+    self.tableView.estimatedRowHeight = 50;
+    //设置字体
+    [self adjustFont:12 forView:self.reminderLabel, nil];
+    [self adjustFont:13 forView:self.userProtocolButton, nil];
+}
+- (void)resetConstraints {
+    [self resetVerticalConstraints:self.checkBtnConstraint,self.checkBtnHeightConstraint, nil];
+    [self resetHorizontalConstraints:self.userProtocolConstraint, nil];
+}
+
 #pragma  mark - UITableViewDataSource,UITableViewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 2;
@@ -99,8 +122,17 @@
     return 0.01;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 10 * TJMHeightRatio;
+    if (section == 0) {
+        return 10 * TJMHeightRatio;
+    }
+    return 0.01;
 }
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    return [[UIView alloc]initWithFrame:CGRectZero];
+}
+
+
 
 
 

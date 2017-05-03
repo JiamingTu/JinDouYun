@@ -10,8 +10,8 @@
 
 @interface NSObject (Config)
 
-- (void)resetHorizontalConstrains:(NSLayoutConstraint *)constrain, ... NS_REQUIRES_NIL_TERMINATION;
-- (void)resetVerticalConstrains:(NSLayoutConstraint *)constrain, ... NS_REQUIRES_NIL_TERMINATION;
+- (void)resetHorizontalConstraints:(NSLayoutConstraint *)constrain, ... NS_REQUIRES_NIL_TERMINATION;
+- (void)resetVerticalConstraints:(NSLayoutConstraint *)constrain, ... NS_REQUIRES_NIL_TERMINATION;
 /**设置页面字体*/
 - (void)adjustFont:(CGFloat)fontSize forView:(id)view, ... NS_REQUIRES_NIL_TERMINATION;
 

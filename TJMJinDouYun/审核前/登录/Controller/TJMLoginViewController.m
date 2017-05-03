@@ -18,21 +18,23 @@
 @property (weak, nonatomic) IBOutlet UIView *shadowView;
 @property (weak, nonatomic) IBOutlet UIView *selectLineView;
 //约束
+//竖直
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *forgetButtonConstrain;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *registerButtonContrain;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bgImageContrain;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *registerButtonConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bgImageConstraint;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *textFieldContrain;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *loginButtonContrain;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *textFieldConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *loginButtonConstraint;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *getMsgBtnTopContrain;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *getMsgBtnBottomContrain;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *getMsgBtnTopConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *getMsgBtnBottomConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *userImageTopConstraint;
 
+//水平
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *pswdTFLineConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *phoneNumTFLineConstraint;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *pswdTFLineContrain;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *phoneNumTFLineContrain;
-
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *selectLineContrain;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *selectLineConstraint;
 
 @end
 
@@ -51,7 +53,7 @@
     // Do any additional setup after loading the view.
     
     TJMLog(@"路径：%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]);
-    [self resetConstrains];
+    [self resetConstraints];
     _selectButton = self.messageLoginButton;
 
     
@@ -69,13 +71,11 @@
 
 - (void)viewDidLayoutSubviews {
     [self configSubviews];
-
-    
 }
 #pragma  mark - 界面配置
-- (void)resetConstrains {
-    [self resetVerticalConstrains:self.forgetButtonConstrain,self.registerButtonContrain,self.getMsgBtnTopContrain,self.getMsgBtnBottomContrain,self.pswdTFLineContrain,self.phoneNumTFLineContrain,self.textFieldContrain,self.loginButtonContrain, nil];
-    [self resetHorizontalConstrains:self.bgImageContrain, nil];
+- (void)resetConstraints {
+    [self resetVerticalConstraints:self.forgetButtonConstrain,self.registerButtonConstraint,self.getMsgBtnTopConstraint,self.getMsgBtnBottomConstraint,self.pswdTFLineConstraint,self.phoneNumTFLineConstraint,self.textFieldConstraint,self.loginButtonConstraint,self.userImageTopConstraint, nil];
+    [self resetHorizontalConstraints:self.bgImageConstraint, nil];
 }
 - (void)configSubviews {
     //设置阴影
@@ -137,8 +137,7 @@
     
     CGFloat constant = [sender isEqual:self.messageLoginButton] ? 0 : self.selectLineView.frame.size.width;
     
-    self.selectLineContrain.constant = constant;
-//    [self.view layoutIfNeeded];
+    self.selectLineConstraint.constant = constant;
 }
 
 

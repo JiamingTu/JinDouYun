@@ -12,11 +12,12 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    [self config];
+    [self configViews];
 }
 #pragma  mark - 约束 字体等适配
-- (void)config {
-    [self resetHorizontalConstrains:self.starLeftConstraint,self.starRightConstraint, nil];
+- (void)configViews {
+    [self resetHorizontalConstraints:self.starLeftConstraint,self.starRightConstraint, nil];
+    [self resetVerticalConstraints:self.textFieldTopConstraint,self.textFieldBottomConstraint,self.textFieldHeightConstraint, nil];
     [self adjustFont:15 forView:self.infoTextField,self.titleLabel,self.starLabel, nil];
 }
 

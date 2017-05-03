@@ -15,17 +15,17 @@
 @property (nonatomic,strong) NSTimer *countDownTimer;
 //约束
 //竖直的
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *userImageTopContrain;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *userLineTopContrain;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *userLineBottomContrain;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *pswdLineTopContrain;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *pswdLineBottomContrain;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *msgLineTopContrain;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *msgLineBottomContrain;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *getMsgBtnTopContrain;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *getMsgBtnBottomContrain;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *userImageTopConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *userLineTopConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *userLineBottomConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *pswdLineTopConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *pswdLineBottomConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *msgLineTopConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *msgLineBottomConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *getMsgBtnTopConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *getMsgBtnBottomConstraint;
 //水平的
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bgImageContrain;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bgImageConstraint;
 
 @end
 
@@ -54,8 +54,8 @@
 
 #pragma  mark - 界面配置
 - (void)resetConstrains{
-    [self resetVerticalConstrains:self.userImageTopContrain,self.userLineTopContrain,self.userLineBottomContrain,self.pswdLineTopContrain,self.pswdLineBottomContrain,self.msgLineTopContrain,self.msgLineBottomContrain,self.getMsgBtnTopContrain,self.getMsgBtnBottomContrain, nil];
-    [self resetHorizontalConstrains:self.bgImageContrain, nil];
+    [self resetVerticalConstraints:self.userImageTopConstraint,self.userLineTopConstraint,self.userLineBottomConstraint,self.pswdLineTopConstraint,self.pswdLineBottomConstraint,self.msgLineTopConstraint,self.msgLineBottomConstraint,self.getMsgBtnTopConstraint,self.getMsgBtnBottomConstraint, nil];
+    [self resetHorizontalConstraints:self.bgImageConstraint, nil];
 }
 - (void)configSubviews {
     //设置字体

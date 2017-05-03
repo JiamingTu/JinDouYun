@@ -18,6 +18,9 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *starLeftConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *starRightConstraint;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *textFieldTopConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *textFieldBottomConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *textFieldHeightConstraint;
 
 - (void)setViewInfoWith:(TJMUserInfoModel *)model;
 
