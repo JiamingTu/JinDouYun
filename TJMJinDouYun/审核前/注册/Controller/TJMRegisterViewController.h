@@ -13,6 +13,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *phoneNumberTF;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTF;
 @property (weak, nonatomic) IBOutlet UITextField *authCodeTF;
+@property (weak, nonatomic) IBOutlet UILabel *registerTitleLabel;
+@property (weak, nonatomic) IBOutlet UIButton *registerButton;
 
 
 @end

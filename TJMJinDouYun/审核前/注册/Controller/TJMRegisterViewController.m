@@ -13,6 +13,19 @@
     CGFloat _countDownTime;
 }
 @property (nonatomic,strong) NSTimer *countDownTimer;
+//约束
+//竖直的
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *userImageTopContrain;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *userLineTopContrain;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *userLineBottomContrain;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *pswdLineTopContrain;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *pswdLineBottomContrain;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *msgLineTopContrain;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *msgLineBottomContrain;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *getMsgBtnTopContrain;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *getMsgBtnBottomContrain;
+//水平的
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bgImageContrain;
 
 @end
 
@@ -30,15 +43,32 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    
+    [self resetConstrains];
+    [self configSubviews];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self setTitle:@"注册" fontSize:17 colorHexValue:0x333333];
-    self.navigationController.navigationBar.translucent = NO;
 }
 
+
+#pragma  mark - 界面配置
+- (void)resetConstrains{
+    [self resetVerticalConstrains:self.userImageTopContrain,self.userLineTopContrain,self.userLineBottomContrain,self.pswdLineTopContrain,self.pswdLineBottomContrain,self.msgLineTopContrain,self.msgLineBottomContrain,self.getMsgBtnTopContrain,self.getMsgBtnBottomContrain, nil];
+    [self resetHorizontalConstrains:self.bgImageContrain, nil];
+}
+- (void)configSubviews {
+    //设置字体
+    [self adjustFont:14 forView:self.getMessageButton,self.registerTitleLabel,self.passwordTF,self.phoneNumberTF,self.authCodeTF,self.getMessageButton, nil];
+    [self adjustFont:18 forView:self.registerButton, nil];
+    //设置返回按钮
+    UIBarButtonItem *backItem = [self setNaviItemWithImageName:@"nav_btn_back" tag:1000];
+    self.navigationItem.leftBarButtonItem = backItem;
+}
+#pragma  mark 导航返回按钮绑定方法
+- (void)itemAction:(UIButton *)button {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 #pragma  mark - 添加通知
 #pragma  mark textField 通知
 

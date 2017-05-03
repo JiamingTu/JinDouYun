@@ -8,9 +8,15 @@
 
 #import "TJMUploadViewController.h"
 #import "TJMPickerView.h"
-@interface TJMUploadViewController ()
+#import "TJMInfoTableViewCell.h"
+#import "TJMIdCardTableViewCell.h"
+#import "TJMUserInfoModel.h"
+@interface TJMUploadViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) TJMPickerView *pickerView;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic,strong) TJMUserInfos *userInfo;
+
 
 @end
 
@@ -21,6 +27,12 @@
         self.pickerView = [[TJMPickerView alloc]init];
     }
     return _pickerView;
+}
+- (TJMUserInfos *)userInfo {
+    if (!_userInfo) {
+        self.userInfo = [[TJMUserInfos alloc]init];
+    }
+    return _userInfo;
 }
 #pragma  mark - View life cycle
 - (void)viewDidLoad {
@@ -58,14 +70,39 @@
 //    } fail:^(NSString *failString) {
 //        
 //    }];
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(100, 100, 100, 30)];
-    label.text = @"hahha";
-    label.backgroundColor = [UIColor blueColor];
-    [self.view addSubview:label];
-    [self.view addSubview:self.pickerView];
-    
+//    [self.view addSubview:self.pickerView];
+    self.tableView.estimatedRowHeight = 50;
     
 }
+#pragma  mark - UITableViewDataSource,UITableViewDelegate
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (section == 0) {
+        return 4;
+    }
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0) {
+        TJMInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"InfoCell" forIndexPath:indexPath];
+        [cell setViewInfoWith:self.userInfo.infos[indexPath.row]];
+        return cell;
+    } else {
+        TJMIdCardTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"IdCardCell" forIndexPath:indexPath];
+        return cell;
+    }
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 0.01;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 10 * TJMHeightRatio;
+}
+
+
 
 #pragma  mark - memory warning
 - (void)didReceiveMemoryWarning {

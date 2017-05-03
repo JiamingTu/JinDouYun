@@ -11,7 +11,8 @@
 @interface UIViewController (Config)
 - (void)setTitle:(NSString *)title fontSize:(CGFloat)size colorHexValue:(int)value;
 
-- (void)resetHorizontalConstrains:(NSLayoutConstraint *)constrain, ... NS_REQUIRES_NIL_TERMINATION;
-- (void)resetVerticalConstrains:(NSLayoutConstraint *)constrain, ... NS_REQUIRES_NIL_TERMINATION;
+
+- (UIBarButtonItem *)setNaviItemWithImageName:(NSString *)imageName tag:(int)tag;
+
 
 @end

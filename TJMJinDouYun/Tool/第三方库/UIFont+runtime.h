@@ -10,6 +10,4 @@
 #define YourUIScreen 375  //自己UI设计原型图的手机尺寸宽度(6)
 @interface UIFont (runtime)
 
-+ (void)adjustFont:(CGFloat)fontSize forView:(id)view, ... NS_REQUIRES_NIL_TERMINATION;
-
 @end

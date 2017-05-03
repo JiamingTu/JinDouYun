@@ -80,6 +80,10 @@
 		99F1C1891EA445AB00415F0C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F1C1881EA445AB00415F0C /* libc++.tbd */; };
 		99F1C18B1EA445B200415F0C /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F1C18A1EA445B200415F0C /* libsqlite3.0.tbd */; };
 		99F1C18D1EA445BD00415F0C /* libz.1.2.5.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F1C18C1EA445BD00415F0C /* libz.1.2.5.tbd */; };
+		99FF06A01EB9BE7200514D2F /* TJMInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FF069F1EB9BE7200514D2F /* TJMInfoTableViewCell.m */; };
+		99FF06A31EB9D0FD00514D2F /* TJMIdCardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FF06A21EB9D0FD00514D2F /* TJMIdCardTableViewCell.m */; };
+		99FF06A71EB9DE0200514D2F /* NSObject+Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FF06A61EB9DE0200514D2F /* NSObject+Config.m */; };
+		99FF06AA1EB9E21A00514D2F /* TJMUserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FF06A91EB9E21A00514D2F /* TJMUserInfoModel.m */; };
 		B3430058D86B1BD9C99AB40E /* libPods-TJMJinDouYun.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2165414574D4411C9A83DA /* libPods-TJMJinDouYun.a */; };
 /* End PBXBuildFile section */
 
@@ -233,6 +237,14 @@
 		99F1C1881EA445AB00415F0C /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		99F1C18A1EA445B200415F0C /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		99F1C18C1EA445BD00415F0C /* libz.1.2.5.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.5.tbd; path = usr/lib/libz.1.2.5.tbd; sourceTree = SDKROOT; };
+		99FF069E1EB9BE7200514D2F /* TJMInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMInfoTableViewCell.h; sourceTree = "<group>"; };
+		99FF069F1EB9BE7200514D2F /* TJMInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMInfoTableViewCell.m; sourceTree = "<group>"; };
+		99FF06A11EB9D0FD00514D2F /* TJMIdCardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMIdCardTableViewCell.h; sourceTree = "<group>"; };
+		99FF06A21EB9D0FD00514D2F /* TJMIdCardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMIdCardTableViewCell.m; sourceTree = "<group>"; };
+		99FF06A51EB9DE0200514D2F /* NSObject+Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Config.h"; sourceTree = "<group>"; };
+		99FF06A61EB9DE0200514D2F /* NSObject+Config.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Config.m"; sourceTree = "<group>"; };
+		99FF06A81EB9E21A00514D2F /* TJMUserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMUserInfoModel.h; sourceTree = "<group>"; };
+		99FF06A91EB9E21A00514D2F /* TJMUserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMUserInfoModel.m; sourceTree = "<group>"; };
 		CE2165414574D4411C9A83DA /* libPods-TJMJinDouYun.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TJMJinDouYun.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF32F0CFE86D49786C5A2869 /* Pods-TJMJinDouYun.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TJMJinDouYun.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TJMJinDouYun/Pods-TJMJinDouYun.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -366,6 +378,8 @@
 				99E81C5A1EB217E600BB0875 /* TJMProvinceData.m */,
 				99E81C5B1EB217E600BB0875 /* TJMVehicleData.h */,
 				99E81C5C1EB217E600BB0875 /* TJMVehicleData.m */,
+				99FF06A81EB9E21A00514D2F /* TJMUserInfoModel.h */,
+				99FF06A91EB9E21A00514D2F /* TJMUserInfoModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -375,6 +389,10 @@
 			children = (
 				99E81C5E1EB217E600BB0875 /* TJMPickerView.h */,
 				99E81C5F1EB217E600BB0875 /* TJMPickerView.m */,
+				99FF069E1EB9BE7200514D2F /* TJMInfoTableViewCell.h */,
+				99FF069F1EB9BE7200514D2F /* TJMInfoTableViewCell.m */,
+				99FF06A11EB9D0FD00514D2F /* TJMIdCardTableViewCell.h */,
+				99FF06A21EB9D0FD00514D2F /* TJMIdCardTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -852,6 +870,7 @@
 		99F1C0B61EA0CEE000415F0C /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				99FF06A41EB9DCFC00514D2F /* 设置工具 */,
 				99F1C0B71EA0CEE000415F0C /* Config */,
 				99F1C0BB1EA0CEE000415F0C /* 沙盒管理 */,
 				99F1C0BE1EA0CEE000415F0C /* 第三方封装 */,
@@ -928,6 +947,8 @@
 				99F1C0CA1EA0CEE000415F0C /* NSString+RegEx.m */,
 				99E81CEE1EB31F4700BB0875 /* UIViewController+Config.h */,
 				99E81CEF1EB31F4700BB0875 /* UIViewController+Config.m */,
+				99FF06A51EB9DE0200514D2F /* NSObject+Config.h */,
+				99FF06A61EB9DE0200514D2F /* NSObject+Config.m */,
 				99E81CF51EB8B05100BB0875 /* UINavigationBar+BackgroundColor.h */,
 				99E81CF61EB8B05100BB0875 /* UINavigationBar+BackgroundColor.m */,
 			);
@@ -945,6 +966,13 @@
 				99F1C0F21EA0CEFA00415F0C /* AppDelegate.m */,
 			);
 			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		99FF06A41EB9DCFC00514D2F /* 设置工具 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "设置工具";
 			sourceTree = "<group>";
 		};
 		D8C8147D2A0C1E675CA3EF9C /* Pods */ = {
@@ -1164,7 +1192,9 @@
 				99E81CBB1EB217E600BB0875 /* TJMBaiduMapViewController.m in Sources */,
 				99F1C0FA1EA0CEFA00415F0C /* AppDelegate+APPService.m in Sources */,
 				99F1C0CC1EA0CEE000415F0C /* TJMHUDHandle.m in Sources */,
+				99FF06A71EB9DE0200514D2F /* NSObject+Config.m in Sources */,
 				99F1C0FB1EA0CEFA00415F0C /* AppDelegate+SDKSevice.m in Sources */,
+				99FF06A31EB9D0FD00514D2F /* TJMIdCardTableViewCell.m in Sources */,
 				99F1C0CD1EA0CEE000415F0C /* TJMRequestHandle.m in Sources */,
 				99F1C0CE1EA0CEE000415F0C /* NSString+MD5.m in Sources */,
 				99E81CF01EB31F4700BB0875 /* UIViewController+Config.m in Sources */,
@@ -1173,6 +1203,7 @@
 				99E81CB51EB217E600BB0875 /* TJMExamViewController.m in Sources */,
 				99E81CB01EB217E600BB0875 /* TJMUploadViewController.m in Sources */,
 				99E81CED1EB2E1B000BB0875 /* TJMTabBarViewController.m in Sources */,
+				99FF06A01EB9BE7200514D2F /* TJMInfoTableViewCell.m in Sources */,
 				99E81CB71EB217E600BB0875 /* TJMRegisterViewController.m in Sources */,
 				99F1C0851EA0CEB800415F0C /* main.m in Sources */,
 				99E81CB11EB217E600BB0875 /* TJMProvinceData.m in Sources */,
@@ -1180,6 +1211,7 @@
 				99E81CBD1EB217E700BB0875 /* TJMMineViewController.m in Sources */,
 				99E81CB61EB217E600BB0875 /* TJMTestQuestionData.m in Sources */,
 				99E81CBE1EB217E700BB0875 /* TJMMineTableViewCell.m in Sources */,
+				99FF06AA1EB9E21A00514D2F /* TJMUserInfoModel.m in Sources */,
 				99E81CB21EB217E600BB0875 /* TJMVehicleData.m in Sources */,
 				99E81CC51EB217E700BB0875 /* TJMHomepageTableViewCell.m in Sources */,
 				99E81CC31EB217E700BB0875 /* TJMHomepageViewController.m in Sources */,

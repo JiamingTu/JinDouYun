@@ -217,17 +217,7 @@
     TJMLog(@"算路失败");
 }
 
-#pragma  mark - 设置导航左右按钮
-- (UIBarButtonItem *)setNaviItemWithImageName:(NSString *)imageName tag:(int)tag {
-    UIImage *itemImage = [UIImage imageNamed:@""];
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setBackgroundImage:itemImage forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(itemAction:) forControlEvents:UIControlEventTouchUpInside];
-    UIView *itemView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, itemImage.size.width, itemImage.size.height)];
-    [itemView addSubview:button];
-    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:itemView];
-    return item;
-}
+
 #pragma  mark 导航按钮绑定方法
 - (void)itemAction:(UIButton *)button {
     

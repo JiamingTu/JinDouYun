@@ -9,8 +9,14 @@
 #import "TJMLoginViewController.h"
 
 @interface TJMLoginViewController ()<CAAnimationDelegate>
+{
+    UIButton *_selectButton;
+}
 @property (nonatomic,strong) AppDelegate *appDelegate;
 @property (weak, nonatomic) IBOutlet UIView *loginSelectView;
+@property (weak, nonatomic) IBOutlet UIView *mainView;
+@property (weak, nonatomic) IBOutlet UIView *shadowView;
+@property (weak, nonatomic) IBOutlet UIView *selectLineView;
 //约束
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *forgetButtonConstrain;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *registerButtonContrain;
@@ -26,6 +32,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *pswdTFLineContrain;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *phoneNumTFLineContrain;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *selectLineContrain;
 
 @end
 
@@ -45,7 +52,7 @@
     
     TJMLog(@"路径：%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]);
     [self resetConstrains];
-    [self configSubviews];
+    _selectButton = self.messageLoginButton;
 
     
     
@@ -60,19 +67,37 @@
     [self.navigationController.navigationBar tjm_hideShadowImageOrNot:YES];
 }
 
+- (void)viewDidLayoutSubviews {
+    [self configSubviews];
+
+    
+}
 #pragma  mark - 界面配置
 - (void)resetConstrains {
     [self resetVerticalConstrains:self.forgetButtonConstrain,self.registerButtonContrain,self.getMsgBtnTopContrain,self.getMsgBtnBottomContrain,self.pswdTFLineContrain,self.phoneNumTFLineContrain,self.textFieldContrain,self.loginButtonContrain, nil];
     [self resetHorizontalConstrains:self.bgImageContrain, nil];
 }
 - (void)configSubviews {
+    //设置阴影
+    self.shadowView.layer.shadowColor = TJMFUIColorFromRGB(0xffdf22).CGColor;
+    self.shadowView.layer.shadowOpacity = 0.3;
+    //路径阴影
+    float width = self.shadowView.bounds.size.width;
+    float height = self.shadowView.bounds.size.height;
+    float x = self.shadowView.bounds.origin.x;
+    float y = self.shadowView.bounds.origin.y;
+    float addWH = 8;
+    TJMLog(@"%@",NSStringFromCGRect(self.shadowView.frame));
     
-    
+    UIBezierPath* aPath = [UIBezierPath bezierPathWithRect:CGRectMake(x, y + height, width, addWH)];
+    //设置阴影路径
+    self.shadowView.layer.shadowPath = aPath.CGPath;
     //设置字体
-    [UIFont adjustFont:14 forView:self.messageLoginButton,self.secretLoginButton,self.passwordTF,self.phoneNumberTF,self.getMessageButton, nil];
-    [UIFont adjustFont:15 forView:self.forgetSecretButton,self.registerButton, nil];
-    [UIFont adjustFont:18 forView:self.loginButton, nil];
+    [self adjustFont:14 forView:self.messageLoginButton,self.secretLoginButton,self.passwordTF,self.phoneNumberTF,self.getMessageButton, nil];
+    [self adjustFont:15 forView:self.forgetSecretButton,self.registerButton, nil];
+    [self adjustFont:18 forView:self.loginButton, nil];
     //
+    
 }
 
 
@@ -104,7 +129,17 @@
 }
 - (IBAction)forgetPasswordAction:(UIButton *)sender {
 }
-
+- (IBAction)changeLoginWayAction:(UIButton *)sender {
+    sender.selected = !sender.selected;
+    _selectButton.selected = !_selectButton.selected;
+    _selectButton = sender;
+    
+    
+    CGFloat constant = [sender isEqual:self.messageLoginButton] ? 0 : self.selectLineView.frame.size.width;
+    
+    self.selectLineContrain.constant = constant;
+//    [self.view layoutIfNeeded];
+}
 
 
 
