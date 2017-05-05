@@ -9,75 +9,102 @@
 #import "TJMMineViewController.h"
 #import "TJMMineTableViewCell.h"
 
-@interface TJMMineViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface TJMMineViewController ()
 
-@property (nonatomic,copy) NSArray *nameArray;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewContentHeightConstraint;
+
+@property (weak, nonatomic) IBOutlet UIView *settingView;
+
+//约束
+//竖直
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerImageTopConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerImageHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerImageBottomConstraint;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *nameLabelHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *nameLabelBottomConstraint;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *phoneNumLabelHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *phoneNumLabelBottomConstraint;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *evaluateValueLabelTopConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *evaluateValueLabelHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *evaluateValuLabelBottomConstraint;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *evaluateLabelHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *evaluateLabelBottomConstraint;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *cellHeightConstraint;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *firstSectionHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *secondSectionHeightConstraint;
+
+
+//
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *myOrderImageHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *myWalletImageHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *myEvaluateImageHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *emergencyImageHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *aboutOursImageHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *settingImageHeightConstraint;
+
+
+//水平
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *myOrderConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *myWalletConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *myEvaluateConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *emergencyCenterConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *aboutOursConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *settingConstraint;
+
+
+
 
 
 @end
 
 @implementation TJMMineViewController
 #pragma  mark - lazy loading
-- (NSArray *)nameArray {
-    if (!_nameArray) {
-        NSArray *firstSecArray = @[@"我的订单",@"收到的评价"];
-        NSArray *secondSecArray = @[@"应急中心",@"关于我们"];
-        NSArray *thirdSecArray = @[@"设置"];
-        self.nameArray = @[firstSecArray,secondSecArray,thirdSecArray];
-    }
-    return _nameArray;
-}
+
 #pragma  mark - view life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     
-    
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
-
-
+- (void)updateViewConstraints {
+    [super updateViewConstraints];
+    [self adjustFonts];
+    [self resetConstraints];
+    
+    
+}
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    self.scrollViewContentHeightConstraint.constant = CGRectGetMaxY(self.settingView.frame);
+}
+#pragma  mark - 设置页面
+- (void)resetConstraints {
+    [self resetVerticalConstraints:self.headerImageTopConstraint,self.headerImageHeightConstraint,self.headerImageBottomConstraint,self.nameLabelHeightConstraint,self.nameLabelHeightConstraint,self.phoneNumLabelBottomConstraint,self.phoneNumLabelHeightConstraint,self.evaluateValueLabelTopConstraint,self.evaluateValueLabelHeightConstraint,self.evaluateValuLabelBottomConstraint,self.evaluateValueLabelHeightConstraint,self.evaluateLabelBottomConstraint,self.cellHeightConstraint,self.myOrderImageHeightConstraint,self.myWalletImageHeightConstraint,self.myEvaluateImageHeightConstraint,self.emergencyImageHeightConstraint,self.aboutOursImageHeightConstraint,self.settingImageHeightConstraint,self.firstSectionHeightConstraint,self.secondSectionHeightConstraint, nil];
+    [self resetHorizontalConstraints:self.myOrderConstraint,self.myWalletConstraint,self.myEvaluateConstraint,self.emergencyCenterConstraint,self.aboutOursConstraint,self.settingConstraint, nil];
+}
+- (void)adjustFonts {
+    [self adjustFont:16 forView:self.nameLabel, nil];
+    [self adjustFont:13 forView:self.phoneNumLabel, nil];
+    [self adjustFont:20 forView:self.evaluateValueLabel,self.totalOrderNumLabel, nil];
+    [self adjustFont:15 forView:self.evaluateLabel,self.totalOrderLabel,self.myOrderLabel,self.myWalletLabel,self.myEvaluateLabel,self.emergencyLabel,self.aboutOursLabel,self.settingLabel, nil];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-#pragma  mark - UITableViewDataSource
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
-}
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 2) {
-        return 1;
-    }
-    return 2;
-}
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    TJMMineTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TJMMineCell" forIndexPath:indexPath];
-    
-    cell.label.text = self.nameArray[indexPath.section][indexPath.row];
-    
-    
-    return cell;
-}
-#pragma  mark - UITableViewDelegate
-//- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-//    UITableViewHeaderFooterView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"head"];
-//    
-//    
-//    return view;
-//}
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 16;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 0.01;
-}
+
 
 /*
 #pragma mark - Navigation

@@ -18,8 +18,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    
-     [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:TJMFUIColorFromRGB(0xffdf22),NSForegroundColorAttributeName, nil] forState:UIControlStateSelected];
+    [[UITabBarItem appearance] setTitlePositionAdjustment:UIOffsetMake(0, -3 * TJMHeightRatio)];
+    [self.tabBar.items enumerateObjectsUsingBlock:^(UITabBarItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        obj.imageInsets = UIEdgeInsetsMake(-1.5, 0, 1.5, 0);
+    }];
+    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:TJMFUIColorFromRGB(0x666666),NSForegroundColorAttributeName, nil] forState:UIControlStateSelected];
+    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:TJMFUIColorFromRGB(0x666666),NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
     for (UITabBarItem *item in self.tabBar.items) {
         item.image = [item.image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         item.selectedImage = [item.selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];

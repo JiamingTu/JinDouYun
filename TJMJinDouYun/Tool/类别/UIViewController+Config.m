@@ -29,10 +29,9 @@
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setBackgroundImage:itemImage forState:UIControlStateNormal];
     [button addTarget:self action:@selector(itemAction:) forControlEvents:UIControlEventTouchUpInside];
-    UIView *itemView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, itemImage.size.width, itemImage.size.height)];
-    button.frame = itemView.frame;
-    [itemView addSubview:button];
-    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:itemView];
+    button.tag = tag;
+    button.frame = CGRectMake(0, 0, itemImage.size.width, itemImage.size.height);
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:button];
     return item;
 }
 

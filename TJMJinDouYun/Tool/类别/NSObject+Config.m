@@ -87,6 +87,28 @@
     }
 }
 
+- (void)constructImaginaryLineWithView:(UIView *)view {
+    CAShapeLayer *shapeLayer = [CAShapeLayer layer];
+    [shapeLayer setBounds:view.bounds];
+    [shapeLayer setPosition:CGPointMake(CGRectGetWidth(view.frame) / 2, CGRectGetHeight(view.frame))];
+    [shapeLayer setFillColor:[UIColor clearColor].CGColor];
+    //  设置虚线颜色为blackColor
+    [shapeLayer setStrokeColor:TJMFUIColorFromRGB(0xd0d0d0).CGColor];
+    //  设置虚线宽度
+    [shapeLayer setLineWidth:CGRectGetHeight(view.frame)];
+    [shapeLayer setLineJoin:kCALineJoinRound];
+    //  设置线宽，线间距
+    [shapeLayer setLineDashPattern:[NSArray arrayWithObjects:[NSNumber numberWithInt:7 * TJMWidthRatio], [NSNumber numberWithInt:3 * TJMWidthRatio], nil]];
+    //  设置路径
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathMoveToPoint(path, NULL, 0, 0);
+    CGPathAddLineToPoint(path, NULL,CGRectGetWidth(view.frame), 0);
+    [shapeLayer setPath:path];
+    CGPathRelease(path);
+    [view.layer addSublayer:shapeLayer];
+
+}
+
 
 
 

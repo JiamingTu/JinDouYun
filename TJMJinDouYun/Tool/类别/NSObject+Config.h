@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <UIKit/UIKit.h>
 @interface NSObject (Config)
 
 - (void)resetHorizontalConstraints:(NSLayoutConstraint *)constrain, ... NS_REQUIRES_NIL_TERMINATION;
@@ -15,6 +15,6 @@
 /**设置页面字体*/
 - (void)adjustFont:(CGFloat)fontSize forView:(id)view, ... NS_REQUIRES_NIL_TERMINATION;
 
-
+- (void)constructImaginaryLineWithView:(UIView *)view;
 
 @end

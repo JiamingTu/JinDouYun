@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		99A3BC101EBB026800688692 /* TJMHomeOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A3BC0F1EBB026800688692 /* TJMHomeOrderTableViewCell.m */; };
+		99A3BC131EBB18FD00688692 /* TJMHomeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A3BC121EBB18FD00688692 /* TJMHomeHeaderView.m */; };
+		99A3BC161EBC02C100688692 /* TJMMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A3BC151EBC02C100688692 /* TJMMessageTableViewCell.m */; };
 		99E81CAB1EB217E600BB0875 /* TJMEntryCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81C4F1EB217E600BB0875 /* TJMEntryCheckViewController.m */; };
 		99E81CAC1EB217E600BB0875 /* 11111.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E81C521EB217E600BB0875 /* 11111.png */; };
 		99E81CAD1EB217E600BB0875 /* 22222.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E81C531EB217E600BB0875 /* 22222.png */; };
@@ -33,8 +36,6 @@
 		99E81CC21EB217E700BB0875 /* TJMMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81C9D1EB217E600BB0875 /* TJMMessageViewController.m */; };
 		99E81CC31EB217E700BB0875 /* TJMHomepageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81CA31EB217E600BB0875 /* TJMHomepageViewController.m */; };
 		99E81CC41EB217E700BB0875 /* TJMLocationData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81CA61EB217E600BB0875 /* TJMLocationData.m */; };
-		99E81CC51EB217E700BB0875 /* TJMHomepageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81CA91EB217E600BB0875 /* TJMHomepageTableViewCell.m */; };
-		99E81CC61EB217E700BB0875 /* TJMHomepageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99E81CAA1EB217E600BB0875 /* TJMHomepageTableViewCell.xib */; };
 		99E81CCE1EB2184600BB0875 /* BackgroundTaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81CC91EB2184600BB0875 /* BackgroundTaskManager.m */; };
 		99E81CCF1EB2184600BB0875 /* LocationShareModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81CCB1EB2184600BB0875 /* LocationShareModel.m */; };
 		99E81CD01EB2184600BB0875 /* LocationTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81CCD1EB2184600BB0875 /* LocationTracker.m */; };
@@ -107,6 +108,12 @@
 /* Begin PBXFileReference section */
 		704ED3F31667CEAB6D7BC8CB /* Pods-TJMJinDouYun.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TJMJinDouYun.release.xcconfig"; path = "Pods/Target Support Files/Pods-TJMJinDouYun/Pods-TJMJinDouYun.release.xcconfig"; sourceTree = "<group>"; };
 		99277AAC1EA849CC00F32B09 /* TJMJinDouYun.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TJMJinDouYun.entitlements; sourceTree = "<group>"; };
+		99A3BC0E1EBB026800688692 /* TJMHomeOrderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMHomeOrderTableViewCell.h; sourceTree = "<group>"; };
+		99A3BC0F1EBB026800688692 /* TJMHomeOrderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMHomeOrderTableViewCell.m; sourceTree = "<group>"; };
+		99A3BC111EBB18FD00688692 /* TJMHomeHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMHomeHeaderView.h; sourceTree = "<group>"; };
+		99A3BC121EBB18FD00688692 /* TJMHomeHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMHomeHeaderView.m; sourceTree = "<group>"; };
+		99A3BC141EBC02C100688692 /* TJMMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMMessageTableViewCell.h; sourceTree = "<group>"; };
+		99A3BC151EBC02C100688692 /* TJMMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMMessageTableViewCell.m; sourceTree = "<group>"; };
 		99E74D161EA8BB1700BFD422 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		99E74D171EA8BB1800BFD422 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		99E81B7C1EAF50DC00BB0875 /* TJMSingleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TJMSingleton.h; sourceTree = "<group>"; };
@@ -157,9 +164,6 @@
 		99E81CA31EB217E600BB0875 /* TJMHomepageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMHomepageViewController.m; sourceTree = "<group>"; };
 		99E81CA51EB217E600BB0875 /* TJMLocationData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMLocationData.h; sourceTree = "<group>"; };
 		99E81CA61EB217E600BB0875 /* TJMLocationData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMLocationData.m; sourceTree = "<group>"; };
-		99E81CA81EB217E600BB0875 /* TJMHomepageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMHomepageTableViewCell.h; sourceTree = "<group>"; };
-		99E81CA91EB217E600BB0875 /* TJMHomepageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMHomepageTableViewCell.m; sourceTree = "<group>"; };
-		99E81CAA1EB217E600BB0875 /* TJMHomepageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TJMHomepageTableViewCell.xib; sourceTree = "<group>"; };
 		99E81CC81EB2184600BB0875 /* BackgroundTaskManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundTaskManager.h; sourceTree = "<group>"; };
 		99E81CC91EB2184600BB0875 /* BackgroundTaskManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundTaskManager.m; sourceTree = "<group>"; };
 		99E81CCA1EB2184600BB0875 /* LocationShareModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationShareModel.h; sourceTree = "<group>"; };
@@ -701,6 +705,8 @@
 		99E81C9F1EB217E600BB0875 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				99A3BC141EBC02C100688692 /* TJMMessageTableViewCell.h */,
+				99A3BC151EBC02C100688692 /* TJMMessageTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -736,9 +742,10 @@
 		99E81CA71EB217E600BB0875 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				99E81CA81EB217E600BB0875 /* TJMHomepageTableViewCell.h */,
-				99E81CA91EB217E600BB0875 /* TJMHomepageTableViewCell.m */,
-				99E81CAA1EB217E600BB0875 /* TJMHomepageTableViewCell.xib */,
+				99A3BC0E1EBB026800688692 /* TJMHomeOrderTableViewCell.h */,
+				99A3BC0F1EBB026800688692 /* TJMHomeOrderTableViewCell.m */,
+				99A3BC111EBB18FD00688692 /* TJMHomeHeaderView.h */,
+				99A3BC121EBB18FD00688692 /* TJMHomeHeaderView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1112,7 +1119,6 @@
 				99E81CAD1EB217E600BB0875 /* 22222.png in Resources */,
 				99F1C1051EA0CF2900415F0C /* Main.storyboard in Resources */,
 				99E81CEA1EB21A3D00BB0875 /* updatelog.txt in Resources */,
-				99E81CC61EB217E700BB0875 /* TJMHomepageTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1198,6 +1204,7 @@
 				99F1C0CD1EA0CEE000415F0C /* TJMRequestHandle.m in Sources */,
 				99F1C0CE1EA0CEE000415F0C /* NSString+MD5.m in Sources */,
 				99E81CF01EB31F4700BB0875 /* UIViewController+Config.m in Sources */,
+				99A3BC131EBB18FD00688692 /* TJMHomeHeaderView.m in Sources */,
 				99E81CBF1EB217E700BB0875 /* TJMDetailOfMineViewController.m in Sources */,
 				99E81CC01EB217E700BB0875 /* TJMScanQRCodeViewController.m in Sources */,
 				99E81CB51EB217E600BB0875 /* TJMExamViewController.m in Sources */,
@@ -1212,9 +1219,10 @@
 				99E81CB61EB217E600BB0875 /* TJMTestQuestionData.m in Sources */,
 				99E81CBE1EB217E700BB0875 /* TJMMineTableViewCell.m in Sources */,
 				99FF06AA1EB9E21A00514D2F /* TJMUserInfoModel.m in Sources */,
+				99A3BC101EBB026800688692 /* TJMHomeOrderTableViewCell.m in Sources */,
 				99E81CB21EB217E600BB0875 /* TJMVehicleData.m in Sources */,
-				99E81CC51EB217E700BB0875 /* TJMHomepageTableViewCell.m in Sources */,
 				99E81CC31EB217E700BB0875 /* TJMHomepageViewController.m in Sources */,
+				99A3BC161EBC02C100688692 /* TJMMessageTableViewCell.m in Sources */,
 				99E81CC21EB217E700BB0875 /* TJMMessageViewController.m in Sources */,
 				99E81CF71EB8B05100BB0875 /* UINavigationBar+BackgroundColor.m in Sources */,
 				99E81CD01EB2184600BB0875 /* LocationTracker.m in Sources */,
