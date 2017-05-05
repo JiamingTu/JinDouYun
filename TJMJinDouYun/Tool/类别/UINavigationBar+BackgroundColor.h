@@ -13,6 +13,6 @@
 @property (nonatomic,strong) UIView *overlay;
 - (void)tjm_setBackgroundColor:(UIColor *)backgroundColor;
 - (void)tjm_hideShadowImageOrNot:(BOOL)bHidden;
-
+- (void)tjm_removeBackgroundView;
 
 @end

@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewContentHeightConstraint;
 
 @property (weak, nonatomic) IBOutlet UIView *settingView;
+@property (weak, nonatomic) IBOutlet UIView *naviBgView;
 
 //约束
 //竖直
@@ -70,22 +71,42 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self setTitle:@"我的" fontSize:17 colorHexValue:0x333333];
+    self.naviBgView.backgroundColor = [UIColor whiteColor];
     
+    [self adjustFonts];
+    [self resetConstraints];
     
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+//    UIImage *image = [self createImageWithColor:[UIColor clearColor] size:CGSizeMake(1, 1)];
+//    [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
+//    [self.navigationController.navigationBar setShadowImage:image];
+    self.navBarBgAlpha = @"0.0";
+
 }
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+   
+}
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    
+}
+
 - (void)updateViewConstraints {
     [super updateViewConstraints];
-    [self adjustFonts];
-    [self resetConstraints];
+    
     
     
 }
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    self.scrollViewContentHeightConstraint.constant = CGRectGetMaxY(self.settingView.frame);
+    
+    self.scrollViewContentHeightConstraint.constant = CGRectGetMaxY(self.settingView.frame) + 20;
 }
 #pragma  mark - 设置页面
 - (void)resetConstraints {
@@ -99,6 +120,8 @@
     [self adjustFont:15 forView:self.evaluateLabel,self.totalOrderLabel,self.myOrderLabel,self.myWalletLabel,self.myEvaluateLabel,self.emergencyLabel,self.aboutOursLabel,self.settingLabel, nil];
 }
 
+
+#pragma  mark - memory warning
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

@@ -10,6 +10,9 @@
 		99A3BC101EBB026800688692 /* TJMHomeOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A3BC0F1EBB026800688692 /* TJMHomeOrderTableViewCell.m */; };
 		99A3BC131EBB18FD00688692 /* TJMHomeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A3BC121EBB18FD00688692 /* TJMHomeHeaderView.m */; };
 		99A3BC161EBC02C100688692 /* TJMMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A3BC151EBC02C100688692 /* TJMMessageTableViewCell.m */; };
+		99A3BC181EBC706400688692 /* TJMViewExplain in Resources */ = {isa = PBXBuildFile; fileRef = 99A3BC171EBC706400688692 /* TJMViewExplain */; };
+		99A3BC751EBCC79300688692 /* UINavigationController+Cloudox.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A3BC721EBCC79300688692 /* UINavigationController+Cloudox.m */; };
+		99A3BC761EBCC79300688692 /* UIViewController+Cloudox.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A3BC741EBCC79300688692 /* UIViewController+Cloudox.m */; };
 		99E81CAB1EB217E600BB0875 /* TJMEntryCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81C4F1EB217E600BB0875 /* TJMEntryCheckViewController.m */; };
 		99E81CAC1EB217E600BB0875 /* 11111.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E81C521EB217E600BB0875 /* 11111.png */; };
 		99E81CAD1EB217E600BB0875 /* 22222.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E81C531EB217E600BB0875 /* 22222.png */; };
@@ -114,6 +117,11 @@
 		99A3BC121EBB18FD00688692 /* TJMHomeHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMHomeHeaderView.m; sourceTree = "<group>"; };
 		99A3BC141EBC02C100688692 /* TJMMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMMessageTableViewCell.h; sourceTree = "<group>"; };
 		99A3BC151EBC02C100688692 /* TJMMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMMessageTableViewCell.m; sourceTree = "<group>"; };
+		99A3BC171EBC706400688692 /* TJMViewExplain */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TJMViewExplain; sourceTree = "<group>"; };
+		99A3BC711EBCC79300688692 /* UINavigationController+Cloudox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Cloudox.h"; sourceTree = "<group>"; };
+		99A3BC721EBCC79300688692 /* UINavigationController+Cloudox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Cloudox.m"; sourceTree = "<group>"; };
+		99A3BC731EBCC79300688692 /* UIViewController+Cloudox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Cloudox.h"; sourceTree = "<group>"; };
+		99A3BC741EBCC79300688692 /* UIViewController+Cloudox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Cloudox.m"; sourceTree = "<group>"; };
 		99E74D161EA8BB1700BFD422 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		99E74D171EA8BB1800BFD422 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		99E81B7C1EAF50DC00BB0875 /* TJMSingleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TJMSingleton.h; sourceTree = "<group>"; };
@@ -320,6 +328,17 @@
 				CE2165414574D4411C9A83DA /* libPods-TJMJinDouYun.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		99A3BC701EBCC79300688692 /* 导航栏透明度 */ = {
+			isa = PBXGroup;
+			children = (
+				99A3BC711EBCC79300688692 /* UINavigationController+Cloudox.h */,
+				99A3BC721EBCC79300688692 /* UINavigationController+Cloudox.m */,
+				99A3BC731EBCC79300688692 /* UIViewController+Cloudox.h */,
+				99A3BC741EBCC79300688692 /* UIViewController+Cloudox.m */,
+			);
+			path = "导航栏透明度";
 			sourceTree = "<group>";
 		};
 		99E81C4B1EB217E600BB0875 /* 审核前 */ = {
@@ -637,6 +656,7 @@
 		99E81C911EB217E600BB0875 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				99A3BC171EBC706400688692 /* TJMViewExplain */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -943,6 +963,7 @@
 				99E81CC71EB2184600BB0875 /* Location */,
 				99F1C0C61EA0CEE000415F0C /* NSString+MD5.h */,
 				99F1C0C71EA0CEE000415F0C /* NSString+MD5.m */,
+				99A3BC701EBCC79300688692 /* 导航栏透明度 */,
 			);
 			path = "第三方库";
 			sourceTree = "<group>";
@@ -1107,6 +1128,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				99E81CAF1EB217E600BB0875 /* 44444.png in Resources */,
+				99A3BC181EBC706400688692 /* TJMViewExplain in Resources */,
 				99F1C1041EA0CF2900415F0C /* LaunchScreen.storyboard in Resources */,
 				99E81CE41EB21A3D00BB0875 /* baiduNaviSDK.bundle in Resources */,
 				99E81CAC1EB217E600BB0875 /* 11111.png in Resources */,
@@ -1196,6 +1218,7 @@
 				99E81CB31EB217E600BB0875 /* TJMPickerView.m in Sources */,
 				99E81CB41EB217E600BB0875 /* PhotoPickerViewController.m in Sources */,
 				99E81CBB1EB217E600BB0875 /* TJMBaiduMapViewController.m in Sources */,
+				99A3BC751EBCC79300688692 /* UINavigationController+Cloudox.m in Sources */,
 				99F1C0FA1EA0CEFA00415F0C /* AppDelegate+APPService.m in Sources */,
 				99F1C0CC1EA0CEE000415F0C /* TJMHUDHandle.m in Sources */,
 				99FF06A71EB9DE0200514D2F /* NSObject+Config.m in Sources */,
@@ -1207,6 +1230,7 @@
 				99A3BC131EBB18FD00688692 /* TJMHomeHeaderView.m in Sources */,
 				99E81CBF1EB217E700BB0875 /* TJMDetailOfMineViewController.m in Sources */,
 				99E81CC01EB217E700BB0875 /* TJMScanQRCodeViewController.m in Sources */,
+				99A3BC761EBCC79300688692 /* UIViewController+Cloudox.m in Sources */,
 				99E81CB51EB217E600BB0875 /* TJMExamViewController.m in Sources */,
 				99E81CB01EB217E600BB0875 /* TJMUploadViewController.m in Sources */,
 				99E81CED1EB2E1B000BB0875 /* TJMTabBarViewController.m in Sources */,

@@ -42,6 +42,12 @@
 #import "BNCoreServices.h"
 //字体自适应
 #import "UIFont+runtime.h"
+//
+#import "UINavigationController+Cloudox.h"
+#import "UIViewController+Cloudox.h"
+
+
+
 #pragma  mark - appDelegate
 //appDelegate
 #import "AppDelegate.h"

@@ -14,5 +14,6 @@
 
 - (UIBarButtonItem *)setNaviItemWithImageName:(NSString *)imageName tag:(int)tag;
 
+- (UIImage *)createImageWithColor:(UIColor *)color size:(CGSize)size;
 
 @end

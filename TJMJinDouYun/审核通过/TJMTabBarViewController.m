@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    self.view.backgroundColor = [UIColor whiteColor];
     [[UITabBarItem appearance] setTitlePositionAdjustment:UIOffsetMake(0, -3 * TJMHeightRatio)];
     [self.tabBar.items enumerateObjectsUsingBlock:^(UITabBarItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         obj.imageInsets = UIEdgeInsetsMake(-1.5, 0, 1.5, 0);

@@ -37,7 +37,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TJMMessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MessageCell" forIndexPath:indexPath];
     
-    
+    NSLog(@"%zd",tableView.visibleCells.count);
     
     return cell;
 }

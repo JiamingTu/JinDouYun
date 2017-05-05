@@ -53,7 +53,7 @@
     // Do any additional setup after loading the view.
     
     TJMLog(@"路径：%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]);
-    [self resetConstraints];
+    
     _selectButton = self.messageLoginButton;
 
     
@@ -68,8 +68,13 @@
     self.navigationController.navigationBar.translucent = NO;
     [self.navigationController.navigationBar tjm_hideShadowImageOrNot:YES];
 }
-
+- (void)updateViewConstraints {
+    [super updateViewConstraints];
+    [self adjustFonts];
+    [self resetConstraints];
+}
 - (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
     [self configSubviews];
 }
 #pragma  mark - 界面配置
@@ -92,12 +97,16 @@
     UIBezierPath* aPath = [UIBezierPath bezierPathWithRect:CGRectMake(x, y + height, width, addWH)];
     //设置阴影路径
     self.shadowView.layer.shadowPath = aPath.CGPath;
+    
+    
+}
+
+- (void)adjustFonts {
     //设置字体
     [self adjustFont:14 forView:self.messageLoginButton,self.secretLoginButton,self.passwordTF,self.phoneNumberTF,self.getMessageButton, nil];
     [self adjustFont:15 forView:self.forgetSecretButton,self.registerButton, nil];
     [self adjustFont:18 forView:self.loginButton, nil];
     //
-    
 }
 
 
