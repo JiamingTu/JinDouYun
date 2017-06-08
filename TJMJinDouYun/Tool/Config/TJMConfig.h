@@ -27,6 +27,8 @@
 //第三方APPKey等
 //百度地图
 #define TJMBaiduMapAK @"dMCzzquQYybYamac5VfEk7fVk0MRLp4b"
+//百度鹰眼 serviceId
+#define TJMBaiduTraceServiceID 138290
 //极光推送
 #define TJMJPushAppKey @"3b84de949bd1c8230a9198d4"
 static NSString *JPushChannel = @"Publish channel";
@@ -38,6 +40,12 @@ static BOOL const JPushIsProduction = NO;
 // 生产 极光TRUE为生产环境
 static BOOL const JPushIsProduction = YES;
 #endif
+//IQ
+#define TJMYYKeyboardManager [YYKeyboardManager defaultManager]
+
+
+
+
 //请求类实例
 #define TJMRequestH [TJMRequestHandle sharedRequestHandle]
 #define TJMAppDelegate (AppDelegate *)[UIApplication sharedApplication].delegate

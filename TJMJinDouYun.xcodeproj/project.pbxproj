@@ -7,13 +7,57 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		99019DC31ECAD841002BC164 /* TJMPickUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99019DC21ECAD841002BC164 /* TJMPickUpViewController.m */; };
+		99019DC71ECAE36C002BC164 /* TJMPickUpCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99019DC61ECAE36C002BC164 /* TJMPickUpCollectionViewCell.m */; };
+		99019DCB1ECC3582002BC164 /* TJMLocationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 99019DCA1ECC3582002BC164 /* TJMLocationService.m */; };
+		99019DD31ECC5587002BC164 /* TJMQRCodeSingInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99019DD21ECC5587002BC164 /* TJMQRCodeSingInViewController.m */; };
+		990E9CA21EC2B196009C7792 /* TJMCodeSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 990E9CA11EC2B196009C7792 /* TJMCodeSignInViewController.m */; };
+		990E9CAA1EC2ED42009C7792 /* TDAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 990E9CA91EC2ED42009C7792 /* TDAlertView.m */; };
+		990E9CAD1EC30F38009C7792 /* TJMFreeManInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 990E9CAC1EC30F38009C7792 /* TJMFreeManInfo.m */; };
+		990E9CB01EC34DBF009C7792 /* TJMEntryCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 990E9CAF1EC34DBF009C7792 /* TJMEntryCheckViewController.m */; };
+		991673131ED665C500A50A3F /* TJMChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 991673121ED665C500A50A3F /* TJMChangePasswordViewController.m */; };
+		991B091A1EDE991D009DB296 /* UITextField+InputRule.m in Sources */ = {isa = PBXBuildFile; fileRef = 991B09191EDE991D009DB296 /* UITextField+InputRule.m */; };
+		991B091D1EDEECD4009DB296 /* TJMLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 991B091C1EDEECD4009DB296 /* TJMLocation.m */; };
+		991B092C1EE01093009DB296 /* TJMMyOrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 991B09251EE01093009DB296 /* TJMMyOrderDetailViewController.m */; };
+		991B092D1EE01093009DB296 /* TJMMyOrderDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 991B09291EE01093009DB296 /* TJMMyOrderDetailHeaderView.m */; };
+		991B092E1EE01093009DB296 /* TJMMyOrderDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 991B092B1EE01093009DB296 /* TJMMyOrderDetailTableViewCell.m */; };
+		991B09311EE015CB009DB296 /* TJMOrderDetailInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 991B09301EE015CB009DB296 /* TJMOrderDetailInfoModel.m */; };
+		991B09341EE14281009DB296 /* TJMMyOrderData.m in Sources */ = {isa = PBXBuildFile; fileRef = 991B09331EE14281009DB296 /* TJMMyOrderData.m */; };
+		991B09371EE16749009DB296 /* TJMPerformanceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 991B09361EE16749009DB296 /* TJMPerformanceModel.m */; };
+		992BCFAF1ED50FE20053B4BE /* TJMTransferOutSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 992BCFAE1ED50FE20053B4BE /* TJMTransferOutSuccessViewController.m */; };
+		992BCFC11ED536540053B4BE /* TJMEmergenchyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 992BCFC01ED536540053B4BE /* TJMEmergenchyViewController.m */; };
+		992BCFD21ED53C6C0053B4BE /* TJMAboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 992BCFD11ED53C6C0053B4BE /* TJMAboutUsViewController.m */; };
+		992BCFD51ED563250053B4BE /* TJMSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 992BCFD41ED563250053B4BE /* TJMSettingViewController.m */; };
+		992BCFD81ED564410053B4BE /* TJMSettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 992BCFD71ED564410053B4BE /* TJMSettingTableViewCell.m */; };
+		992BCFDB1ED56C0F0053B4BE /* TJMPersonInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 992BCFDA1ED56C0F0053B4BE /* TJMPersonInfoTableViewCell.m */; };
+		992BCFDE1ED56C2F0053B4BE /* TJMPersonInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 992BCFDD1ED56C2F0053B4BE /* TJMPersonInfoViewController.m */; };
+		992BCFE11ED570EE0053B4BE /* TJMPersonInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 992BCFE01ED570EE0053B4BE /* TJMPersonInfoModel.m */; };
+		9943EDEF1EC5BBA2006D083D /* TJMOrderData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9943EDEE1EC5BBA2006D083D /* TJMOrderData.m */; };
+		994600CB1EE4E62B00B831A6 /* TJMMessageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 994600CA1EE4E62B00B831A6 /* TJMMessageData.m */; };
+		9946011E1EE57AB100B831A6 /* LaunchIntroductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9946011D1EE57AB100B831A6 /* LaunchIntroductionView.m */; };
+		995644921ECC7FEC00339D0C /* UIImage+QRCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 995644911ECC7FEC00339D0C /* UIImage+QRCode.m */; };
+		995644991ECC82F700339D0C /* TJMDeliveryPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 995644981ECC82F700339D0C /* TJMDeliveryPayViewController.m */; };
+		9966AA301ED6C511004A09F7 /* TJMFeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9966AA2F1ED6C511004A09F7 /* TJMFeedBackViewController.m */; };
+		9966AA361ED70628004A09F7 /* TJMMsgDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9966AA351ED70628004A09F7 /* TJMMsgDetailViewController.m */; };
+		9966AA3A1ED7B6E1004A09F7 /* TJMQuestionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9966AA391ED7B6E1004A09F7 /* TJMQuestionTableViewCell.m */; };
+		9966AA3D1ED7B6F2004A09F7 /* TJMAnswerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9966AA3C1ED7B6F2004A09F7 /* TJMAnswerTableViewCell.m */; };
+		9966AA671ED85120004A09F7 /* TJMStudyResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9966AA661ED85120004A09F7 /* TJMStudyResource.m */; };
+		9969883C1EE80FA00095E9B0 /* UIFont+runtime.m in Sources */ = {isa = PBXBuildFile; fileRef = 9969883B1EE80FA00095E9B0 /* UIFont+runtime.m */; };
+		996988401EE80FCE0095E9B0 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 9969883F1EE80FCE0095E9B0 /* NSString+MD5.m */; };
+		997FF0601ED41F06005FD8E2 /* NSString+Format.m in Sources */ = {isa = PBXBuildFile; fileRef = 997FF05F1ED41F06005FD8E2 /* NSString+Format.m */; };
+		998377081ED91F660007DD85 /* TJMLearningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 998377071ED91F660007DD85 /* TJMLearningViewController.m */; };
+		998377151ED9660F0007DD85 /* ZGLVideoMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 998377121ED9660F0007DD85 /* ZGLVideoMaskView.m */; };
+		998377161ED9660F0007DD85 /* ZGLVideoPlyer.m in Sources */ = {isa = PBXBuildFile; fileRef = 998377141ED9660F0007DD85 /* ZGLVideoPlyer.m */; };
+		998377191ED96AE70007DD85 /* UIImage+Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = 998377181ED96AE70007DD85 /* UIImage+Scale.m */; };
+		999E3B471EE7D276008201BE /* TJMTradingRecordData.m in Sources */ = {isa = PBXBuildFile; fileRef = 999E3B461EE7D276008201BE /* TJMTradingRecordData.m */; };
 		99A3BC101EBB026800688692 /* TJMHomeOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A3BC0F1EBB026800688692 /* TJMHomeOrderTableViewCell.m */; };
 		99A3BC131EBB18FD00688692 /* TJMHomeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A3BC121EBB18FD00688692 /* TJMHomeHeaderView.m */; };
 		99A3BC161EBC02C100688692 /* TJMMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A3BC151EBC02C100688692 /* TJMMessageTableViewCell.m */; };
-		99A3BC181EBC706400688692 /* TJMViewExplain in Resources */ = {isa = PBXBuildFile; fileRef = 99A3BC171EBC706400688692 /* TJMViewExplain */; };
 		99A3BC751EBCC79300688692 /* UINavigationController+Cloudox.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A3BC721EBCC79300688692 /* UINavigationController+Cloudox.m */; };
 		99A3BC761EBCC79300688692 /* UIViewController+Cloudox.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A3BC741EBCC79300688692 /* UIViewController+Cloudox.m */; };
-		99E81CAB1EB217E600BB0875 /* TJMEntryCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81C4F1EB217E600BB0875 /* TJMEntryCheckViewController.m */; };
+		99BD04A81EE5829800F56351 /* BaiduTraceSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99BD04A71EE5829800F56351 /* BaiduTraceSDK.framework */; };
+		99BD04A91EE5829800F56351 /* BaiduTraceSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 99BD04A71EE5829800F56351 /* BaiduTraceSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		99BD04AD1EE691C900F56351 /* TJMHeatMapData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99BD04AC1EE691C900F56351 /* TJMHeatMapData.m */; };
 		99E81CAC1EB217E600BB0875 /* 11111.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E81C521EB217E600BB0875 /* 11111.png */; };
 		99E81CAD1EB217E600BB0875 /* 22222.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E81C531EB217E600BB0875 /* 22222.png */; };
 		99E81CAE1EB217E600BB0875 /* 33333.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E81C541EB217E600BB0875 /* 33333.png */; };
@@ -22,23 +66,20 @@
 		99E81CB11EB217E600BB0875 /* TJMProvinceData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81C5A1EB217E600BB0875 /* TJMProvinceData.m */; };
 		99E81CB21EB217E600BB0875 /* TJMVehicleData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81C5C1EB217E600BB0875 /* TJMVehicleData.m */; };
 		99E81CB31EB217E600BB0875 /* TJMPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81C5F1EB217E600BB0875 /* TJMPickerView.m */; };
-		99E81CB41EB217E600BB0875 /* PhotoPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81C631EB217E600BB0875 /* PhotoPickerViewController.m */; };
 		99E81CB51EB217E600BB0875 /* TJMExamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81C671EB217E600BB0875 /* TJMExamViewController.m */; };
 		99E81CB61EB217E600BB0875 /* TJMTestQuestionData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81C6A1EB217E600BB0875 /* TJMTestQuestionData.m */; };
 		99E81CB71EB217E600BB0875 /* TJMRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81C6E1EB217E600BB0875 /* TJMRegisterViewController.m */; };
 		99E81CB81EB217E600BB0875 /* TJMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81C721EB217E600BB0875 /* TJMLoginViewController.m */; };
 		99E81CB91EB217E600BB0875 /* TJMTokenModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81C751EB217E600BB0875 /* TJMTokenModel.m */; };
 		99E81CBA1EB217E600BB0875 /* category_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E81C791EB217E600BB0875 /* category_1@2x.png */; };
-		99E81CBB1EB217E600BB0875 /* TJMBaiduMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81C7B1EB217E600BB0875 /* TJMBaiduMapViewController.m */; };
+		99E81CBB1EB217E600BB0875 /* TJMBaiduMapViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 99E81C7B1EB217E600BB0875 /* TJMBaiduMapViewController.mm */; };
 		99E81CBC1EB217E600BB0875 /* TJMHelpToBuyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81C811EB217E600BB0875 /* TJMHelpToBuyViewController.m */; };
 		99E81CBD1EB217E700BB0875 /* TJMMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81C871EB217E600BB0875 /* TJMMineViewController.m */; };
 		99E81CBE1EB217E700BB0875 /* TJMMineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81C8B1EB217E600BB0875 /* TJMMineTableViewCell.m */; };
-		99E81CBF1EB217E700BB0875 /* TJMDetailOfMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81C8F1EB217E600BB0875 /* TJMDetailOfMineViewController.m */; };
 		99E81CC01EB217E700BB0875 /* TJMScanQRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81C951EB217E600BB0875 /* TJMScanQRCodeViewController.m */; };
 		99E81CC11EB217E700BB0875 /* TJMOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81C991EB217E600BB0875 /* TJMOverlayView.m */; };
 		99E81CC21EB217E700BB0875 /* TJMMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81C9D1EB217E600BB0875 /* TJMMessageViewController.m */; };
 		99E81CC31EB217E700BB0875 /* TJMHomepageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81CA31EB217E600BB0875 /* TJMHomepageViewController.m */; };
-		99E81CC41EB217E700BB0875 /* TJMLocationData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81CA61EB217E600BB0875 /* TJMLocationData.m */; };
 		99E81CCE1EB2184600BB0875 /* BackgroundTaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81CC91EB2184600BB0875 /* BackgroundTaskManager.m */; };
 		99E81CCF1EB2184600BB0875 /* LocationShareModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81CCB1EB2184600BB0875 /* LocationShareModel.m */; };
 		99E81CD01EB2184600BB0875 /* LocationTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81CCD1EB2184600BB0875 /* LocationTracker.m */; };
@@ -51,15 +92,17 @@
 		99E81CEA1EB21A3D00BB0875 /* updatelog.txt in Resources */ = {isa = PBXBuildFile; fileRef = 99E81CE31EB21A3D00BB0875 /* updatelog.txt */; };
 		99E81CED1EB2E1B000BB0875 /* TJMTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81CEC1EB2E1B000BB0875 /* TJMTabBarViewController.m */; };
 		99E81CF01EB31F4700BB0875 /* UIViewController+Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81CEF1EB31F4700BB0875 /* UIViewController+Config.m */; };
-		99E81CF31EB32A5A00BB0875 /* UIFont+runtime.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81CF21EB32A5A00BB0875 /* UIFont+runtime.m */; };
 		99E81CF71EB8B05100BB0875 /* UINavigationBar+BackgroundColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81CF61EB8B05100BB0875 /* UINavigationBar+BackgroundColor.m */; };
+		99E855D01EC06436000C9A6F /* TJMMyOrderViewController.h.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E855C91EC06436000C9A6F /* TJMMyOrderViewController.h.m */; };
+		99E855D11EC06436000C9A6F /* TJMViewExplain in Resources */ = {isa = PBXBuildFile; fileRef = 99E855CC1EC06436000C9A6F /* TJMViewExplain */; };
+		99E855D61EC099D4000C9A6F /* TJMTradingListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E855D51EC099D4000C9A6F /* TJMTradingListViewController.m */; };
+		99E855DD1EC0A191000C9A6F /* TJMTradingListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E855DC1EC0A191000C9A6F /* TJMTradingListTableViewCell.m */; };
 		99F1C0851EA0CEB800415F0C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C0841EA0CEB800415F0C /* main.m */; };
 		99F1C09E1EA0CEB800415F0C /* TJMJinDouYunTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C09D1EA0CEB800415F0C /* TJMJinDouYunTests.m */; };
 		99F1C0A91EA0CEB800415F0C /* TJMJinDouYunUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C0A81EA0CEB800415F0C /* TJMJinDouYunUITests.m */; };
 		99F1C0CB1EA0CEE000415F0C /* TJMSandBoxManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C0BD1EA0CEE000415F0C /* TJMSandBoxManager.m */; };
 		99F1C0CC1EA0CEE000415F0C /* TJMHUDHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C0C11EA0CEE000415F0C /* TJMHUDHandle.m */; };
 		99F1C0CD1EA0CEE000415F0C /* TJMRequestHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C0C41EA0CEE000415F0C /* TJMRequestHandle.m */; };
-		99F1C0CE1EA0CEE000415F0C /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C0C71EA0CEE000415F0C /* NSString+MD5.m */; };
 		99F1C0CF1EA0CEE000415F0C /* NSString+RegEx.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C0CA1EA0CEE000415F0C /* NSString+RegEx.m */; };
 		99F1C0FA1EA0CEFA00415F0C /* AppDelegate+APPService.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C0EE1EA0CEFA00415F0C /* AppDelegate+APPService.m */; };
 		99F1C0FB1EA0CEFA00415F0C /* AppDelegate+SDKSevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F1C0F01EA0CEFA00415F0C /* AppDelegate+SDKSevice.m */; };
@@ -84,6 +127,15 @@
 		99F1C1891EA445AB00415F0C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F1C1881EA445AB00415F0C /* libc++.tbd */; };
 		99F1C18B1EA445B200415F0C /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F1C18A1EA445B200415F0C /* libsqlite3.0.tbd */; };
 		99F1C18D1EA445BD00415F0C /* libz.1.2.5.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F1C18C1EA445BD00415F0C /* libz.1.2.5.tbd */; };
+		99F20D681EC1AB7A003CF114 /* QRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F20D671EC1AB7A003CF114 /* QRCodeViewController.m */; };
+		99F836981ED3BDD300CB3714 /* TJMBindingBankCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F836841ED3BDD300CB3714 /* TJMBindingBankCardViewController.m */; };
+		99F836991ED3BDD300CB3714 /* CommonView in Resources */ = {isa = PBXBuildFile; fileRef = 99F836871ED3BDD300CB3714 /* CommonView */; };
+		99F8369A1ED3BDD300CB3714 /* TJMTransferOutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F8368B1ED3BDD300CB3714 /* TJMTransferOutViewController.m */; };
+		99F8369B1ED3BDD300CB3714 /* TJMMyBankCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F836911ED3BDD300CB3714 /* TJMMyBankCardViewController.m */; };
+		99F8369C1ED3BDD300CB3714 /* TJMBankCardData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F836941ED3BDD300CB3714 /* TJMBankCardData.m */; };
+		99F8369D1ED3BDD300CB3714 /* TJMMyBankCardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F836971ED3BDD300CB3714 /* TJMMyBankCardTableViewCell.m */; };
+		99F836A01ED3C3F800CB3714 /* TJMMyWalletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F8369F1ED3C3F800CB3714 /* TJMMyWalletViewController.m */; };
+		99F836A31ED3DA4000CB3714 /* TJMBankData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F836A21ED3DA4000CB3714 /* TJMBankData.m */; };
 		99FF06A01EB9BE7200514D2F /* TJMInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FF069F1EB9BE7200514D2F /* TJMInfoTableViewCell.m */; };
 		99FF06A31EB9D0FD00514D2F /* TJMIdCardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FF06A21EB9D0FD00514D2F /* TJMIdCardTableViewCell.m */; };
 		99FF06A71EB9DE0200514D2F /* NSObject+Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FF06A61EB9DE0200514D2F /* NSObject+Config.m */; };
@@ -108,25 +160,126 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		99BD04AA1EE5829800F56351 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				99BD04A91EE5829800F56351 /* BaiduTraceSDK.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		704ED3F31667CEAB6D7BC8CB /* Pods-TJMJinDouYun.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TJMJinDouYun.release.xcconfig"; path = "Pods/Target Support Files/Pods-TJMJinDouYun/Pods-TJMJinDouYun.release.xcconfig"; sourceTree = "<group>"; };
+		99019DC11ECAD841002BC164 /* TJMPickUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TJMPickUpViewController.h; path = "取货-拍照上传/Controller/TJMPickUpViewController.h"; sourceTree = "<group>"; };
+		99019DC21ECAD841002BC164 /* TJMPickUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TJMPickUpViewController.m; path = "取货-拍照上传/Controller/TJMPickUpViewController.m"; sourceTree = "<group>"; };
+		99019DC51ECAE36C002BC164 /* TJMPickUpCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TJMPickUpCollectionViewCell.h; path = "取货-拍照上传/View/TJMPickUpCollectionViewCell.h"; sourceTree = "<group>"; };
+		99019DC61ECAE36C002BC164 /* TJMPickUpCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TJMPickUpCollectionViewCell.m; path = "取货-拍照上传/View/TJMPickUpCollectionViewCell.m"; sourceTree = "<group>"; };
+		99019DC91ECC3582002BC164 /* TJMLocationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TJMLocationService.h; path = "定位/TJMLocationService.h"; sourceTree = "<group>"; };
+		99019DCA1ECC3582002BC164 /* TJMLocationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TJMLocationService.m; path = "定位/TJMLocationService.m"; sourceTree = "<group>"; };
+		99019DD11ECC5587002BC164 /* TJMQRCodeSingInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMQRCodeSingInViewController.h; sourceTree = "<group>"; };
+		99019DD21ECC5587002BC164 /* TJMQRCodeSingInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMQRCodeSingInViewController.m; sourceTree = "<group>"; };
+		990E9CA01EC2B196009C7792 /* TJMCodeSignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TJMCodeSignInViewController.h; path = "签收-验证码/Controller/TJMCodeSignInViewController.h"; sourceTree = "<group>"; };
+		990E9CA11EC2B196009C7792 /* TJMCodeSignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TJMCodeSignInViewController.m; path = "签收-验证码/Controller/TJMCodeSignInViewController.m"; sourceTree = "<group>"; };
+		990E9CA81EC2ED42009C7792 /* TDAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDAlertView.h; sourceTree = "<group>"; };
+		990E9CA91EC2ED42009C7792 /* TDAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDAlertView.m; sourceTree = "<group>"; };
+		990E9CAB1EC30F38009C7792 /* TJMFreeManInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMFreeManInfo.h; sourceTree = "<group>"; };
+		990E9CAC1EC30F38009C7792 /* TJMFreeManInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMFreeManInfo.m; sourceTree = "<group>"; };
+		990E9CAE1EC34DBF009C7792 /* TJMEntryCheckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMEntryCheckViewController.h; sourceTree = "<group>"; };
+		990E9CAF1EC34DBF009C7792 /* TJMEntryCheckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMEntryCheckViewController.m; sourceTree = "<group>"; };
+		991673111ED665C500A50A3F /* TJMChangePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMChangePasswordViewController.h; sourceTree = "<group>"; };
+		991673121ED665C500A50A3F /* TJMChangePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMChangePasswordViewController.m; sourceTree = "<group>"; };
+		991673141ED686B700A50A3F /* Constant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
+		991B09181EDE991D009DB296 /* UITextField+InputRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+InputRule.h"; sourceTree = "<group>"; };
+		991B09191EDE991D009DB296 /* UITextField+InputRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+InputRule.m"; sourceTree = "<group>"; };
+		991B091B1EDEECD4009DB296 /* TJMLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMLocation.h; sourceTree = "<group>"; };
+		991B091C1EDEECD4009DB296 /* TJMLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMLocation.m; sourceTree = "<group>"; };
+		991B09241EE01093009DB296 /* TJMMyOrderDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMMyOrderDetailViewController.h; sourceTree = "<group>"; };
+		991B09251EE01093009DB296 /* TJMMyOrderDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMMyOrderDetailViewController.m; sourceTree = "<group>"; };
+		991B09281EE01093009DB296 /* TJMMyOrderDetailHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMMyOrderDetailHeaderView.h; sourceTree = "<group>"; };
+		991B09291EE01093009DB296 /* TJMMyOrderDetailHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMMyOrderDetailHeaderView.m; sourceTree = "<group>"; };
+		991B092A1EE01093009DB296 /* TJMMyOrderDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMMyOrderDetailTableViewCell.h; sourceTree = "<group>"; };
+		991B092B1EE01093009DB296 /* TJMMyOrderDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMMyOrderDetailTableViewCell.m; sourceTree = "<group>"; };
+		991B092F1EE015CB009DB296 /* TJMOrderDetailInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMOrderDetailInfoModel.h; sourceTree = "<group>"; };
+		991B09301EE015CB009DB296 /* TJMOrderDetailInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMOrderDetailInfoModel.m; sourceTree = "<group>"; };
+		991B09321EE14281009DB296 /* TJMMyOrderData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMMyOrderData.h; sourceTree = "<group>"; };
+		991B09331EE14281009DB296 /* TJMMyOrderData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMMyOrderData.m; sourceTree = "<group>"; };
+		991B09351EE16749009DB296 /* TJMPerformanceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMPerformanceModel.h; sourceTree = "<group>"; };
+		991B09361EE16749009DB296 /* TJMPerformanceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMPerformanceModel.m; sourceTree = "<group>"; };
 		99277AAC1EA849CC00F32B09 /* TJMJinDouYun.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TJMJinDouYun.entitlements; sourceTree = "<group>"; };
+		992BCFAD1ED50FE20053B4BE /* TJMTransferOutSuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMTransferOutSuccessViewController.h; sourceTree = "<group>"; };
+		992BCFAE1ED50FE20053B4BE /* TJMTransferOutSuccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMTransferOutSuccessViewController.m; sourceTree = "<group>"; };
+		992BCFBF1ED536540053B4BE /* TJMEmergenchyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMEmergenchyViewController.h; sourceTree = "<group>"; };
+		992BCFC01ED536540053B4BE /* TJMEmergenchyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMEmergenchyViewController.m; sourceTree = "<group>"; };
+		992BCFD01ED53C6C0053B4BE /* TJMAboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMAboutUsViewController.h; sourceTree = "<group>"; };
+		992BCFD11ED53C6C0053B4BE /* TJMAboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMAboutUsViewController.m; sourceTree = "<group>"; };
+		992BCFD31ED563250053B4BE /* TJMSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMSettingViewController.h; sourceTree = "<group>"; };
+		992BCFD41ED563250053B4BE /* TJMSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMSettingViewController.m; sourceTree = "<group>"; };
+		992BCFD61ED564410053B4BE /* TJMSettingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMSettingTableViewCell.h; sourceTree = "<group>"; };
+		992BCFD71ED564410053B4BE /* TJMSettingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMSettingTableViewCell.m; sourceTree = "<group>"; };
+		992BCFD91ED56C0F0053B4BE /* TJMPersonInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMPersonInfoTableViewCell.h; sourceTree = "<group>"; };
+		992BCFDA1ED56C0F0053B4BE /* TJMPersonInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMPersonInfoTableViewCell.m; sourceTree = "<group>"; };
+		992BCFDC1ED56C2F0053B4BE /* TJMPersonInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMPersonInfoViewController.h; sourceTree = "<group>"; };
+		992BCFDD1ED56C2F0053B4BE /* TJMPersonInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMPersonInfoViewController.m; sourceTree = "<group>"; };
+		992BCFDF1ED570EE0053B4BE /* TJMPersonInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMPersonInfoModel.h; sourceTree = "<group>"; };
+		992BCFE01ED570EE0053B4BE /* TJMPersonInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMPersonInfoModel.m; sourceTree = "<group>"; };
+		9943EDED1EC5BBA2006D083D /* TJMOrderData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMOrderData.h; sourceTree = "<group>"; };
+		9943EDEE1EC5BBA2006D083D /* TJMOrderData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMOrderData.m; sourceTree = "<group>"; };
+		994600C91EE4E62B00B831A6 /* TJMMessageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMMessageData.h; sourceTree = "<group>"; };
+		994600CA1EE4E62B00B831A6 /* TJMMessageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMMessageData.m; sourceTree = "<group>"; };
+		9946011C1EE57AB100B831A6 /* LaunchIntroductionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchIntroductionView.h; sourceTree = "<group>"; };
+		9946011D1EE57AB100B831A6 /* LaunchIntroductionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchIntroductionView.m; sourceTree = "<group>"; };
+		995644901ECC7FEC00339D0C /* UIImage+QRCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+QRCode.h"; sourceTree = "<group>"; };
+		995644911ECC7FEC00339D0C /* UIImage+QRCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+QRCode.m"; sourceTree = "<group>"; };
+		995644971ECC82F700339D0C /* TJMDeliveryPayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMDeliveryPayViewController.h; sourceTree = "<group>"; };
+		995644981ECC82F700339D0C /* TJMDeliveryPayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMDeliveryPayViewController.m; sourceTree = "<group>"; };
+		9966AA2E1ED6C511004A09F7 /* TJMFeedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMFeedBackViewController.h; sourceTree = "<group>"; };
+		9966AA2F1ED6C511004A09F7 /* TJMFeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMFeedBackViewController.m; sourceTree = "<group>"; };
+		9966AA341ED70628004A09F7 /* TJMMsgDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMMsgDetailViewController.h; sourceTree = "<group>"; };
+		9966AA351ED70628004A09F7 /* TJMMsgDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMMsgDetailViewController.m; sourceTree = "<group>"; };
+		9966AA381ED7B6E1004A09F7 /* TJMQuestionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMQuestionTableViewCell.h; sourceTree = "<group>"; };
+		9966AA391ED7B6E1004A09F7 /* TJMQuestionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMQuestionTableViewCell.m; sourceTree = "<group>"; };
+		9966AA3B1ED7B6F2004A09F7 /* TJMAnswerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMAnswerTableViewCell.h; sourceTree = "<group>"; };
+		9966AA3C1ED7B6F2004A09F7 /* TJMAnswerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMAnswerTableViewCell.m; sourceTree = "<group>"; };
+		9966AA651ED85120004A09F7 /* TJMStudyResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMStudyResource.h; sourceTree = "<group>"; };
+		9966AA661ED85120004A09F7 /* TJMStudyResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMStudyResource.m; sourceTree = "<group>"; };
+		9969883A1EE80FA00095E9B0 /* UIFont+runtime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+runtime.h"; sourceTree = "<group>"; };
+		9969883B1EE80FA00095E9B0 /* UIFont+runtime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+runtime.m"; sourceTree = "<group>"; };
+		9969883E1EE80FCE0095E9B0 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
+		9969883F1EE80FCE0095E9B0 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
+		997FF05E1ED41F06005FD8E2 /* NSString+Format.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Format.h"; sourceTree = "<group>"; };
+		997FF05F1ED41F06005FD8E2 /* NSString+Format.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Format.m"; sourceTree = "<group>"; };
+		998377061ED91F660007DD85 /* TJMLearningViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMLearningViewController.h; sourceTree = "<group>"; };
+		998377071ED91F660007DD85 /* TJMLearningViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMLearningViewController.m; sourceTree = "<group>"; };
+		998377111ED9660F0007DD85 /* ZGLVideoMaskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGLVideoMaskView.h; sourceTree = "<group>"; };
+		998377121ED9660F0007DD85 /* ZGLVideoMaskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGLVideoMaskView.m; sourceTree = "<group>"; };
+		998377131ED9660F0007DD85 /* ZGLVideoPlyer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGLVideoPlyer.h; sourceTree = "<group>"; };
+		998377141ED9660F0007DD85 /* ZGLVideoPlyer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGLVideoPlyer.m; sourceTree = "<group>"; };
+		998377171ED96AE70007DD85 /* UIImage+Scale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Scale.h"; sourceTree = "<group>"; };
+		998377181ED96AE70007DD85 /* UIImage+Scale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Scale.m"; sourceTree = "<group>"; };
+		999E3B451EE7D276008201BE /* TJMTradingRecordData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMTradingRecordData.h; sourceTree = "<group>"; };
+		999E3B461EE7D276008201BE /* TJMTradingRecordData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMTradingRecordData.m; sourceTree = "<group>"; };
 		99A3BC0E1EBB026800688692 /* TJMHomeOrderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMHomeOrderTableViewCell.h; sourceTree = "<group>"; };
 		99A3BC0F1EBB026800688692 /* TJMHomeOrderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMHomeOrderTableViewCell.m; sourceTree = "<group>"; };
 		99A3BC111EBB18FD00688692 /* TJMHomeHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMHomeHeaderView.h; sourceTree = "<group>"; };
 		99A3BC121EBB18FD00688692 /* TJMHomeHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMHomeHeaderView.m; sourceTree = "<group>"; };
 		99A3BC141EBC02C100688692 /* TJMMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMMessageTableViewCell.h; sourceTree = "<group>"; };
 		99A3BC151EBC02C100688692 /* TJMMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMMessageTableViewCell.m; sourceTree = "<group>"; };
-		99A3BC171EBC706400688692 /* TJMViewExplain */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TJMViewExplain; sourceTree = "<group>"; };
 		99A3BC711EBCC79300688692 /* UINavigationController+Cloudox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Cloudox.h"; sourceTree = "<group>"; };
 		99A3BC721EBCC79300688692 /* UINavigationController+Cloudox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Cloudox.m"; sourceTree = "<group>"; };
 		99A3BC731EBCC79300688692 /* UIViewController+Cloudox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Cloudox.h"; sourceTree = "<group>"; };
 		99A3BC741EBCC79300688692 /* UIViewController+Cloudox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Cloudox.m"; sourceTree = "<group>"; };
+		99BD04A71EE5829800F56351 /* BaiduTraceSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduTraceSDK.framework; sourceTree = "<group>"; };
+		99BD04AB1EE691C900F56351 /* TJMHeatMapData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMHeatMapData.h; sourceTree = "<group>"; };
+		99BD04AC1EE691C900F56351 /* TJMHeatMapData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMHeatMapData.m; sourceTree = "<group>"; };
 		99E74D161EA8BB1700BFD422 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		99E74D171EA8BB1800BFD422 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		99E81B7C1EAF50DC00BB0875 /* TJMSingleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TJMSingleton.h; sourceTree = "<group>"; };
-		99E81C4E1EB217E600BB0875 /* TJMEntryCheckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMEntryCheckViewController.h; sourceTree = "<group>"; };
-		99E81C4F1EB217E600BB0875 /* TJMEntryCheckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMEntryCheckViewController.m; sourceTree = "<group>"; };
 		99E81C521EB217E600BB0875 /* 11111.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 11111.png; sourceTree = "<group>"; };
 		99E81C531EB217E600BB0875 /* 22222.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 22222.png; sourceTree = "<group>"; };
 		99E81C541EB217E600BB0875 /* 33333.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 33333.png; sourceTree = "<group>"; };
@@ -139,8 +292,6 @@
 		99E81C5C1EB217E600BB0875 /* TJMVehicleData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMVehicleData.m; sourceTree = "<group>"; };
 		99E81C5E1EB217E600BB0875 /* TJMPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMPickerView.h; sourceTree = "<group>"; };
 		99E81C5F1EB217E600BB0875 /* TJMPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMPickerView.m; sourceTree = "<group>"; };
-		99E81C621EB217E600BB0875 /* PhotoPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoPickerViewController.h; sourceTree = "<group>"; };
-		99E81C631EB217E600BB0875 /* PhotoPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoPickerViewController.m; sourceTree = "<group>"; };
 		99E81C661EB217E600BB0875 /* TJMExamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMExamViewController.h; sourceTree = "<group>"; };
 		99E81C671EB217E600BB0875 /* TJMExamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMExamViewController.m; sourceTree = "<group>"; };
 		99E81C691EB217E600BB0875 /* TJMTestQuestionData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMTestQuestionData.h; sourceTree = "<group>"; };
@@ -153,15 +304,13 @@
 		99E81C751EB217E600BB0875 /* TJMTokenModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMTokenModel.m; sourceTree = "<group>"; };
 		99E81C791EB217E600BB0875 /* category_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "category_1@2x.png"; sourceTree = "<group>"; };
 		99E81C7A1EB217E600BB0875 /* TJMBaiduMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMBaiduMapViewController.h; sourceTree = "<group>"; };
-		99E81C7B1EB217E600BB0875 /* TJMBaiduMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMBaiduMapViewController.m; sourceTree = "<group>"; };
+		99E81C7B1EB217E600BB0875 /* TJMBaiduMapViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TJMBaiduMapViewController.mm; sourceTree = "<group>"; };
 		99E81C801EB217E600BB0875 /* TJMHelpToBuyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMHelpToBuyViewController.h; sourceTree = "<group>"; };
 		99E81C811EB217E600BB0875 /* TJMHelpToBuyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMHelpToBuyViewController.m; sourceTree = "<group>"; };
 		99E81C861EB217E600BB0875 /* TJMMineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMMineViewController.h; sourceTree = "<group>"; };
 		99E81C871EB217E600BB0875 /* TJMMineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMMineViewController.m; sourceTree = "<group>"; };
 		99E81C8A1EB217E600BB0875 /* TJMMineTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMMineTableViewCell.h; sourceTree = "<group>"; };
 		99E81C8B1EB217E600BB0875 /* TJMMineTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMMineTableViewCell.m; sourceTree = "<group>"; };
-		99E81C8E1EB217E600BB0875 /* TJMDetailOfMineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMDetailOfMineViewController.h; sourceTree = "<group>"; };
-		99E81C8F1EB217E600BB0875 /* TJMDetailOfMineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMDetailOfMineViewController.m; sourceTree = "<group>"; };
 		99E81C941EB217E600BB0875 /* TJMScanQRCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMScanQRCodeViewController.h; sourceTree = "<group>"; };
 		99E81C951EB217E600BB0875 /* TJMScanQRCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMScanQRCodeViewController.m; sourceTree = "<group>"; };
 		99E81C981EB217E600BB0875 /* TJMOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMOverlayView.h; sourceTree = "<group>"; };
@@ -170,8 +319,6 @@
 		99E81C9D1EB217E600BB0875 /* TJMMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMMessageViewController.m; sourceTree = "<group>"; };
 		99E81CA21EB217E600BB0875 /* TJMHomepageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMHomepageViewController.h; sourceTree = "<group>"; };
 		99E81CA31EB217E600BB0875 /* TJMHomepageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMHomepageViewController.m; sourceTree = "<group>"; };
-		99E81CA51EB217E600BB0875 /* TJMLocationData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMLocationData.h; sourceTree = "<group>"; };
-		99E81CA61EB217E600BB0875 /* TJMLocationData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMLocationData.m; sourceTree = "<group>"; };
 		99E81CC81EB2184600BB0875 /* BackgroundTaskManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundTaskManager.h; sourceTree = "<group>"; };
 		99E81CC91EB2184600BB0875 /* BackgroundTaskManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundTaskManager.m; sourceTree = "<group>"; };
 		99E81CCA1EB2184600BB0875 /* LocationShareModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationShareModel.h; sourceTree = "<group>"; };
@@ -198,10 +345,15 @@
 		99E81CEC1EB2E1B000BB0875 /* TJMTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMTabBarViewController.m; sourceTree = "<group>"; };
 		99E81CEE1EB31F4700BB0875 /* UIViewController+Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Config.h"; sourceTree = "<group>"; };
 		99E81CEF1EB31F4700BB0875 /* UIViewController+Config.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Config.m"; sourceTree = "<group>"; };
-		99E81CF11EB32A5A00BB0875 /* UIFont+runtime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+runtime.h"; sourceTree = "<group>"; };
-		99E81CF21EB32A5A00BB0875 /* UIFont+runtime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+runtime.m"; sourceTree = "<group>"; };
 		99E81CF51EB8B05100BB0875 /* UINavigationBar+BackgroundColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+BackgroundColor.h"; sourceTree = "<group>"; };
 		99E81CF61EB8B05100BB0875 /* UINavigationBar+BackgroundColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+BackgroundColor.m"; sourceTree = "<group>"; };
+		99E855C81EC06436000C9A6F /* TJMMyOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMMyOrderViewController.h; sourceTree = "<group>"; };
+		99E855C91EC06436000C9A6F /* TJMMyOrderViewController.h.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMMyOrderViewController.h.m; sourceTree = "<group>"; };
+		99E855CC1EC06436000C9A6F /* TJMViewExplain */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TJMViewExplain; sourceTree = "<group>"; };
+		99E855D41EC099D4000C9A6F /* TJMTradingListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TJMTradingListViewController.h; path = "我的钱包/交易记录/Controller/TJMTradingListViewController.h"; sourceTree = "<group>"; };
+		99E855D51EC099D4000C9A6F /* TJMTradingListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TJMTradingListViewController.m; path = "我的钱包/交易记录/Controller/TJMTradingListViewController.m"; sourceTree = "<group>"; };
+		99E855DB1EC0A191000C9A6F /* TJMTradingListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TJMTradingListTableViewCell.h; path = "我的钱包/交易记录/View/TJMTradingListTableViewCell.h"; sourceTree = "<group>"; };
+		99E855DC1EC0A191000C9A6F /* TJMTradingListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TJMTradingListTableViewCell.m; path = "我的钱包/交易记录/View/TJMTradingListTableViewCell.m"; sourceTree = "<group>"; };
 		99F1C0801EA0CEB800415F0C /* TJMJinDouYun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TJMJinDouYun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99F1C0841EA0CEB800415F0C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		99F1C0991EA0CEB800415F0C /* TJMJinDouYunTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TJMJinDouYunTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -219,8 +371,6 @@
 		99F1C0C11EA0CEE000415F0C /* TJMHUDHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMHUDHandle.m; sourceTree = "<group>"; };
 		99F1C0C31EA0CEE000415F0C /* TJMRequestHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMRequestHandle.h; sourceTree = "<group>"; };
 		99F1C0C41EA0CEE000415F0C /* TJMRequestHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMRequestHandle.m; sourceTree = "<group>"; };
-		99F1C0C61EA0CEE000415F0C /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
-		99F1C0C71EA0CEE000415F0C /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
 		99F1C0C91EA0CEE000415F0C /* NSString+RegEx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+RegEx.h"; sourceTree = "<group>"; };
 		99F1C0CA1EA0CEE000415F0C /* NSString+RegEx.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+RegEx.m"; sourceTree = "<group>"; };
 		99F1C0ED1EA0CEFA00415F0C /* AppDelegate+APPService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+APPService.h"; sourceTree = "<group>"; };
@@ -249,6 +399,23 @@
 		99F1C1881EA445AB00415F0C /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		99F1C18A1EA445B200415F0C /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		99F1C18C1EA445BD00415F0C /* libz.1.2.5.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.5.tbd; path = usr/lib/libz.1.2.5.tbd; sourceTree = SDKROOT; };
+		99F20D661EC1AB7A003CF114 /* QRCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeViewController.h; sourceTree = "<group>"; };
+		99F20D671EC1AB7A003CF114 /* QRCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeViewController.m; sourceTree = "<group>"; };
+		99F836831ED3BDD300CB3714 /* TJMBindingBankCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMBindingBankCardViewController.h; sourceTree = "<group>"; };
+		99F836841ED3BDD300CB3714 /* TJMBindingBankCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMBindingBankCardViewController.m; sourceTree = "<group>"; };
+		99F836871ED3BDD300CB3714 /* CommonView */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CommonView; sourceTree = "<group>"; };
+		99F8368A1ED3BDD300CB3714 /* TJMTransferOutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMTransferOutViewController.h; sourceTree = "<group>"; };
+		99F8368B1ED3BDD300CB3714 /* TJMTransferOutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMTransferOutViewController.m; sourceTree = "<group>"; };
+		99F836901ED3BDD300CB3714 /* TJMMyBankCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMMyBankCardViewController.h; sourceTree = "<group>"; };
+		99F836911ED3BDD300CB3714 /* TJMMyBankCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMMyBankCardViewController.m; sourceTree = "<group>"; };
+		99F836931ED3BDD300CB3714 /* TJMBankCardData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMBankCardData.h; sourceTree = "<group>"; };
+		99F836941ED3BDD300CB3714 /* TJMBankCardData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMBankCardData.m; sourceTree = "<group>"; };
+		99F836961ED3BDD300CB3714 /* TJMMyBankCardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMMyBankCardTableViewCell.h; sourceTree = "<group>"; };
+		99F836971ED3BDD300CB3714 /* TJMMyBankCardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMMyBankCardTableViewCell.m; sourceTree = "<group>"; };
+		99F8369E1ED3C3F800CB3714 /* TJMMyWalletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TJMMyWalletViewController.h; path = "我的钱包/Controller/TJMMyWalletViewController.h"; sourceTree = "<group>"; };
+		99F8369F1ED3C3F800CB3714 /* TJMMyWalletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TJMMyWalletViewController.m; path = "我的钱包/Controller/TJMMyWalletViewController.m"; sourceTree = "<group>"; };
+		99F836A11ED3DA4000CB3714 /* TJMBankData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMBankData.h; sourceTree = "<group>"; };
+		99F836A21ED3DA4000CB3714 /* TJMBankData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMBankData.m; sourceTree = "<group>"; };
 		99FF069E1EB9BE7200514D2F /* TJMInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMInfoTableViewCell.h; sourceTree = "<group>"; };
 		99FF069F1EB9BE7200514D2F /* TJMInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMInfoTableViewCell.m; sourceTree = "<group>"; };
 		99FF06A11EB9D0FD00514D2F /* TJMIdCardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMIdCardTableViewCell.h; sourceTree = "<group>"; };
@@ -284,6 +451,7 @@
 				99F1C1751EA4454000415F0C /* CoreLocation.framework in Frameworks */,
 				99F1C1731EA4453A00415F0C /* CoreMotion.framework in Frameworks */,
 				99F1C1711EA4452F00415F0C /* ImageIO.framework in Frameworks */,
+				99BD04A81EE5829800F56351 /* BaiduTraceSDK.framework in Frameworks */,
 				99F1C16F1EA4452700415F0C /* AudioToolbox.framework in Frameworks */,
 				B3430058D86B1BD9C99AB40E /* libPods-TJMJinDouYun.a in Frameworks */,
 			);
@@ -330,6 +498,468 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		99019DBF1ECAD6D7002BC164 /* 取货-拍照上传 */ = {
+			isa = PBXGroup;
+			children = (
+				99019DC01ECAD6EF002BC164 /* Controller */,
+				99019DC41ECAE33B002BC164 /* View */,
+			);
+			name = "取货-拍照上传";
+			sourceTree = "<group>";
+		};
+		99019DC01ECAD6EF002BC164 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				99019DC11ECAD841002BC164 /* TJMPickUpViewController.h */,
+				99019DC21ECAD841002BC164 /* TJMPickUpViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		99019DC41ECAE33B002BC164 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				99019DC51ECAE36C002BC164 /* TJMPickUpCollectionViewCell.h */,
+				99019DC61ECAE36C002BC164 /* TJMPickUpCollectionViewCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		99019DC81ECC3526002BC164 /* 定位 */ = {
+			isa = PBXGroup;
+			children = (
+				99019DC91ECC3582002BC164 /* TJMLocationService.h */,
+				99019DCA1ECC3582002BC164 /* TJMLocationService.m */,
+			);
+			name = "定位";
+			sourceTree = "<group>";
+		};
+		99019DCD1ECC5566002BC164 /* 签收-二维码 */ = {
+			isa = PBXGroup;
+			children = (
+				99019DCE1ECC5566002BC164 /* Controller */,
+				99019DCF1ECC5566002BC164 /* Model */,
+				99019DD01ECC5566002BC164 /* View */,
+			);
+			path = "签收-二维码";
+			sourceTree = "<group>";
+		};
+		99019DCE1ECC5566002BC164 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				99019DD11ECC5587002BC164 /* TJMQRCodeSingInViewController.h */,
+				99019DD21ECC5587002BC164 /* TJMQRCodeSingInViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		99019DCF1ECC5566002BC164 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		99019DD01ECC5566002BC164 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		990E9C9E1EC2B12A009C7792 /* 签收-验证码 */ = {
+			isa = PBXGroup;
+			children = (
+				990E9C9F1EC2B143009C7792 /* Controller */,
+				990E9CA31EC2B38F009C7792 /* View */,
+			);
+			name = "签收-验证码";
+			sourceTree = "<group>";
+		};
+		990E9C9F1EC2B143009C7792 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				990E9CA01EC2B196009C7792 /* TJMCodeSignInViewController.h */,
+				990E9CA11EC2B196009C7792 /* TJMCodeSignInViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		990E9CA31EC2B38F009C7792 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		990E9CA71EC2ED42009C7792 /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				990E9CA81EC2ED42009C7792 /* TDAlertView.h */,
+				990E9CA91EC2ED42009C7792 /* TDAlertView.m */,
+			);
+			path = Alert;
+			sourceTree = "<group>";
+		};
+		991B09221EE01093009DB296 /* 订单详情 */ = {
+			isa = PBXGroup;
+			children = (
+				991B09231EE01093009DB296 /* Controller */,
+				991B09261EE01093009DB296 /* Model */,
+				991B09271EE01093009DB296 /* View */,
+			);
+			path = "订单详情";
+			sourceTree = "<group>";
+		};
+		991B09231EE01093009DB296 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				991B09241EE01093009DB296 /* TJMMyOrderDetailViewController.h */,
+				991B09251EE01093009DB296 /* TJMMyOrderDetailViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		991B09261EE01093009DB296 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				991B092F1EE015CB009DB296 /* TJMOrderDetailInfoModel.h */,
+				991B09301EE015CB009DB296 /* TJMOrderDetailInfoModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		991B09271EE01093009DB296 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				991B09281EE01093009DB296 /* TJMMyOrderDetailHeaderView.h */,
+				991B09291EE01093009DB296 /* TJMMyOrderDetailHeaderView.m */,
+				991B092A1EE01093009DB296 /* TJMMyOrderDetailTableViewCell.h */,
+				991B092B1EE01093009DB296 /* TJMMyOrderDetailTableViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		992BCFA91ED50FBC0053B4BE /* 提现成功 */ = {
+			isa = PBXGroup;
+			children = (
+				992BCFAA1ED50FBC0053B4BE /* Controller */,
+				992BCFAB1ED50FBC0053B4BE /* Model */,
+				992BCFAC1ED50FBC0053B4BE /* View */,
+			);
+			path = "提现成功";
+			sourceTree = "<group>";
+		};
+		992BCFAA1ED50FBC0053B4BE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				992BCFAD1ED50FE20053B4BE /* TJMTransferOutSuccessViewController.h */,
+				992BCFAE1ED50FE20053B4BE /* TJMTransferOutSuccessViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		992BCFAB1ED50FBC0053B4BE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		992BCFAC1ED50FBC0053B4BE /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		992BCFBD1ED536250053B4BE /* 应急中心 */ = {
+			isa = PBXGroup;
+			children = (
+				992BCFBE1ED536250053B4BE /* Controller */,
+			);
+			path = "应急中心";
+			sourceTree = "<group>";
+		};
+		992BCFBE1ED536250053B4BE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				992BCFBF1ED536540053B4BE /* TJMEmergenchyViewController.h */,
+				992BCFC01ED536540053B4BE /* TJMEmergenchyViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		992BCFC21ED53C470053B4BE /* 关于我们 */ = {
+			isa = PBXGroup;
+			children = (
+				992BCFC31ED53C470053B4BE /* Controller */,
+			);
+			path = "关于我们";
+			sourceTree = "<group>";
+		};
+		992BCFC31ED53C470053B4BE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				992BCFD01ED53C6C0053B4BE /* TJMAboutUsViewController.h */,
+				992BCFD11ED53C6C0053B4BE /* TJMAboutUsViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		992BCFC41ED53C470053B4BE /* 设置 */ = {
+			isa = PBXGroup;
+			children = (
+				992BCFC51ED53C470053B4BE /* Controller */,
+				992BCFC61ED53C470053B4BE /* Model */,
+				992BCFC71ED53C470053B4BE /* View */,
+				992BCFC81ED53C470053B4BE /* 个人信息 */,
+				992BCFCC1ED53C470053B4BE /* 修改密码 */,
+				992BCFCE1ED53C470053B4BE /* 问题反馈 */,
+			);
+			path = "设置";
+			sourceTree = "<group>";
+		};
+		992BCFC51ED53C470053B4BE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				992BCFD31ED563250053B4BE /* TJMSettingViewController.h */,
+				992BCFD41ED563250053B4BE /* TJMSettingViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		992BCFC61ED53C470053B4BE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		992BCFC71ED53C470053B4BE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				992BCFD61ED564410053B4BE /* TJMSettingTableViewCell.h */,
+				992BCFD71ED564410053B4BE /* TJMSettingTableViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		992BCFC81ED53C470053B4BE /* 个人信息 */ = {
+			isa = PBXGroup;
+			children = (
+				992BCFC91ED53C470053B4BE /* Controller */,
+				992BCFCA1ED53C470053B4BE /* Model */,
+				992BCFCB1ED53C470053B4BE /* View */,
+			);
+			path = "个人信息";
+			sourceTree = "<group>";
+		};
+		992BCFC91ED53C470053B4BE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				992BCFDC1ED56C2F0053B4BE /* TJMPersonInfoViewController.h */,
+				992BCFDD1ED56C2F0053B4BE /* TJMPersonInfoViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		992BCFCA1ED53C470053B4BE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				992BCFDF1ED570EE0053B4BE /* TJMPersonInfoModel.h */,
+				992BCFE01ED570EE0053B4BE /* TJMPersonInfoModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		992BCFCB1ED53C470053B4BE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				992BCFD91ED56C0F0053B4BE /* TJMPersonInfoTableViewCell.h */,
+				992BCFDA1ED56C0F0053B4BE /* TJMPersonInfoTableViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		992BCFCC1ED53C470053B4BE /* 修改密码 */ = {
+			isa = PBXGroup;
+			children = (
+				992BCFCD1ED53C470053B4BE /* Controller */,
+			);
+			path = "修改密码";
+			sourceTree = "<group>";
+		};
+		992BCFCD1ED53C470053B4BE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				991673111ED665C500A50A3F /* TJMChangePasswordViewController.h */,
+				991673121ED665C500A50A3F /* TJMChangePasswordViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		992BCFCE1ED53C470053B4BE /* 问题反馈 */ = {
+			isa = PBXGroup;
+			children = (
+				992BCFCF1ED53C470053B4BE /* Controller */,
+			);
+			path = "问题反馈";
+			sourceTree = "<group>";
+		};
+		992BCFCF1ED53C470053B4BE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9966AA2E1ED6C511004A09F7 /* TJMFeedBackViewController.h */,
+				9966AA2F1ED6C511004A09F7 /* TJMFeedBackViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		9946011B1EE57AB100B831A6 /* LaunchIntroduction */ = {
+			isa = PBXGroup;
+			children = (
+				9946011C1EE57AB100B831A6 /* LaunchIntroductionView.h */,
+				9946011D1EE57AB100B831A6 /* LaunchIntroductionView.m */,
+			);
+			path = LaunchIntroduction;
+			sourceTree = "<group>";
+		};
+		995644931ECC82AD00339D0C /* 到付-二维码 */ = {
+			isa = PBXGroup;
+			children = (
+				995644941ECC82AD00339D0C /* Controller */,
+				995644951ECC82AD00339D0C /* Model */,
+				995644961ECC82AD00339D0C /* View */,
+			);
+			path = "到付-二维码";
+			sourceTree = "<group>";
+		};
+		995644941ECC82AD00339D0C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				995644971ECC82F700339D0C /* TJMDeliveryPayViewController.h */,
+				995644981ECC82F700339D0C /* TJMDeliveryPayViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		995644951ECC82AD00339D0C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		995644961ECC82AD00339D0C /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9966AA321ED7060D004A09F7 /* 消息详情 */ = {
+			isa = PBXGroup;
+			children = (
+				9966AA331ED7060D004A09F7 /* Controller */,
+			);
+			path = "消息详情";
+			sourceTree = "<group>";
+		};
+		9966AA331ED7060D004A09F7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9966AA341ED70628004A09F7 /* TJMMsgDetailViewController.h */,
+				9966AA351ED70628004A09F7 /* TJMMsgDetailViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		9966AA371ED7B6C4004A09F7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9966AA381ED7B6E1004A09F7 /* TJMQuestionTableViewCell.h */,
+				9966AA391ED7B6E1004A09F7 /* TJMQuestionTableViewCell.m */,
+				9966AA3B1ED7B6F2004A09F7 /* TJMAnswerTableViewCell.h */,
+				9966AA3C1ED7B6F2004A09F7 /* TJMAnswerTableViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9966AA5E1ED85077004A09F7 /* 学习 */ = {
+			isa = PBXGroup;
+			children = (
+				9966AA5F1ED85077004A09F7 /* Controller */,
+				9966AA601ED85077004A09F7 /* Model */,
+				9966AA611ED85077004A09F7 /* View */,
+			);
+			path = "学习";
+			sourceTree = "<group>";
+		};
+		9966AA5F1ED85077004A09F7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				998377061ED91F660007DD85 /* TJMLearningViewController.h */,
+				998377071ED91F660007DD85 /* TJMLearningViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		9966AA601ED85077004A09F7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9966AA651ED85120004A09F7 /* TJMStudyResource.h */,
+				9966AA661ED85120004A09F7 /* TJMStudyResource.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9966AA611ED85077004A09F7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		996988391EE80FA00095E9B0 /* 字体自适应 */ = {
+			isa = PBXGroup;
+			children = (
+				9969883A1EE80FA00095E9B0 /* UIFont+runtime.h */,
+				9969883B1EE80FA00095E9B0 /* UIFont+runtime.m */,
+			);
+			path = "字体自适应";
+			sourceTree = "<group>";
+		};
+		9969883D1EE80FCE0095E9B0 /* MD5加密 */ = {
+			isa = PBXGroup;
+			children = (
+				9969883E1EE80FCE0095E9B0 /* NSString+MD5.h */,
+				9969883F1EE80FCE0095E9B0 /* NSString+MD5.m */,
+			);
+			path = "MD5加密";
+			sourceTree = "<group>";
+		};
+		998377101ED9660F0007DD85 /* VideoPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				998377111ED9660F0007DD85 /* ZGLVideoMaskView.h */,
+				998377121ED9660F0007DD85 /* ZGLVideoMaskView.m */,
+				998377131ED9660F0007DD85 /* ZGLVideoPlyer.h */,
+				998377141ED9660F0007DD85 /* ZGLVideoPlyer.m */,
+			);
+			path = VideoPlayer;
+			sourceTree = "<group>";
+		};
+		999E3B441EE7D25D008201BE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				999E3B451EE7D276008201BE /* TJMTradingRecordData.h */,
+				999E3B461EE7D276008201BE /* TJMTradingRecordData.m */,
+			);
+			name = Model;
+			path = "我的钱包/交易记录/Model";
+			sourceTree = "<group>";
+		};
 		99A3BC701EBCC79300688692 /* 导航栏透明度 */ = {
 			isa = PBXGroup;
 			children = (
@@ -357,6 +987,7 @@
 				99E81C4D1EB217E600BB0875 /* Controller */,
 				99E81C501EB217E600BB0875 /* 上传资料 */,
 				99E81C641EB217E600BB0875 /* 考试 */,
+				9966AA5E1ED85077004A09F7 /* 学习 */,
 			);
 			path = "入职考核";
 			sourceTree = "<group>";
@@ -364,8 +995,8 @@
 		99E81C4D1EB217E600BB0875 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				99E81C4E1EB217E600BB0875 /* TJMEntryCheckViewController.h */,
-				99E81C4F1EB217E600BB0875 /* TJMEntryCheckViewController.m */,
+				990E9CAE1EC34DBF009C7792 /* TJMEntryCheckViewController.h */,
+				990E9CAF1EC34DBF009C7792 /* TJMEntryCheckViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -376,7 +1007,6 @@
 				99E81C511EB217E600BB0875 /* Controller */,
 				99E81C581EB217E600BB0875 /* Model */,
 				99E81C5D1EB217E600BB0875 /* View */,
-				99E81C601EB217E600BB0875 /* 图片选择 */,
 			);
 			path = "上传资料";
 			sourceTree = "<group>";
@@ -420,26 +1050,10 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		99E81C601EB217E600BB0875 /* 图片选择 */ = {
-			isa = PBXGroup;
-			children = (
-				99E81C611EB217E600BB0875 /* Controller */,
-			);
-			path = "图片选择";
-			sourceTree = "<group>";
-		};
-		99E81C611EB217E600BB0875 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				99E81C621EB217E600BB0875 /* PhotoPickerViewController.h */,
-				99E81C631EB217E600BB0875 /* PhotoPickerViewController.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
 		99E81C641EB217E600BB0875 /* 考试 */ = {
 			isa = PBXGroup;
 			children = (
+				9966AA371ED7B6C4004A09F7 /* View */,
 				99E81C651EB217E600BB0875 /* Controller */,
 				99E81C681EB217E600BB0875 /* Model */,
 			);
@@ -484,8 +1098,8 @@
 		99E81C6F1EB217E600BB0875 /* 登录 */ = {
 			isa = PBXGroup;
 			children = (
-				99E81CF41EB8229C00BB0875 /* View */,
 				99E81C701EB217E600BB0875 /* Controller */,
+				99E81CF41EB8229C00BB0875 /* View */,
 				99E81C731EB217E600BB0875 /* Model */,
 			);
 			path = "登录";
@@ -539,7 +1153,7 @@
 			children = (
 				99E81C791EB217E600BB0875 /* category_1@2x.png */,
 				99E81C7A1EB217E600BB0875 /* TJMBaiduMapViewController.h */,
-				99E81C7B1EB217E600BB0875 /* TJMBaiduMapViewController.m */,
+				99E81C7B1EB217E600BB0875 /* TJMBaiduMapViewController.mm */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -547,6 +1161,10 @@
 		99E81C7C1EB217E600BB0875 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				991B091B1EDEECD4009DB296 /* TJMLocation.h */,
+				991B091C1EDEECD4009DB296 /* TJMLocation.m */,
+				99BD04AB1EE691C900F56351 /* TJMHeatMapData.h */,
+				99BD04AC1EE691C900F56351 /* TJMHeatMapData.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -614,6 +1232,8 @@
 		99E81C881EB217E600BB0875 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				991B09351EE16749009DB296 /* TJMPerformanceModel.h */,
+				991B09361EE16749009DB296 /* TJMPerformanceModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -630,35 +1250,13 @@
 		99E81C8C1EB217E600BB0875 /* 我的-更多 */ = {
 			isa = PBXGroup;
 			children = (
-				99E81C8D1EB217E600BB0875 /* Controller */,
-				99E81C901EB217E600BB0875 /* Model */,
-				99E81C911EB217E600BB0875 /* View */,
+				99E855B61EC062C4000C9A6F /* 我的钱包 */,
+				99E855B51EC061F9000C9A6F /* 我的订单 */,
+				992BCFBD1ED536250053B4BE /* 应急中心 */,
+				992BCFC21ED53C470053B4BE /* 关于我们 */,
+				992BCFC41ED53C470053B4BE /* 设置 */,
 			);
 			path = "我的-更多";
-			sourceTree = "<group>";
-		};
-		99E81C8D1EB217E600BB0875 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				99E81C8E1EB217E600BB0875 /* TJMDetailOfMineViewController.h */,
-				99E81C8F1EB217E600BB0875 /* TJMDetailOfMineViewController.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		99E81C901EB217E600BB0875 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		99E81C911EB217E600BB0875 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				99A3BC171EBC706400688692 /* TJMViewExplain */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		99E81C921EB217E600BB0875 /* 扫描二维码 */ = {
@@ -667,6 +1265,8 @@
 				99E81C931EB217E600BB0875 /* Controller */,
 				99E81C961EB217E600BB0875 /* Model */,
 				99E81C971EB217E600BB0875 /* View */,
+				99F20D661EC1AB7A003CF114 /* QRCodeViewController.h */,
+				99F20D671EC1AB7A003CF114 /* QRCodeViewController.m */,
 			);
 			path = "扫描二维码";
 			sourceTree = "<group>";
@@ -699,6 +1299,7 @@
 		99E81C9A1EB217E600BB0875 /* 消息 */ = {
 			isa = PBXGroup;
 			children = (
+				9966AA321ED7060D004A09F7 /* 消息详情 */,
 				99E81C9B1EB217E600BB0875 /* Controller */,
 				99E81C9E1EB217E600BB0875 /* Model */,
 				99E81C9F1EB217E600BB0875 /* View */,
@@ -718,6 +1319,8 @@
 		99E81C9E1EB217E600BB0875 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				994600C91EE4E62B00B831A6 /* TJMMessageData.h */,
+				994600CA1EE4E62B00B831A6 /* TJMMessageData.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -737,6 +1340,11 @@
 				99E81CA11EB217E600BB0875 /* Controller */,
 				99E81CA41EB217E600BB0875 /* Model */,
 				99E81CA71EB217E600BB0875 /* View */,
+				991B09221EE01093009DB296 /* 订单详情 */,
+				995644931ECC82AD00339D0C /* 到付-二维码 */,
+				99019DCD1ECC5566002BC164 /* 签收-二维码 */,
+				99019DBF1ECAD6D7002BC164 /* 取货-拍照上传 */,
+				990E9C9E1EC2B12A009C7792 /* 签收-验证码 */,
 			);
 			path = "首页";
 			sourceTree = "<group>";
@@ -753,8 +1361,10 @@
 		99E81CA41EB217E600BB0875 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				99E81CA51EB217E600BB0875 /* TJMLocationData.h */,
-				99E81CA61EB217E600BB0875 /* TJMLocationData.m */,
+				990E9CAB1EC30F38009C7792 /* TJMFreeManInfo.h */,
+				990E9CAC1EC30F38009C7792 /* TJMFreeManInfo.m */,
+				9943EDED1EC5BBA2006D083D /* TJMOrderData.h */,
+				9943EDEE1EC5BBA2006D083D /* TJMOrderData.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -829,9 +1439,114 @@
 			name = View;
 			sourceTree = "<group>";
 		};
+		99E855B51EC061F9000C9A6F /* 我的订单 */ = {
+			isa = PBXGroup;
+			children = (
+				99E855C71EC06436000C9A6F /* Controller */,
+				99E855CA1EC06436000C9A6F /* Model */,
+				99E855CB1EC06436000C9A6F /* View */,
+			);
+			name = "我的订单";
+			sourceTree = "<group>";
+		};
+		99E855B61EC062C4000C9A6F /* 我的钱包 */ = {
+			isa = PBXGroup;
+			children = (
+				99E855B91EC0635D000C9A6F /* Controller */,
+				99E855B81EC0634D000C9A6F /* Model */,
+				99E855B71EC06344000C9A6F /* View */,
+				99F836811ED3BDD300CB3714 /* 绑定银行卡 */,
+				99F836881ED3BDD300CB3714 /* 提现 */,
+				99F8368E1ED3BDD300CB3714 /* 我的银行卡 */,
+				99E855D21EC09968000C9A6F /* 交易记录 */,
+			);
+			name = "我的钱包";
+			sourceTree = "<group>";
+		};
+		99E855B71EC06344000C9A6F /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		99E855B81EC0634D000C9A6F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		99E855B91EC0635D000C9A6F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				99F8369E1ED3C3F800CB3714 /* TJMMyWalletViewController.h */,
+				99F8369F1ED3C3F800CB3714 /* TJMMyWalletViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		99E855C71EC06436000C9A6F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				99E855C81EC06436000C9A6F /* TJMMyOrderViewController.h */,
+				99E855C91EC06436000C9A6F /* TJMMyOrderViewController.h.m */,
+			);
+			name = Controller;
+			path = "我的订单/Controller";
+			sourceTree = "<group>";
+		};
+		99E855CA1EC06436000C9A6F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				991B09321EE14281009DB296 /* TJMMyOrderData.h */,
+				991B09331EE14281009DB296 /* TJMMyOrderData.m */,
+			);
+			name = Model;
+			path = "我的订单/Model";
+			sourceTree = "<group>";
+		};
+		99E855CB1EC06436000C9A6F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				99E855CC1EC06436000C9A6F /* TJMViewExplain */,
+			);
+			name = View;
+			path = "我的订单/View";
+			sourceTree = "<group>";
+		};
+		99E855D21EC09968000C9A6F /* 交易记录 */ = {
+			isa = PBXGroup;
+			children = (
+				999E3B441EE7D25D008201BE /* Model */,
+				99E855DA1EC09E9A000C9A6F /* View */,
+				99E855D31EC09974000C9A6F /* Controller */,
+			);
+			name = "交易记录";
+			sourceTree = "<group>";
+		};
+		99E855D31EC09974000C9A6F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				99E855D41EC099D4000C9A6F /* TJMTradingListViewController.h */,
+				99E855D51EC099D4000C9A6F /* TJMTradingListViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		99E855DA1EC09E9A000C9A6F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				99E855DB1EC0A191000C9A6F /* TJMTradingListTableViewCell.h */,
+				99E855DC1EC0A191000C9A6F /* TJMTradingListTableViewCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		99F1C0771EA0CEB800415F0C = {
 			isa = PBXGroup;
 			children = (
+				99BD04A71EE5829800F56351 /* BaiduTraceSDK.framework */,
 				99F1C0821EA0CEB800415F0C /* TJMJinDouYun */,
 				99F1C09C1EA0CEB800415F0C /* TJMJinDouYunTests */,
 				99F1C0A71EA0CEB800415F0C /* TJMJinDouYunUITests */,
@@ -897,7 +1612,6 @@
 		99F1C0B61EA0CEE000415F0C /* Tool */ = {
 			isa = PBXGroup;
 			children = (
-				99FF06A41EB9DCFC00514D2F /* 设置工具 */,
 				99F1C0B71EA0CEE000415F0C /* Config */,
 				99F1C0BB1EA0CEE000415F0C /* 沙盒管理 */,
 				99F1C0BE1EA0CEE000415F0C /* 第三方封装 */,
@@ -914,6 +1628,7 @@
 				99F1C0B91EA0CEE000415F0C /* TJMConfig.h */,
 				99F1C0BA1EA0CEE000415F0C /* TJMPrefixHeader.pch */,
 				99E81B7C1EAF50DC00BB0875 /* TJMSingleton.h */,
+				991673141ED686B700A50A3F /* Constant.h */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -930,6 +1645,7 @@
 		99F1C0BE1EA0CEE000415F0C /* 第三方封装 */ = {
 			isa = PBXGroup;
 			children = (
+				99019DC81ECC3526002BC164 /* 定位 */,
 				99F1C0BF1EA0CEE000415F0C /* HUD工具 */,
 				99F1C0C21EA0CEE000415F0C /* 网络请求工具 */,
 			);
@@ -957,12 +1673,13 @@
 		99F1C0C51EA0CEE000415F0C /* 第三方库 */ = {
 			isa = PBXGroup;
 			children = (
-				99E81CF11EB32A5A00BB0875 /* UIFont+runtime.h */,
-				99E81CF21EB32A5A00BB0875 /* UIFont+runtime.m */,
+				9969883D1EE80FCE0095E9B0 /* MD5加密 */,
+				996988391EE80FA00095E9B0 /* 字体自适应 */,
+				9946011B1EE57AB100B831A6 /* LaunchIntroduction */,
+				998377101ED9660F0007DD85 /* VideoPlayer */,
+				990E9CA71EC2ED42009C7792 /* Alert */,
 				99E81CD11EB21A3D00BB0875 /* BaiduNaviSDK */,
 				99E81CC71EB2184600BB0875 /* Location */,
-				99F1C0C61EA0CEE000415F0C /* NSString+MD5.h */,
-				99F1C0C71EA0CEE000415F0C /* NSString+MD5.m */,
 				99A3BC701EBCC79300688692 /* 导航栏透明度 */,
 			);
 			path = "第三方库";
@@ -973,12 +1690,20 @@
 			children = (
 				99F1C0C91EA0CEE000415F0C /* NSString+RegEx.h */,
 				99F1C0CA1EA0CEE000415F0C /* NSString+RegEx.m */,
+				997FF05E1ED41F06005FD8E2 /* NSString+Format.h */,
+				997FF05F1ED41F06005FD8E2 /* NSString+Format.m */,
 				99E81CEE1EB31F4700BB0875 /* UIViewController+Config.h */,
 				99E81CEF1EB31F4700BB0875 /* UIViewController+Config.m */,
 				99FF06A51EB9DE0200514D2F /* NSObject+Config.h */,
 				99FF06A61EB9DE0200514D2F /* NSObject+Config.m */,
 				99E81CF51EB8B05100BB0875 /* UINavigationBar+BackgroundColor.h */,
 				99E81CF61EB8B05100BB0875 /* UINavigationBar+BackgroundColor.m */,
+				995644901ECC7FEC00339D0C /* UIImage+QRCode.h */,
+				995644911ECC7FEC00339D0C /* UIImage+QRCode.m */,
+				998377171ED96AE70007DD85 /* UIImage+Scale.h */,
+				998377181ED96AE70007DD85 /* UIImage+Scale.m */,
+				991B09181EDE991D009DB296 /* UITextField+InputRule.h */,
+				991B09191EDE991D009DB296 /* UITextField+InputRule.m */,
 			);
 			path = "类别";
 			sourceTree = "<group>";
@@ -996,11 +1721,114 @@
 			path = AppDelegate;
 			sourceTree = "<group>";
 		};
-		99FF06A41EB9DCFC00514D2F /* 设置工具 */ = {
+		99F836811ED3BDD300CB3714 /* 绑定银行卡 */ = {
+			isa = PBXGroup;
+			children = (
+				99F836821ED3BDD300CB3714 /* Controller */,
+				99F836851ED3BDD300CB3714 /* Model */,
+				99F836861ED3BDD300CB3714 /* View */,
+			);
+			name = "绑定银行卡";
+			path = "我的钱包/绑定银行卡";
+			sourceTree = "<group>";
+		};
+		99F836821ED3BDD300CB3714 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				99F836831ED3BDD300CB3714 /* TJMBindingBankCardViewController.h */,
+				99F836841ED3BDD300CB3714 /* TJMBindingBankCardViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		99F836851ED3BDD300CB3714 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				99F836A11ED3DA4000CB3714 /* TJMBankData.h */,
+				99F836A21ED3DA4000CB3714 /* TJMBankData.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		99F836861ED3BDD300CB3714 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				99F836871ED3BDD300CB3714 /* CommonView */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		99F836881ED3BDD300CB3714 /* 提现 */ = {
+			isa = PBXGroup;
+			children = (
+				99F836891ED3BDD300CB3714 /* Controller */,
+				99F8368C1ED3BDD300CB3714 /* Model */,
+				99F8368D1ED3BDD300CB3714 /* View */,
+				992BCFA91ED50FBC0053B4BE /* 提现成功 */,
+			);
+			name = "提现";
+			path = "我的钱包/提现";
+			sourceTree = "<group>";
+		};
+		99F836891ED3BDD300CB3714 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				99F8368A1ED3BDD300CB3714 /* TJMTransferOutViewController.h */,
+				99F8368B1ED3BDD300CB3714 /* TJMTransferOutViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		99F8368C1ED3BDD300CB3714 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			name = "设置工具";
+			path = Model;
+			sourceTree = "<group>";
+		};
+		99F8368D1ED3BDD300CB3714 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		99F8368E1ED3BDD300CB3714 /* 我的银行卡 */ = {
+			isa = PBXGroup;
+			children = (
+				99F8368F1ED3BDD300CB3714 /* Controller */,
+				99F836921ED3BDD300CB3714 /* Model */,
+				99F836951ED3BDD300CB3714 /* View */,
+			);
+			name = "我的银行卡";
+			path = "我的钱包/我的银行卡";
+			sourceTree = "<group>";
+		};
+		99F8368F1ED3BDD300CB3714 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				99F836901ED3BDD300CB3714 /* TJMMyBankCardViewController.h */,
+				99F836911ED3BDD300CB3714 /* TJMMyBankCardViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		99F836921ED3BDD300CB3714 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				99F836931ED3BDD300CB3714 /* TJMBankCardData.h */,
+				99F836941ED3BDD300CB3714 /* TJMBankCardData.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		99F836951ED3BDD300CB3714 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				99F836961ED3BDD300CB3714 /* TJMMyBankCardTableViewCell.h */,
+				99F836971ED3BDD300CB3714 /* TJMMyBankCardTableViewCell.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		D8C8147D2A0C1E675CA3EF9C /* Pods */ = {
@@ -1025,6 +1853,7 @@
 				99F1C07E1EA0CEB800415F0C /* Resources */,
 				97ED38BC82216DDAB8D0F2DD /* [CP] Embed Pods Frameworks */,
 				FF836F4C0026353E8A1C399C /* [CP] Copy Pods Resources */,
+				99BD04AA1EE5829800F56351 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1128,13 +1957,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				99E81CAF1EB217E600BB0875 /* 44444.png in Resources */,
-				99A3BC181EBC706400688692 /* TJMViewExplain in Resources */,
+				99E855D11EC06436000C9A6F /* TJMViewExplain in Resources */,
 				99F1C1041EA0CF2900415F0C /* LaunchScreen.storyboard in Resources */,
 				99E81CE41EB21A3D00BB0875 /* baiduNaviSDK.bundle in Resources */,
 				99E81CAC1EB217E600BB0875 /* 11111.png in Resources */,
 				99E81CE71EB21A3D00BB0875 /* readme.txt in Resources */,
 				99E81CAE1EB217E600BB0875 /* 33333.png in Resources */,
 				99F1C0FF1EA0CF0600415F0C /* Info.plist in Resources */,
+				99F836991ED3BDD300CB3714 /* CommonView in Resources */,
 				99E81CE51EB21A3D00BB0875 /* baiduNaviSDK.xcassets in Resources */,
 				99E81CBA1EB217E600BB0875 /* category_1@2x.png in Resources */,
 				99F1C0FD1EA0CEFA00415F0C /* Assets.xcassets in Resources */,
@@ -1214,50 +2044,99 @@
 			buildActionMask = 2147483647;
 			files = (
 				99E81CCE1EB2184600BB0875 /* BackgroundTaskManager.m in Sources */,
-				99E81CC41EB217E700BB0875 /* TJMLocationData.m in Sources */,
+				998377081ED91F660007DD85 /* TJMLearningViewController.m in Sources */,
+				99F836A31ED3DA4000CB3714 /* TJMBankData.m in Sources */,
+				9966AA361ED70628004A09F7 /* TJMMsgDetailViewController.m in Sources */,
 				99E81CB31EB217E600BB0875 /* TJMPickerView.m in Sources */,
-				99E81CB41EB217E600BB0875 /* PhotoPickerViewController.m in Sources */,
-				99E81CBB1EB217E600BB0875 /* TJMBaiduMapViewController.m in Sources */,
+				99E81CBB1EB217E600BB0875 /* TJMBaiduMapViewController.mm in Sources */,
+				991B091A1EDE991D009DB296 /* UITextField+InputRule.m in Sources */,
+				99F20D681EC1AB7A003CF114 /* QRCodeViewController.m in Sources */,
 				99A3BC751EBCC79300688692 /* UINavigationController+Cloudox.m in Sources */,
 				99F1C0FA1EA0CEFA00415F0C /* AppDelegate+APPService.m in Sources */,
+				991B092E1EE01093009DB296 /* TJMMyOrderDetailTableViewCell.m in Sources */,
+				9946011E1EE57AB100B831A6 /* LaunchIntroductionView.m in Sources */,
+				9966AA671ED85120004A09F7 /* TJMStudyResource.m in Sources */,
+				992BCFAF1ED50FE20053B4BE /* TJMTransferOutSuccessViewController.m in Sources */,
+				990E9CAD1EC30F38009C7792 /* TJMFreeManInfo.m in Sources */,
+				9969883C1EE80FA00095E9B0 /* UIFont+runtime.m in Sources */,
 				99F1C0CC1EA0CEE000415F0C /* TJMHUDHandle.m in Sources */,
+				990E9CB01EC34DBF009C7792 /* TJMEntryCheckViewController.m in Sources */,
+				996988401EE80FCE0095E9B0 /* NSString+MD5.m in Sources */,
 				99FF06A71EB9DE0200514D2F /* NSObject+Config.m in Sources */,
+				992BCFE11ED570EE0053B4BE /* TJMPersonInfoModel.m in Sources */,
+				992BCFD21ED53C6C0053B4BE /* TJMAboutUsViewController.m in Sources */,
+				9966AA3D1ED7B6F2004A09F7 /* TJMAnswerTableViewCell.m in Sources */,
 				99F1C0FB1EA0CEFA00415F0C /* AppDelegate+SDKSevice.m in Sources */,
 				99FF06A31EB9D0FD00514D2F /* TJMIdCardTableViewCell.m in Sources */,
+				995644921ECC7FEC00339D0C /* UIImage+QRCode.m in Sources */,
+				99019DD31ECC5587002BC164 /* TJMQRCodeSingInViewController.m in Sources */,
 				99F1C0CD1EA0CEE000415F0C /* TJMRequestHandle.m in Sources */,
-				99F1C0CE1EA0CEE000415F0C /* NSString+MD5.m in Sources */,
+				995644991ECC82F700339D0C /* TJMDeliveryPayViewController.m in Sources */,
 				99E81CF01EB31F4700BB0875 /* UIViewController+Config.m in Sources */,
+				991B09341EE14281009DB296 /* TJMMyOrderData.m in Sources */,
+				99E855D01EC06436000C9A6F /* TJMMyOrderViewController.h.m in Sources */,
 				99A3BC131EBB18FD00688692 /* TJMHomeHeaderView.m in Sources */,
-				99E81CBF1EB217E700BB0875 /* TJMDetailOfMineViewController.m in Sources */,
 				99E81CC01EB217E700BB0875 /* TJMScanQRCodeViewController.m in Sources */,
+				994600CB1EE4E62B00B831A6 /* TJMMessageData.m in Sources */,
+				998377161ED9660F0007DD85 /* ZGLVideoPlyer.m in Sources */,
+				998377151ED9660F0007DD85 /* ZGLVideoMaskView.m in Sources */,
+				9966AA301ED6C511004A09F7 /* TJMFeedBackViewController.m in Sources */,
 				99A3BC761EBCC79300688692 /* UIViewController+Cloudox.m in Sources */,
 				99E81CB51EB217E600BB0875 /* TJMExamViewController.m in Sources */,
 				99E81CB01EB217E600BB0875 /* TJMUploadViewController.m in Sources */,
+				990E9CA21EC2B196009C7792 /* TJMCodeSignInViewController.m in Sources */,
+				9966AA3A1ED7B6E1004A09F7 /* TJMQuestionTableViewCell.m in Sources */,
 				99E81CED1EB2E1B000BB0875 /* TJMTabBarViewController.m in Sources */,
+				99BD04AD1EE691C900F56351 /* TJMHeatMapData.m in Sources */,
+				999E3B471EE7D276008201BE /* TJMTradingRecordData.m in Sources */,
 				99FF06A01EB9BE7200514D2F /* TJMInfoTableViewCell.m in Sources */,
+				990E9CAA1EC2ED42009C7792 /* TDAlertView.m in Sources */,
+				99E855D61EC099D4000C9A6F /* TJMTradingListViewController.m in Sources */,
+				99F8369A1ED3BDD300CB3714 /* TJMTransferOutViewController.m in Sources */,
 				99E81CB71EB217E600BB0875 /* TJMRegisterViewController.m in Sources */,
 				99F1C0851EA0CEB800415F0C /* main.m in Sources */,
+				99F8369C1ED3BDD300CB3714 /* TJMBankCardData.m in Sources */,
+				992BCFD51ED563250053B4BE /* TJMSettingViewController.m in Sources */,
+				99E855DD1EC0A191000C9A6F /* TJMTradingListTableViewCell.m in Sources */,
+				99019DC71ECAE36C002BC164 /* TJMPickUpCollectionViewCell.m in Sources */,
+				991B091D1EDEECD4009DB296 /* TJMLocation.m in Sources */,
 				99E81CB11EB217E600BB0875 /* TJMProvinceData.m in Sources */,
 				99E81CBC1EB217E600BB0875 /* TJMHelpToBuyViewController.m in Sources */,
+				991B092C1EE01093009DB296 /* TJMMyOrderDetailViewController.m in Sources */,
 				99E81CBD1EB217E700BB0875 /* TJMMineViewController.m in Sources */,
 				99E81CB61EB217E600BB0875 /* TJMTestQuestionData.m in Sources */,
+				992BCFDB1ED56C0F0053B4BE /* TJMPersonInfoTableViewCell.m in Sources */,
 				99E81CBE1EB217E700BB0875 /* TJMMineTableViewCell.m in Sources */,
 				99FF06AA1EB9E21A00514D2F /* TJMUserInfoModel.m in Sources */,
+				997FF0601ED41F06005FD8E2 /* NSString+Format.m in Sources */,
 				99A3BC101EBB026800688692 /* TJMHomeOrderTableViewCell.m in Sources */,
+				99F836981ED3BDD300CB3714 /* TJMBindingBankCardViewController.m in Sources */,
 				99E81CB21EB217E600BB0875 /* TJMVehicleData.m in Sources */,
 				99E81CC31EB217E700BB0875 /* TJMHomepageViewController.m in Sources */,
+				99F8369D1ED3BDD300CB3714 /* TJMMyBankCardTableViewCell.m in Sources */,
+				991B09311EE015CB009DB296 /* TJMOrderDetailInfoModel.m in Sources */,
 				99A3BC161EBC02C100688692 /* TJMMessageTableViewCell.m in Sources */,
+				991B09371EE16749009DB296 /* TJMPerformanceModel.m in Sources */,
+				9943EDEF1EC5BBA2006D083D /* TJMOrderData.m in Sources */,
 				99E81CC21EB217E700BB0875 /* TJMMessageViewController.m in Sources */,
 				99E81CF71EB8B05100BB0875 /* UINavigationBar+BackgroundColor.m in Sources */,
+				991B092D1EE01093009DB296 /* TJMMyOrderDetailHeaderView.m in Sources */,
 				99E81CD01EB2184600BB0875 /* LocationTracker.m in Sources */,
+				99019DCB1ECC3582002BC164 /* TJMLocationService.m in Sources */,
+				99019DC31ECAD841002BC164 /* TJMPickUpViewController.m in Sources */,
 				99E81CC11EB217E700BB0875 /* TJMOverlayView.m in Sources */,
+				998377191ED96AE70007DD85 /* UIImage+Scale.m in Sources */,
+				992BCFD81ED564410053B4BE /* TJMSettingTableViewCell.m in Sources */,
+				992BCFDE1ED56C2F0053B4BE /* TJMPersonInfoViewController.m in Sources */,
 				99E81CCF1EB2184600BB0875 /* LocationShareModel.m in Sources */,
 				99E81CB81EB217E600BB0875 /* TJMLoginViewController.m in Sources */,
+				991673131ED665C500A50A3F /* TJMChangePasswordViewController.m in Sources */,
 				99E81CB91EB217E600BB0875 /* TJMTokenModel.m in Sources */,
-				99E81CF31EB32A5A00BB0875 /* UIFont+runtime.m in Sources */,
 				99F1C0CB1EA0CEE000415F0C /* TJMSandBoxManager.m in Sources */,
+				992BCFC11ED536540053B4BE /* TJMEmergenchyViewController.m in Sources */,
 				99F1C0CF1EA0CEE000415F0C /* NSString+RegEx.m in Sources */,
-				99E81CAB1EB217E600BB0875 /* TJMEntryCheckViewController.m in Sources */,
+				99F8369B1ED3BDD300CB3714 /* TJMMyBankCardViewController.m in Sources */,
+				99F836A01ED3C3F800CB3714 /* TJMMyWalletViewController.m in Sources */,
 				99F1C0FC1EA0CEFA00415F0C /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1414,7 +2293,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TJMJinDouYun/TJMJinDouYun.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = EA69B4VRFP;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/TJMJinDouYun/Tool/第三方库/BaiduMap_IOSSDK_v3.3.2_All",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/TJMJinDouYun/Tool/Config/TJMPrefixHeader.pch";
 				INFOPLIST_FILE = TJMJinDouYun/Info.plist;
@@ -1426,6 +2312,7 @@
 					"$(PROJECT_DIR)/TJMJinDouYun/Tool/BaiduNaviSDK/thirdlibs",
 					"$(PROJECT_DIR)/TJMJinDouYun/Tool/第三方库/BaiduNaviSDK",
 					"$(PROJECT_DIR)/TJMJinDouYun/Tool/第三方库/BaiduNaviSDK/thirdlibs",
+					"$(PROJECT_DIR)/TJMJinDouYun/Tool/第三方库/BaiduMap_IOSSDK_v3.3.2_All/thirdlibs",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhongzhichuangying.TJMJinDouYun;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1439,7 +2326,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TJMJinDouYun/TJMJinDouYun.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = EA69B4VRFP;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/TJMJinDouYun/Tool/第三方库/BaiduMap_IOSSDK_v3.3.2_All",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/TJMJinDouYun/Tool/Config/TJMPrefixHeader.pch";
 				INFOPLIST_FILE = TJMJinDouYun/Info.plist;
@@ -1451,6 +2345,7 @@
 					"$(PROJECT_DIR)/TJMJinDouYun/Tool/BaiduNaviSDK/thirdlibs",
 					"$(PROJECT_DIR)/TJMJinDouYun/Tool/第三方库/BaiduNaviSDK",
 					"$(PROJECT_DIR)/TJMJinDouYun/Tool/第三方库/BaiduNaviSDK/thirdlibs",
+					"$(PROJECT_DIR)/TJMJinDouYun/Tool/第三方库/BaiduMap_IOSSDK_v3.3.2_All/thirdlibs",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhongzhichuangying.TJMJinDouYun;
 				PRODUCT_NAME = "$(TARGET_NAME)";

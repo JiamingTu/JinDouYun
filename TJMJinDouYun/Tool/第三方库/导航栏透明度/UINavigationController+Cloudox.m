@@ -14,19 +14,14 @@
 
 //// 设置导航栏背景透明度
 - (void)setNeedsNavigationBackground:(CGFloat)alpha {
-    if (TJMCurrentDevice >= 10) {
-        return;
-    }
+//    if (TJMCurrentDevice >= 10) {
+//        return;
+//    }
     // 导航栏背景透明度设置
     UIView *barBackgroundView = [[self.navigationBar subviews] objectAtIndex:0];// _UIBarBackground
-    UIView *backdropView = [[barBackgroundView subviews] objectAtIndex:0];// UIImageView
-    if (self.navigationBar.isTranslucent) {
-        if (backdropView != nil) {
-            barBackgroundView.alpha = alpha;
-        }
-    } else {
-        barBackgroundView.alpha = alpha;
-    }
+//    UIView *backdropView = [[barBackgroundView subviews] objectAtIndex:0];//
+    barBackgroundView.alpha = alpha;
+
     
     // 对导航栏下面那条线做处理
 //    self.navigationBar.clipsToBounds = alpha == 0.0;
@@ -89,7 +84,7 @@
             CGFloat fromAlpha = [[coor viewControllerForKey:UITransitionContextFromViewControllerKey].navBarBgAlpha floatValue];
             CGFloat toAlpha = [[coor viewControllerForKey:UITransitionContextToViewControllerKey].navBarBgAlpha floatValue];
             CGFloat nowAlpha = fromAlpha + (toAlpha - fromAlpha) * percentComplete;
-            NSLog(@"from:%f, to:%f, now:%f",fromAlpha, toAlpha, nowAlpha);
+//            TJMLog(@"from:%f, to:%f, now:%f",fromAlpha, toAlpha, nowAlpha);
             [self setNeedsNavigationBackground:nowAlpha];
         }
     }
@@ -113,7 +108,7 @@
         NSTimeInterval cancelDuration = [context transitionDuration] * (double)[context percentComplete];
         [UIView animateWithDuration:cancelDuration animations:^{
             CGFloat nowAlpha = [[context viewControllerForKey:UITransitionContextFromViewControllerKey].navBarBgAlpha floatValue];
-            NSLog(@"自动取消返回到alpha：%f", nowAlpha);
+            TJMLog(@"自动取消返回到alpha：%f", nowAlpha);
             [self setNeedsNavigationBackground:nowAlpha];
         }];
     } else {// 自动完成了返回手势
@@ -121,7 +116,7 @@
         [UIView animateWithDuration:finishDuration animations:^{
             CGFloat nowAlpha = [[context viewControllerForKey:
                                  UITransitionContextToViewControllerKey].navBarBgAlpha floatValue];
-            NSLog(@"自动完成返回到alpha：%f", nowAlpha);
+            TJMLog(@"自动完成返回到alpha：%f", nowAlpha);
             [self setNeedsNavigationBackground:nowAlpha];
         }];
     }

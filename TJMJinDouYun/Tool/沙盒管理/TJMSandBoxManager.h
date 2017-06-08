@@ -15,4 +15,17 @@
 + (TJMTokenModel *)getTokenModel;
 
 + (BOOL)deleteTokenModel;
+//增删改查info.plist
++ (__kindof id)getModelFromInfoPlistWithKey:(NSString *)key;
++ (void)saveInInfoPlistWithModel:(id)model key:(NSString *)key;
++ (void)deleteModelFromInfoPlistWithKey:(NSString *)key;
+
+//储存消息列表
++ (BOOL)saveMessagesToPath:(NSArray *)data;
+
++ (NSArray *)getMessages;
+
++ (BOOL)deleteMessages;
+
+
 @end

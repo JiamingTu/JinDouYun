@@ -10,4 +10,6 @@
 
 @interface TJMUploadViewController : UIViewController
 
+@property (nonatomic,strong) TJMFreeManInfo *freeManInfo;
+
 @end

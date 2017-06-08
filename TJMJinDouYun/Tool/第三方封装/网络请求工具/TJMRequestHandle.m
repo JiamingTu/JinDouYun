@@ -7,7 +7,7 @@
 //
 
 #import "TJMRequestHandle.h"
-#import "NSString+MD5.h"
+
 #import <CoreLocation/CoreLocation.h>
 
 #define TJMRightCode [responseObject[@"code"] isEqualToNumber:@(200)]
@@ -16,7 +16,7 @@
 
 @property (nonatomic,strong) AFHTTPSessionManager *httpRequestManager;
 @property (nonatomic,strong) AFHTTPSessionManager *jsonRequestManager;
-@property (nonatomic,strong) TJMTokenModel *tokenModel;
+
 @end
 
 @implementation TJMRequestHandle
@@ -26,9 +26,15 @@
 - (AFHTTPSessionManager *)httpRequestManager {
     if (!_httpRequestManager) {
         self.httpRequestManager = [AFHTTPSessionManager manager];
-        _httpRequestManager.responseSerializer = [AFJSONResponseSerializer serializer];
+        AFJSONResponseSerializer *jsonResponseSerializer = [AFJSONResponseSerializer serializer];
+//        jsonResponseSerializer.removesKeysWithNullValues = YES;
+        _httpRequestManager.responseSerializer = jsonResponseSerializer;
         _httpRequestManager.requestSerializer = [AFHTTPRequestSerializer serializer];
-        _httpRequestManager.requestSerializer.timeoutInterval = 10;
+        
+        // 设置超时时间
+        [_httpRequestManager.requestSerializer willChangeValueForKey:@"timeoutInterval"];
+        _httpRequestManager.requestSerializer.timeoutInterval = 10.0f;
+        [_httpRequestManager.requestSerializer didChangeValueForKey:@"timeoutInterval"];
     }
     return _httpRequestManager;
 }
@@ -36,9 +42,15 @@
 - (AFHTTPSessionManager *)jsonRequestManager {
     if (!_jsonRequestManager) {
         self.jsonRequestManager = [AFHTTPSessionManager manager];
-        _jsonRequestManager.responseSerializer = [AFJSONResponseSerializer serializer];
+        AFJSONResponseSerializer *jsonResponseSerializer = [AFJSONResponseSerializer serializer];
+//        jsonResponseSerializer.removesKeysWithNullValues = YES;
+        _jsonRequestManager.responseSerializer = jsonResponseSerializer;
+
         _jsonRequestManager.requestSerializer = [AFJSONRequestSerializer serializer];
-        _jsonRequestManager.requestSerializer.timeoutInterval = 10;
+        // 设置超时时间
+        [_jsonRequestManager.requestSerializer willChangeValueForKey:@"timeoutInterval"];
+        _jsonRequestManager.requestSerializer.timeoutInterval = 10.0f;
+        [_jsonRequestManager.requestSerializer didChangeValueForKey:@"timeoutInterval"];
     }
     return _jsonRequestManager;
 }
@@ -62,7 +74,7 @@ SingletonM(RequestHandle)
     //没有sign的请求参数
     NSDictionary *noSignParameters = @{@"mobile":number};
     //得到最终的请求参数
-    NSDictionary *parameters = [self signWithDictionary:noSignParameters];
+    NSDictionary *parameters = [self signWithDictionary:noSignParameters needTimestamp:YES];
     //清除auth请求头
     [self.httpRequestManager.requestSerializer clearAuthorizationHeader];
     [self.httpRequestManager GET:URLString parameters:parameters progress:^(NSProgress * _Nonnull downloadProgress) {
@@ -89,7 +101,7 @@ SingletonM(RequestHandle)
     //拼接得到请求路径
     NSString *URLStirng = [TJMApiBasicAddress stringByAppendingString:type];
     //得到完整的请求参数
-    NSDictionary *parameters = [self signWithDictionary:form];
+    NSDictionary *parameters = [self signWithDictionary:form needTimestamp:YES];
     //清除auth请求头
     [self.httpRequestManager.requestSerializer clearAuthorizationHeader];
     //网络请求
@@ -103,7 +115,7 @@ SingletonM(RequestHandle)
         } else {
             //非网络问题
             failure(responseObject[@"msg"]);
-            TJMLog(@"%@",responseObject[@"msg"]);
+            TJMLog(@"%@---%@",responseObject[@"msg"],responseObject);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         //网络问题
@@ -114,11 +126,13 @@ SingletonM(RequestHandle)
     
 }
 #pragma  mark sign 处理
-- (NSDictionary *)signWithDictionary:(NSDictionary *)dictionary {
+- (NSDictionary *)signWithDictionary:(NSDictionary *)dictionary needTimestamp:(BOOL)isNeed {
     //变为可变数组
     NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:dictionary];
     //加入时间戳
-    [parameters setObject:TJMTimestamp forKey:@"timestamp"];
+    if (isNeed) {
+        [parameters setObject:TJMTimestamp forKey:@"timestamp"];
+    }
     //升序得到 健值对应的两个数组
     NSArray *allKeyArray = [parameters allKeys];
     NSArray *afterSortKeyArray = [allKeyArray sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
@@ -153,35 +167,44 @@ SingletonM(RequestHandle)
 - (void)putFreeManWorkingStatusWithType:(NSString *)type
                                 success:(SuccessBlock)success
                                    fail:(FailBlock)failure {
-    NSString *carrierId = self.tokenModel.userId.description;
-    NSString *path = [type isEqualToString:@"Start"] ? TJMStartWork(carrierId) : TJMStopWork(carrierId);
-    NSString *URLString = [TJMApiBasicAddress stringByAppendingString:path];
-    [self.httpRequestManager.requestSerializer clearAuthorizationHeader];
-    [_httpRequestManager PUT:URLString parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        if (TJMRightCode) {
-            TJMLog(@"%@",TJMResponseMessage);
-        } else {
-            
-        }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    if (self.tokenModel) {
+        NSString *carrierId = self.tokenModel.userId.description;
+        NSString *path = [type isEqualToString:@"Start"] ? TJMStartWork(carrierId) : TJMStopWork(carrierId);
+        NSString *URLString = [TJMApiBasicAddress stringByAppendingString:path];
         
-    }];
+        //设置请求头
+        [self.httpRequestManager.requestSerializer setValue:_tokenModel.token forHTTPHeaderField:@"Authorization"];
+        [_httpRequestManager PUT:URLString parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            if (TJMRightCode) {
+                TJMLog(@"%@",TJMResponseMessage);
+                success(responseObject,TJMResponseMessage);
+            } else {
+                TJMLog(@"%@",TJMResponseMessage);
+                failure(TJMResponseMessage);
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            TJMLog(@"%@",error.localizedDescription);
+            failure(error.localizedDescription);
+        }];
+    }
 }
 - (void)getFreeManWorkingTimeWithType:(NSString *)type
                               success:(SuccessBlock)success
                                  fail:(FailBlock)failure {
     NSString *carrierId = self.tokenModel.userId.description;
-    NSString *path = [type isEqualToString:@"CurrentTime"] ? TJMCurrentWorkTime(carrierId) : TJMTotalWorkTime(carrierId);
+    NSString *path = [NSString stringWithFormat:@"/carrier/users/%@/%@",type,carrierId];
     NSString *URLString = [TJMApiBasicAddress stringByAppendingString:path];
-    [self.httpRequestManager.requestSerializer clearAuthorizationHeader];
+    //设置请求头
+    [self.httpRequestManager.requestSerializer setValue:_tokenModel.token forHTTPHeaderField:@"Authorization"];
     [_httpRequestManager GET:URLString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (TJMRightCode) {
             TJMLog(@"%@",TJMResponseMessage);
+            success(responseObject,TJMResponseMessage);
         } else {
-            
+            failure(TJMResponseMessage);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
+        failure(error.localizedDescription);
     }];
 }
 
@@ -197,21 +220,38 @@ SingletonM(RequestHandle)
         //设置请求头
         [self.jsonRequestManager.requestSerializer setValue:_tokenModel.token forHTTPHeaderField:@"Authorization"];
         [self.jsonRequestManager GET:URLString parameters:form progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            TJMLog(@"%@",responseObject);
-            //省市
-            TJMProvinceData *provinceData = [TJMProvinceData mj_objectWithKeyValues:responseObject];
-            TJMProvince *province = [provinceData.data firstObject];
-            TJMCity *city = province.cities[0];
-            TJMArea *area = city.areas[0];
-            TJMLog(@"%@--%@--%@",province.provinceName,city.cityName,area.areaId);
-            
-            //交通工具
-            TJMVehicleData *vehicleData = [TJMVehicleData mj_objectWithKeyValues:responseObject];
-            for (TJMVehicle *vehicle in vehicleData.data) {
-                TJMLog(@"%@",vehicle.toolName);
+            if (TJMRightCode) {
+                //若果code == 200
+                if ([type isEqualToString:TJMFreeManGetCity]) {
+                    //省市
+                    TJMProvinceData *provinceData = [TJMProvinceData mj_objectWithKeyValues:responseObject];
+                    TJMProvince *province = [provinceData.data firstObject];
+                    TJMCity *city = province.cities[0];
+                    TJMArea *area = city.areas[0];
+                    TJMLog(@"%@--%@--%@",province.provinceName,city.cityName,area.areaId);
+                    success(provinceData,TJMResponseMessage);
+                } else if ([type isEqualToString:TJMFreeManGetVehicle]) {
+                    //交通工具
+                    TJMVehicleData *vehicleData = [TJMVehicleData mj_objectWithKeyValues:responseObject];
+                    for (TJMVehicle *vehicle in vehicleData.data) {
+                        TJMLog(@"%@",vehicle.toolName);
+                    }
+                    success(vehicleData,TJMResponseMessage);
+                } else {
+                    TJMFreeManInfo *freeManInfo = [TJMFreeManInfo mj_objectWithKeyValues:responseObject[@"data"]];
+                    //存入userdefault
+                    [TJMSandBoxManager saveInInfoPlistWithModel:freeManInfo key:kTJMFreeManInfo];
+                    success(freeManInfo,TJMResponseMessage);
+                }
+            }else {
+                failure(TJMResponseMessage);
+                [TJMSandBoxManager deleteTokenModel];
             }
+
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             TJMLog(@"请求失败，%@",error);
+            failure(error.localizedDescription);
+            [TJMSandBoxManager deleteTokenModel];
         }];
     } else {
         //token不存在 重新登录
@@ -219,7 +259,7 @@ SingletonM(RequestHandle)
     }
 }
 #pragma mark 上传自由人资料信息
-- (void)uploadFreeManInfoWithForm:(NSDictionary *)form photos:(NSDictionary *)photos success:(SuccessBlock)success fail:(FailBlock)FailBlock {
+- (void)uploadFreeManInfoWithForm:(NSDictionary *)form photos:(NSDictionary *)photos progress:(ProgressBlock)progress success:(SuccessBlock)success fail:(FailBlock)failure {
     if (self.tokenModel) {
         [self.jsonRequestManager.requestSerializer setValue:_tokenModel.token forHTTPHeaderField:@"Authorization"];
         
@@ -230,18 +270,27 @@ SingletonM(RequestHandle)
             //拼接图片
             [photos.allValues enumerateObjectsUsingBlock:^(UIImage * _Nonnull image, NSUInteger idx, BOOL * _Nonnull stop) {
                 
-                NSData *imageData = UIImagePNGRepresentation(image);
-                
+                NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
                 NSString *imageName = photos.allKeys[idx];
-                [formData appendPartWithFileData:imageData name:imageName fileName:[NSString stringWithFormat:@"%@.png",imageName] mimeType:@"image/png"];
+                [formData appendPartWithFileData:imageData name:imageName fileName:[NSString stringWithFormat:@"%@.jpeg",imageName] mimeType:@"image/jpeg"];
             }];
             
         } progress:^(NSProgress * _Nonnull uploadProgress) {
-            
+            progress(uploadProgress);
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             TJMLog(@"%@",responseObject);
+            if (TJMRightCode) {
+                success(responseObject,TJMResponseMessage);
+            } else {
+                if ([TJMResponseMessage isEqual:[NSNull null]]) {
+                    failure(@"未知错误");
+                } else {
+                    failure(TJMResponseMessage);
+                }
+            }
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             TJMLog(@"%@",error);
+            failure(error.localizedDescription);
         }];
     } else {
         //token不存在 重新登录
@@ -272,8 +321,8 @@ SingletonM(RequestHandle)
         if (TJMRightCode) {
             TJMLog(@"code正确，%@",TJMResponseMessage);
             //处理
-            TJMLocationData *data = [TJMLocationData mj_objectWithKeyValues:responseObject];
-            success(data,responseObject[@"msg"]);
+
+            success(responseObject,responseObject[@"msg"]);
         }else {
             NSLog(@"code错误，%@",TJMResponseMessage);
             failure(TJMResponseMessage);
@@ -284,9 +333,9 @@ SingletonM(RequestHandle)
         failure(error.localizedDescription);
     }];
 }
-
-#pragma  mark - 自由人获取题库
-- (void)freeManRandomGenerationTestQuestion {
+#pragma  mark - 入职考核
+#pragma  mark 自由人获取库
+- (void)freeManRandomGenerationTestQuestionSuccess:(SuccessBlock)success fial:(FailBlock)failure {
     NSString *URLString = [TJMApiBasicAddress stringByAppendingString:TJMRandomGenerationTestQuestion];
     if (self.tokenModel) {
         [self.httpRequestManager.requestSerializer setValue:_tokenModel.token forHTTPHeaderField:@"Authorization"];
@@ -296,18 +345,453 @@ SingletonM(RequestHandle)
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             if (TJMRightCode) {
                 //code码正确
-                TJMLog(@"%@",responseObject);
                 TJMTestQuestionData *tqd = [TJMTestQuestionData mj_objectWithKeyValues:responseObject[@"data"]];
-                TJMQuestion *question = tqd.question[0];
-                TJMLog(@"%@----%@",question,tqd.config.fullScore);
+                success(tqd,TJMResponseMessage);
+            } else {
+                failure(TJMResponseMessage);
             }
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            TJMLog(@"%@",error.localizedDescription);
+            failure(error.localizedRecoverySuggestion);
+        }];
+    }
+}
+#pragma  mark 考试通过
+- (void)passExamWithChapter:(NSString *)chapter success:(SuccessBlock)success fail:(FailBlock)failure {
+    if (self.tokenModel) {
+        NSString *path = [TJMApiBasicAddress stringByAppendingString:TJMPassExam(chapter)];
+        [self.httpRequestManager.requestSerializer setValue:_tokenModel.token forHTTPHeaderField:@"Authorization"];
+        [self.httpRequestManager PUT:path parameters:@{@"carrierId":_tokenModel.userId} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            if (TJMRightCode) {
+                success(responseObject,TJMResponseMessage);
+            } else {
+                failure(TJMResponseMessage);
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            failure(error.localizedDescription);
         }];
     }
 }
 
+- (void)getLearnResourceWithChapter:(NSString *)chapter success:(SuccessBlock)success fail:(FailBlock)failure {
+    if (self.tokenModel) {
+        NSString *path = [TJMApiBasicAddress stringByAppendingString:TJMGetLearnResource(chapter)];
+        [self.httpRequestManager.requestSerializer setValue:_tokenModel.token forHTTPHeaderField:@"Authorization"];
+        [self.httpRequestManager GET:path parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            if (TJMRightCode) {
+                TJMStudyResource *studyResource = [TJMStudyResource mj_objectWithKeyValues:responseObject[@"data"]];
+                success(studyResource,TJMResponseMessage);
+            } else {
+                failure(TJMResponseMessage);
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            failure(error.localizedDescription);
+        }];
+        
+        
+        
+        
+    }
+}
 
+
+
+#pragma  mark -  获取订单
+#pragma  mark 查询可抢单列表
+#pragma  mark 根据订单状态查询自由人订单
+- (void)getOrderListWithType:(NSString *)type page:(NSInteger)page size:(NSInteger)size sort:(NSString *)sort dir:(NSString *)dir status:(NSInteger)status success:(SuccessBlock)success fial:(FailBlock)failure {
+    if (self.tokenModel) {
+        NSString *path = [TJMApiBasicAddress stringByAppendingString:type];
+        NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+        if (page) [parameters setObject:@(page) forKey:@"page"];
+        if (size) [parameters setObject:@(size) forKey:@"size"];
+        if (sort) [parameters setObject:sort forKey:@"sort"];
+        if (dir) [parameters setObject:dir forKey:@"dir"];
+        //如果type 为 TJMStatusOrder 需要增加参数 carrierId、status
+        if ([type isEqualToString:TJMStatusOrder]) {
+            [parameters setObject:self.tokenModel.userId forKey:@"carrierId"];
+            [parameters setObject:@(status) forKey:@"status"];
+        } else if ([type isEqualToString:TJMFreeManAllOrder]) {
+            [parameters setObject:self.tokenModel.userId forKey:@"carrierId"];
+        }
+        [self.httpRequestManager.requestSerializer setValue:_tokenModel.token forHTTPHeaderField:@"Authorization"];
+        [self.httpRequestManager GET:path parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            TJMLog(@"获取订单列表：%@",TJMResponseMessage);
+            if (TJMRightCode) {
+                if ([type isEqualToString:TJMFreeManAllOrder]) {
+                    TJMMyOrderData *myOrderData = [TJMMyOrderData mj_objectWithKeyValues:responseObject];
+                    success(myOrderData,TJMResponseMessage);
+                } else {
+                    TJMOrderData *orderData = [TJMOrderData mj_objectWithKeyValues:responseObject[@"data"]];
+                    success(orderData,TJMResponseMessage);
+                }
+            } else {
+                failure(TJMResponseMessage);
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            failure(error.localizedDescription);
+            TJMLog(@"获取订单列表：%@",error.localizedDescription);
+        }];
+    }
+}
+
+#pragma  mark 抢单
+- (void)robOrderWithOrderId:(NSNumber *)orderId success:(SuccessBlock)success fail:(FailBlock)failure {
+    if (self.tokenModel) {
+        NSString *path = [TJMApiBasicAddress stringByAppendingString:TJMFreeManRobOrder];
+        NSDictionary *parameters = @{@"carrierId":self.tokenModel.userId,@"orderId":orderId};
+        [self.httpRequestManager.requestSerializer setValue:_tokenModel.token forHTTPHeaderField:@"Authorization"];
+        [self.httpRequestManager PUT:path parameters:parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            TJMLog(@"抢单：%@",responseObject);
+            if (TJMRightCode) {
+                success(responseObject,TJMResponseMessage);
+            } else {
+                failure(TJMResponseMessage);
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            failure(error.localizedDescription);
+        }];
+    }
+}
+#pragma  mark 确认取货
+- (void)upLoadPickedOrderImage:(NSArray<UIImage *> *)images orderNo:(NSString *)number pregress:(ProgressBlock)progress success:(SuccessBlock)success fail:(FailBlock)failure {
+    if (self.tokenModel) {
+        [self.jsonRequestManager.requestSerializer setValue:_tokenModel.token forHTTPHeaderField:@"Authorization"];
+        NSString *path = [TJMApiBasicAddress stringByAppendingString:TJMSurePickUp];
+        NSDictionary *parameters = @{@"orderNo":number,@"carrierId":_tokenModel.userId};
+        [self.jsonRequestManager POST:path parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+            //遍历上传图片
+            [images enumerateObjectsUsingBlock:^(UIImage * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                NSData *imageData = UIImageJPEGRepresentation(obj, 1);
+                [formData appendPartWithFileData:imageData name:@"photos" fileName:[NSString stringWithFormat:@"%zd.jpeg",idx] mimeType:@"image/jpeg"];
+            }];
+
+            
+        } progress:^(NSProgress * _Nonnull uploadProgress) {
+            TJMLog(@"progress：%f",uploadProgress.fractionCompleted);
+            progress(uploadProgress);
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            TJMLog(@"%@",TJMResponseMessage);
+            if (TJMRightCode) {
+                success(responseObject,TJMResponseMessage);
+            } else {
+                failure(TJMResponseMessage);
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            failure(error.localizedDescription);
+        }];
+    }
+}
+#pragma  mark 生成签收二维码（非到付）
+- (void)getQRCodeTextWithOrderId:(NSNumber *)orderId success:(SuccessBlock)success fail:(FailBlock)failure {
+    if (self.tokenModel) {
+        NSString *path = [TJMApiBasicAddress stringByAppendingString:TJMQRCodeSignIn];
+        NSDictionary *parameters = @{@"orderId":orderId};
+        [self.httpRequestManager.requestSerializer setValue:_tokenModel.token forHTTPHeaderField:@"Authorization"];
+        [self.httpRequestManager GET:path parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            TJMLog(@"%@",responseObject);
+            if (TJMRightCode) {
+                success(responseObject[@"data"],TJMResponseMessage);
+            } else {
+                failure(TJMResponseMessage);
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            failure(error.localizedDescription);
+        }];
+    }
+}
+#pragma  mark 生成语音、短信验证码 & 签收
+- (void)getSignInCodeOrSignWithType:(NSString *)type parameters:(NSDictionary *)parameters success:(SuccessBlock)success fail:(FailBlock)failure {
+    if (self.tokenModel) {
+        NSMutableDictionary *mutableParameters = [NSMutableDictionary dictionaryWithDictionary:parameters];
+        [mutableParameters setObject:_tokenModel.userId forKey:@"carrierId"];
+        //判断type 如果是签收 需要sign
+        if ([type isEqualToString:TJMSignInOrder]) {
+            //签收
+            parameters = [self signWithDictionary:mutableParameters needTimestamp:NO];
+        } else {
+            //获取验证码
+            parameters = mutableParameters;
+        }
+        NSString *path = [TJMApiBasicAddress stringByAppendingString:type];
+        [self.httpRequestManager.requestSerializer setValue:_tokenModel.token forHTTPHeaderField:@"Authorization"];
+        [self.httpRequestManager PUT:path parameters:parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            TJMLog(@"%@",responseObject);
+            if (TJMRightCode) {
+                success(responseObject,TJMResponseMessage);
+            } else {
+                failure(TJMResponseMessage);
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            failure(error.localizedDescription);
+        }];
+    }
+}
+#pragma  mark 生成到付二维码
+- (void)getPayOnDeliveryQRCodeTextWithOrderNo:(NSString *)orderNo success:(SuccessBlock)success fail:(FailBlock)failure {
+    if (self.tokenModel) {
+        NSString *path = [TJMApiBasicAddress stringByAppendingString:TJMPayOnDeliveryQRCode];
+        NSDictionary *parameters = @{@"orderNo":orderNo};
+        [self.httpRequestManager.requestSerializer setValue:_tokenModel.token forHTTPHeaderField:@"Authorization"];
+        [self.httpRequestManager PUT:path parameters:parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            TJMLog(@"到付二维码：%@",responseObject);
+            if (TJMRightCode) {
+                success(responseObject[@"data"],TJMResponseMessage);
+            } else {
+                failure(TJMResponseMessage);
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            failure(error.localizedDescription);
+        }];
+    }
+}
+#pragma  mark 查询单个订单
+- (void)getSingleOrderWithOrderNumber:(NSString *)orderNo success:(SuccessBlock)success fail:(FailBlock)failure {
+    if (self.tokenModel) {
+        NSString *query = TJMGetSingleOrder(orderNo);
+        NSString *path = [TJMApiBasicAddress stringByAppendingString:query];
+        [self.httpRequestManager.requestSerializer setValue:_tokenModel.token forHTTPHeaderField:@"Authorization"];
+        [self.httpRequestManager GET:path parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            TJMLog(@"%@",responseObject);
+            if (TJMRightCode) {
+                
+            } else if ([TJMResponseMessage isEqual:[NSNull null]]) {
+                failure(@"未知错误");
+            } else {
+                failure(TJMResponseMessage);
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            failure(error.localizedDescription);
+        }];
+    }
+}
+#pragma  mark - 我的钱包（银行卡、提现等）
+#pragma  mark 获取可用银行
+
+#pragma  mark 绑定银行卡
+- (void)bindingBankCardWithParameters:(NSMutableDictionary *)parameters success:(SuccessBlock)success fail:(FailBlock)failure {
+    if (self.tokenModel) {
+        NSString *path = [TJMApiBasicAddress stringByAppendingString:TJMBindingBankCard];
+        [parameters setObject:self.tokenModel.userId forKey:@"carrierId"];
+        [self.httpRequestManager.requestSerializer setValue:_tokenModel.token forHTTPHeaderField:@"Authorization"];
+        [self.httpRequestManager POST:path parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            
+            if (TJMRightCode) {
+                success(responseObject,TJMResponseMessage);
+            } else {
+                failure(TJMResponseMessage);
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            failure(error.localizedDescription);
+        }];
+    }
+}
+#pragma  mark 查询绑定银行卡列表
+- (void)getBankListOrBoundBankCarkListWithType:(NSString *)type success:(SuccessBlock)success fail:(FailBlock)failure {
+    if (self.tokenModel) {
+        NSString *path = [TJMApiBasicAddress stringByAppendingString:type];
+        [self.httpRequestManager.requestSerializer setValue:_tokenModel.token forHTTPHeaderField:@"Authorization"];
+        [self.httpRequestManager GET:path parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            if (TJMRightCode) {
+                if ([type isEqualToString:TJMGetBankList]) {
+                    //获取可用银行列表
+                    TJMBankData *data = [TJMBankData mj_objectWithKeyValues:responseObject];
+                    success(data,TJMResponseMessage);
+                } else {
+                    //获取已绑定银行卡信息
+                    TJMBankCardData *data = [TJMBankCardData mj_objectWithKeyValues:responseObject];
+                    success(data,TJMResponseMessage);
+                }
+            } else {
+                failure(TJMResponseMessage);
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            failure(error.localizedDescription);
+        }];
+        
+    }
+}
+
+#pragma  mark 删除银行卡 或 提现
+- (void)deleteBankCardOrTransferOutWithType:(NSString *)type parameters:(NSMutableDictionary *)parameters success:(SuccessBlock)success fail:(FailBlock)failure {
+    if (self.tokenModel) {
+        NSString *path = [TJMApiBasicAddress stringByAppendingString:type];
+        [parameters setObject:_tokenModel.userId forKey:@"carrierId"];
+        [self.httpRequestManager.requestSerializer setValue:_tokenModel.token forHTTPHeaderField:@"Authorization"];
+        [self.httpRequestManager PUT:path parameters:parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            if (TJMRightCode) {
+                success(responseObject,TJMResponseMessage);
+            } else {
+                failure(TJMResponseMessage);
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            failure(error.localizedDescription);
+        }];
+    }
+}
+#pragma  mark 交易记录
+- (void)getTradingRecordWithPage:(NSInteger)page size:(NSInteger)size sort:(NSString *)sort dir:(NSString *)dir success:(SuccessBlock)success fail:(FailBlock)failure {
+    if (self.tokenModel) {
+        NSString *path = [TJMApiBasicAddress stringByAppendingString:TJMGetTradingRecord(self.tokenModel.userId.description)];
+        NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+        if (page) [parameters setObject:@(page) forKey:@"page"];
+        if (size) [parameters setObject:@(size) forKey:@"size"];
+        if (sort) [parameters setObject:sort forKey:@"sort"];
+        if (dir) [parameters setObject:dir forKey:@"dir"];
+        [self.httpRequestManager.requestSerializer setValue:_tokenModel.token forHTTPHeaderField:@"Authorization"];
+        [self.httpRequestManager GET:path parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            if (TJMRightCode) {
+                TJMTradingRecordData *data = [TJMTradingRecordData mj_objectWithKeyValues:responseObject[@"data"]];
+                success(data,TJMResponseMessage);
+            } else if ([TJMResponseMessage isEqual:[NSNull null]]) {
+                failure(@"未知错误");
+            } else {
+                failure(TJMResponseMessage);
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            
+        }];
+    }
+}
+
+#pragma  mark - 个人信息 修改头像 问题反馈（设置里的功能）
+#pragma  mark 获取个人信息
+- (void)getPersonInfoSuccess:(SuccessBlock)success fail:(FailBlock)failure {
+    if (self.tokenModel) {
+        NSString *path = [TJMApiBasicAddress stringByAppendingString:TJMGetPersonInfo(self.tokenModel.userId.description)];
+        [self.httpRequestManager.requestSerializer setValue:_tokenModel.token forHTTPHeaderField:@"Authorization"];
+        [self.httpRequestManager GET:path parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            if (TJMRightCode) {
+                TJMPersonInfoModel *personInfoModel = [TJMPersonInfoModel mj_objectWithKeyValues:responseObject[@"data"]];
+                //存入 info
+                [TJMSandBoxManager saveInInfoPlistWithModel:personInfoModel key:kTJMPersonInfo];
+                success(personInfoModel,TJMResponseMessage);
+            } else if ([TJMResponseMessage isEqual:[NSNull null]]) {
+                failure(@"未知错误");
+            } else {
+                failure(TJMResponseMessage);
+            }
+
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            failure(error.localizedDescription);
+        }];
+    }
+}
+#pragma  mark 上传头像
+- (void)uploadHeaderPhotoWithPhoto:(UIImage *)photo progress:(ProgressBlock)progress success:(SuccessBlock)success fail:(FailBlock)failure {
+    if (self.tokenModel) {
+        NSString *path = [TJMApiBasicAddress stringByAppendingString:TJMUploadHeaderPhoto];
+        NSString *parametersString = [NSString stringWithFormat: @"carrierId=%@",self.tokenModel.userId];
+        path = [path stringByAppendingFormat:@"?%@",parametersString ];
+        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+        AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+        NSMutableURLRequest *request = [[AFJSONRequestSerializer serializer] multipartFormRequestWithMethod:@"PUT" URLString:path parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+            NSData *data = UIImageJPEGRepresentation(photo, 0.5);
+            [formData appendPartWithFileData:data name:@"photo" fileName:@"headerImage.jpeg" mimeType:@"image/jpeg"];
+        } error:nil];
+        
+
+        
+        [request setValue:_tokenModel.token forHTTPHeaderField:@"Authorization"];
+        NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithStreamedRequest:request progress:^(NSProgress * _Nonnull uploadProgress) {
+            progress(uploadProgress);
+        } completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+            TJMLog(@"%@",responseObject);
+            if (TJMRightCode) {
+                
+            } else {
+                
+            }
+        }];
+        [uploadTask resume];
+    }
+}
+
+#pragma mark 问题反馈
+- (void)feedBackQuestionWithContent:(NSString *)content phoneNum:(NSString *)phoneNum success:(SuccessBlock)success fail:(FailBlock)failure {
+    if (self.tokenModel) {
+        NSString *path = [TJMApiBasicAddress stringByAppendingString:TJMFeedback];
+        [self.jsonRequestManager.requestSerializer setValue:_tokenModel.token forHTTPHeaderField:@"Authorization"];
+        
+        NSDictionary *body = @{@"content":content,@"mobile":phoneNum,@"userId":_tokenModel.userId,@"type":@(0)};
+        [self.jsonRequestManager POST:path parameters:body progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            if (TJMRightCode) {
+                success(responseObject,TJMResponseMessage);
+            } else {
+                failure(TJMResponseMessage);
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            failure(error.localizedDescription);
+        }];
+    }
+}
+#pragma  mark 个人业绩 及 评价
+- (void)getFreeManPerformanceSuccess:(SuccessBlock)success fail:(FailBlock)failure {
+    if (self.tokenModel) {
+        NSString *path = [TJMApiBasicAddress stringByAppendingString:TJMFreeManPerformance(self.tokenModel.userId.description)];
+        [self.httpRequestManager.requestSerializer setValue:_tokenModel.token forHTTPHeaderField:@"Authorization"];
+        [self.httpRequestManager GET:path parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            if (TJMRightCode) {
+                TJMPerformanceModel *model = [TJMPerformanceModel mj_objectWithKeyValues:responseObject[@"data"]];
+                [TJMSandBoxManager saveInInfoPlistWithModel:model key:kTJMPerformanceInfo];
+                success(model,TJMResponseMessage);
+            } else if ([TJMResponseMessage isEqual:[NSNull null]]) {
+                failure(@"未知错误");
+            } else {
+                failure(TJMResponseMessage);
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            failure(error.localizedDescription);
+        }];
+    }
+}
+
+#pragma  mark - 获取消息列表
+- (void)getFreeManMessageListWithPage:(NSInteger)page size:(NSInteger)size sort:(NSString *)sort success:(SuccessBlock)success fail:(FailBlock)failure {
+    if (self.tokenModel) {
+        NSString *path = [TJMApiBasicAddress stringByAppendingString:TJMGetMessageList(self.tokenModel.userId.description)];
+        NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+        if (page) [parameters setObject:@(page) forKey:@"page"];
+        if (size) [parameters setObject:@(size) forKey:@"size"];
+        if (sort) [parameters setObject:sort forKey:@"sort"];
+        [self.httpRequestManager.requestSerializer setValue:_tokenModel.token forHTTPHeaderField:@"Authorization"];
+        [self.httpRequestManager GET:path parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            if (TJMRightCode) {
+                [TJMSandBoxManager deleteMessages];
+                TJMMessageData *data = [TJMMessageData mj_objectWithKeyValues:responseObject];
+                [TJMSandBoxManager saveMessagesToPath:data.data];
+                success(data,TJMResponseMessage);
+            } else if ([TJMResponseMessage isEqual:[NSNull null]]) {
+                failure(@"未知错误");
+            } else {
+                failure(TJMResponseMessage);
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            
+        }];
+    }
+}
+
+#pragma  mark - 热力图
+- (void)heatMapDataSuccessWithDay:(NSInteger)day cityName:(NSString *)cityName success:(SuccessBlock)success fail:(FailBlock)failure {
+    if (self.tokenModel) {
+        NSString *path = [TJMApiBasicAddress stringByAppendingString:TJMGetHeatMapData];
+        [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary *parameters = @{@"day":@(day),@"cityName":cityName};
+        [self.httpRequestManager.requestSerializer setValue:_tokenModel.token forHTTPHeaderField:@"Authorization"];
+        [self.httpRequestManager GET:path parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            if (TJMRightCode) {
+                TJMHeatMapData *data = [TJMHeatMapData mj_objectWithKeyValues:responseObject];
+                success(data,TJMResponseMessage);
+            } else if ([TJMResponseMessage isEqual:[NSNull null]]) {
+                failure(@"未知错误");
+            } else {
+                failure(TJMResponseMessage);
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            
+        }];
+    }
+}
 
 
 @end

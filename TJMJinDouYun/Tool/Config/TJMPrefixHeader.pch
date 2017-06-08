@@ -37,7 +37,8 @@
 #import <BaiduMapAPI_Utils/BMKUtilsComponent.h>//引入计算工具所有的头文件
 #import <BaiduMapAPI_Radar/BMKRadarComponent.h>//引入周边雷达功能所有的头文件
 #import <BaiduMapAPI_Map/BMKMapView.h>//只引入所需的单个头文件
-
+//鹰眼
+#import <BaiduTraceSDK/BaiduTraceSDK.h>
 //导航模块
 #import "BNCoreServices.h"
 //字体自适应
@@ -45,8 +46,23 @@
 //
 #import "UINavigationController+Cloudox.h"
 #import "UIViewController+Cloudox.h"
-
-
+//
+#import <YYKeyboardManager.h>
+//加密
+#import "NSString+MD5.h"
+//Alert
+#import "TDAlertView.h"
+//MJRefresh
+#import <MJRefresh.h>
+//MBPreogressHUD
+#import <MBProgressHUD.h>
+//
+#import <UIButton+AFNetworking.h>
+#import <UIImageView+AFNetworking.h>
+//
+#import <SwipeBack.h>
+//微信API
+#import <WXApi.h>
 
 #pragma  mark - appDelegate
 //appDelegate
@@ -61,7 +77,8 @@
 #import "TJMConfig.h"
 //导入Api
 #import "TJMApi.h"
-
+//导入Constant
+#import "Constant.h"
 
 #pragma  mark - 工具
 
@@ -74,17 +91,33 @@
 #import "UIViewController+Config.h"
 #import "UINavigationBar+BackgroundColor.h"
 #import "NSObject+Config.h"
+#import "UIImage+QRCode.h"
+#import "UIImage+Scale.h"
+#import "NSString+Format.h"
+#import "UITextField+InputRule.h"
 //第三方分装
 //请求
 #import "TJMRequestHandle.h"
 //提示框
 #import "TJMHUDHandle.h"
+//定位
+#import "TJMLocationService.h"
 #pragma  mark - model
 //导入Model
 #import "TJMTokenModel.h"
 #import "TJMProvinceData.h"
 #import "TJMVehicleData.h"
 #import "TJMTestQuestionData.h"
-#import "TJMLocationData.h"
-
+#import "TJMFreeManInfo.h"
+#import "TJMOrderData.h"
+#import "TJMBankCardData.h"
+#import "TJMBankData.h"
+#import "TJMPersonInfoModel.h"
+#import "TJMStudyResource.h"
+#import "TJMLocation.h"
+#import "TJMMyOrderData.h"
+#import "TJMPerformanceModel.h"
+#import "TJMMessageData.h"
+#import "TJMHeatMapData.h"
+#import "TJMTradingRecordData.h"
 #endif /* TJMPrefixHeader_pch */

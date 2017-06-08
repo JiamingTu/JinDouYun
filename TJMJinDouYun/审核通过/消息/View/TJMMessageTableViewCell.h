@@ -11,6 +11,6 @@
 @interface TJMMessageTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *messageLabel;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *dateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
 @end

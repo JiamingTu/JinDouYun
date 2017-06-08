@@ -1,0 +1,197 @@
+//
+//  TJMMyOrderDetailViewController.m
+//  TJMJinDouYun
+//
+//  Created by Jiaming Tu on 2017/5/8.
+//  Copyright © 2017年 zhongzhichuangying. All rights reserved.
+//
+
+#import "TJMMyOrderDetailViewController.h"
+#import "TJMMyOrderDetailTableViewCell.h"
+#import "TJMMyOrderDetailHeaderView.h"
+#import "TJMOrderDetailInfoModel.h"
+@interface TJMMyOrderDetailViewController ()<UITableViewDelegate,UITableViewDataSource,UIWebViewDelegate>
+
+@property (nonatomic,strong) TJMOrderDetailData *dataSource;
+
+@end
+
+@implementation TJMMyOrderDetailViewController
+#pragma  mark - lazy loading 
+- (TJMOrderDetailData *)dataSource {
+    if (!_dataSource) {
+        self.dataSource = [[TJMOrderDetailData alloc]initWithOrderModel:self.orderModel];
+    }
+    return _dataSource;
+}
+#pragma  mark - view life cycle
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    [self setTitle:@"订单详情" fontSize:17 colorHexValue:0x333333];
+    [self configViews];
+}
+
+#pragma  mark - 设置页面
+- (void)configViews {
+    [self.tableView registerClass:[TJMMyOrderDetailHeaderView class] forHeaderFooterViewReuseIdentifier:@"MyOrderDetailHeader"];
+    [self setRightNaviItemWithImageName:nil orTitle:@"申报异常" titleColorHexValue:0x333333 fontSize:15];
+    [self setBackNaviItem];
+//    [self.tableView setTableFooterView:[[UIView alloc]initWithFrame:CGRectZero]];
+    
+    if ([self.orderModel.orderStatus integerValue] == 2) {
+        [self.leftYellowButton setTitle:@"确认取货" forState:UIControlStateNormal];
+        [self.rightWhiteButton setTitle:@"地图导航" forState:UIControlStateNormal];
+        
+    } else if ([self.orderModel.orderStatus integerValue] == 3){
+        [self.leftYellowButton setTitle:@"确认送达" forState:UIControlStateNormal];
+        [self.rightWhiteButton setTitle:@"地图导航" forState:UIControlStateNormal];
+    }
+    
+}
+#pragma  mark - 按钮方法
+
+- (void)rightItemAction:(UIButton *)button {
+    //点击申报异常后执行的方法
+    TJMLog(@"申报异常");
+}
+#pragma  mark 确认取货 确认收货按钮
+- (IBAction)leftYellowAction:(UIButton *)sender {
+    NSString *identifier;
+    if (self.orderModel.orderStatus.integerValue == 2) {
+        //确认取货
+        identifier = @"DetailToPickUp";
+    } else if (self.orderModel.payType.integerValue == 4) {
+        //到付
+        identifier = @"DetailToDeliveryPay";
+    } else {
+        //签收
+        identifier = @"DetailToSignIn";
+    }
+    [self performSegueWithIdentifier:identifier sender:self.orderModel];
+}
+- (IBAction)naviAction:(UIButton *)sender {
+    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(0, 0);
+    if (self.orderModel.orderStatus.integerValue == 2) {
+        //我到取件处的导航
+        coordinate = CLLocationCoordinate2DMake(self.orderModel.consignerLat.floatValue, self.orderModel.consignerLng.floatValue);
+    } else if (self.orderModel.orderStatus.integerValue == 3) {
+        //我到收货处的导航
+        coordinate = CLLocationCoordinate2DMake(self.orderModel.receiverLat.floatValue, self.orderModel.receiverLng.floatValue);
+    }
+    [[TJMLocationService sharedLocationService] getFreeManLocationWith:TJMGetLocationTypeNaviService target:coordinate];
+}
+
+
+
+#pragma  mark - UITableViewDelegate,UITableViewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return self.dataSource.data.count;
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSArray *arr = self.dataSource.data[section];
+    return arr.count;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    TJMMyOrderDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyOrderDetailCell" forIndexPath:indexPath];
+    TJMOrderDetailInfoModel *model = self.dataSource.data[indexPath.section][indexPath.row];
+    
+    [cell setViewWithModel:model];
+    
+    return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    TJMMyOrderDetailTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    [cell setSelected:NO animated:YES];
+    TJMOrderDetailInfoModel *model = self.dataSource.data[indexPath.section][indexPath.row];
+    if (model.isTel) {
+        [TJMHUDHandle showRequestHUDAtView:self.view message:nil];
+        NSMutableString *str=[[NSMutableString alloc] initWithFormat:@"tel:%@",model.detail];
+        UIWebView *callWebview = [[UIWebView alloc] init];
+        callWebview.delegate = self;
+        [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
+        [self.view addSubview:callWebview];
+    }
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 50 * TJMHeightRatio;
+    if (indexPath.section == 2 && indexPath.row == 6) {
+        return  50.5 * TJMHeightRatio;
+    }
+    return self.tableView.rowHeight;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 37 * TJMHeightRatio;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    if (section == 2) {
+        return 30 * TJMHeightRatio;
+    }
+    return 0;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    return [[UIView alloc]initWithFrame:CGRectZero];
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    TJMMyOrderDetailHeaderView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"MyOrderDetailHeader"];
+    
+    switch (section) {
+        case 0:
+        {
+            header.label.text = @"寄件人信息";
+        }
+            break;
+        case 1:
+        {
+            header.label.text = @"收件人信息";
+        }
+            break;
+        case 2:
+        {
+            header.label.text = @"订单信息";
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    return header;
+}
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    CGFloat sectionHeaderHeight = 37 * TJMHeightRatio;
+    if (scrollView.contentOffset.y <= sectionHeaderHeight && scrollView.contentOffset.y >= -64) {
+        scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
+    } else if (scrollView.contentOffset.y >= sectionHeaderHeight) {
+        scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight + 64, 0, 0, 0);
+    }
+}
+
+#pragma  mark - UIWebViewDelegate
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    [TJMHUDHandle hiddenHUDForView:self.view];
+    return YES;
+}
+
+#pragma  mark - memory warning
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+    if (self.isViewLoaded && !self.view.window) {
+        self.view = nil;// 目的是再次进入时能够重新加载调用viewDidLoad函数。
+    }
+}
+
+
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"DetailToPickUp"] || [segue.identifier isEqualToString:@"DetailToDeliveryPay"] || [segue.identifier isEqualToString:@"DetailToSignIn"]) {
+        [segue.destinationViewController setValue:sender forKey:@"orderModel"];
+    }
+}
+@end

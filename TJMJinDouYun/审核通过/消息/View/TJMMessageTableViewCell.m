@@ -29,11 +29,11 @@
 #pragma  mark - 设置页面
 - (void)configViews {
     //约束
-    [self resetVerticalConstraints:self.titleLabelTopConstraint,self.titleLabelBottomConstraint, nil];
+    [self tjm_resetVerticalConstraints:self.titleLabelTopConstraint,self.titleLabelBottomConstraint, nil];
     //设置字体
-    [self adjustFont:15 forView:self.titleLabel, nil];
-    [self adjustFont:13 forView:self.messageLabel, nil];
-    [self adjustFont:12 forView:self.dateLabel, nil];
+    [self tjm_adjustFont:15 forView:self.titleLabel, nil];
+    [self tjm_adjustFont:13 forView:self.messageLabel, nil];
+    [self tjm_adjustFont:12 forView:self.dateLabel, nil];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -18,10 +18,10 @@
 
 #pragma  mark - 约束 字体等适配
 - (void)configViews {
-    [self resetHorizontalConstraints:self.starLeftConstraint,self.imageLeftConstraint,self.imageRightConstraint,self.imageBottomConstraint, nil];
-    [self resetVerticalConstraints:self.self.idInfoTopConstraint,self.idInfoBottomConstraint,self.imageTopConstraint, nil];
-    [self adjustFont:15 forView:self.titleLabel,self.starLabel, nil];
-    [self adjustFont:11 forView:self.explainLabel, nil];
+    [self tjm_resetHorizontalConstraints:self.starLeftConstraint,self.imageLeftConstraint,self.imageRightConstraint,self.imageBottomConstraint, nil];
+    [self tjm_resetVerticalConstraints:self.self.idInfoTopConstraint,self.idInfoBottomConstraint,self.imageTopConstraint, nil];
+    [self tjm_adjustFont:15 forView:self.titleLabel,self.starLabel, nil];
+    [self tjm_adjustFont:11 forView:self.explainLabel, nil];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -7,51 +7,9 @@
 //
 
 #import "AppDelegate+SDKSevice.h"
-
 @implementation AppDelegate (SDKSevice)
 
-#pragma  mark - 配置百度地图
-#pragma  mark 打开引擎
-- (void)startBaiduMapEngine {
-    //在您的AppDelegate.m文件中添加对BMKMapManager的初始化，并填入您申请的授权Key
-    // 要使用百度地图，请先启动BaiduMapManager
-    _mapManager = [[BMKMapManager alloc]init];
-    // 如果要关注网络及授权验证事件，请设定     generalDelegate参数
-    BOOL ret = [_mapManager start:TJMBaiduMapAK  generalDelegate:self];
-    if (!ret) {
-        TJMLog(@"manager start failed!");
-    }
-}
-#pragma  mark 关闭引擎
-- (void)stopBaiduMapEngine {
-    BOOL ret = [_mapManager stop];
-    if (!ret) {
-        TJMLog(@"manager stop failed!");
-    }
-}
-#pragma mark BMKGeneralDelegate
-/**
- *返回网络错误
- *@param iError 错误号
- */
-- (void)onGetNetworkState:(int)iError {
-    if (iError == 0) {
-        TJMLog(@"网络正常");
-    }else {
-        TJMLog(@"网络出错,%@",@(iError));
-    }
-}
-/**
- *返回授权验证错误
- *@param iError 错误号 : 为0时验证通过，具体参考BMKPermissionCheckResultCode
- */
-- (void)onGetPermissionState:(int)iError {
-    if (iError == 0) {
-        TJMLog(@"验证成功");
-    }else {
-        TJMLog(@"验证失败,%d",iError);
-    }
-}
+
 
 #pragma  mark - 配置百度地图导航
 #pragma  mari 初始化
@@ -60,23 +18,17 @@
     //初始化服务，需要在AppDelegate的 application:didFinishLaunchingWithOptions:
     //中调用
     [BNCoreServices_Instance initServices:TJMBaiduMapAK];
-    // 启动服务,异步方法
+    // 启动服务,同步方法
     [BNCoreServices_Instance startServicesAsyn:^{
-        
         result(YES);
-#warning  异步开启成功后需要回调 然后开始导航
     } fail:^{
         result(NO);
     }];
-     //启动服务,同步方法,会导致阻塞
-//    [BNCoreServices_Instance startServices];
 }
 #pragma  mark 终止服务
 - (void)stopBaiduMapNaviServices {
     [BNCoreServices_Instance stopServices];
 }
-
-
 
 #pragma  mark - 极光推送
 #pragma  mark 注册
@@ -102,7 +54,7 @@
 #endif
     }
     [JPUSHService registrationIDCompletionHandler:^(int resCode, NSString *registrationID) {
-        TJMLog(@"+++++++++rescode: %d, \nregistrationID: %@, ", resCode, registrationID);
+        //TJMLog(@"+++++++++rescode: %d, \nregistrationID: %@, ", resCode, registrationID);
         if ([TJMSandBoxManager getTokenModel]) {
             [self setAlias];
         }
@@ -131,48 +83,70 @@
     [JPUSHService setupWithOption:launchOptions appKey:TJMJPushAppKey
                           channel:JPushChannel
                  apsForProduction:JPushIsProduction];
-    
-    
+    NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
+    [defaultCenter addObserver:self selector:@selector(networkDidReceiveMessage:) name:kJPFNetworkDidReceiveMessageNotification object:nil];
 }
 
-#pragma mark JPUSHRegisterDelegate 和 旧版本回调
-//以下代理方法只有在点击推送消息后才会调用
+
+#pragma  mark 自定义消息回调
+- (void)networkDidReceiveMessage:(NSNotification *)notification {
+    NSDictionary * userInfo = [notification userInfo];
+    NSString *content = [userInfo valueForKey:@"content"];
+    NSDictionary *extras = [userInfo valueForKey:@"extras"];
+    NSString *customizeField1 = [extras valueForKey:@"customizeField1"]; //服务端传递的Extras附加字段，key是自己定义的
+
+}
+
+
+#pragma mark JPUSH 回调
+//iOS 7 Remote Notification
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:  (NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    
+    NSLog(@"this is iOS7 Remote Notification");
+    //前台通知需要弹框处理
+    // iOS 10 以下 Required
+    [JPUSHService handleRemoteNotification:userInfo];
+    completionHandler(UIBackgroundFetchResultNewData);
+    TJMLog(@"%@",userInfo);
+}
+
+#pragma mark- JPUSHRegisterDelegate // 2.1.9版新增JPUSHRegisterDelegate,需实现以下两个方法
+
 // iOS 10 Support
-- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(NSInteger))completionHandler {
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center  willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(NSInteger))completionHandler {
     // Required
     NSDictionary * userInfo = notification.request.content.userInfo;
     if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
-        TJMLog(@"%@",userInfo);
         [JPUSHService handleRemoteNotification:userInfo];
+        TJMLog(@"%@",userInfo);
     }
-    completionHandler(UNNotificationPresentationOptionAlert); // 需要执行这个方法，选择是否提醒用户，有Badge、Sound、Alert三种类型可以选择设置
+    else {
+        // 本地通知
+    }
+    completionHandler(UNNotificationPresentationOptionBadge|UNNotificationPresentationOptionSound|UNNotificationPresentationOptionAlert); // 需要执行这个方法，选择是否提醒用户，有Badge、Sound、Alert三种类型可以设置
 }
 
-// iOS 10 Support
-- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler {
+// iOS 10 Support 收到通知 点击后
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler: (void (^)())completionHandler {
     // Required
     NSDictionary * userInfo = response.notification.request.content.userInfo;
     if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         [JPUSHService handleRemoteNotification:userInfo];
         TJMLog(@"%@",userInfo);
     }
+    else {
+        // 本地通知
+    }
     completionHandler();  // 系统要求执行这个方法
 }
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
-    
-    // Required, iOS 7 Support
-    [JPUSHService handleRemoteNotification:userInfo];
-    TJMLog(@"%@",userInfo);
-    completionHandler(UIBackgroundFetchResultNewData);
-}
 
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    
-    // Required,For systems with less than or equal to iOS6
-    [JPUSHService handleRemoteNotification:userInfo];
-    TJMLog(@"%@",userInfo);
+#pragma  mark - 百度鹰眼
+- (BOOL)initTraceService {
+    //百度鹰眼
+    NSString *mCode = [[NSBundle mainBundle] bundleIdentifier];
+    BTKServiceOption *sop = [[BTKServiceOption alloc] initWithAK:TJMBaiduMapAK mcode:mCode serviceID:TJMBaiduTraceServiceID keepAlive:true];
+    return [[BTKAction sharedInstance] initInfo:sop];
 }
-
 
 
 @end

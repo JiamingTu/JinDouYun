@@ -13,13 +13,14 @@
     [super awakeFromNib];
     // Initialization code
     [self configViews];
+    [self setSelected:NO animated:YES];
 }
 #pragma  mark - 约束 字体等适配
 - (void)configViews {
-    [self resetHorizontalConstraints:self.starLeftConstraint,self.starRightConstraint, nil];
-    [self resetVerticalConstraints:self.textFieldTopConstraint,self.textFieldBottomConstraint,self.textFieldHeightConstraint, nil];
-    [self adjustFont:15 forView:self.infoTextField,self.titleLabel,self.starLabel, nil];
-}
+    [self tjm_resetHorizontalConstraints:self.starLeftConstraint,self.starRightConstraint, nil];
+    [self tjm_resetVerticalConstraints:self.textFieldHeightConstraint, nil];
+    [self tjm_adjustFont:15 forView:self.infoTextField,self.titleLabel,self.starLabel, nil];
+    self.infoTextField.clearButtonMode = UITextFieldViewModeWhileEditing;}
 
 #pragma  mark - 设置页面内容
 - (void)setViewInfoWith:(TJMUserInfoModel *)model {
@@ -27,7 +28,28 @@
     self.infoTextField.placeholder = model.info;
     self.accessoryType = model.isTextField ? UITableViewCellAccessoryNone : UITableViewCellAccessoryDisclosureIndicator;
     self.infoTextField.enabled = model.isTextField;
-    
+    self.inputType = model.inputType;
+}
+
+#pragma  mark - UITextFieldDelegate
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(getInfoValue:cell:)]) {
+        [self.delegate getInfoValue:textField.text cell:self];
+    }
+    return YES;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if ([self.inputType isEqualToString:@"bankcard"]) {
+        return [textField bankCardInputRuleWithTextFieldShouldChangeCharactersInRange:range replacementString:string];
+    }else if ([self.inputType isEqualToString:@"realName"] || [self.inputType isEqualToString:@"concact"]) {
+        return  [textField realNameInputRuleWithTextFieldShouldChangeCharactersInRange:range replacementString:string];
+    } else if ([self.inputType isEqualToString:@"idCard"]){
+        return [textField idCardInputRuleWithTextFieldShouldChangeCharactersInRange:range replacementString:string];
+    } else if ([self.inputType isEqualToString:@"concactMobile"]) {
+        return [textField phoneNumInpuRuleWithTextFieldShouldChangeCharactersInRange:range replacementString:string];
+    }
+    return YES;
 }
 
 

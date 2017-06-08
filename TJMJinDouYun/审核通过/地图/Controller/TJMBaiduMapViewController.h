@@ -10,4 +10,6 @@
 
 @interface TJMBaiduMapViewController : UIViewController
 
+@property (nonatomic,copy) NSArray<TJMLocation *> *locations;
+@property (nonatomic,copy) NSString *cityName;
 @end

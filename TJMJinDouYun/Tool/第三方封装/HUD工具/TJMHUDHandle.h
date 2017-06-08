@@ -12,5 +12,9 @@
 @interface TJMHUDHandle : NSObject
 
 + (void)transientNoticeAtView:(UIView *)view withMessage:(NSString *)message;
-
+/** 菊花加文字 */
++ (MBProgressHUD *)showRequestHUDAtView:(UIView *)view message:(NSString *)message;
++ (void)hiddenHUDForView:(UIView *)view;
+/**圆圈进度条*/
++ (MBProgressHUD *)showProgressHUDAtView:(UIView *)view message:(NSString *)message;
 @end

@@ -22,11 +22,11 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *myOrderLabel;
 @property (weak, nonatomic) IBOutlet UILabel *myWalletLabel;
-@property (weak, nonatomic) IBOutlet UILabel *myEvaluateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *emergencyLabel;
 @property (weak, nonatomic) IBOutlet UILabel *aboutOursLabel;
 @property (weak, nonatomic) IBOutlet UILabel *settingLabel;
 
+@property (weak, nonatomic) IBOutlet UIButton *headerButton;
 
 
 @end

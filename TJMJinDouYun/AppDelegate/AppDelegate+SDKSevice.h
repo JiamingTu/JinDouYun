@@ -8,12 +8,8 @@
 
 #import "AppDelegate.h"
 
-@interface AppDelegate (SDKSevice)<BMKGeneralDelegate,JPUSHRegisterDelegate>
+@interface AppDelegate (SDKSevice)<JPUSHRegisterDelegate>
 //百度地图
-/**启动百度地图引擎*/
-- (void)startBaiduMapEngine;
-/**终止百度地图引擎*/
-- (void)stopBaiduMapEngine;
 /**启动百度地图导航模块*/
 - (void)startBaiduMapNaviServicesWithResult:(ResultBlock)result;
 /**终止百度地图导航模块*/
@@ -25,4 +21,8 @@
 - (void)setAlias;
 /**初始化*/
 - (void)startJPushWithLaunchOptions:(NSDictionary *)launchOptions;
+
+/**百度地图鹰眼*/
+- (BOOL)initTraceService;
+
 @end

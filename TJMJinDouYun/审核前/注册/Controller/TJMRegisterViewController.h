@@ -16,5 +16,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *registerTitleLabel;
 @property (weak, nonatomic) IBOutlet UIButton *registerButton;
 
+@property (nonatomic,copy) NSString *naviTitle;
 
 @end

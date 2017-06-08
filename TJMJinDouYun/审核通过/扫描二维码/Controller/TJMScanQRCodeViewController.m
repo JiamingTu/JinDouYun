@@ -8,6 +8,7 @@
 
 #import "TJMScanQRCodeViewController.h"
 #import "TJMOverlayView.h"
+#import <Photos/Photos.h>
 @interface TJMScanQRCodeViewController ()<AVCaptureMetadataOutputObjectsDelegate>
 {
     TJMOverlayView *_overLayView;

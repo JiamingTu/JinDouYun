@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@class TJMConfig,TJMQuestionCategory;
+@class TJMConfig,TJMQuestionCategory,TJMQuestion,TJMAnswer;
 
 @interface TJMTestQuestionData : NSObject
 
-@property (nonatomic,copy) NSArray *question;
+@property (nonatomic,copy) NSArray<TJMQuestion *> *question;
 @property (nonatomic,strong) TJMConfig *config;
 @end
 
@@ -36,7 +36,7 @@
 @property (nonatomic,assign) BOOL enable;
 @property (nonatomic,assign) BOOL multi;
 @property (nonatomic,strong) TJMQuestionCategory *questionCategory;
-@property (nonatomic,copy) NSArray *answers;
+@property (nonatomic,copy) NSArray<TJMAnswer *> *answers;
 
 @end
 
@@ -51,5 +51,8 @@
 @property (nonatomic,copy) NSString *answerOption;
 @property (nonatomic,copy) NSString *content;
 @property (nonatomic,assign) BOOL result;
+
+//非请求得到的数据
+@property (nonatomic,assign) BOOL isSelected;
 
 @end

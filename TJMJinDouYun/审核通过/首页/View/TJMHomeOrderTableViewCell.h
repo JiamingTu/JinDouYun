@@ -7,6 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+@class TJMHomeOrderTableViewCell;
+@protocol TJMHomeOrderTableViewCellDelegate <NSObject>
+@optional
+- (void)robOrderWithButtonTag:(NSInteger)tag order:(TJMOrderModel *)model cell:(TJMHomeOrderTableViewCell *)cell;
+- (void)waitPickUpWithOrder:(TJMOrderModel *)model cell:(TJMHomeOrderTableViewCell *)cell;
+- (void)payOnDeliveryWithOrder:(TJMOrderModel *)model cell:(TJMHomeOrderTableViewCell *)cell;
+- (void)codeSignInWithOrder:(TJMOrderModel *)model cell:(TJMHomeOrderTableViewCell *)cell;
+- (void)naviToDestinationWithLatitude:(CGFloat)lat longtitude:(CGFloat)lng order:(TJMOrderModel *)model cell:(TJMHomeOrderTableViewCell *)cell;
+
+@end
 
 @interface TJMHomeOrderTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -24,6 +34,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *robOrderButton;
 @property (weak, nonatomic) IBOutlet UIButton *checkMapButton;
 
+/**根据model设置界面*/
+- (void)setValueWithModel:(TJMOrderModel *)model;
 
-
+@property (nonatomic,assign) id<TJMHomeOrderTableViewCellDelegate>delegate;
+//订单模型
+@property (nonatomic,strong) TJMOrderModel *currentModel;
 @end

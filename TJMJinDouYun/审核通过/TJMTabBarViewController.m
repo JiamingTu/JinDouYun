@@ -31,9 +31,9 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    UITabBar *tabBar = [UITabBar appearance];
-
-    tabBar.clipsToBounds = YES;
+//    UITabBar *tabBar = [UITabBar appearance];
+//
+//    tabBar.clipsToBounds = YES;
 }
 
 

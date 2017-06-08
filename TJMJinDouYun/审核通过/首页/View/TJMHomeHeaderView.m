@@ -37,7 +37,8 @@
     
 }
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
-    if ([super initWithReuseIdentifier:reuseIdentifier]) {
+    self = [super initWithReuseIdentifier:reuseIdentifier];
+    if (self) {
         self.contentView.backgroundColor = TJMFUIColorFromRGB(0xf5f5f5);
         UIImage *image = [UIImage imageNamed:@"list_icon_prompt-"];
         self.imageView = [[UIImageView alloc]initWithImage:image];

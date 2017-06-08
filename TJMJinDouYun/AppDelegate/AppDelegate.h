@@ -7,27 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
-@class AppDelegate;
-typedef void(^CallBlock)();
+@class TJMPersonInfoModel;
 
+@class AppDelegate;
+typedef void(^WorkTimeBlock)();
 typedef void(^ResultBlock)(BOOL isOK);
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
-{
-    BMKMapManager* _mapManager;
-}
+
 @property (strong, nonatomic) UIWindow *window;
 
-//开启、关闭百度地图引擎
-@property (nonatomic,copy) CallBlock InitBaiduMapEngine;
+@property (nonatomic,copy) WorkTimeBlock workTimeBlock;
+@property (nonatomic,copy) WorkTimeBlock stopTimer;
 
-//开启、关闭导航模块
-@property (nonatomic,copy) CallBlock InitNaviServices;
-@property (nonatomic,copy) CallBlock StopNaviServices;
-//调用此block后 在地图页面开启导航
-@property (nonatomic,copy) ResultBlock GetResult;
-//屏幕适配
-@property (nonatomic,assign) CGFloat autoSizeScaleX;
-@property (nonatomic,assign) CGFloat autoSizeScaleY;
+@property (nonatomic,strong) TJMPersonInfoModel *personInfo;
 
 
 @end

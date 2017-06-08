@@ -21,4 +21,6 @@
  *判断是否是数字
  */
 - (BOOL)isNumber;
+/**是否身份证号*/
+- (BOOL)judgeIdentityStringValid;
 @end

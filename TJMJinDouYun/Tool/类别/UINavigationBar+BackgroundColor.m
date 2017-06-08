@@ -71,8 +71,7 @@
     if (self.overlay) {
         [self.overlay removeFromSuperview];
         self.overlay = nil;
-        UIView *backgroundView = [self tjm_getBackgroundView];
-        UIVisualEffectView *view = [[UIVisualEffectView alloc]initWithFrame:backgroundView.bounds];
+//        UIView *backgroundView = [self tjm_getBackgroundView];
         
     }
 }

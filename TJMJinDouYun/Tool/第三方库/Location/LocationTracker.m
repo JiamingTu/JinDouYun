@@ -31,7 +31,7 @@
 }
 
 - (id)init {
-	if (self==[super init]) {
+	if (self = [super init]) {
         //Get the share model and also initialize myLocationArray
         self.shareModel = [LocationShareModel sharedModel];
         self.shareModel.myLocationArray = [[NSMutableArray alloc]init];
@@ -246,20 +246,22 @@
     {
         NSLog(@"Unable to get location, use the last known location");
 
-        self.myLocation=self.myLastLocation;
+        self.myLocationCoordinate2D=self.myLastLocation;
         self.myLocationAccuracy=self.myLastLocationAccuracy;
         
     }else{
         CLLocationCoordinate2D theBestLocation;
         theBestLocation.latitude =[[myBestLocation objectForKey:LATITUDE]floatValue];
         theBestLocation.longitude =[[myBestLocation objectForKey:LONGITUDE]floatValue];
-        self.myLocation=theBestLocation;
+        self.myLocationCoordinate2D=theBestLocation;
         self.myLocationAccuracy =[[myBestLocation objectForKey:ACCURACY]floatValue];
     }
+    self.myLocation = [[CLLocation alloc]initWithLatitude:self.myLocationCoordinate2D.latitude longitude:self.myLocationCoordinate2D.longitude];
+    NSLog(@"Send to Server: Latitude(%f) Longitude(%f) Accuracy(%f)",self.myLocationCoordinate2D.latitude, self.myLocationCoordinate2D.longitude,self.myLocationAccuracy);
     
-    NSLog(@"Send to Server: Latitude(%f) Longitude(%f) Accuracy(%f)",self.myLocation.latitude, self.myLocation.longitude,self.myLocationAccuracy);
+    //TODO: Your code to send the myLocationCoordinate2D and self.myLocationAccuracy to your server
     
-    //TODO: Your code to send the self.myLocation and self.myLocationAccuracy to your server
+    
     
     //After sending the location to the server successful, remember to clear the current array with the following code. It is to make sure that you clear up old location in the array and add the new locations from locationManager
     [self.shareModel.myLocationArray removeAllObjects];

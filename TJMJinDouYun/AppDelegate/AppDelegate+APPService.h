@@ -7,11 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import <Photos/Photos.h>
-
-typedef void(^authBlock)(BOOL isAuth);
-typedef void(^photoInfo)(UIImage *image,PHAsset *asset);
-
 
 @interface AppDelegate (APPService)
 /*
@@ -24,6 +19,11 @@ typedef void(^photoInfo)(UIImage *image,PHAsset *asset);
  * @param rootViewController 将要跳转的rootViewController
  */
 - (void)restoreRootViewController:(UIViewController *)rootViewController;
+/**获取个人信息并监听*/
+- (void)getPersonInfoWithViewController:(UIViewController *)viewController;
+/**移除个人信息监听*/
+- (void)removePersonInfoWithViewController:(UIViewController *)viewController;
 
-
+/**设置引导页*/
+- (void)setGuidePage;
 @end
