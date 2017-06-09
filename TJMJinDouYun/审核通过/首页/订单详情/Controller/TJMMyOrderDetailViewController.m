@@ -11,6 +11,10 @@
 #import "TJMMyOrderDetailHeaderView.h"
 #import "TJMOrderDetailInfoModel.h"
 @interface TJMMyOrderDetailViewController ()<UITableViewDelegate,UITableViewDataSource,UIWebViewDelegate>
+//约束
+//按钮宽度
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *rightButtonWidthConstraint;
+
 
 @property (nonatomic,strong) TJMOrderDetailData *dataSource;
 
@@ -38,14 +42,30 @@
     [self setRightNaviItemWithImageName:nil orTitle:@"申报异常" titleColorHexValue:0x333333 fontSize:15];
     [self setBackNaviItem];
 //    [self.tableView setTableFooterView:[[UIView alloc]initWithFrame:CGRectZero]];
-    
-    if ([self.orderModel.orderStatus integerValue] == 2) {
-        [self.leftYellowButton setTitle:@"确认取货" forState:UIControlStateNormal];
-        [self.rightWhiteButton setTitle:@"地图导航" forState:UIControlStateNormal];
-        
-    } else if ([self.orderModel.orderStatus integerValue] == 3){
-        [self.leftYellowButton setTitle:@"确认送达" forState:UIControlStateNormal];
-        [self.rightWhiteButton setTitle:@"地图导航" forState:UIControlStateNormal];
+    self.rightButtonWidthConstraint.constant = TJMScreenWidth / 2;
+    switch (self.orderModel.orderStatus.integerValue) {
+        case 1: {
+            
+        } break;
+        case 2: {
+            [self.leftYellowButton setTitle:@"确认取货" forState:UIControlStateNormal];
+            [self.rightWhiteButton setTitle:@"地图导航" forState:UIControlStateNormal];
+        } break;
+        case 3: {
+            [self.leftYellowButton setTitle:@"确认送达" forState:UIControlStateNormal];
+            [self.rightWhiteButton setTitle:@"地图导航" forState:UIControlStateNormal];
+        } break;
+        case 4: {
+            self.rightButtonWidthConstraint.constant = TJMScreenWidth;
+            [self.rightWhiteButton setTitle:@"已完成" forState:UIControlStateNormal];
+        } break;
+        case 5: {
+            self.rightButtonWidthConstraint.constant = TJMScreenWidth;
+            [self.rightWhiteButton setTitle:@"已取消" forState:UIControlStateNormal];
+        } break;
+            
+        default:
+            break;
     }
     
 }
@@ -61,12 +81,14 @@
     if (self.orderModel.orderStatus.integerValue == 2) {
         //确认取货
         identifier = @"DetailToPickUp";
-    } else if (self.orderModel.payType.integerValue == 4) {
-        //到付
-        identifier = @"DetailToDeliveryPay";
-    } else {
-        //签收
-        identifier = @"DetailToSignIn";
+    } else if (self.orderModel.orderStatus.integerValue == 3) {
+        if (self.orderModel.payType.integerValue == 4) {
+            //到付
+            identifier = @"DetailToDeliveryPay";
+        } else {
+            //签收
+            identifier = @"DetailToSignIn";
+        }
     }
     [self performSegueWithIdentifier:identifier sender:self.orderModel];
 }
@@ -116,8 +138,8 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 50 * TJMHeightRatio;
-    if (indexPath.section == 2 && indexPath.row == 6) {
-        return  50.5 * TJMHeightRatio;
+    if (indexPath.section == 2) {
+        return  50 * TJMHeightRatio;
     }
     return self.tableView.rowHeight;
 }

@@ -11,6 +11,7 @@
 #import "TJMEntryCheckViewController.h"
 #import "LaunchIntroductionView.h"
 
+#import "TJMQRCodeSingInViewController.h"
 @implementation AppDelegate (APPService)
 #pragma  mark - 确认登录状态
 //确认登录状态（是否存在token）
@@ -88,7 +89,7 @@
         self.personInfo = (TJMPersonInfoModel *)successObj;
         //将是否修改信息 改为 NO
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kTJMIsChangePersonInfo];
-        [TJMHUDHandle hiddenHUDForView:view];
+        [progressHUD hideAnimated:YES];
     } fail:^(NSString *failString) {
         progressHUD.label.text = failString;
         [progressHUD hideAnimated:YES afterDelay:1.5];
@@ -107,6 +108,42 @@
     [LaunchIntroductionView sharedWithImages:@[@"引导页1",@"引导页2",@"引导页3"] buttonImage:@"立即体验" buttonFrame:frame];
 }
 
+#pragma mark - 获取当前VC 
+- (UIViewController *)topViewController {
+    UIViewController *resultVC;
+    resultVC = [self _topViewController:[[UIApplication sharedApplication].keyWindow rootViewController]];
+    while (resultVC.presentedViewController) {
+        resultVC = [self _topViewController:resultVC.presentedViewController];
+    }
+    return resultVC;
+}
+
+- (UIViewController *)_topViewController:(UIViewController *)vc {
+    if ([vc isKindOfClass:[UINavigationController class]]) {
+        return [self _topViewController:[(UINavigationController *)vc topViewController]];
+    } else if ([vc isKindOfClass:[UITabBarController class]]) {
+        return [self _topViewController:[(UITabBarController *)vc selectedViewController]];
+    } else {
+        return vc;
+    }
+    return nil;
+}
+
+#pragma  mark - 收到签收成功消息后
+- (void)receivedSignInMessageWithBlock:(SignInBlock)signIn {
+    NSString *msg = signIn();
+    UIViewController *VC = [self topViewController];
+    [TJMHUDHandle transientNoticeAtView:self.window withMessage:msg];
+    if ([VC isKindOfClass:NSClassFromString(@"TJMQRCodeSingInViewController")]) {
+        //如果是 当前扫描界面 那就 pop 回去
+        [VC.navigationController popViewControllerAnimated:YES];
+    } else if ([VC isKindOfClass:NSClassFromString(@"TJMCodeSignInViewController")]) {
+        UIViewController *targetVC = [VC popTargetViewControllerWithViewControllerNumber:2];
+        [VC.navigationController popToViewController:targetVC animated:YES];
+    }
+    
+    
+}
 
 
 @end

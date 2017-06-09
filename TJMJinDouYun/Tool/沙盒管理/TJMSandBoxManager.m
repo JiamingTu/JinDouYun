@@ -95,5 +95,23 @@
     }
 }
 
+#pragma  mark - 清理缓存
++ (void)clearCacheEveryTwoWeeks {
+    NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+    NSError *error = nil;
+    NSDictionary *fileInfo = [[NSFileManager defaultManager] attributesOfItemAtPath:cachePath error:&error];
+    NSDate *createDate = fileInfo[NSFileCreationDate];
+    double offsetTime = [[NSDate date] timeIntervalSinceDate:createDate];
+    double towWeeksSecond = 14 * 24 * 60 * 60;
+    if (offsetTime - towWeeksSecond >= 0) {
+        [self clearCache];
+    }
+}
+
++ (void)clearCache {
+    NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+    [[NSFileManager defaultManager] removeItemAtPath:cachePath error:nil];
+}
+
 
 @end

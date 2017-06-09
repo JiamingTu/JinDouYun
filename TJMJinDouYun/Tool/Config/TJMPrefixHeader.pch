@@ -57,8 +57,8 @@
 //MBPreogressHUD
 #import <MBProgressHUD.h>
 //
-#import <UIButton+AFNetworking.h>
-#import <UIImageView+AFNetworking.h>
+#import <UIButton+WebCache.h>
+#import <SDWebImageManager.h>
 //
 #import <SwipeBack.h>
 //微信API

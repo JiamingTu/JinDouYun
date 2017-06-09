@@ -17,6 +17,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     // Add the navigation controller's view to the window and display.
+    [TJMSandBoxManager clearCacheEveryTwoWeeks];
     //登录验证
     [self checkLoggingStatusWithToken];
     //引导页
@@ -25,9 +26,6 @@
     //极光推送
     [self registerJPush];
     [self startJPushWithLaunchOptions:launchOptions];
-    
-    
-        
     
     return YES;
 }
@@ -105,6 +103,17 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+#pragma  mark - 内存警告
+-(void)applicationDidReceiveMemoryWarning:(UIApplication *)application
+{
+    //1.清空缓存
+    [[SDWebImageManager sharedManager].imageCache clearMemory];
+    [[SDWebImageManager sharedManager].imageCache clearDiskOnCompletion:nil];
+    //2.取消当前的下载操作
+    [[SDWebImageManager sharedManager] cancelAll];
+    //删除缓存文件夹
+    [TJMSandBoxManager clearCache];
 }
 
 #pragma  mark - 微信支付回调

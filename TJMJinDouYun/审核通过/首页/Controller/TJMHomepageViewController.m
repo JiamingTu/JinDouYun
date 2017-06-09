@@ -12,51 +12,20 @@
 #import "TJMPickUpViewController.h"
 #import "TJMQRCodeSingInViewController.h"
 #import "TJMBaiduMapViewController.h"
-@interface TJMHomepageViewController ()<UITableViewDelegate,UITableViewDataSource,TJMHomeOrderTableViewCellDelegate,BTKTraceDelegate>
+#import "TJMHomepageViewController+Category.h"
+@interface TJMHomepageViewController ()<UITableViewDelegate,UITableViewDataSource,TJMHomeOrderTableViewCellDelegate>
 {
-    NSInteger _currentTimestamp;
+    
     UIButton *_selectButton;
     TJMOrderModel *_selectModel;
     NSIndexPath *_selectIndexPath;
     NSInteger _loadViewStatus;
 }
-//约束
-//竖直
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerImageTopConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerImageHeightConstraint;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *workButtonTopConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *workButtonHeightConstraint;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *earningsImageTopConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *earningsImageHeightConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *earningsImageBottomConstraint;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *workTimeImageHeightConstraint;
-
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imaginaryLineViewTopConstraint;
-
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttonCutLineHeightConstraint;
-
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *middleCutLineHeightConstraint;
-//抢单等按钮高度约束
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttonHeightConstraint;
-
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *totalMoneyLabelHeightConstraint;
-//水平
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *nameLabelLeftConstraint;
-
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *workTimeImageRightConstraint;
-
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *earningsImageRightConstraint;
-//
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *selectLineViewLeft;
-
-//开工时间定时器
-@property (nonatomic, strong) NSThread *timerThread;
-@property (nonatomic,strong) NSTimer *workingTimeTimer;
 @property (nonatomic,assign) BOOL isWorking;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 @property (weak, nonatomic) IBOutlet UIView *imaginaryLineView;
 
 
@@ -88,7 +57,7 @@
         self.naviLeftButton.titleLabel.font = font;
         NSString *city = [TJMSandBoxManager getModelFromInfoPlistWithKey:kTJMCityName];
         if (city) {
-            [self.naviLeftButton setTitle:city forState:UIControlStateNormal];
+            city =  [city substringWithRange:NSMakeRange(0, city.length - 1)];            [self.naviLeftButton setTitle:city forState:UIControlStateNormal];
         } else {
             [self.naviLeftButton setTitle:@"厦门" forState:UIControlStateNormal];
         }
@@ -140,7 +109,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setTitle:@"首页" fontSize:17 colorHexValue:0x333333];
-    [self setFonts];
+    [self adjustFonts];
     [self resetConstraints];
     [self configViews];
     //进入后台，进入程序 对应操作
@@ -182,6 +151,7 @@
     [self cancelTiemr];
 }
 - (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
     //
     CGFloat height = self.headerImageView.frame.size.height;
     self.headerImageView.layer.cornerRadius = height / 2;
@@ -195,7 +165,7 @@
     [self.appDelegate removePersonInfoWithViewController:self];
 }
 
-#pragma  mark - 页面配置
+#pragma  mark - 页面设置
 - (void)configViews {
     //设置tableView 刷新控件
     self.tableView.mj_header = self.header;
@@ -214,19 +184,6 @@
     //设置抢单按钮为已选择按钮
     _selectButton = self.rabOrderButton;
     
-}
-//约束
-- (void)resetConstraints {
-    [self tjm_resetVerticalConstraints:self.headerImageTopConstraint,self.headerImageHeightConstraint,self.workButtonTopConstraint,self.workButtonHeightConstraint,self.earningsImageTopConstraint,self.earningsImageHeightConstraint,self.earningsImageBottomConstraint,self.workTimeImageHeightConstraint,self.imaginaryLineViewTopConstraint,self.buttonCutLineHeightConstraint,self.middleCutLineHeightConstraint,self.buttonHeightConstraint,self.totalMoneyLabelHeightConstraint, nil];
-    [self tjm_resetHorizontalConstraints:self.nameLabelLeftConstraint,self.workTimeImageRightConstraint,self.earningsImageRightConstraint, nil];
-}
-//设置字体
-- (void)setFonts {
-    [self tjm_adjustFont:16 forView:self.nameLabel, nil];
-    [self tjm_adjustFont:13 forView:self.currentStatusLabel,self.statusLabel, nil];
-    [self tjm_adjustFont:18 forView:self.workButton, nil];
-    [self tjm_adjustFont:12 forView:self.todayEarningsLabel,self.workTimeLabel, nil];
-    [self tjm_adjustFont:15 forView:self.totalTimeLabel,self.totalMoneyLabel,self.rabOrderButton,self.waitFetchButton,self.waitSendButton, nil];
 }
 
 
@@ -310,7 +267,7 @@
 #pragma  mark - 请求处理
 #pragma  mark 获取开工状态
 - (void)getWorkingStatus {
-    self.progressHUD = [TJMHUDHandle showRequestHUDAtView:self.view message:nil];
+//    self.progressHUD = [TJMHUDHandle showRequestHUDAtView:self.view message:nil];
     //判断开工状态
     TJMTokenModel *tokenModel = [TJMSandBoxManager getTokenModel];
     if (tokenModel) {
@@ -319,9 +276,15 @@
             //赋值KVO
             self.isWorking = [freeManInfo.workStatus boolValue];
         } fail:^(NSString *failString) {
-            
+            [TJMHUDHandle hiddenHUDForView:self.appDelegate.window];
+            [TJMHUDHandle tapHUDWithTarget:self atView:self.view withMessage:@"加载失败，点击重试"];
         }];
     }
+}
+- (void)tap:(UIGestureRecognizer *)gestureRecognizer {
+    [TJMHUDHandle hiddenHUDForView:self.view];
+    [self getWorkingStatus];
+    [[TJMLocationService sharedLocationService] getFreeManLocationWith:TJMGetLocationTypeLocAndCityName target:CLLocationCoordinate2DMake(0, 0)];
 }
 #pragma  mark 获取开工时间/当前金额 更新UI
 - (void)getWorkingTimeAndConfigWithWorkingStatus:(BOOL)workStatus {
@@ -331,16 +294,17 @@
     //修改出工状态label
     self.statusLabel.text = workStatus ? @"出工中" : @"待出工";
 
-    //设置刷新视图
+    //设置刷新视图，并获取数据
     [self configHeaderAndFooterWithWorkStatus:workStatus];
     //鹰眼服务
     [self configbaiduTraceWithWorkStatus:workStatus];
 #pragma  mark 请求获得今日出工时间、今日收益
     [TJMRequestH getFreeManWorkingTimeWithType:TJMTodayData success:^(id successObj, NSString *msg) {
-        [TJMHUDHandle hiddenHUDForView:self.view];
+//        [TJMHUDHandle hiddenHUDForView:self.view];
         NSDictionary *data = successObj[@"data"];
         //设置今日收益label、今日工作时间label
-        self.totalMoneyLabel.text = [NSString stringWithFormat:@"￥%@",data[@"income"]];
+        CGFloat income = [data[@"income"] doubleValue];
+        self.totalMoneyLabel.text = [NSString stringWithFormat:@"￥%.2f",income];
         //获取当前开工时间
         self.totalTimeLabel.text = [self tjm_getTimeStringWithTimestamp:[data[@"workTime"] integerValue]];
         //判断工作状态
@@ -351,41 +315,13 @@
             [self startTimerWithTimestamp:[data[@"workTime"] integerValue]];
         }
     } fail:^(NSString *failString) {
-        self.progressHUD.label.text = failString;
-        [self.progressHUD hideAnimated:YES afterDelay:1.5];
+//        self.progressHUD.label.text = failString;
+//        [self.progressHUD hideAnimated:YES afterDelay:1.5];
         TJMLog(@"%@",failString);
     }];
     
 }
-#pragma  mark 开启、关闭 鹰眼
-- (void)configbaiduTraceWithWorkStatus:(BOOL)workStatus {
-    BOOL result = [self.appDelegate initTraceService];
-    if (workStatus && result) {
-        TJMTokenModel *tokenModel = [TJMSandBoxManager getTokenModel];
-        // 设置开启轨迹服务时的服务选项，指定本次服务以“entityA”的名义开启
-        BTKStartServiceOption *op = [[BTKStartServiceOption alloc] initWithEntityName:tokenModel.userId.description];
-        // 开启服务
-        [[BTKAction sharedInstance] startService:op delegate:self];
-    } else {
-        [[BTKAction sharedInstance] stopService:self];
-    }
-}
-- (void)onStartService:(BTKServiceErrorCode)error {
-    if (error == BTK_START_SERVICE_SUCCESS) {
-        [[BTKAction sharedInstance] startGather:self];
-    }
-}
-- (void)onStopService:(BTKServiceErrorCode)error {
-    if (error == BTK_STOP_SERVICE_NO_ERROR) {
-         [[BTKAction sharedInstance] stopGather:self];
-    }
-}
-- (void)onStartGather:(BTKGatherErrorCode)error {
-    
-}
-- (void)onStopGather:(BTKGatherErrorCode)error {
-    
-}
+
 #pragma  mark 根据开工状态设置刷新控件
 - (void)configHeaderAndFooterWithWorkStatus:(BOOL)workStatus {
     if (workStatus) {
@@ -394,6 +330,7 @@
         [self.footer setTitle:@"已经全部加载完毕" forState:MJRefreshStateNoMoreData];
         //重设header
         self.tableView.mj_header = self.header;
+        [self.dataSourceDictionary removeAllObjects];
         [self setOrderList];
     } else {
         //收工
@@ -490,50 +427,6 @@
     }
 }
 
-#pragma  mark - timer
-#pragma  mark 开启定时器
-- (void)startTimerWithTimestamp:(NSInteger)timestamp {
-    //如果从服务器获取的时间改了 赋值还是要赋的
-    _currentTimestamp = timestamp;
-    //如果timer还存在（没有停止），那就不重新创建子线程 和 timer 了
-    if (!self.workingTimeTimer) {
-        __weak __typeof(self) weakSelf = self;
-        dispatch_async(dispatch_get_global_queue(0, 0), ^{
-            __strong __typeof(weakSelf) strongSelf = weakSelf;
-            if (strongSelf) {
-                strongSelf.timerThread = [NSThread currentThread];
-                [strongSelf.timerThread setName:@"timerThread"];
-                strongSelf.workingTimeTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:strongSelf selector:@selector(timerAction:) userInfo: nil repeats:YES];
-                NSRunLoop *runloop = [NSRunLoop currentRunLoop];
-                [runloop addTimer:strongSelf.workingTimeTimer forMode:NSDefaultRunLoopMode];
-                [runloop run];
-            }
-        });
-    }
-}
-#pragma  mark 定时器绑定方法
-- (void)timerAction:(NSTimer *)timer {
-    //继续在分线程中计算 时间
-    _currentTimestamp += 1;
-    NSString *timeString = [self tjm_getTimeStringWithTimestamp:_currentTimestamp];
-    //返回主线程
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        self.totalTimeLabel.text = timeString;
-    }];
-}
-#pragma  mark 销毁定时器
-- (void)cancel{
-    if (self.workingTimeTimer) {
-        [self.workingTimeTimer invalidate];
-        self.workingTimeTimer = nil;
-    }
-}
-//需在开启的线程中销毁
-- (void)cancelTiemr {
-    if (self.workingTimeTimer && self.timerThread) {
-        [self performSelector:@selector(cancel) onThread:self.timerThread withObject:nil waitUntilDone:YES];
-    }
-}
 
 #pragma  mark - UITableViewDelegate,UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -552,6 +445,7 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TJMHomeOrderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderCell" forIndexPath:indexPath];
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     cell.delegate = self;
     NSArray *arr = self.dataSourceDictionary[@(_selectButton.tag)];
     TJMOrderModel *model = arr[indexPath.row];
@@ -580,7 +474,6 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     TJMHomeOrderTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    [cell setSelected:NO animated:YES];
     TJMLog(@"%@",cell.currentModel.orderStatus);
     if (cell.currentModel.orderStatus.integerValue != 1) {
 
@@ -617,9 +510,6 @@
 - (void)payOnDeliveryWithOrder:(TJMOrderModel *)model cell:(TJMHomeOrderTableViewCell *)cell {
     
     
-    
-    
-    
 }
 #pragma  mark 验证码 签收
 - (void)codeSignInWithOrder:(TJMOrderModel *)model cell:(TJMHomeOrderTableViewCell *)cell {
@@ -645,7 +535,10 @@
         TJMPersonInfoModel *personInfo = change[@"new"];
         if (![personInfo isEqual:[NSNull null]]) {
             NSString *path = [TJMPhotoBasicAddress stringByAppendingString:personInfo.photo];
-            [self.headerImageView setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"img_user"]];
+            [[SDWebImageManager sharedManager] loadImageWithURL:[NSURL URLWithString:path] options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+                image = [image getCropImage];
+                self.headerImageView.image = image;
+            }];
             self.nameLabel.text = personInfo.tel;
         }
     }

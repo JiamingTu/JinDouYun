@@ -61,12 +61,12 @@ const NSInteger _myOrderSize = 5;
     [self setBackNaviItem];
     [self configViews];
     
+    [self.header beginRefreshing];
     
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.header beginRefreshing];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(myLocationDidChage:) name:kTJMLocationDidChange object:nil];
 }
 - (void)viewWillDisappear:(BOOL)animated {
@@ -123,9 +123,8 @@ const NSInteger _myOrderSize = 5;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TJMHomeOrderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyOrderCell" forIndexPath:indexPath];
-    
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     cell.delegate = self;
-
     TJMOrderModel *model = self.dataSourceArray[indexPath.row];
     //计算距离
     
@@ -144,8 +143,6 @@ const NSInteger _myOrderSize = 5;
     return self.tableView.rowHeight;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    TJMHomeOrderTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    [cell setSelected:NO animated:YES];
     [self performSegueWithIdentifier:@"MyOrderToOrderDetial" sender:self.dataSourceArray[indexPath.row]];
     
 }
@@ -180,7 +177,10 @@ const NSInteger _myOrderSize = 5;
 - (void)naviToDestinationWithLatitude:(CGFloat)lat longtitude:(CGFloat)lng order:(TJMOrderModel *)model cell:(TJMHomeOrderTableViewCell *)cell {
     [[TJMLocationService sharedLocationService] getFreeManLocationWith:TJMGetLocationTypeNaviService target:CLLocationCoordinate2DMake(lat, lng)];
 }
-
+#pragma  mark 查看详情
+- (void)checkDetailsWithOrder:(TJMOrderModel *)model cell:(TJMHomeOrderTableViewCell *)cell {
+    [self performSegueWithIdentifier:@"MyOrderToOrderDetial" sender:model];
+}
 #pragma  mark - memory warning
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

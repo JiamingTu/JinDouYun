@@ -26,4 +26,7 @@
 
 /**设置引导页*/
 - (void)setGuidePage;
+
+- (void)receivedSignInMessageWithBlock:(SignInBlock)signIn;
+
 @end

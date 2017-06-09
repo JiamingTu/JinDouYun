@@ -134,7 +134,7 @@
     NSString * beforeYesterdayString = [[beforeYesterday description] substringToIndex:10];
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"MM月dd日"];
+    [formatter setDateFormat:@"yyyy-MM-dd "];
     NSString *formatterDateString = [formatter stringFromDate:date];
     NSString * dateString = [[date description] substringToIndex:10];
     if ([dateString isEqualToString:todayString]) {
@@ -161,6 +161,7 @@
     NSString *hour = cmps.hour < 10 ? [NSString stringWithFormat:@"0%zd",cmps.hour] : [NSString stringWithFormat:@"%zd",cmps.hour];
     NSString *minute = cmps.minute < 10 ? [NSString stringWithFormat:@"0%zd",cmps.minute] : [NSString stringWithFormat:@"%zd",cmps.minute];
     NSString *second = cmps.second < 10 ? [NSString stringWithFormat:@"0%zd",cmps.second] : [NSString stringWithFormat:@"%zd",cmps.second];
+    
     return [NSString stringWithFormat:@"%@:%@:%@",hour,minute,second];
 }
 

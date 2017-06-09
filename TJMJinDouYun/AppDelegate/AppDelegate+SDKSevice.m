@@ -94,7 +94,14 @@
     NSString *content = [userInfo valueForKey:@"content"];
     NSDictionary *extras = [userInfo valueForKey:@"extras"];
     NSString *customizeField1 = [extras valueForKey:@"customizeField1"]; //服务端传递的Extras附加字段，key是自己定义的
-
+    NSInteger type = [extras[@"type"] integerValue];
+    if (type == 0) {
+        //签收成功
+        
+        [self receivedSignInMessageWithBlock:^NSString *{
+            return content;
+        }];
+    }
 }
 
 

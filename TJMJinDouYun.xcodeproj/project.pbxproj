@@ -44,6 +44,7 @@
 		9966AA671ED85120004A09F7 /* TJMStudyResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9966AA661ED85120004A09F7 /* TJMStudyResource.m */; };
 		9969883C1EE80FA00095E9B0 /* UIFont+runtime.m in Sources */ = {isa = PBXBuildFile; fileRef = 9969883B1EE80FA00095E9B0 /* UIFont+runtime.m */; };
 		996988401EE80FCE0095E9B0 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 9969883F1EE80FCE0095E9B0 /* NSString+MD5.m */; };
+		996988791EEA3D1D0095E9B0 /* TJMHomepageViewController+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 996988781EEA3D1D0095E9B0 /* TJMHomepageViewController+Category.m */; };
 		997FF0601ED41F06005FD8E2 /* NSString+Format.m in Sources */ = {isa = PBXBuildFile; fileRef = 997FF05F1ED41F06005FD8E2 /* NSString+Format.m */; };
 		998377081ED91F660007DD85 /* TJMLearningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 998377071ED91F660007DD85 /* TJMLearningViewController.m */; };
 		998377151ED9660F0007DD85 /* ZGLVideoMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 998377121ED9660F0007DD85 /* ZGLVideoMaskView.m */; };
@@ -252,6 +253,8 @@
 		9969883B1EE80FA00095E9B0 /* UIFont+runtime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+runtime.m"; sourceTree = "<group>"; };
 		9969883E1EE80FCE0095E9B0 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
 		9969883F1EE80FCE0095E9B0 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
+		996988771EEA3D1D0095E9B0 /* TJMHomepageViewController+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TJMHomepageViewController+Category.h"; sourceTree = "<group>"; };
+		996988781EEA3D1D0095E9B0 /* TJMHomepageViewController+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TJMHomepageViewController+Category.m"; sourceTree = "<group>"; };
 		997FF05E1ED41F06005FD8E2 /* NSString+Format.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Format.h"; sourceTree = "<group>"; };
 		997FF05F1ED41F06005FD8E2 /* NSString+Format.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Format.m"; sourceTree = "<group>"; };
 		998377061ED91F660007DD85 /* TJMLearningViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMLearningViewController.h; sourceTree = "<group>"; };
@@ -1354,6 +1357,8 @@
 			children = (
 				99E81CA21EB217E600BB0875 /* TJMHomepageViewController.h */,
 				99E81CA31EB217E600BB0875 /* TJMHomepageViewController.m */,
+				996988771EEA3D1D0095E9B0 /* TJMHomepageViewController+Category.h */,
+				996988781EEA3D1D0095E9B0 /* TJMHomepageViewController+Category.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2131,6 +2136,7 @@
 				99E81CCF1EB2184600BB0875 /* LocationShareModel.m in Sources */,
 				99E81CB81EB217E600BB0875 /* TJMLoginViewController.m in Sources */,
 				991673131ED665C500A50A3F /* TJMChangePasswordViewController.m in Sources */,
+				996988791EEA3D1D0095E9B0 /* TJMHomepageViewController+Category.m in Sources */,
 				99E81CB91EB217E600BB0875 /* TJMTokenModel.m in Sources */,
 				99F1C0CB1EA0CEE000415F0C /* TJMSandBoxManager.m in Sources */,
 				992BCFC11ED536540053B4BE /* TJMEmergenchyViewController.m in Sources */,

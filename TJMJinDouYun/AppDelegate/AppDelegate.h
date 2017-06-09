@@ -12,13 +12,13 @@
 @class AppDelegate;
 typedef void(^WorkTimeBlock)();
 typedef void(^ResultBlock)(BOOL isOK);
+typedef NSString *(^SignInBlock)();
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
 @property (nonatomic,copy) WorkTimeBlock workTimeBlock;
 @property (nonatomic,copy) WorkTimeBlock stopTimer;
-
 @property (nonatomic,strong) TJMPersonInfoModel *personInfo;
 
 

@@ -8,7 +8,7 @@
 
 #import "TJMPersonInfoViewController.h"
 #import "TJMPersonInfoTableViewCell.h"
-#import <UIImageView+AFNetworking.h>
+
 @interface TJMPersonInfoViewController ()<UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -62,13 +62,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self setTitle:@"个人信息" fontSize:17 colorHexValue:0x333333];
+    [self setBackNaviItem];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     MBProgressHUD *progressHUD = [TJMHUDHandle showRequestHUDAtView:self.view message:nil];
     [TJMRequestH getPersonInfoSuccess:^(id successObj, NSString *msg) {
         self.personInfo = (TJMPersonInfoModel *)successObj;
-
         [self setValueDictionaryWithPersonInfoModel:self.personInfo];
         [self.tableView reloadData];
         [TJMHUDHandle hiddenHUDForView:self.view];
@@ -106,8 +107,11 @@
         self.headerImageView = cell.headerImageView;
         cell.isHeaderImageView = YES;
         if (valueString) {
-            NSString *urlString = [TJMPhotoBasicAddress stringByAppendingFormat:@"%@",valueString];
-            [cell.headerImageView setImageWithURL:[NSURL URLWithString:urlString] placeholderImage:[UIImage imageNamed:@"img_user"]];
+            NSString *path = [TJMPhotoBasicAddress stringByAppendingFormat:@"%@",valueString];
+            [[SDWebImageManager sharedManager] loadImageWithURL:[NSURL URLWithString:path] options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+                image = [image getCropImage];
+                cell.headerImageView.image = image;
+            }];
         }
     } else {
         cell.isHeaderImageView = NO;
@@ -155,16 +159,17 @@
 #pragma  mark - image picker VC delegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     UIImage* image = [info objectForKey:UIImagePickerControllerEditedImage];
-    self.headerImageView.image = image;
-    
     [TJMRequestH uploadHeaderPhotoWithPhoto:image progress:^(NSProgress *progress) {
     
     } success:^(id successObj, NSString *msg) {
         //记录 个人信息已经被更改
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kTJMIsChangePersonInfo];
+        self.headerImageView.image = [image getCropImage];
+        [[SDWebImageManager sharedManager].imageCache clearDiskOnCompletion:nil];
+        
         [picker dismissViewControllerAnimated:YES completion:nil];
     } fail:^(NSString *failString) {
-        
+        [picker dismissViewControllerAnimated:YES completion:nil];
     }];
     
     

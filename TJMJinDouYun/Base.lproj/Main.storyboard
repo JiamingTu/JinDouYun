@@ -16,7 +16,7 @@
         <!--Baidu Map View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="BaiduMapViewController" id="BYZ-38-t0r" customClass="TJMBaiduMapViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BaiduMapViewController" hidesBottomBarWhenPushed="YES" id="BYZ-38-t0r" customClass="TJMBaiduMapViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -24,7 +24,7 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="ahK-bL-pqp"/>
                 </viewController>
@@ -124,7 +124,7 @@
                                             <color key="textColor" red="1" green="0.52549019610000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="￥50.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Erc-gD-V5m">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="￥00.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Erc-gD-V5m">
                                             <rect key="frame" x="66" y="121" width="56" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="20" id="rVg-1I-4Lq"/>
@@ -133,8 +133,8 @@
                                             <color key="textColor" red="1" green="0.52549019610000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01:00:04" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aok-r8-pSu">
-                                            <rect key="frame" x="250.5" y="122" width="62" height="18"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aok-r8-pSu">
+                                            <rect key="frame" x="249.5" y="122" width="64" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" red="1" green="0.52549019610000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -963,9 +963,8 @@
                                                             <constraint firstAttribute="height" constant="20" id="Kmt-Ua-3z3"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e2P-WR-hWe">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e2P-WR-hWe">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
-                                                        <state key="normal" title="Button"/>
                                                         <connections>
                                                             <segue destination="n0I-zO-I8r" kind="show" identifier="MyToMyOrder" id="Gki-Rt-1i0"/>
                                                         </connections>
@@ -1001,9 +1000,8 @@
                                                             <constraint firstAttribute="height" constant="15" id="kkx-Kx-7NG"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LJb-Dq-YZE">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LJb-Dq-YZE">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
-                                                        <state key="normal" title="Button"/>
                                                         <connections>
                                                             <segue destination="geX-sa-WnT" kind="show" identifier="MyWallet" id="BOO-me-y7h"/>
                                                         </connections>
@@ -1044,9 +1042,8 @@
                                                             <constraint firstAttribute="width" secondItem="rjC-iV-jPY" secondAttribute="height" multiplier="1:1" id="m9d-0X-P7g"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3z4-je-ROH">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3z4-je-ROH">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
-                                                        <state key="normal" title="Button"/>
                                                         <connections>
                                                             <segue destination="xBN-RT-LB5" kind="show" id="XwA-IC-bBT"/>
                                                         </connections>
@@ -1089,9 +1086,8 @@
                                                             <constraint firstAttribute="height" constant="19.5" id="Wj2-ji-cqm"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J4X-r6-iV6">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J4X-r6-iV6">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
-                                                        <state key="normal" title="Button"/>
                                                         <connections>
                                                             <segue destination="bTt-Vi-a8p" kind="show" id="T0V-ms-i8J"/>
                                                         </connections>
@@ -1125,9 +1121,8 @@
                                                             <constraint firstAttribute="width" secondItem="9F9-Jv-Vcm" secondAttribute="height" multiplier="1:1" id="kcO-Fe-mrH"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Gl-WZ-bjP">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Gl-WZ-bjP">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
-                                                        <state key="normal" title="Button"/>
                                                         <connections>
                                                             <segue destination="GvC-L3-ZI5" kind="show" id="PFF-tQ-ObI"/>
                                                         </connections>
@@ -1476,6 +1471,9 @@
                                                 <button opaque="NO" tag="20" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jOu-Q6-L9y">
                                                     <rect key="frame" x="187.5" y="227" width="187.5" height="44"/>
                                                     <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="187.5" id="7fb-r6-4Kd"/>
+                                                    </constraints>
                                                     <state key="normal" title="查看地图">
                                                         <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     </state>
@@ -1540,7 +1538,6 @@
                                                 <constraint firstItem="ow9-iC-gmU" firstAttribute="leading" secondItem="f3J-mT-Oqg" secondAttribute="leading" id="ps5-0E-ZLK"/>
                                                 <constraint firstItem="PTN-pw-N9u" firstAttribute="centerY" secondItem="DDR-rG-VvG" secondAttribute="centerY" id="qwg-Ou-FgZ"/>
                                                 <constraint firstItem="15s-yK-rZQ" firstAttribute="top" secondItem="MCC-ZL-JFn" secondAttribute="bottom" constant="10" id="r3B-Ud-nS6"/>
-                                                <constraint firstItem="jOu-Q6-L9y" firstAttribute="width" secondItem="f3J-mT-Oqg" secondAttribute="width" multiplier="0.5" id="rnP-GD-vM1"/>
                                                 <constraint firstItem="wX8-nX-vta" firstAttribute="top" secondItem="15s-yK-rZQ" secondAttribute="bottom" id="s6B-DJ-lSj"/>
                                                 <constraint firstItem="3H3-lt-yND" firstAttribute="centerX" secondItem="f3J-mT-Oqg" secondAttribute="trailing" multiplier="0.700333" id="tGc-xr-iwd"/>
                                                 <constraint firstItem="xVD-gj-v7Q" firstAttribute="leading" secondItem="6Zd-gc-ahY" secondAttribute="trailing" constant="6" id="txb-LA-ZqW"/>
@@ -1572,6 +1569,7 @@
                                             <outlet property="remarkImageRightConstraint" destination="DWn-SF-MbI" id="rqe-P2-qTV"/>
                                             <outlet property="remarkLabel" destination="WdM-aE-jG1" id="UIR-9X-Zan"/>
                                             <outlet property="remarkViewHeightConstraint" destination="V46-nG-s5G" id="vq3-qT-cqx"/>
+                                            <outlet property="rightButtonWidthConstraint" destination="7fb-r6-4Kd" id="nkd-7q-O6G"/>
                                             <outlet property="robButtonHeightConstraint" destination="gKh-Lw-iCc" id="YMV-BF-J3W"/>
                                             <outlet property="robOrderButton" destination="9fS-d7-Clp" id="fAZ-pW-VO4"/>
                                             <outlet property="sendLocationLeftConstraint" destination="txb-LA-ZqW" id="TxL-LP-isv"/>
@@ -1695,6 +1693,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GPX-KF-gWz">
                                 <rect key="frame" x="187.5" y="617" width="187.5" height="50"/>
                                 <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="187.5" id="iZt-fR-MOD"/>
+                                </constraints>
                                 <state key="normal" title="查看地图">
                                     <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
@@ -1727,7 +1728,6 @@
                             <constraint firstItem="GPX-KF-gWz" firstAttribute="centerY" secondItem="gXK-oZ-T7m" secondAttribute="centerY" id="gZm-xn-5Nb"/>
                             <constraint firstItem="Pse-eA-nRI" firstAttribute="leading" secondItem="2EQ-np-4kF" secondAttribute="leading" id="h00-77-Yxe"/>
                             <constraint firstItem="GPX-KF-gWz" firstAttribute="leading" secondItem="gXK-oZ-T7m" secondAttribute="trailing" id="qgJ-7J-o3D"/>
-                            <constraint firstItem="GPX-KF-gWz" firstAttribute="width" secondItem="2EQ-np-4kF" secondAttribute="width" multiplier="0.5" id="vHh-66-XZ4"/>
                             <constraint firstAttribute="bottom" secondItem="gXK-oZ-T7m" secondAttribute="bottom" id="zpW-vh-gst"/>
                             <constraint firstItem="GPX-KF-gWz" firstAttribute="height" secondItem="gXK-oZ-T7m" secondAttribute="height" id="zpe-7s-F1D"/>
                         </constraints>
@@ -1736,6 +1736,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="leftYellowButton" destination="gXK-oZ-T7m" id="Qfx-Bi-M9q"/>
+                        <outlet property="rightButtonWidthConstraint" destination="iZt-fR-MOD" id="xGa-cq-nup"/>
                         <outlet property="rightWhiteButton" destination="GPX-KF-gWz" id="2wW-A3-tUb"/>
                         <outlet property="tableView" destination="Pse-eA-nRI" id="Xla-cI-iXy"/>
                         <segue destination="06i-o4-aRU" kind="show" identifier="DetailToPickUp" id="lfs-uJ-JRj"/>
@@ -1894,6 +1895,7 @@
                                 <rect key="frame" x="15" y="153.5" width="345" height="513.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -4042,9 +4044,8 @@
                                                             <constraint firstAttribute="width" secondItem="w5b-Qo-58l" secondAttribute="height" multiplier="4:3" id="nbk-uA-roE"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wo5-Zi-SeP">
+                                                    <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wo5-Zi-SeP">
                                                         <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
-                                                        <state key="normal" title="Button"/>
                                                         <connections>
                                                             <action selector="transferOutAndMyBankCardAction:" destination="geX-sa-WnT" eventType="touchUpInside" id="ljO-YY-mry"/>
                                                         </connections>
@@ -4078,9 +4079,8 @@
                                                             <constraint firstAttribute="width" secondItem="p8k-Wh-nev" secondAttribute="height" multiplier="4:3" id="bLG-aD-n6n"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Yg-fF-h5z">
+                                                    <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Yg-fF-h5z">
                                                         <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
-                                                        <state key="normal" title="Button"/>
                                                         <connections>
                                                             <action selector="transferOutAndMyBankCardAction:" destination="geX-sa-WnT" eventType="touchUpInside" id="OuA-FU-suT"/>
                                                         </connections>
@@ -4437,7 +4437,7 @@
                         <outlet property="symbolLabelHeightConstraint" destination="U5Q-ds-RR8" id="u4a-lc-Agd"/>
                         <segue destination="1sT-o5-g1J" kind="show" identifier="TransferOutToBindingBancCard" id="4CL-tz-lVE"/>
                         <segue destination="mdk-RW-ahd" kind="show" identifier="TransferOutToBankCard" id="71m-fS-nM3"/>
-                        <segue destination="LUd-4J-vPs" kind="show" identifier="CashResult" id="AMx-xT-qLA"/>
+                        <segue destination="LUd-4J-vPs" kind="show" identifier="CashResult" id="fwr-75-bea"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sn1-ot-hzL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4834,8 +4834,8 @@
                                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="个人信息" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ymw-8Z-Cn2">
-                                                    <rect key="frame" x="214" y="31" width="146" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="个人信息" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ymw-8Z-Cn2">
+                                                    <rect key="frame" x="298.5" y="31" width="61.5" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -5256,7 +5256,6 @@
                         <outlet property="bankCardNameLabel" destination="pUD-Rf-kHi" id="ahM-eu-Euh"/>
                         <outlet property="bottomLineViewTopConstraint" destination="sy6-n2-D9m" id="jnz-YA-VgN"/>
                         <outlet property="cashMoneyLabel" destination="akG-t1-OwW" id="wqa-KH-lfN"/>
-                        <outlet property="crashMoneyLabel" destination="Nv0-XX-be9" id="H9L-y4-ek8"/>
                         <outlet property="imageViewBottomConstraint" destination="IOw-iv-LSG" id="dfY-kV-8TG"/>
                         <outlet property="imageViewHeightConstraint" destination="1Sk-RL-Xcg" id="dud-lt-oer"/>
                         <outlet property="imageViewTopConstraint" destination="Q5v-D7-rAW" id="PgC-V0-4GX"/>
@@ -5335,12 +5334,12 @@
         <image name="矢量智能对象4" width="21" height="18"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Exj-kd-E8d"/>
-        <segue reference="nHj-RB-jZK"/>
-        <segue reference="Utp-6e-MRh"/>
-        <segue reference="9P3-VV-xjG"/>
-        <segue reference="4CL-tz-lVE"/>
-        <segue reference="71m-fS-nM3"/>
+        <segue reference="bgO-bv-ThF"/>
+        <segue reference="hc3-tj-ldE"/>
+        <segue reference="6YC-oX-7Ha"/>
+        <segue reference="2bE-rr-9R5"/>
+        <segue reference="ofq-iA-GDk"/>
+        <segue reference="atZ-Lh-esA"/>
         <segue reference="rBA-tL-a9O"/>
     </inferredMetricsTieBreakers>
 </document>

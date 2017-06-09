@@ -104,10 +104,11 @@
 - (IBAction)transferOutAction:(UIButton *)sender {
     if (_bankCardStatus) {
         //如果是绑定状态，判断输入框
+        CGFloat money = [self.moneyTextField.text doubleValue];
         if ([self.moneyTextField.text floatValue] > [self.blanceNum floatValue]) {
             [TJMHUDHandle transientNoticeAtView:self.view withMessage:@"超出可提现金额"];
-        }else if ([self.moneyTextField.text floatValue] <= 1.0) {
-            [TJMHUDHandle transientNoticeAtView:self.view withMessage:@"至少提现1元"];
+        }else if (money < 0.01) {
+            [TJMHUDHandle transientNoticeAtView:self.view withMessage:@"至少提现0.01元"];
         }else {
             //提现操作
             NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithObjectsAndKeys:self.selectBankCardModel.carrierCardId,@"bankCardId",self.moneyTextField.text,@"money", nil];
@@ -116,7 +117,9 @@
                 [TJMHUDHandle hiddenHUDForView:self.view];
                 //跳转至成功页面
                 [self performSegueWithIdentifier:@"CashResult" sender:@{@"money":self.moneyTextField.text,@"bankCardModel":self.selectBankCardModel}];
-                
+                //更改可提现金额
+                CGFloat canCashMoney = [self.blanceNum doubleValue];
+                self.blanceNum = [NSString stringWithFormat:@"%.2f",canCashMoney - money];
             } fail:^(NSString *failString) {
                 progressHUD.label.text = failString;
                 [progressHUD hideAnimated:YES afterDelay:1.5];

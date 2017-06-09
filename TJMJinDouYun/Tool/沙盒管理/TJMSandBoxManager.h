@@ -27,5 +27,8 @@
 
 + (BOOL)deleteMessages;
 
-
+/**每两周清理一次缓存*/
++ (void)clearCacheEveryTwoWeeks;
+/**清理缓存*/
++ (void)clearCache;
 @end

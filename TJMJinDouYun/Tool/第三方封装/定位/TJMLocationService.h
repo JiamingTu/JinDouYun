@@ -32,7 +32,6 @@ SingletonH(LocationService)
 
 @property (nonatomic,strong) BMKMapView *mapView;
 @property (nonatomic,strong) BMKGeoCodeSearch *searcher;
-@property (nonatomic,strong) BMKRouteSearch *routeSearch;
 
 
 @end

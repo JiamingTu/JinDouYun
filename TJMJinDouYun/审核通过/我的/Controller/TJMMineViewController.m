@@ -158,7 +158,13 @@
         if (![personInfo isEqual:[NSNull null]]) {
             //头像
             NSString *path = [TJMPhotoBasicAddress stringByAppendingString:personInfo.photo];
-            [self.headerButton setBackgroundImageForState:UIControlStateNormal withURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"img_user"]];
+            
+            [[SDWebImageManager sharedManager] loadImageWithURL:[NSURL URLWithString:path] options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+                image = [image getCropImage];
+                [self.headerButton setBackgroundImage:image forState:UIControlStateNormal];
+            }];
+            
+            
             //
             self.nameLabel.text = personInfo.realName;
             self.phoneNumLabel.text = personInfo.tel;
@@ -166,7 +172,11 @@
             [TJMRequestH getFreeManPerformanceSuccess:^(id successObj, NSString *msg) {
                 self.performanceModel = successObj;
                 if (self.performanceModel) {
-                    self.evaluateValueLabel.text = _performanceModel.starCount;
+                    NSString *starCount = _performanceModel.starCount;
+                    if (![starCount containsString:@"."]) {
+                        starCount = [starCount stringByAppendingString:@".0"];
+                    }
+                    self.evaluateValueLabel.text = starCount;
                     self.totalOrderNumLabel.text = _performanceModel.orderCount;
                 }
                 [TJMHUDHandle hiddenHUDForView:self.view];

@@ -76,6 +76,8 @@
     } success:^(id successObj, NSString *msg) {
         progressHUD.label.text = msg;
         [progressHUD hideAnimated:YES afterDelay:0.8];
+        //成功后返回
+        [self.navigationController popViewControllerAnimated:YES];
     } fail:^(NSString *failString) {
         progressHUD.label.text = failString;
         [progressHUD hideAnimated:YES afterDelay:0.8];

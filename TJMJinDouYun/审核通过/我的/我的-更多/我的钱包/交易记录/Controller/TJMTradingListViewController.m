@@ -8,7 +8,7 @@
 
 #import "TJMTradingListViewController.h"
 #import "TJMTradingListTableViewCell.h"
-const NSInteger _tradingSize = 4;
+const NSInteger _tradingSize = 15;
 @interface TJMTradingListViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     NSInteger _tradingPage;
@@ -72,15 +72,16 @@ const NSInteger _tradingSize = 4;
 - (void)getTradingRecordList {
     [TJMRequestH getTradingRecordWithPage:_tradingPage size:_tradingSize sort:nil dir:nil success:^(id successObj, NSString *msg) {
         TJMTradingRecordData *data = successObj;
-        if (data.content == 0) {
+        if (data.content.count == 0) {
             [self.footer endRefreshingWithNoMoreData];
             return ;
         }
+        if (data.content.count < _tradingSize) {
+            [self.footer endRefreshingWithNoMoreData];
+        }
         if (_tradingPage == 0) {
             //刷新
-            if (data.content.count < _tradingSize) {
-                [self.footer endRefreshingWithNoMoreData];
-            }
+            
             [self.header endRefreshing];
         } else {
             //上拉

@@ -12,6 +12,7 @@
 {
     BMKLocationService *_locService;
     BMKGeoCodeSearch *_searcher;
+    BOOL _baiduMapEngineStatus;
 }
 
 @property (nonatomic,strong) AppDelegate *appDelegate;
@@ -25,9 +26,10 @@
     }
     return _appDelegate;
 }
+
 - (BMKMapView *)mapView {
     if (!_mapView) {
-        self.mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 64, TJMScreenWidth, TJMScreenHeight - 64 - 49)];
+        self.mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 64, TJMScreenWidth, TJMScreenHeight - 64)];
         _mapView.showsUserLocation = YES;
 //        _mapView.delegate = self;
         _mapView.userTrackingMode = BMKUserTrackingModeHeading;//跟随模式
@@ -43,15 +45,7 @@
     }
     return _searcher;
 }
-- (BMKRouteSearch *)routeSearch {
-    if (!_routeSearch) {
-        //初始化检索对象
-        self.routeSearch = [[BMKRouteSearch alloc] init];
-        //设置delegate，用于接收检索结果
-//        _routeSearch.delegate = self;
-    }
-    return _routeSearch;
-}
+
 
 #pragma  mark singleton
 SingletonM(LocationService)
@@ -63,6 +57,8 @@ SingletonM(LocationService)
     // 要使用百度地图，请先启动BaiduMapManager
     if (!_mapManager) {
         _mapManager = [[BMKMapManager alloc]init];
+    }
+    if (!_baiduMapEngineStatus) {
         // 如果要关注网络及授权验证事件，请设定     generalDelegate参数
         BOOL ret = [_mapManager start:TJMBaiduMapAK  generalDelegate:self];
         if (!ret) {
@@ -86,8 +82,10 @@ SingletonM(LocationService)
 - (void)onGetNetworkState:(int)iError {
     if (iError == 0) {
         TJMLog(@"网络正常");
+        _baiduMapEngineStatus = 1;
     }else {
         TJMLog(@"网络出错,%@",@(iError));
+        _baiduMapEngineStatus = 0;
     }
 }
 /**
@@ -97,6 +95,7 @@ SingletonM(LocationService)
 - (void)onGetPermissionState:(int)iError {
     if (iError == 0) {
         TJMLog(@"验证成功");
+        _baiduMapEngineStatus = 1;
         //初始化BMKLocationService
         _locService = [[BMKLocationService alloc]init];
         //        //每移动100米 就调用一次代理
@@ -107,6 +106,7 @@ SingletonM(LocationService)
         [_locService startUserLocationService];
     }else {
         TJMLog(@"验证失败,%d",iError);
+        _baiduMapEngineStatus = 0;
     }
 }
 

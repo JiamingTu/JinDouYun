@@ -194,6 +194,7 @@ const char *kTJMAppDelegateKey = "AppDelegateKey";
     //退出登录
     TJMRequestH.tokenModel = nil;
     self.appDelegate.personInfo = nil;
+    [[SDWebImageManager sharedManager].imageCache clearDiskOnCompletion:nil];
     
     [TJMSandBoxManager deleteTokenModel];
     [TJMSandBoxManager deleteModelFromInfoPlistWithKey:kTJMFreeManInfo];

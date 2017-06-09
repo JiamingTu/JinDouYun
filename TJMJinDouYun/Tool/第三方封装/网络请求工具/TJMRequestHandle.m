@@ -251,7 +251,7 @@ SingletonM(RequestHandle)
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             TJMLog(@"请求失败，%@",error);
             failure(error.localizedDescription);
-            [TJMSandBoxManager deleteTokenModel];
+//            [TJMSandBoxManager deleteTokenModel];
         }];
     } else {
         //token不存在 重新登录
@@ -697,9 +697,14 @@ SingletonM(RequestHandle)
         } completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
             TJMLog(@"%@",responseObject);
             if (TJMRightCode) {
-                
+                success(responseObject,TJMResponseMessage);
+            } else if ([TJMResponseMessage isEqual:[NSNull null]]){
+                failure(@"未知错误");
             } else {
-                
+                failure(TJMResponseMessage);
+            }
+            if (error) {
+                failure(error.localizedDescription);
             }
         }];
         [uploadTask resume];

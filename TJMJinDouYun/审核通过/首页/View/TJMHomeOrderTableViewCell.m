@@ -54,6 +54,9 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *remarkImageRightConstraint;
 
+//右边按钮约束
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *rightButtonWidthConstraint;
+
 //视图
 //虚线
 @property (weak, nonatomic) IBOutlet UIView *imaginaryLine;
@@ -99,22 +102,36 @@
     NSString *dateString = [self tjm_setDateFormatterWithTimestamp:[model.createTime integerValue]];
     NSString *titleLabelText;
     if ([self.currentModel.orderStatus integerValue] == 2) {
+        self.rightButtonWidthConstraint.constant = TJMScreenWidth / 2;
         [self.robOrderButton setTitle:@"确认取货" forState:UIControlStateNormal];
         [self.checkMapButton setTitle:@"地图导航" forState:UIControlStateNormal];
         titleLabelText = [NSString stringWithFormat:@"待取货：%@",dateString];
         self.titleLabel.textColor = TJMFUIColorFromRGB(0xff8600);
 
     } else if ([self.currentModel.orderStatus integerValue] == 3){
+        self.rightButtonWidthConstraint.constant = TJMScreenWidth / 2;
         [self.robOrderButton setTitle:@"确认送达" forState:UIControlStateNormal];
         [self.checkMapButton setTitle:@"地图导航" forState:UIControlStateNormal];
         titleLabelText = [NSString stringWithFormat:@"待配送：%@",dateString];
         self.titleLabel.textColor = TJMFUIColorFromRGB(0x7ab8ff);
-    } else {
+    } else if (self.currentModel.orderStatus.integerValue == 1) {
+        self.rightButtonWidthConstraint.constant = TJMScreenWidth / 2;
         [self.robOrderButton setTitle:@"抢 单！" forState:UIControlStateNormal];
         [self.checkMapButton setTitle:@"查看地图" forState:UIControlStateNormal];
         titleLabelText = [NSString stringWithFormat:@"及时取：%@",dateString];
         self.titleLabel.textColor = TJMFUIColorFromRGB(0xff8600);
-
+    } else if (self.currentModel.orderStatus.integerValue == 5) {
+        //已取消
+        self.rightButtonWidthConstraint.constant = TJMScreenWidth;
+        titleLabelText = [NSString stringWithFormat:@"已取消：%@",dateString];
+        [self.checkMapButton setTitle:@"已取消" forState:UIControlStateNormal];
+        self.titleLabel.textColor = TJMFUIColorFromRGB(0x999999);
+    } else {
+        //已完成
+        self.rightButtonWidthConstraint.constant = TJMScreenWidth;
+        titleLabelText = [NSString stringWithFormat:@"已完成：%@",dateString];
+        [self.checkMapButton setTitle:@"查看详情" forState:UIControlStateNormal];
+        self.titleLabel.textColor = TJMFUIColorFromRGB(0x999999);
     }
     //如果是在我的订单页面 多两条横岗
     if (![self.reuseIdentifier isEqualToString:@"OrderCell"]) {
@@ -142,13 +159,14 @@
 }
 #pragma  mark 点击按钮
 - (IBAction)cellButtonAction:(UIButton *)sender {
-
-        if ([self.currentModel.orderStatus integerValue] == 1) {
+    switch (self.currentModel.orderStatus.integerValue) {
+        case 1: {
             //抢单
             if ([self isDelegateAndResponseSelector:@selector(robOrderWithButtonTag:order:cell:)]) {
                 [self.delegate robOrderWithButtonTag:sender.tag order:self.currentModel cell:self];
             }
-        } else if ([self.currentModel.orderStatus integerValue] == 2) {
+        } break;
+        case 2: {
             if (sender.tag == 10) {
                 //待取货
                 if ([self isDelegateAndResponseSelector:@selector(waitPickUpWithOrder:cell:)]) {
@@ -159,8 +177,8 @@
                     [self.delegate naviToDestinationWithLatitude:[self.currentModel.consignerLat floatValue] longtitude:[self.currentModel.consignerLng floatValue] order:self.currentModel cell:self];
                 }
             }
-            
-        } else if ([self.currentModel.orderStatus integerValue] == 3) {
+        } break;
+        case 3: {
             if (sender.tag == 10) {
                 if ([self.currentModel.payStatus integerValue] == 4) {
                     //到付
@@ -178,8 +196,17 @@
                     [self.delegate naviToDestinationWithLatitude:[self.currentModel.receiverLat floatValue] longtitude:[self.currentModel.receiverLng floatValue] order:self.currentModel cell:self];
                 }
             }
+        } break;
+        case 4: {
+            //查看详情
+            if ([self isDelegateAndResponseSelector:@selector(checkDetailsWithOrder:cell:)]) {
+                [self.delegate checkDetailsWithOrder:self.currentModel cell:self];
+            }
         }
-    
+            
+        default:
+            break;
+    }
 }
 
 - (BOOL)isDelegateAndResponseSelector:(SEL)aSelector {

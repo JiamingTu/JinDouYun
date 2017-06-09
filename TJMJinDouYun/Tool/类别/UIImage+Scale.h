@@ -10,4 +10,7 @@
 
 @interface UIImage (Scale)
 - (UIImage *)scaleToSize:(CGSize)size;
+/**图片裁成方形*/
+- (UIImage *)getCropImage;
+
 @end

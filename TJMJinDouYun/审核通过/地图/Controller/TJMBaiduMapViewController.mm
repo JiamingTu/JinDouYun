@@ -13,11 +13,10 @@
 {
     BMKPolyline * _polyLine;
     BMKMapView *_mapView;
-    BMKRouteSearch * _routeSearch;
 }
+@property (nonatomic,strong) BMKRouteSearch *routeSearch;
+@property (nonatomic,strong) BMKLocationService *locServiceForMap;
 
-
-@property (nonatomic,strong) BMKLocationService *locService;
 @property (nonatomic,strong) NSMutableArray *annotationArray;
 //起点和终点
 @property (nonatomic,strong) TJMLocation *consignerLoc;
@@ -28,19 +27,27 @@
 
 @implementation TJMBaiduMapViewController
 #pragma  mark - lazy loading
-
-- (BMKLocationService *)locService {
-    if (!_locService) {
+- (BMKLocationService *)locServiceForMap {
+    if (!_locServiceForMap) {
         //初始化BMKLocationService
-        self.locService = [[BMKLocationService alloc]init];
+        self.locServiceForMap = [[BMKLocationService alloc]init];
         //        //每移动100米 就调用一次代理
-        _locService.distanceFilter = 100;
-        _locService.pausesLocationUpdatesAutomatically = NO;
-        _locService.delegate = self;
-        //启动LocationService
+        _locServiceForMap.distanceFilter = 100;
+        _locServiceForMap.pausesLocationUpdatesAutomatically = NO;
+        _locServiceForMap.delegate = self;
     }
-    return _locService;
+    return _locServiceForMap;
 }
+- (BMKRouteSearch *)routeSearch {
+    if (!_routeSearch) {
+        //初始化检索对象
+        self.routeSearch = [[BMKRouteSearch alloc] init];
+        //设置delegate，用于接收检索结果
+        _routeSearch.delegate = self;
+    }
+    return _routeSearch;
+}
+
 - (NSMutableArray *)annotationArray {
     if (!_annotationArray) {
         self.annotationArray = [NSMutableArray array];
@@ -67,20 +74,21 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     //初始化位置服务
-    [self.locService startUserLocationService];
+
+    [self.locServiceForMap startUserLocationService];
     _mapView = [TJMLocationService sharedLocationService].mapView;
     _mapView.delegate = self;
     //判断查看地图 还是热力图
     if (self.locations) {
+        _mapView.frame = CGRectMake(0, 64, TJMScreenWidth, TJMScreenHeight - 64);
         //设置首页标题等
         [self setTitle:@"查看地图" fontSize:17 colorHexValue:0x333333];
         [self setBackNaviItem];
         [self addAnnotationWithLocations];
-        _routeSearch = [TJMLocationService sharedLocationService].routeSearch;
-        _routeSearch.delegate = self;
         [self showDriveSearch];
         
     } else {
+        _mapView.frame = CGRectMake(0, 64, TJMScreenWidth, TJMScreenHeight - 64 - 49);
 //        //获取热力图数据
         NSString *cityName = [TJMSandBoxManager getModelFromInfoPlistWithKey:kTJMCityName];
         [TJMRequestH heatMapDataSuccessWithDay:7 cityName:cityName success:^(id successObj, NSString *msg) {
@@ -92,30 +100,36 @@
         }];
     }
     //添加百度地图视图
-    self.view = _mapView;
+    [self.view addSubview: _mapView];
 }
 - (void)viewWillAppear:(BOOL)animated
 {
     [_mapView viewWillAppear];
     _mapView.delegate = self; // 此处记得不用的时候需要置nil，否则影响内存的释放
     _routeSearch.delegate = self;
-    _locService.delegate = self;
+    _locServiceForMap.delegate = self;
 }
 - (void)viewWillDisappear:(BOOL)animated {
+    [_locServiceForMap stopUserLocationService];
     [_mapView removeHeatMap];
-    [_mapView removeOverlay:_polyLine];
-    [_mapView removeAnnotations:_annotationArray];
     [BMKMapView enableCustomMapStyle:NO];//关闭个性化地图
     [_mapView viewWillDisappear];
     _mapView.delegate = nil; // 不用时，置nil
     _routeSearch.delegate = nil;
-    _locService.delegate = nil;
+    _locServiceForMap.delegate = nil;
 }
 
 - (void)dealloc {
-    _locService = nil;
+
 }
 
+#pragma  mark - 返回按钮
+- (void)itemAction:(UIButton *)button {
+    [_mapView removeOverlay:_polyLine];
+    _polyLine = nil;
+     [_mapView removeAnnotations:_annotationArray];
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 //处理方向变更信息
 - (void)didUpdateUserHeading:(BMKUserLocation *)userLocation
@@ -243,7 +257,7 @@
     BMKDrivingRoutePlanOption *drivingRouteSearchOption = [[BMKDrivingRoutePlanOption alloc] init];
     drivingRouteSearchOption.from = start;
     drivingRouteSearchOption.to = end;
-    BOOL flag = [_routeSearch drivingSearch:drivingRouteSearchOption];
+    BOOL flag = [self.routeSearch drivingSearch:drivingRouteSearchOption];
     if (flag) {
     }
 }
@@ -356,10 +370,11 @@
     //将点数据赋值到热力图数据类
     heatMap.mData = coorArray;
     heatMap.mRadius = 24;
-    //调用mapView中的方法根据热力图数据添加热力图
-    if (_locService.userLocation.location) {
-        [self mapViewFitHeatMapData:data andUserLocation:_locService.userLocation];
+    //适应地图显示范围
+    if (_locServiceForMap.userLocation.location) {
+        [self mapViewFitHeatMapData:data andUserLocation:_locServiceForMap.userLocation];
     }
+    //调用mapView中的方法根据热力图数据添加热力图
     [_mapView addHeatMap:heatMap];
     
 }

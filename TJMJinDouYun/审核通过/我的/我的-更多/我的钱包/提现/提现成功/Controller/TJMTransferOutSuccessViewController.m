@@ -48,6 +48,7 @@
     [self configViews];
     [self resetConstraints];
 }
+
 #pragma  mark - 设置页面
 - (void)resetConstraints {
     [self tjm_resetVerticalConstraints:self.imageViewTopConstraint,self.imageViewHeightConstraint,self.imageViewBottomConstraint,self.noticeLabelBottomConstraint,self.bankCardLabelTopConstraint,self.bankCardLabelBottomConstraint,self.bottomLineViewTopConstraint, nil];
@@ -70,10 +71,7 @@
     
 }
 - (void)itemAction:(UIButton *)button {
-   TJMTransferOutViewController *transferOutVC = [self popTargetViewControllerWithViewControllerNumber:1];
-    CGFloat canCashMoney = [transferOutVC.blanceNum floatValue];
-    transferOutVC.blanceNum = [NSString stringWithFormat:@"%.2f",canCashMoney - [self.money floatValue]];
-    [self.navigationController popToViewController:transferOutVC animated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 #pragma  mark - memory warning;
 - (void)didReceiveMemoryWarning {
