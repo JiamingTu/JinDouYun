@@ -79,6 +79,8 @@ SingletonH(RequestHandle)
 - (void)upLoadPickedOrderImage:(NSArray<UIImage *> *)images orderNo:(NSString *)number pregress:(ProgressBlock)progress success:(SuccessBlock)success fail:(FailBlock)failure;
 /**获取签收二维码（非到付）*/
 - (void)getQRCodeTextWithOrderId:(NSNumber *)orderId success:(SuccessBlock)success fail:(FailBlock)failure;
+/**获取到付二维码链接*/
+- (void)getPayOnDeliveryQRCodeTextWithOrderNo:(NSString *)orderNo success:(SuccessBlock)success fail:(FailBlock)failure;
 /**生成语音、短信验证码 & 签收*/
 - (void)getSignInCodeOrSignWithType:(NSString *)type parameters:(NSDictionary *)parameters success:(SuccessBlock)success fail:(FailBlock)failure;
 /**查询单个订单*/

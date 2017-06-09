@@ -14,10 +14,10 @@
     _isHeaderImageView = isHeaderImageView;
     if (_isHeaderImageView) {
         self.headerImageView.hidden = NO;
-        self.detialLabel.hidden = YES;
+        self.detailLabel.hidden = YES;
     } else {
         self.headerImageView.hidden = YES;
-        self.detialLabel.hidden = NO;
+        self.detailLabel.hidden = NO;
     }
 }
 #pragma  mark -
@@ -28,8 +28,9 @@
 }
 #pragma  mark - 页面设置
 - (void)configViews {
-    [self tjm_adjustFont:15 forView:self.titleLabel,self.detialLabel, nil];
+    [self tjm_adjustFont:15 forView:self.titleLabel,self.detailLabel, nil];
     [self tjm_resetVerticalConstraints:self.headerImageHeightConstraint, nil];
+    [self layoutIfNeeded];
     CGFloat height = self.headerImageView.frame.size.height;
     self.headerImageView.layer.cornerRadius = height / 2;
     self.headerImageView.layer.masksToBounds = YES;

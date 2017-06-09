@@ -72,6 +72,7 @@
 @property (nonatomic,copy) NSString *codeUrl;
 @property (nonatomic,copy) NSString *perpayId;
 @property (nonatomic,assign) BOOL atOnce;
+@property (nonatomic,copy) NSString *carrierShowMoney;
 //计算后得到
 
 @property (nonatomic,assign) CGFloat getDistance;

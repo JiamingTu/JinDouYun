@@ -39,6 +39,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self setTitle:@"支付费用" fontSize:17 colorHexValue:0x333333];
+    [self setBackNaviItem];
+    [TJMRequestH getPayOnDeliveryQRCodeTextWithOrderNo:self.orderModel.orderNo success:^(id successObj, NSString *msg) {
+        
+    } fail:^(NSString *failString) {
+        
+    }];
 }
 
 #pragma  mark - 设置页面

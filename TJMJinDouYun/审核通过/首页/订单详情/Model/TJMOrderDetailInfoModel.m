@@ -19,18 +19,18 @@
 
 - (instancetype)initWithOrderModel:(TJMOrderModel *)orderModel {
     if (self = [super init]) {
+        //寄件人
         TJMOrderDetailInfoModel *consignerName = [self setInfoWithTitle:@"寄件人姓名" detail:orderModel.consignerName isTel:NO];
         TJMOrderDetailInfoModel *consignerTel = [self setInfoWithTitle:@"寄件人电话" detail:orderModel.consignerMobile isTel:YES];
         TJMOrderDetailInfoModel *consignerAddress = [self setInfoWithTitle:@"寄件人地址" detail:orderModel.consignerAddress isTel:NO];
-        consignerAddress.detail = @"好长好长的地址好长好长的地址好长好长的地址好长好长的地址好长好长的地址好长好长的地址好长好长的地址好长好长的地址";
         NSArray *consignerArr = @[consignerName,consignerTel,consignerAddress];
-        
+        //收件人
         TJMOrderDetailInfoModel *receiverName = [self setInfoWithTitle:@"收件人姓名" detail:orderModel.receiverName isTel:NO];
         TJMOrderDetailInfoModel *receiverTel = [self setInfoWithTitle:@"收件人电话" detail:orderModel.receiverMobile isTel:YES];
         TJMOrderDetailInfoModel *receiverAddress = [self setInfoWithTitle:@"收件人地址" detail:orderModel.receiverAddress isTel:NO];
         NSArray *receiverArr = @[receiverName,receiverTel,receiverAddress];
         
-        
+        //其他信息
         //物品金额
         NSString *objValueString = [NSString stringWithFormat:@"￥%@",orderModel.objectValue];
         TJMOrderDetailInfoModel *objValue = [self setInfoWithTitle:@"物品金额" detail:objValueString isTel:NO];
@@ -53,7 +53,7 @@
         else if (orderModel.payStatus.integerValue == 1) payStatusString = @"已支付";
         TJMOrderDetailInfoModel *payStatus = [self setInfoWithTitle:@"支付详情" detail:payStatusString isTel:NO];
         //订单金额
-        NSString *orderMoneyString = [NSString stringWithFormat:@"￥%@",orderModel.orderMoney];
+        NSString *orderMoneyString = [NSString stringWithFormat:@"￥%@",orderModel.carrierShowMoney];
         TJMOrderDetailInfoModel *orderMoney = [self setInfoWithTitle:@"订单金额" detail:orderMoneyString isTel:NO];
         orderMoney.isBigerFont = YES;
         NSArray *orderInfo = @[objValue,objType,objWeight,orderNo,orderStatus,payStatus,orderMoney];

@@ -35,13 +35,18 @@
     [self setTitle:@"订单详情" fontSize:17 colorHexValue:0x333333];
     [self configViews];
 }
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self setBottomButton];
+}
 
 #pragma  mark - 设置页面
 - (void)configViews {
     [self.tableView registerClass:[TJMMyOrderDetailHeaderView class] forHeaderFooterViewReuseIdentifier:@"MyOrderDetailHeader"];
     [self setRightNaviItemWithImageName:nil orTitle:@"申报异常" titleColorHexValue:0x333333 fontSize:15];
     [self setBackNaviItem];
-//    [self.tableView setTableFooterView:[[UIView alloc]initWithFrame:CGRectZero]];
+}
+- (void)setBottomButton {
     self.rightButtonWidthConstraint.constant = TJMScreenWidth / 2;
     switch (self.orderModel.orderStatus.integerValue) {
         case 1: {
@@ -67,7 +72,6 @@
         default:
             break;
     }
-    
 }
 #pragma  mark - 按钮方法
 
@@ -159,21 +163,15 @@
     TJMMyOrderDetailHeaderView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"MyOrderDetailHeader"];
     
     switch (section) {
-        case 0:
-        {
+        case 0: {
             header.label.text = @"寄件人信息";
-        }
-            break;
-        case 1:
-        {
+        } break;
+        case 1: {
             header.label.text = @"收件人信息";
-        }
-            break;
-        case 2:
-        {
+        } break;
+        case 2: {
             header.label.text = @"订单信息";
-        }
-            break;
+        } break;
             
         default:
             break;

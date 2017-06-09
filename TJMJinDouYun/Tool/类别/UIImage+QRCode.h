@@ -10,6 +10,6 @@
 
 @interface UIImage (QRCode)
 
-+ (UIImage *)createNonInterpolatedUImageFormCIImage:(CIImage *)image withSize:(CGFloat)size;
++ (UIImage *)createQRCodeWithCodeText:(NSString *)text;
 
 @end

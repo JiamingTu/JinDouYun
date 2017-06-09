@@ -68,6 +68,7 @@ const NSInteger _myOrderSize = 5;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(myLocationDidChage:) name:kTJMLocationDidChange object:nil];
+    [self.tableView reloadData];
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
@@ -77,13 +78,16 @@ const NSInteger _myOrderSize = 5;
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
+    self.navBarBgAlpha = @"0.0";
     self.tableView.mj_header = self.header;
     self.tableView.mj_footer = self.footer;
 }
 #pragma  mark - 页面设置
 - (void)configViews {
     
+}
+- (void)reloadDataTableView {
+    [self.tableView reloadData];
 }
 #pragma  mark - 订单列表
 - (void)setOrderList {
@@ -143,8 +147,13 @@ const NSInteger _myOrderSize = 5;
     return self.tableView.rowHeight;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self performSegueWithIdentifier:@"MyOrderToOrderDetial" sender:self.dataSourceArray[indexPath.row]];
-    
+    [self performSegueWithIdentifier:@"MyOrderToOrderDetail" sender:self.dataSourceArray[indexPath.row]];
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 10 * TJMHeightRatio;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    return [[UIView alloc]initWithFrame:CGRectZero];
 }
 
 #pragma  mark - 通知
@@ -179,7 +188,7 @@ const NSInteger _myOrderSize = 5;
 }
 #pragma  mark 查看详情
 - (void)checkDetailsWithOrder:(TJMOrderModel *)model cell:(TJMHomeOrderTableViewCell *)cell {
-    [self performSegueWithIdentifier:@"MyOrderToOrderDetial" sender:model];
+    [self performSegueWithIdentifier:@"MyOrderToOrderDetail" sender:model];
 }
 #pragma  mark - memory warning
 - (void)didReceiveMemoryWarning {
@@ -197,7 +206,7 @@ const NSInteger _myOrderSize = 5;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if ([segue.identifier isEqualToString:@"MyOrderToOrderDetial"] || [segue.identifier isEqualToString:@"MyOrderToPickUp"] || [segue.identifier isEqualToString:@"MyOrderToDeliveryPay"] || [segue.identifier isEqualToString:@"MyOrderToSignIn"]) {
+    if ([segue.identifier isEqualToString:@"MyOrderToOrderDetail"] || [segue.identifier isEqualToString:@"MyOrderToPickUp"] || [segue.identifier isEqualToString:@"MyOrderToDeliveryPay"] || [segue.identifier isEqualToString:@"MyOrderToSignIn"]) {
         [segue.destinationViewController setValue:sender forKey:@"orderModel"];
     }
 }

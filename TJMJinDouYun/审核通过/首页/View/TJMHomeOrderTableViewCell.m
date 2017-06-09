@@ -138,7 +138,7 @@
         titleLabelText = [NSString stringWithFormat:@"——  %@  ——",titleLabelText];
     }
     self.titleLabel.text = titleLabelText;
-    self.priceLabel.text = [@"￥" stringByAppendingString:model.orderMoney.description];
+    self.priceLabel.text = [@"￥" stringByAppendingString:model.carrierShowMoney.description];
     //地址
     self.startAddressLabel.text = model.consignerAddress;
     self.endAddressLabel.text = model.receiverAddress;

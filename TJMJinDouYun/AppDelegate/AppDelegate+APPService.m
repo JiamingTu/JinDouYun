@@ -22,7 +22,6 @@
         //token 存在，资料、考试通过后才进入首页 否则进入成为自由人页面
         //进入首页
         TJMLog(@"token存在 判断审核、学习状态");
-        
         TJMFreeManInfo *info = [TJMSandBoxManager getModelFromInfoPlistWithKey:kTJMFreeManInfo];
         if (info) {
             if (info.materialStatus.integerValue == 2 && info.examStatus.integerValue == 4) {
@@ -30,10 +29,12 @@
                 TJMTabBarViewController *tabBarVC = [storyboard instantiateViewControllerWithIdentifier:@"TJMTabBarController"];
                 self.window.rootViewController = tabBarVC;
             } else {
+                //审核未通过
                 UINavigationController *uncheckedNaviC = [storyboard instantiateViewControllerWithIdentifier:@"TJMUncheckedNaviController"];
                 UIViewController *naviRootVC = [uncheckedNaviC.viewControllers firstObject];
                 TJMEntryCheckViewController *entryCheckVC = [storyboard instantiateViewControllerWithIdentifier:@"EntryCheck"];
                 entryCheckVC.freeManInfo = info;
+                //直接进入未审核页面
                 [uncheckedNaviC setViewControllers:@[naviRootVC,entryCheckVC]];
                 self.window.rootViewController = uncheckedNaviC;
             }
@@ -45,6 +46,10 @@
         UINavigationController *uncheckedNaviC = [storyboard instantiateViewControllerWithIdentifier:@"TJMUncheckedNaviController"];
         self.window.rootViewController = uncheckedNaviC;
     }
+    //更新个人信息
+    [TJMRequestH getPersonInfoSuccess:^(id successObj, NSString *msg) {
+    } fail:^(NSString *failString) {
+    }];
 }
 
 #pragma  mark - 更改根视图 动画
@@ -135,12 +140,30 @@
     UIViewController *VC = [self topViewController];
     [TJMHUDHandle transientNoticeAtView:self.window withMessage:msg];
     if ([VC isKindOfClass:NSClassFromString(@"TJMQRCodeSingInViewController")]) {
+        TJMOrderModel *model = [VC valueForKey:@"orderModel"];
+        model.orderStatus = @4;
         //如果是 当前扫描界面 那就 pop 回去
         [VC.navigationController popViewControllerAnimated:YES];
     } else if ([VC isKindOfClass:NSClassFromString(@"TJMCodeSignInViewController")]) {
+        TJMOrderModel *model = [VC valueForKey:@"orderModel"];
+        model.orderStatus = @4;
         UIViewController *targetVC = [VC popTargetViewControllerWithViewControllerNumber:2];
         [VC.navigationController popToViewController:targetVC animated:YES];
+    } else if ([VC isKindOfClass:NSClassFromString(@"TJMMyOrderDetailViewController")]) {
+        TJMOrderModel *model = [VC valueForKey:@"orderModel"];
+        model.orderStatus = @4;
+        if ([VC respondsToSelector:@selector(setBottomButton)]) {
+            [VC performSelector:@selector(setBottomButton) withObject:nil];
+        }
+    } else if ([VC isKindOfClass:NSClassFromString(@"TJMMyOrderViewController.h")]) {
+        //我的订单页面
+        TJMOrderModel *model = [VC valueForKey:@"orderModel"];
+        model.orderStatus = @4;
+        if ([VC respondsToSelector:@selector(reloadDataTableView)]) {
+            [VC performSelector:@selector(reloadDataTableView) withObject:nil];
+        }
     }
+
     
     
 }

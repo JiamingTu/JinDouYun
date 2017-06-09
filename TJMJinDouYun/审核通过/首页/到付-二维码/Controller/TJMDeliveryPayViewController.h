@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface TJMDeliveryPayViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UIImageView *QRCodeImageView;
 
+@property (weak, nonatomic) IBOutlet UIImageView *QRCodeImageView;
 @property (nonatomic,strong) TJMOrderModel *orderModel;
 
 @end

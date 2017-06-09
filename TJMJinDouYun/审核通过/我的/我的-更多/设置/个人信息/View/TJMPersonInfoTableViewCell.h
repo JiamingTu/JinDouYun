@@ -12,7 +12,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerImageHeightConstraint;
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *detialLabel;
+@property (weak, nonatomic) IBOutlet UILabel *detailLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *headerImageView;
 
 @property (nonatomic,assign) BOOL isHeaderImageView;

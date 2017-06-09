@@ -135,6 +135,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityDidChange:) name:kTJMLocationCityNameDidChange object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationDidChange:) name:kTJMLocationDidChange object:nil];
     //页面将要显示时获取工作状态，更新页面
+    [self.dataSourceDictionary removeAllObjects];
     [self getWorkingStatus];
     //开启定位服务
 }
@@ -330,7 +331,6 @@
         [self.footer setTitle:@"已经全部加载完毕" forState:MJRefreshStateNoMoreData];
         //重设header
         self.tableView.mj_header = self.header;
-        [self.dataSourceDictionary removeAllObjects];
         [self setOrderList];
     } else {
         //收工
@@ -375,16 +375,14 @@
         } else {
             page = number + 1;
         }
-    } else {
-        //如果不存在，则从零开始
+    } else { //如果不存在，则从零开始
         page = 0;
     }
     //请求
-    [TJMRequestH getOrderListWithType:type page:page size:5 sort:nil dir:@"ASC" status:status success:^(id successObj, NSString *msg) {
+    [TJMRequestH getOrderListWithType:type page:page size:5 sort:nil dir:@"DESC" status:status success:^(id successObj, NSString *msg) {
         TJMOrderData *orderData = (TJMOrderData *)successObj;
         //如果 为空 则不能进行下列操作
         if (orderData.totalPages == nil) return;
-        
         NSMutableArray *array = [NSMutableArray arrayWithArray:orderData.content];
         if ([self.dataSourceDictionary.allKeys containsObject:[NSString stringWithFormat:@"%zdtotal",_selectButton.tag]]) {
             //上拉加载
@@ -477,7 +475,7 @@
     TJMLog(@"%@",cell.currentModel.orderStatus);
     if (cell.currentModel.orderStatus.integerValue != 1) {
 
-        [self performSegueWithIdentifier:@"HomeToOrderDetial" sender:cell.currentModel];
+        [self performSegueWithIdentifier:@"HomeToOrderDetail" sender:cell.currentModel];
     }
 }
 #pragma  mark - TJMHomeOrderTableViewCellDelegate
@@ -508,8 +506,7 @@
 }
 #pragma  mark 到付
 - (void)payOnDeliveryWithOrder:(TJMOrderModel *)model cell:(TJMHomeOrderTableViewCell *)cell {
-    
-    
+     [self performSegueWithIdentifier:@"HelpPay" sender:model];
 }
 #pragma  mark 验证码 签收
 - (void)codeSignInWithOrder:(TJMOrderModel *)model cell:(TJMHomeOrderTableViewCell *)cell {
@@ -558,15 +555,14 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if ([segue.identifier isEqualToString:@"QRCodeSingIn"]) {
-        TJMQRCodeSingInViewController *QRCodeSingInVC = segue.destinationViewController;
-        QRCodeSingInVC.orderModel = sender;
+    if ([segue.identifier isEqualToString:@"QRCodeSingIn"] || [segue.identifier isEqualToString:@"HelpPay"]) {
+        [segue.destinationViewController setValue:sender forKey:@"orderModel"];
     } else if ([segue.identifier isEqualToString:@"SurePickUp"]) {
         TJMPickUpViewController *pickUpVC = segue.destinationViewController;
         pickUpVC.orderModel = sender;
     } else if ([segue.identifier isEqualToString:@"BaiduMap"]) {
         [segue.destinationViewController setValue:sender forKey:@"locations"];
-    } else if ([segue.identifier isEqualToString:@"HomeToOrderDetial"]) {
+    } else if ([segue.identifier isEqualToString:@"HomeToOrderDetail"]) {
         [segue.destinationViewController setValue:sender forKey:@"orderModel"];
     }
 }

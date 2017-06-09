@@ -94,10 +94,6 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    NSString *string = [NSString stringWithFormat:@"%zd",[UIApplication sharedApplication].applicationIconBadgeNumber ];
-    if (![string isEqualToString: @"0"]) {
-        [TJMHUDHandle showRequestHUDAtView:self.window message:string];
-    }
     
 }
 

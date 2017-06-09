@@ -85,7 +85,6 @@ const NSInteger _messageSize = 15;
             if (_messageSize > data.data.count) {
                 //没有更多数据
                 [self.tableView.mj_footer endRefreshingWithNoMoreData];
-                
             }
         } else {
             [self.tableView.mj_footer endRefreshing];
@@ -131,7 +130,8 @@ const NSInteger _messageSize = 15;
     [cell setSelected:NO animated:YES];
     TJMMessageModel *model = self.dataSourceArray[indexPath.row];
     [self performSegueWithIdentifier:@"MessageToMsgDetail" sender:model];
-    
+}
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
 }
 #pragma  mark memory warning

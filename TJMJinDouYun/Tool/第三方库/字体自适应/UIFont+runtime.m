@@ -19,7 +19,7 @@
 }
 
 
-+(UIFont *)adjustFont:(CGFloat)fontSize{
++ (UIFont *)adjustFont:(CGFloat)fontSize {
     UIFont *newFont=nil;
     newFont = [UIFont adjustFont:fontSize * [UIScreen mainScreen].bounds.size.width/YourUIScreen];
     return newFont;

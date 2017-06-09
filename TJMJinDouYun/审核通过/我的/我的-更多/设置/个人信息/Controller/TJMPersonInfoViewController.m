@@ -120,7 +120,7 @@
         } else if ([key isEqualToString:@"idCard"]) {
             valueString = [valueString stringByReplacingCharactersInRange:NSMakeRange(6, 8) withString:@"********"];
         }
-        cell.detialLabel.text = valueString;
+        cell.detailLabel.text = valueString;
     }
     
     

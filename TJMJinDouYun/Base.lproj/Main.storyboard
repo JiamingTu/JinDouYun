@@ -30,7 +30,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1935" y="-1937"/>
+            <point key="canvasLocation" x="1884" y="-1232"/>
         </scene>
         <!--Homepage View Controller-->
         <scene sceneID="bDV-uU-yCh">
@@ -651,7 +651,7 @@
                         <segue destination="7cB-kV-G84" kind="show" identifier="QRCodeSingIn" id="ofq-iA-GDk"/>
                         <segue destination="OZx-dl-108" kind="show" identifier="HelpPay" id="2bE-rr-9R5"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="BaiduMap" id="54p-M7-Rzg"/>
-                        <segue destination="dhW-L3-FkR" kind="show" identifier="HomeToOrderDetial" id="bgO-bv-ThF"/>
+                        <segue destination="dhW-L3-FkR" kind="show" identifier="HomeToOrderDetail" id="bgO-bv-ThF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qdE-sa-o3p" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -705,7 +705,7 @@
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4Ch-jo-FKz">
                                 <rect key="frame" x="15" y="158" width="345" height="150"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="ffW-CK-lh0"/>
                                 </constraints>
@@ -826,7 +826,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Oa-T6-Ukv">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Oa-T6-Ukv">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vz6-XW-EXS">
@@ -1614,7 +1614,7 @@
                         <segue destination="06i-o4-aRU" kind="show" identifier="MyOrderToPickUp" id="Exj-kd-E8d"/>
                         <segue destination="7cB-kV-G84" kind="show" identifier="MyOrderToSignIn" id="9P3-VV-xjG"/>
                         <segue destination="OZx-dl-108" kind="show" identifier="MyOrderToDeliveryPay" id="nHj-RB-jZK"/>
-                        <segue destination="dhW-L3-FkR" kind="show" identifier="MyOrderToOrderDetial" id="Utp-6e-MRh"/>
+                        <segue destination="dhW-L3-FkR" kind="show" identifier="MyOrderToOrderDetail" id="Utp-6e-MRh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RTk-oN-fzy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1691,7 +1691,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GPX-KF-gWz">
-                                <rect key="frame" x="187.5" y="617" width="187.5" height="50"/>
+                                <rect key="frame" x="188" y="617" width="187" height="50"/>
                                 <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="187.5" id="iZt-fR-MOD"/>
@@ -1704,7 +1704,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gXK-oZ-T7m">
-                                <rect key="frame" x="0.0" y="617" width="187.5" height="50"/>
+                                <rect key="frame" x="0.0" y="617" width="188" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.87450980389999999" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="gco-ep-RBJ"/>
@@ -1740,7 +1740,7 @@
                         <outlet property="rightWhiteButton" destination="GPX-KF-gWz" id="2wW-A3-tUb"/>
                         <outlet property="tableView" destination="Pse-eA-nRI" id="Xla-cI-iXy"/>
                         <segue destination="06i-o4-aRU" kind="show" identifier="DetailToPickUp" id="lfs-uJ-JRj"/>
-                        <segue destination="7cB-kV-G84" kind="show" identifier="DetialToSignIn" id="6aJ-qe-22s"/>
+                        <segue destination="7cB-kV-G84" kind="show" identifier="DetailToSignIn" id="6aJ-qe-22s"/>
                         <segue destination="OZx-dl-108" kind="show" identifier="DetailToDeliveryPay" id="5iJ-Ic-JbD"/>
                     </connections>
                 </viewController>
@@ -4858,7 +4858,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="detialLabel" destination="ymw-8Z-Cn2" id="wQh-ZR-YPk"/>
+                                            <outlet property="detailLabel" destination="ymw-8Z-Cn2" id="MXt-SA-yoN"/>
                                             <outlet property="headerImageHeightConstraint" destination="CCW-yv-wCH" id="hIg-Vn-nPv"/>
                                             <outlet property="headerImageView" destination="nFd-Nl-wym" id="h0h-0H-hYG"/>
                                             <outlet property="titleLabel" destination="6dB-Rf-DKL" id="QfE-Kx-W0x"/>
@@ -5334,12 +5334,12 @@
         <image name="矢量智能对象4" width="21" height="18"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="bgO-bv-ThF"/>
+        <segue reference="Utp-6e-MRh"/>
         <segue reference="hc3-tj-ldE"/>
         <segue reference="6YC-oX-7Ha"/>
-        <segue reference="2bE-rr-9R5"/>
-        <segue reference="ofq-iA-GDk"/>
-        <segue reference="atZ-Lh-esA"/>
+        <segue reference="5iJ-Ic-JbD"/>
+        <segue reference="lfs-uJ-JRj"/>
+        <segue reference="6aJ-qe-22s"/>
         <segue reference="rBA-tL-a9O"/>
     </inferredMetricsTieBreakers>
 </document>

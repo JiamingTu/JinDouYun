@@ -129,14 +129,16 @@
         NSDictionary *parameters = @{@"code":self.codeTextField.text,@"orderNo":self.orderModel.orderNo};
         [TJMRequestH getSignInCodeOrSignWithType:TJMSignInOrder parameters:parameters success:^(id successObj, NSString *msg) {
             //签收成功
-            
+            [TJMHUDHandle transientNoticeAtView:self.view withMessage:msg];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                UIViewController *VC = [self popTargetViewControllerWithViewControllerNumber:2];
+                [self.navigationController popToViewController:VC animated:YES];
+            });
         } fail:^(NSString *failString) {
-            
+            [TJMHUDHandle transientNoticeAtView:self.view withMessage:failString];
         }];
     }
 }
-
-
 
 - (void)startTimer {
     if (!self.countDownTimer) {
@@ -179,8 +181,6 @@
 - (void)cancelTiemr {
     if (self.countDownTimer && self.countDownThread) {
         [self performSelector:@selector(cancel) onThread:self.countDownThread withObject:nil waitUntilDone:NO];
-        
-        
     }
 }
 
