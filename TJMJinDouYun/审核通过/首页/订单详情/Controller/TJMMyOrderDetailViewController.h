@@ -17,5 +17,4 @@
 @property (weak, nonatomic) IBOutlet UIButton *leftYellowButton;
 @property (weak, nonatomic) IBOutlet UIButton *rightWhiteButton;
 
-- (void)setBottomButton;
 @end

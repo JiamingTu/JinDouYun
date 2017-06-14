@@ -8,7 +8,8 @@
 
 #import "TJMPickUpViewController.h"
 #import "TJMPickUpCollectionViewCell.h"
-#import <MBProgressHUD.h>
+#import "TJMBrowserViewController.h"
+#import "TJMPhotoManager.h"
 @interface TJMPickUpViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 //约束
 //竖直
@@ -26,7 +27,6 @@
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic,strong) NSMutableArray *dataSourceArray;
-
 @property (weak, nonatomic) IBOutlet UILabel *noticLabel;
 @property (weak, nonatomic) IBOutlet UILabel *promptLabel;
 
@@ -63,13 +63,13 @@
 }
 - (void)configViews {
     [self setBackNaviItem];
+    [self setRightNaviItemWithImageName:@"delete_pic" orTitle:nil titleColorHexValue:0 fontSize:0];
 }
 #pragma  mark - 按钮方法
 - (IBAction)commitAction:(UIButton *)sender {
     MBProgressHUD *progressHUD = [TJMHUDHandle showProgressHUDAtView:self.view message:@"正在上传"];
-    NSMutableArray *imageArray = [self.dataSourceArray mutableCopy];
-    [imageArray removeLastObject];
-    [TJMRequestH upLoadPickedOrderImage:imageArray orderNo:self.orderModel.orderNo pregress:^(NSProgress *progress) {
+    NSMutableArray *images = [self.dataSourceArray mutableCopy];
+    [TJMRequestH upLoadPickedOrderImage:images orderNo:self.orderModel.orderNo pregress:^(NSProgress *progress) {
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             progressHUD.progressObject = progress;
         }];
@@ -112,7 +112,15 @@
             [self presentViewController:imagePickerController animated:YES completion:nil];
         }
     } else {
-        //点击其他图片
+        //点击其他图片 预览
+        TJMBrowserViewController *browserVC = [[TJMBrowserViewController alloc]init];
+        browserVC.currentIndexPath = indexPath;
+        browserVC.sourceImagesContainerView = collectionView;
+        browserVC.imageArray = self.dataSourceArray;
+        [browserVC show];
+        
+        
+        
     }
 }
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
@@ -127,14 +135,19 @@
 
 #pragma  mark - UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-    UIImage* image = [info objectForKey:UIImagePickerControllerEditedImage];
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
     NSInteger item = self.dataSourceArray.count - 1;
     [self.dataSourceArray insertObject:image atIndex:item];
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:item inSection:0];
     [self.collectionView insertItemsAtIndexPaths:@[indexPath]];
+    [TJMPhotoManager savePhoto:image];
     [picker dismissViewControllerAnimated:YES completion:nil];
-    
 }
+
+
+
+
+
 
 
 #pragma  mark - memory warning

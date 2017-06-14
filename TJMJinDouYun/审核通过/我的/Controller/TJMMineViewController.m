@@ -115,15 +115,14 @@
 }
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    
 }
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    
     self.naviBgWidthConstraint.constant = TJMScreenWidth;
-    
-    self.scrollViewContentHeightConstraint.constant = CGRectGetMaxY(self.settingView.frame) + 29;
+    CGFloat expectedValue = CGRectGetMaxY(self.settingView.frame) + 40 * TJMHeightRatio;
+    CGFloat minValue = TJMScreenHeight - 64 - 49 + 1;
+    self.scrollViewContentHeightConstraint.constant = expectedValue > minValue ? expectedValue : minValue;
     //设置头像圆角
     CGFloat height = self.headerButton.frame.size.height;
     self.headerButton.layer.cornerRadius = height / 2;

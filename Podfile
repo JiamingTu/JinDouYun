@@ -13,4 +13,5 @@ pod "MJRefresh"
 pod "WechatOpenSDK"
 pod "BaiduMapKit","~>3.3.2"
 pod "SDWebImage"
+
 end

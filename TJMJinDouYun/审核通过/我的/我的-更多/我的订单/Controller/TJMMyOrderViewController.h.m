@@ -78,7 +78,6 @@ const NSInteger _myOrderSize = 5;
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    self.navBarBgAlpha = @"0.0";
     self.tableView.mj_header = self.header;
     self.tableView.mj_footer = self.footer;
 }

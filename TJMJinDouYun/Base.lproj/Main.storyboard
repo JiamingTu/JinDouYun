@@ -723,7 +723,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_photo" translatesAutoresizingMaskIntoConstraints="NO" id="s8M-xu-dwd">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_photo" translatesAutoresizingMaskIntoConstraints="NO" id="s8M-xu-dwd">
                                                     <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="s8M-xu-dwd" secondAttribute="height" multiplier="1:1" id="eS3-P3-RzS"/>
@@ -985,7 +985,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o3O-P7-2Fw">
-                                                <rect key="frame" x="0.0" y="305" width="375" height="50"/>
+                                                <rect key="frame" x="0.0" y="304" width="375" height="50"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的钱包" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qer-Yb-hey">
                                                         <rect key="frame" x="50.5" y="15" width="70" height="21"/>
@@ -1020,14 +1020,14 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fta-Uj-zUJ">
-                                                <rect key="frame" x="0.0" y="304" width="375" height="1"/>
+                                                <rect key="frame" x="0.0" y="304" width="375" height="0.5"/>
                                                 <color key="backgroundColor" red="0.80392156862745101" green="0.80392156862745101" blue="0.80392156862745101" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="0.5" id="RIX-SJ-Cq6"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eak-BS-aXW">
-                                                <rect key="frame" x="0.0" y="365" width="375" height="50"/>
+                                                <rect key="frame" x="0.0" y="364" width="375" height="50"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="应急中心" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T7f-da-Wgj">
                                                         <rect key="frame" x="49.5" y="15" width="70" height="21"/>
@@ -1064,14 +1064,14 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8n0-CH-gfX">
-                                                <rect key="frame" x="0.0" y="415" width="375" height="1"/>
+                                                <rect key="frame" x="0.0" y="414" width="375" height="1"/>
                                                 <color key="backgroundColor" red="0.80392156859999997" green="0.80392156859999997" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="0.5" id="frs-Nq-sdP"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="alp-Ud-a5I">
-                                                <rect key="frame" x="0.0" y="416" width="375" height="50"/>
+                                                <rect key="frame" x="0.0" y="415" width="375" height="50"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="关于我们" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ecc-p1-fmz">
                                                         <rect key="frame" x="51" y="15" width="70" height="21"/>
@@ -1106,7 +1106,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IgJ-lf-bfL">
-                                                <rect key="frame" x="0.0" y="476" width="375" height="50"/>
+                                                <rect key="frame" x="0.0" y="475" width="375" height="50"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="设置" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OlT-gM-pJZ">
                                                         <rect key="frame" x="50" y="15" width="35" height="21"/>

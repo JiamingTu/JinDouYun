@@ -401,7 +401,12 @@
             [self.tableView.mj_header endRefreshing];
         }
     } fial:^(NSString *failString) {
-        
+        if (self.header.isRefreshing) {
+            [self.header endRefreshing];
+        }
+        if (self.footer.isRefreshing) {
+            [self.footer endRefreshing];
+        }
     }];
 }
 

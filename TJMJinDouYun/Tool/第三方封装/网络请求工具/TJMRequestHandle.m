@@ -453,11 +453,12 @@ SingletonM(RequestHandle)
     }
 }
 #pragma  mark 确认取货
-- (void)upLoadPickedOrderImage:(NSArray<UIImage *> *)images orderNo:(NSString *)number pregress:(ProgressBlock)progress success:(SuccessBlock)success fail:(FailBlock)failure {
+- (void)upLoadPickedOrderImage:(NSMutableArray<UIImage *> *)images orderNo:(NSString *)number pregress:(ProgressBlock)progress success:(SuccessBlock)success fail:(FailBlock)failure {
     if (self.tokenModel) {
         [self.jsonRequestManager.requestSerializer setValue:_tokenModel.token forHTTPHeaderField:@"Authorization"];
         NSString *path = [TJMApiBasicAddress stringByAppendingString:TJMSurePickUp];
         NSDictionary *parameters = @{@"orderNo":number,@"carrierId":_tokenModel.userId};
+        [images removeLastObject];
         [self.jsonRequestManager POST:path parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
             //遍历上传图片
             [images enumerateObjectsUsingBlock:^(UIImage * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {

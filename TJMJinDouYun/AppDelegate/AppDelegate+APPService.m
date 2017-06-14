@@ -152,6 +152,8 @@
     } else if ([VC isKindOfClass:NSClassFromString(@"TJMMyOrderDetailViewController")]) {
         TJMOrderModel *model = [VC valueForKey:@"orderModel"];
         model.orderStatus = @4;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
         if ([VC respondsToSelector:@selector(setBottomButton)]) {
             [VC performSelector:@selector(setBottomButton) withObject:nil];
         }
@@ -161,6 +163,9 @@
         model.orderStatus = @4;
         if ([VC respondsToSelector:@selector(reloadDataTableView)]) {
             [VC performSelector:@selector(reloadDataTableView) withObject:nil];
+#pragma clang diagnostic pop
+        } else if ([VC isKindOfClass:NSClassFromString(@"TJMHomepageViewController")]) {
+            [[TJMLocationService sharedLocationService] getFreeManLocationWith:TJMGetLocationTypeLocAndCityName target:CLLocationCoordinate2DMake(0, 0)];
         }
     }
 

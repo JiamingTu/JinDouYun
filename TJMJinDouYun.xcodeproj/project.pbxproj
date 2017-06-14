@@ -56,8 +56,6 @@
 		99A3BC161EBC02C100688692 /* TJMMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A3BC151EBC02C100688692 /* TJMMessageTableViewCell.m */; };
 		99A3BC751EBCC79300688692 /* UINavigationController+Cloudox.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A3BC721EBCC79300688692 /* UINavigationController+Cloudox.m */; };
 		99A3BC761EBCC79300688692 /* UIViewController+Cloudox.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A3BC741EBCC79300688692 /* UIViewController+Cloudox.m */; };
-		99BD04A81EE5829800F56351 /* BaiduTraceSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99BD04A71EE5829800F56351 /* BaiduTraceSDK.framework */; };
-		99BD04A91EE5829800F56351 /* BaiduTraceSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 99BD04A71EE5829800F56351 /* BaiduTraceSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		99BD04AD1EE691C900F56351 /* TJMHeatMapData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99BD04AC1EE691C900F56351 /* TJMHeatMapData.m */; };
 		99E81CAC1EB217E600BB0875 /* 11111.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E81C521EB217E600BB0875 /* 11111.png */; };
 		99E81CAD1EB217E600BB0875 /* 22222.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E81C531EB217E600BB0875 /* 22222.png */; };
@@ -129,6 +127,9 @@
 		99F1C18B1EA445B200415F0C /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F1C18A1EA445B200415F0C /* libsqlite3.0.tbd */; };
 		99F1C18D1EA445BD00415F0C /* libz.1.2.5.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F1C18C1EA445BD00415F0C /* libz.1.2.5.tbd */; };
 		99F20D681EC1AB7A003CF114 /* QRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F20D671EC1AB7A003CF114 /* QRCodeViewController.m */; };
+		99F691801EEAB1AC00D7FA80 /* BaiduTraceSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F6917F1EEAB1AC00D7FA80 /* BaiduTraceSDK.framework */; };
+		99F691811EEAB1AC00D7FA80 /* BaiduTraceSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 99F6917F1EEAB1AC00D7FA80 /* BaiduTraceSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		99F691841EEAB3AD00D7FA80 /* BaiduMapAPI_Base.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F691831EEAB3AD00D7FA80 /* BaiduMapAPI_Base.framework */; };
 		99F836981ED3BDD300CB3714 /* TJMBindingBankCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F836841ED3BDD300CB3714 /* TJMBindingBankCardViewController.m */; };
 		99F836991ED3BDD300CB3714 /* CommonView in Resources */ = {isa = PBXBuildFile; fileRef = 99F836871ED3BDD300CB3714 /* CommonView */; };
 		99F8369A1ED3BDD300CB3714 /* TJMTransferOutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F8368B1ED3BDD300CB3714 /* TJMTransferOutViewController.m */; };
@@ -137,6 +138,10 @@
 		99F8369D1ED3BDD300CB3714 /* TJMMyBankCardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F836971ED3BDD300CB3714 /* TJMMyBankCardTableViewCell.m */; };
 		99F836A01ED3C3F800CB3714 /* TJMMyWalletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F8369F1ED3C3F800CB3714 /* TJMMyWalletViewController.m */; };
 		99F836A31ED3DA4000CB3714 /* TJMBankData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F836A21ED3DA4000CB3714 /* TJMBankData.m */; };
+		99FA702B1EEF872700552D01 /* HZIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FA70251EEF872700552D01 /* HZIndicatorView.m */; };
+		99FA70381EEFBA3700552D01 /* TJMBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FA70371EEFBA3700552D01 /* TJMBrowserViewController.m */; };
+		99FA703B1EEFBBBD00552D01 /* TJMBrowserCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FA703A1EEFBBBD00552D01 /* TJMBrowserCollectionViewCell.m */; };
+		99FA70411EF0113500552D01 /* TJMPhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FA70401EF0113500552D01 /* TJMPhotoManager.m */; };
 		99FF06A01EB9BE7200514D2F /* TJMInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FF069F1EB9BE7200514D2F /* TJMInfoTableViewCell.m */; };
 		99FF06A31EB9D0FD00514D2F /* TJMIdCardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FF06A21EB9D0FD00514D2F /* TJMIdCardTableViewCell.m */; };
 		99FF06A71EB9DE0200514D2F /* NSObject+Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FF06A61EB9DE0200514D2F /* NSObject+Config.m */; };
@@ -162,13 +167,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		99BD04AA1EE5829800F56351 /* Embed Frameworks */ = {
+		99F691821EEAB1AC00D7FA80 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				99BD04A91EE5829800F56351 /* BaiduTraceSDK.framework in Embed Frameworks */,
+				99F691811EEAB1AC00D7FA80 /* BaiduTraceSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -277,7 +282,6 @@
 		99A3BC721EBCC79300688692 /* UINavigationController+Cloudox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Cloudox.m"; sourceTree = "<group>"; };
 		99A3BC731EBCC79300688692 /* UIViewController+Cloudox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Cloudox.h"; sourceTree = "<group>"; };
 		99A3BC741EBCC79300688692 /* UIViewController+Cloudox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Cloudox.m"; sourceTree = "<group>"; };
-		99BD04A71EE5829800F56351 /* BaiduTraceSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduTraceSDK.framework; sourceTree = "<group>"; };
 		99BD04AB1EE691C900F56351 /* TJMHeatMapData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMHeatMapData.h; sourceTree = "<group>"; };
 		99BD04AC1EE691C900F56351 /* TJMHeatMapData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMHeatMapData.m; sourceTree = "<group>"; };
 		99E74D161EA8BB1700BFD422 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
@@ -404,6 +408,8 @@
 		99F1C18C1EA445BD00415F0C /* libz.1.2.5.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.5.tbd; path = usr/lib/libz.1.2.5.tbd; sourceTree = SDKROOT; };
 		99F20D661EC1AB7A003CF114 /* QRCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeViewController.h; sourceTree = "<group>"; };
 		99F20D671EC1AB7A003CF114 /* QRCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeViewController.m; sourceTree = "<group>"; };
+		99F6917F1EEAB1AC00D7FA80 /* BaiduTraceSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduTraceSDK.framework; sourceTree = "<group>"; };
+		99F691831EEAB3AD00D7FA80 /* BaiduMapAPI_Base.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BaiduMapAPI_Base.framework; path = Pods/BaiduMapKit/BaiduMapKit/BaiduMapAPI_Base.framework; sourceTree = "<group>"; };
 		99F836831ED3BDD300CB3714 /* TJMBindingBankCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMBindingBankCardViewController.h; sourceTree = "<group>"; };
 		99F836841ED3BDD300CB3714 /* TJMBindingBankCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMBindingBankCardViewController.m; sourceTree = "<group>"; };
 		99F836871ED3BDD300CB3714 /* CommonView */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CommonView; sourceTree = "<group>"; };
@@ -419,6 +425,15 @@
 		99F8369F1ED3C3F800CB3714 /* TJMMyWalletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TJMMyWalletViewController.m; path = "我的钱包/Controller/TJMMyWalletViewController.m"; sourceTree = "<group>"; };
 		99F836A11ED3DA4000CB3714 /* TJMBankData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMBankData.h; sourceTree = "<group>"; };
 		99F836A21ED3DA4000CB3714 /* TJMBankData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMBankData.m; sourceTree = "<group>"; };
+		99FA70241EEF872700552D01 /* HZIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZIndicatorView.h; sourceTree = "<group>"; };
+		99FA70251EEF872700552D01 /* HZIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZIndicatorView.m; sourceTree = "<group>"; };
+		99FA70281EEF872700552D01 /* HZPhotoBrowserConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZPhotoBrowserConfig.h; sourceTree = "<group>"; };
+		99FA70361EEFBA3700552D01 /* TJMBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMBrowserViewController.h; sourceTree = "<group>"; };
+		99FA70371EEFBA3700552D01 /* TJMBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMBrowserViewController.m; sourceTree = "<group>"; };
+		99FA70391EEFBBBD00552D01 /* TJMBrowserCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMBrowserCollectionViewCell.h; sourceTree = "<group>"; };
+		99FA703A1EEFBBBD00552D01 /* TJMBrowserCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMBrowserCollectionViewCell.m; sourceTree = "<group>"; };
+		99FA703F1EF0113500552D01 /* TJMPhotoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMPhotoManager.h; sourceTree = "<group>"; };
+		99FA70401EF0113500552D01 /* TJMPhotoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMPhotoManager.m; sourceTree = "<group>"; };
 		99FF069E1EB9BE7200514D2F /* TJMInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMInfoTableViewCell.h; sourceTree = "<group>"; };
 		99FF069F1EB9BE7200514D2F /* TJMInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMInfoTableViewCell.m; sourceTree = "<group>"; };
 		99FF06A11EB9D0FD00514D2F /* TJMIdCardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMIdCardTableViewCell.h; sourceTree = "<group>"; };
@@ -436,6 +451,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99F691841EEAB3AD00D7FA80 /* BaiduMapAPI_Base.framework in Frameworks */,
 				99E81CE91EB21A3D00BB0875 /* libssl.a in Frameworks */,
 				99F1C18D1EA445BD00415F0C /* libz.1.2.5.tbd in Frameworks */,
 				99F1C18B1EA445B200415F0C /* libsqlite3.0.tbd in Frameworks */,
@@ -454,7 +470,7 @@
 				99F1C1751EA4454000415F0C /* CoreLocation.framework in Frameworks */,
 				99F1C1731EA4453A00415F0C /* CoreMotion.framework in Frameworks */,
 				99F1C1711EA4452F00415F0C /* ImageIO.framework in Frameworks */,
-				99BD04A81EE5829800F56351 /* BaiduTraceSDK.framework in Frameworks */,
+				99F691801EEAB1AC00D7FA80 /* BaiduTraceSDK.framework in Frameworks */,
 				99F1C16F1EA4452700415F0C /* AudioToolbox.framework in Frameworks */,
 				B3430058D86B1BD9C99AB40E /* libPods-TJMJinDouYun.a in Frameworks */,
 			);
@@ -480,6 +496,7 @@
 		889BC0A7E9955FB8187A2A77 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				99F691831EEAB3AD00D7FA80 /* BaiduMapAPI_Base.framework */,
 				99F1C18C1EA445BD00415F0C /* libz.1.2.5.tbd */,
 				99F1C18A1EA445B200415F0C /* libsqlite3.0.tbd */,
 				99F1C1881EA445AB00415F0C /* libc++.tbd */,
@@ -504,6 +521,7 @@
 		99019DBF1ECAD6D7002BC164 /* 取货-拍照上传 */ = {
 			isa = PBXGroup;
 			children = (
+				99FA70131EEF852C00552D01 /* 图片浏览 */,
 				99019DC01ECAD6EF002BC164 /* Controller */,
 				99019DC41ECAE33B002BC164 /* View */,
 			);
@@ -1551,7 +1569,7 @@
 		99F1C0771EA0CEB800415F0C = {
 			isa = PBXGroup;
 			children = (
-				99BD04A71EE5829800F56351 /* BaiduTraceSDK.framework */,
+				99F6917F1EEAB1AC00D7FA80 /* BaiduTraceSDK.framework */,
 				99F1C0821EA0CEB800415F0C /* TJMJinDouYun */,
 				99F1C09C1EA0CEB800415F0C /* TJMJinDouYunTests */,
 				99F1C0A71EA0CEB800415F0C /* TJMJinDouYunUITests */,
@@ -1617,6 +1635,7 @@
 		99F1C0B61EA0CEE000415F0C /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				99FA703E1EF0111500552D01 /* 相册管理 */,
 				99F1C0B71EA0CEE000415F0C /* Config */,
 				99F1C0BB1EA0CEE000415F0C /* 沙盒管理 */,
 				99F1C0BE1EA0CEE000415F0C /* 第三方封装 */,
@@ -1836,6 +1855,54 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		99FA70131EEF852C00552D01 /* 图片浏览 */ = {
+			isa = PBXGroup;
+			children = (
+				99FA70141EEF852C00552D01 /* Controller */,
+				99FA70151EEF852C00552D01 /* View */,
+			);
+			name = "图片浏览";
+			path = "取货-拍照上传/图片浏览";
+			sourceTree = "<group>";
+		};
+		99FA70141EEF852C00552D01 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				99FA70361EEFBA3700552D01 /* TJMBrowserViewController.h */,
+				99FA70371EEFBA3700552D01 /* TJMBrowserViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		99FA70151EEF852C00552D01 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				99FA70231EEF86D000552D01 /* HZPhotoBrowser */,
+				99FA70391EEFBBBD00552D01 /* TJMBrowserCollectionViewCell.h */,
+				99FA703A1EEFBBBD00552D01 /* TJMBrowserCollectionViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		99FA70231EEF86D000552D01 /* HZPhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				99FA70241EEF872700552D01 /* HZIndicatorView.h */,
+				99FA70251EEF872700552D01 /* HZIndicatorView.m */,
+				99FA70281EEF872700552D01 /* HZPhotoBrowserConfig.h */,
+			);
+			path = HZPhotoBrowser;
+			sourceTree = "<group>";
+		};
+		99FA703E1EF0111500552D01 /* 相册管理 */ = {
+			isa = PBXGroup;
+			children = (
+				99FA703F1EF0113500552D01 /* TJMPhotoManager.h */,
+				99FA70401EF0113500552D01 /* TJMPhotoManager.m */,
+			);
+			path = "相册管理";
+			sourceTree = "<group>";
+		};
 		D8C8147D2A0C1E675CA3EF9C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1858,7 +1925,7 @@
 				99F1C07E1EA0CEB800415F0C /* Resources */,
 				97ED38BC82216DDAB8D0F2DD /* [CP] Embed Pods Frameworks */,
 				FF836F4C0026353E8A1C399C /* [CP] Copy Pods Resources */,
-				99BD04AA1EE5829800F56351 /* Embed Frameworks */,
+				99F691821EEAB1AC00D7FA80 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2084,6 +2151,7 @@
 				99E81CC01EB217E700BB0875 /* TJMScanQRCodeViewController.m in Sources */,
 				994600CB1EE4E62B00B831A6 /* TJMMessageData.m in Sources */,
 				998377161ED9660F0007DD85 /* ZGLVideoPlyer.m in Sources */,
+				99FA70411EF0113500552D01 /* TJMPhotoManager.m in Sources */,
 				998377151ED9660F0007DD85 /* ZGLVideoMaskView.m in Sources */,
 				9966AA301ED6C511004A09F7 /* TJMFeedBackViewController.m in Sources */,
 				99A3BC761EBCC79300688692 /* UIViewController+Cloudox.m in Sources */,
@@ -2106,6 +2174,7 @@
 				99019DC71ECAE36C002BC164 /* TJMPickUpCollectionViewCell.m in Sources */,
 				991B091D1EDEECD4009DB296 /* TJMLocation.m in Sources */,
 				99E81CB11EB217E600BB0875 /* TJMProvinceData.m in Sources */,
+				99FA702B1EEF872700552D01 /* HZIndicatorView.m in Sources */,
 				99E81CBC1EB217E600BB0875 /* TJMHelpToBuyViewController.m in Sources */,
 				991B092C1EE01093009DB296 /* TJMMyOrderDetailViewController.m in Sources */,
 				99E81CBD1EB217E700BB0875 /* TJMMineViewController.m in Sources */,
@@ -2120,6 +2189,7 @@
 				99E81CC31EB217E700BB0875 /* TJMHomepageViewController.m in Sources */,
 				99F8369D1ED3BDD300CB3714 /* TJMMyBankCardTableViewCell.m in Sources */,
 				991B09311EE015CB009DB296 /* TJMOrderDetailInfoModel.m in Sources */,
+				99FA70381EEFBA3700552D01 /* TJMBrowserViewController.m in Sources */,
 				99A3BC161EBC02C100688692 /* TJMMessageTableViewCell.m in Sources */,
 				991B09371EE16749009DB296 /* TJMPerformanceModel.m in Sources */,
 				9943EDEF1EC5BBA2006D083D /* TJMOrderData.m in Sources */,
@@ -2144,6 +2214,7 @@
 				99F8369B1ED3BDD300CB3714 /* TJMMyBankCardViewController.m in Sources */,
 				99F836A01ED3C3F800CB3714 /* TJMMyWalletViewController.m in Sources */,
 				99F1C0FC1EA0CEFA00415F0C /* AppDelegate.m in Sources */,
+				99FA703B1EEFBBBD00552D01 /* TJMBrowserCollectionViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2303,9 +2374,8 @@
 				DEVELOPMENT_TEAM = EA69B4VRFP;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/TJMJinDouYun/Tool/第三方库/BaiduMap_IOSSDK_v3.3.2_All",
+					"$(PROJECT_DIR)/Pods/BaiduMapKit/BaiduMapKit",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/TJMJinDouYun/Tool/Config/TJMPrefixHeader.pch";
@@ -2336,9 +2406,8 @@
 				DEVELOPMENT_TEAM = EA69B4VRFP;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/TJMJinDouYun/Tool/第三方库/BaiduMap_IOSSDK_v3.3.2_All",
+					"$(PROJECT_DIR)/Pods/BaiduMapKit/BaiduMapKit",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/TJMJinDouYun/Tool/Config/TJMPrefixHeader.pch";
