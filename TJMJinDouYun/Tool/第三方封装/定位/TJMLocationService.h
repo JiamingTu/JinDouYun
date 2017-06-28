@@ -16,6 +16,8 @@ typedef enum : NSUInteger {
     TJMGetLocationTypeNaviService,
 } TJMGetLocationType;
 
+typedef void(^RouteResultBolck)(double distance);
+
 @interface TJMLocationService : NSObject<BMKGeneralDelegate>
 {
     BMKMapManager* _mapManager;
@@ -32,7 +34,12 @@ SingletonH(LocationService)
 
 @property (nonatomic,strong) BMKMapView *mapView;
 @property (nonatomic,strong) BMKGeoCodeSearch *searcher;
+/**上传自由人位置*/
+-(void)setUpLocationTrakerWithWorkStatus:(BOOL)isOn timeInterval:(NSTimeInterval)timeInterval;
 
-
+@property (nonatomic,strong) BMKRouteSearch *routeSearch;
+@property (nonatomic,copy) RouteResultBolck routeResult;
+/**计算我到取货点距离*/
+-(void)calculateDriveDistanceWithStartPoint:(CLLocationCoordinate2D)startCoordinate endPoint:(CLLocationCoordinate2D)endCoordinate;
 @end
 

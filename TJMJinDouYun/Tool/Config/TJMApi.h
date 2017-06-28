@@ -9,13 +9,13 @@
 #ifndef TJMApi_h
 #define TJMApi_h
 //接口地址
-//http://www.jindowin.com.cn/jdy/swagger-ui.html
+//http://www.qiaoqiao123.com/jdy/swagger-ui.html
 // 秘钥
 #define TJMSecretKey @"c7b302432e2a16f77ebdf44455585491"
 //基础接口地址
-#define TJMApiBasicAddress @"http://www.jindowin.com.cn/jdy"
+#define TJMApiBasicAddress @"http://www.qiaoqiao123.com/jdy"
 //图片基础地址（头像）
-#define TJMPhotoBasicAddress @"http://www.jindowin.com.cn/"
+#define TJMPhotoBasicAddress @"http://www.qiaoqiao123.com/"
 
 #pragma  mark - 自由人
 /*
@@ -171,6 +171,7 @@
  *Parameters
  *  lat
  *  lng
+ *  carrierId
  */
 #define TJMUploadFreeManLocation @"/carrier/locations"
 

@@ -8,7 +8,7 @@
 
 #import "TJMQRCodeSingInViewController.h"
 #import "TJMCodeSignInViewController.h"
-@interface TJMQRCodeSingInViewController ()
+@interface TJMQRCodeSingInViewController ()<TDAlertViewDelegate>
 //约束
 //竖直
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *QRCodeImageTopConstraint;
@@ -58,21 +58,9 @@
     [self adjustFonts];
     [self configViews];
     [self resetConstraints];
-    
-    //请求 ->菊花 ->得到二维码字符串 ->菊花消失 ->跳转
-    [TJMHUDHandle showRequestHUDAtView:self.view message:nil];
-    [TJMRequestH getQRCodeTextWithOrderId:self.orderModel.orderId success:^(id successObj, NSString *msg) {
-        NSString *URLString = successObj;
-        NSURL *URL = [NSURL URLWithString:URLString];
-        NSData *imageData = [NSData dataWithContentsOfURL:URL];
-        UIImage *image = [UIImage imageWithData:imageData];
-        self.QRCodeImageView.image = image;
-        [TJMHUDHandle hiddenHUDForView:self.view];
-    } fail:^(NSString *failString) {
-        [TJMHUDHandle hiddenHUDForView:self.view];
-    }];
-    
-    
+    //获取地理位置，判断取货范围
+    [[TJMLocationService sharedLocationService] getFreeManLocationWith:TJMGetLocationTypeLocation target:CLLocationCoordinate2DMake(0, 0)];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationDidChange:) name:kTJMLocationDidChange object:nil];
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
@@ -97,6 +85,44 @@
 - (void)configViews {
     //设置返回按钮
     [self setBackNaviItem];
+}
+
+#pragma  mark - 通知
+- (void)locationDidChange:(NSNotification *)notification {
+    BMKUserLocation *location = notification.userInfo[@"myLocation"];
+    CLLocationCoordinate2D toCoordinate = CLLocationCoordinate2DMake(_orderModel.receiverLat.doubleValue, _orderModel.receiverLng.doubleValue);
+    CLLocationDistance distance = [[TJMLocationService sharedLocationService] calculateDistanceFromMyLocation:location.location.coordinate toGetLocation:toCoordinate];
+    if (distance > 1000) {
+        [self alertViewWithTag:1000 delegate:self title:@"不在签收范围" cancelItem:nil sureItem:@"确定"];
+    } else {
+        //获取二维码
+        [self getQRCode];
+    }
+}
+
+- (void)alertView:(TDAlertView *)alertView didClickItemWithIndex:(NSInteger)itemIndex {
+    if (itemIndex == 0) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+#pragma  mark - 获取二维码
+- (void)getQRCode {
+    //请求 ->菊花 ->得到二维码字符串 ->菊花消失 ->跳转
+    [TJMHUDHandle showRequestHUDAtView:self.view message:nil];
+    [TJMRequestH getQRCodeTextWithOrderId:self.orderModel.orderId success:^(id successObj, NSString *msg) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            NSString *URLString = successObj;
+            NSURL *URL = [NSURL URLWithString:URLString];
+            NSData *imageData = [NSData dataWithContentsOfURL:URL];
+            UIImage *image = [UIImage imageWithData:imageData];
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                self.QRCodeImageView.image = image;
+                [TJMHUDHandle hiddenHUDForView:self.view];
+            }];
+        });
+    } fail:^(NSString *failString) {
+        [TJMHUDHandle hiddenHUDForView:self.view];
+    }];
 }
 
 

@@ -49,6 +49,7 @@
     //更新个人信息
     [TJMRequestH getPersonInfoSuccess:^(id successObj, NSString *msg) {
     } fail:^(NSString *failString) {
+        
     }];
 }
 

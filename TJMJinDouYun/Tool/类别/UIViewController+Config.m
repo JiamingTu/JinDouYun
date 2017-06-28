@@ -106,9 +106,17 @@ const char *kTJMAppDelegateKey = "AppDelegateKey";
 
 #pragma  mark - 弹窗提示
 - (void)alertViewWithTag:(NSInteger)tag delegate:(id<TDAlertViewDelegate>)delegate title:(NSString *)title cancelItem:(NSString *)cancel sureItem:(NSString *)sure {
-    TDAlertItem *cancelItem = [[TDAlertItem alloc]initWithTitle:sure titleColor:TJMFUIColorFromRGB(0x666666)];
-    TDAlertItem *sureItem = [[TDAlertItem alloc]initWithTitle:cancel titleColor:TJMFUIColorFromRGB(0xffdf22)];
-    TDAlertView *alertView = [[TDAlertView alloc]initWithTitle:title message:nil items:@[cancelItem,sureItem] delegate:delegate];
+    TDAlertItem *sureItem = [[TDAlertItem alloc]initWithTitle:sure titleColor:TJMFUIColorFromRGB(0x666666)];
+    TDAlertItem *cancelItem = [[TDAlertItem alloc]initWithTitle:cancel titleColor:TJMFUIColorFromRGB(0xffdf22)];
+    NSArray *items = nil;
+    if (cancel == nil) {
+        items = @[sureItem];
+    } else if (sure == nil) {
+        items = @[cancelItem];
+    } else {
+        items = @[sureItem,cancelItem];
+    }
+    TDAlertView *alertView = [[TDAlertView alloc]initWithTitle:title message:nil items:items delegate:delegate];
     alertView.tag = tag;
     alertView.alertWidth = 280 * TJMHeightRatio;
     alertView.optionsRowHeight = 45 * TJMHeightRatio;
@@ -195,13 +203,13 @@ const char *kTJMAppDelegateKey = "AppDelegateKey";
     TJMRequestH.tokenModel = nil;
     self.appDelegate.personInfo = nil;
     [[SDWebImageManager sharedManager].imageCache clearDiskOnCompletion:nil];
-    
     [TJMSandBoxManager deleteTokenModel];
     [TJMSandBoxManager deleteModelFromInfoPlistWithKey:kTJMFreeManInfo];
     [TJMSandBoxManager deleteModelFromInfoPlistWithKey:kTJMPersonInfo];
     [TJMSandBoxManager deleteModelFromInfoPlistWithKey:kTJMPerformanceInfo];
     [TJMSandBoxManager deleteModelFromInfoPlistWithKey:kTJMIsChangePersonInfo];
     [TJMSandBoxManager deleteMessages];
+    [self.appDelegate setAlias];//清空别名
 }
 
 @end

@@ -8,7 +8,7 @@
 
 #import "TJMEmergenchyViewController.h"
 
-@interface TJMEmergenchyViewController ()
+@interface TJMEmergenchyViewController ()<UIWebViewDelegate>
 
 @end
 
@@ -24,8 +24,20 @@
 #pragma  mark - 按钮方法
 - (IBAction)callAction:(UIButton *)sender {
     //点击拨打电话
-    
+    [TJMHUDHandle showRequestHUDAtView:self.view message:nil];
+    NSMutableString *str=[[NSMutableString alloc] initWithFormat:@"tel:0592-911006"];
+    UIWebView *callWebview = [[UIWebView alloc] init];
+    callWebview.delegate = self;
+    [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
+    [self.view addSubview:callWebview];
 }
+
+#pragma  mark - UIWebViewDelegate
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    [TJMHUDHandle hiddenHUDForView:self.view];
+    return YES;
+}
+
 
 #pragma  mark - memory warning
 - (void)didReceiveMemoryWarning {

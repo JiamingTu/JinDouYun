@@ -143,16 +143,13 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     if (indexPath.row == 0) {
         //修改头像
+        TJMPersonInfoTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        [cell setSelected:NO animated:YES];
         [[tableView cellForRowAtIndexPath:indexPath] setSelected:NO animated:YES];
         [self alertSelectImagePickerVCSourceTypeWithImagePickerVC:self.imagePickerVC];
-    } else {
-        tableView.allowsSelection = NO;
-        
     }
-
 }
 
 

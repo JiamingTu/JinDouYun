@@ -89,7 +89,7 @@
     [UIView animateWithDuration:0.35 animations:^{
         self.navBarBgAlpha = @"1.0";
     }];
-    [self.navigationController.navigationBar tjm_hideShadowImageOrNot:YES];
+    [self.navigationController.navigationBar tjm_hideShadowImageOrNot:NO];
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -154,13 +154,12 @@
     if (materialStatus == 0 || materialStatus == 3) {
         //未提交 或者失败 进入
         [self performSegueWithIdentifier:@"CommitInfo" sender:self.freeManInfo];
-        sender.enabled = YES;
     } else {
         //审核中 或者 已通过 不进入
         NSString *cueString = materialStatus == 1 ? @"资料审核中" : @"审核已通过";
         [TJMHUDHandle transientNoticeAtView:self.view withMessage:cueString];
-        sender.enabled = YES;
     }
+    sender.enabled = YES;
 }
 #pragma  mark 三节学习按钮
 - (IBAction)studyAction:(UIButton *)sender {
@@ -168,6 +167,7 @@
     sender.enabled = NO;
     _selectButton = sender;
     NSInteger materialStatus = self.freeManInfo.materialStatus.integerValue;
+    //如果资料审核状态 为0：未提交 3：未通过 1：审核中
     if (materialStatus == 0 || materialStatus == 3 || materialStatus == 1) {
         [TJMHUDHandle transientNoticeAtView:self.view withMessage:@"审核未完成"];
         sender.enabled = YES;
@@ -288,7 +288,7 @@
 
 #pragma  mark - 切换账号
 - (void)rightItemAction:(UIButton *)button {
-    [TJMSandBoxManager deleteTokenModel];
+    [self deleteCarrierInfo];
     [self.navigationController popViewControllerAnimated:YES];
     
 }

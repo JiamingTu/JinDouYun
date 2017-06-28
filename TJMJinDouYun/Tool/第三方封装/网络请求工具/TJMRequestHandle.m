@@ -88,7 +88,7 @@ SingletonM(RequestHandle)
             //操作失败
             //失败原因
             failure(responseObject[@"msg"]);
-            TJMLog(@"获取验证码操作失败");
+            TJMLog(@"%@",responseObject[@"msg"]);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         failure(error.localizedDescription);
@@ -133,6 +133,10 @@ SingletonM(RequestHandle)
     if (isNeed) {
         [parameters setObject:TJMTimestamp forKey:@"timestamp"];
     }
+    //MD5 加密
+    NSString *pswd = parameters[@"pwd"];
+    pswd = [pswd MD5];
+    parameters[@"pwd"] = pswd;
     //升序得到 健值对应的两个数组
     NSArray *allKeyArray = [parameters allKeys];
     NSArray *afterSortKeyArray = [allKeyArray sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
@@ -163,7 +167,7 @@ SingletonM(RequestHandle)
     
 }
 
-#pragma  mark 开工/收工
+#pragma  mark - 开工/收工
 - (void)putFreeManWorkingStatusWithType:(NSString *)type
                                 success:(SuccessBlock)success
                                    fail:(FailBlock)failure {
@@ -221,6 +225,7 @@ SingletonM(RequestHandle)
         [self.jsonRequestManager.requestSerializer setValue:_tokenModel.token forHTTPHeaderField:@"Authorization"];
         [self.jsonRequestManager GET:URLString parameters:form progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             if (TJMRightCode) {
+                TJMLog(@"%@",responseObject);
                 //若果code == 200
                 if ([type isEqualToString:TJMFreeManGetCity]) {
                     //省市
@@ -303,18 +308,14 @@ SingletonM(RequestHandle)
 
 
 #pragma  mark - 自由人定位、客户定位定位
-- (void)freeManOrCustomerLocationWithCoordinate:(CLLocationCoordinate2D)coordinate withType:(NSString *)type success:(SuccessBlock)success fail:(FailBlock)failure {
+- (void)updateFreeManLocationWithCoordinate:(CLLocationCoordinate2D)coordinate withType:(NSString *)type success:(SuccessBlock)success fail:(FailBlock)failure {
     NSString *URLString = [TJMApiBasicAddress stringByAppendingString:type];
     //三元运算，根据type 得到不同的请求参数
-    NSDictionary *parameters = [type isEqualToString:TJMUploadFreeManLocation] ?
-    @{@"lat":@(coordinate.latitude),
-      @"lng":@(coordinate.longitude),
-@"carrierId":self.tokenModel.userId}
-    :
-    @{@"lat":@(coordinate.latitude),
-      @"lng":@(coordinate.longitude)};
+    NSDictionary *parameters = @{@"lat":@(coordinate.latitude),
+                                 @"lng":@(coordinate.longitude),
+                                 @"carrierId":self.tokenModel.userId};
     //三元运算，根据type 设置请求头
-    [type isEqualToString:TJMUploadFreeManLocation] ? [self.httpRequestManager.requestSerializer setValue:self.tokenModel.token forHTTPHeaderField:@"Authorization"] : [self.httpRequestManager.requestSerializer clearAuthorizationHeader];
+    [self.httpRequestManager.requestSerializer setValue:self.tokenModel.token forHTTPHeaderField:@"Authorization"];
     [self.httpRequestManager POST:URLString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -398,7 +399,7 @@ SingletonM(RequestHandle)
 #pragma  mark -  获取订单
 #pragma  mark 查询可抢单列表
 #pragma  mark 根据订单状态查询自由人订单
-- (void)getOrderListWithType:(NSString *)type page:(NSInteger)page size:(NSInteger)size sort:(NSString *)sort dir:(NSString *)dir status:(NSInteger)status success:(SuccessBlock)success fial:(FailBlock)failure {
+- (void)getOrderListWithType:(NSString *)type myLocation:(CLLocationCoordinate2D)coordinate page:(NSInteger)page size:(NSInteger)size sort:(NSString *)sort dir:(NSString *)dir status:(NSInteger)status cityName:(NSString *)cityName success:(SuccessBlock)success fial:(FailBlock)failure {
     if (self.tokenModel) {
         NSString *path = [TJMApiBasicAddress stringByAppendingString:type];
         NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
@@ -406,12 +407,17 @@ SingletonM(RequestHandle)
         if (size) [parameters setObject:@(size) forKey:@"size"];
         if (sort) [parameters setObject:sort forKey:@"sort"];
         if (dir) [parameters setObject:dir forKey:@"dir"];
-        //如果type 为 TJMStatusOrder 需要增加参数 carrierId、status
+        
         if ([type isEqualToString:TJMStatusOrder]) {
+            //如果type 为 TJMStatusOrder 需要增加参数 carrierId、status
             [parameters setObject:self.tokenModel.userId forKey:@"carrierId"];
             [parameters setObject:@(status) forKey:@"status"];
         } else if ([type isEqualToString:TJMFreeManAllOrder]) {
+            //如果type 为 TJMFreeManAllOrder 需要增加参数 carrierId
             [parameters setObject:self.tokenModel.userId forKey:@"carrierId"];
+        } else if ([type isEqualToString:TJMWaitRobOrder]) {
+            //如果type 为 TJMWaitRobOrder 需要增加参数 cityName
+            [parameters setObject:cityName forKey:@"cityName"];
         }
         [self.httpRequestManager.requestSerializer setValue:_tokenModel.token forHTTPHeaderField:@"Authorization"];
         [self.httpRequestManager GET:path parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -419,10 +425,14 @@ SingletonM(RequestHandle)
             if (TJMRightCode) {
                 if ([type isEqualToString:TJMFreeManAllOrder]) {
                     TJMMyOrderData *myOrderData = [TJMMyOrderData mj_objectWithKeyValues:responseObject];
-                    success(myOrderData,TJMResponseMessage);
+                    [self addDistanceWithModelData:myOrderData myLocation:coordinate reslut:^(id successObj, NSString *msg) {
+                        success(successObj,TJMResponseMessage);
+                    }];
                 } else {
                     TJMOrderData *orderData = [TJMOrderData mj_objectWithKeyValues:responseObject[@"data"]];
-                    success(orderData,TJMResponseMessage);
+                    [self addDistanceWithModelData:orderData myLocation:coordinate reslut:^(id successObj, NSString *msg) {
+                        success(successObj,TJMResponseMessage);
+                    }];
                 }
             } else {
                 failure(TJMResponseMessage);
@@ -432,6 +442,34 @@ SingletonM(RequestHandle)
             TJMLog(@"获取订单列表：%@",error.localizedDescription);
         }];
     }
+}
+
+- (void)addDistanceWithModelData:(id)data myLocation:(CLLocationCoordinate2D)coordinate reslut:(SuccessBlock)result {
+    //创建组
+    dispatch_group_t group = dispatch_group_create();
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_group_async(group, queue, ^{
+        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+        NSArray *array = [data isKindOfClass:[TJMOrderData class]] ? ((TJMOrderData *)data).content : ((TJMMyOrderData *)data).data;
+        [array enumerateObjectsUsingBlock:^(TJMOrderModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            [[TJMLocationService sharedLocationService] calculateDriveDistanceWithStartPoint:coordinate endPoint:CLLocationCoordinate2DMake(obj.consignerLat.doubleValue, obj.consignerLng.doubleValue)];
+            [TJMLocationService sharedLocationService].routeResult = ^(double distance){
+                obj.getDistance = distance;
+                TJMLog(@"%zd",idx);
+                //回调成功后，标记1
+                dispatch_semaphore_signal(semaphore);
+            };
+            //若标记为0，一直等待
+            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        }];
+        dispatch_group_notify(group, queue, ^{
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                result(data,@"成功");
+            }];
+        });
+    });
+    
 }
 
 #pragma  mark 抢单
@@ -462,11 +500,9 @@ SingletonM(RequestHandle)
         [self.jsonRequestManager POST:path parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
             //遍历上传图片
             [images enumerateObjectsUsingBlock:^(UIImage * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                NSData *imageData = UIImageJPEGRepresentation(obj, 1);
+                NSData *imageData = UIImageJPEGRepresentation(obj, 0.3);
                 [formData appendPartWithFileData:imageData name:@"photos" fileName:[NSString stringWithFormat:@"%zd.jpeg",idx] mimeType:@"image/jpeg"];
             }];
-
-            
         } progress:^(NSProgress * _Nonnull uploadProgress) {
             TJMLog(@"progress：%f",uploadProgress.fractionCompleted);
             progress(uploadProgress);

@@ -57,6 +57,7 @@
 		99A3BC751EBCC79300688692 /* UINavigationController+Cloudox.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A3BC721EBCC79300688692 /* UINavigationController+Cloudox.m */; };
 		99A3BC761EBCC79300688692 /* UIViewController+Cloudox.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A3BC741EBCC79300688692 /* UIViewController+Cloudox.m */; };
 		99BD04AD1EE691C900F56351 /* TJMHeatMapData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99BD04AC1EE691C900F56351 /* TJMHeatMapData.m */; };
+		99DFB9C41EFB6C9C00CE5645 /* 主页逻辑说明.txt in Resources */ = {isa = PBXBuildFile; fileRef = 99DFB9C31EFB6C9C00CE5645 /* 主页逻辑说明.txt */; };
 		99E81CAC1EB217E600BB0875 /* 11111.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E81C521EB217E600BB0875 /* 11111.png */; };
 		99E81CAD1EB217E600BB0875 /* 22222.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E81C531EB217E600BB0875 /* 22222.png */; };
 		99E81CAE1EB217E600BB0875 /* 33333.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E81C541EB217E600BB0875 /* 33333.png */; };
@@ -138,7 +139,6 @@
 		99F8369D1ED3BDD300CB3714 /* TJMMyBankCardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F836971ED3BDD300CB3714 /* TJMMyBankCardTableViewCell.m */; };
 		99F836A01ED3C3F800CB3714 /* TJMMyWalletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F8369F1ED3C3F800CB3714 /* TJMMyWalletViewController.m */; };
 		99F836A31ED3DA4000CB3714 /* TJMBankData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F836A21ED3DA4000CB3714 /* TJMBankData.m */; };
-		99FA702B1EEF872700552D01 /* HZIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FA70251EEF872700552D01 /* HZIndicatorView.m */; };
 		99FA70381EEFBA3700552D01 /* TJMBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FA70371EEFBA3700552D01 /* TJMBrowserViewController.m */; };
 		99FA703B1EEFBBBD00552D01 /* TJMBrowserCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FA703A1EEFBBBD00552D01 /* TJMBrowserCollectionViewCell.m */; };
 		99FA70411EF0113500552D01 /* TJMPhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FA70401EF0113500552D01 /* TJMPhotoManager.m */; };
@@ -284,6 +284,7 @@
 		99A3BC741EBCC79300688692 /* UIViewController+Cloudox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Cloudox.m"; sourceTree = "<group>"; };
 		99BD04AB1EE691C900F56351 /* TJMHeatMapData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMHeatMapData.h; sourceTree = "<group>"; };
 		99BD04AC1EE691C900F56351 /* TJMHeatMapData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMHeatMapData.m; sourceTree = "<group>"; };
+		99DFB9C31EFB6C9C00CE5645 /* 主页逻辑说明.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "主页逻辑说明.txt"; sourceTree = "<group>"; };
 		99E74D161EA8BB1700BFD422 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		99E74D171EA8BB1800BFD422 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		99E81B7C1EAF50DC00BB0875 /* TJMSingleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TJMSingleton.h; sourceTree = "<group>"; };
@@ -425,9 +426,6 @@
 		99F8369F1ED3C3F800CB3714 /* TJMMyWalletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TJMMyWalletViewController.m; path = "我的钱包/Controller/TJMMyWalletViewController.m"; sourceTree = "<group>"; };
 		99F836A11ED3DA4000CB3714 /* TJMBankData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMBankData.h; sourceTree = "<group>"; };
 		99F836A21ED3DA4000CB3714 /* TJMBankData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMBankData.m; sourceTree = "<group>"; };
-		99FA70241EEF872700552D01 /* HZIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZIndicatorView.h; sourceTree = "<group>"; };
-		99FA70251EEF872700552D01 /* HZIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZIndicatorView.m; sourceTree = "<group>"; };
-		99FA70281EEF872700552D01 /* HZPhotoBrowserConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZPhotoBrowserConfig.h; sourceTree = "<group>"; };
 		99FA70361EEFBA3700552D01 /* TJMBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMBrowserViewController.h; sourceTree = "<group>"; };
 		99FA70371EEFBA3700552D01 /* TJMBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMBrowserViewController.m; sourceTree = "<group>"; };
 		99FA70391EEFBBBD00552D01 /* TJMBrowserCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMBrowserCollectionViewCell.h; sourceTree = "<group>"; };
@@ -521,9 +519,9 @@
 		99019DBF1ECAD6D7002BC164 /* 取货-拍照上传 */ = {
 			isa = PBXGroup;
 			children = (
-				99FA70131EEF852C00552D01 /* 图片浏览 */,
 				99019DC01ECAD6EF002BC164 /* Controller */,
 				99019DC41ECAE33B002BC164 /* View */,
+				99FA70131EEF852C00552D01 /* 图片浏览 */,
 			);
 			name = "取货-拍照上传";
 			sourceTree = "<group>";
@@ -1377,6 +1375,7 @@
 				99E81CA31EB217E600BB0875 /* TJMHomepageViewController.m */,
 				996988771EEA3D1D0095E9B0 /* TJMHomepageViewController+Category.h */,
 				996988781EEA3D1D0095E9B0 /* TJMHomepageViewController+Category.m */,
+				99DFB9C31EFB6C9C00CE5645 /* 主页逻辑说明.txt */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1877,21 +1876,10 @@
 		99FA70151EEF852C00552D01 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				99FA70231EEF86D000552D01 /* HZPhotoBrowser */,
 				99FA70391EEFBBBD00552D01 /* TJMBrowserCollectionViewCell.h */,
 				99FA703A1EEFBBBD00552D01 /* TJMBrowserCollectionViewCell.m */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		99FA70231EEF86D000552D01 /* HZPhotoBrowser */ = {
-			isa = PBXGroup;
-			children = (
-				99FA70241EEF872700552D01 /* HZIndicatorView.h */,
-				99FA70251EEF872700552D01 /* HZIndicatorView.m */,
-				99FA70281EEF872700552D01 /* HZPhotoBrowserConfig.h */,
-			);
-			path = HZPhotoBrowser;
 			sourceTree = "<group>";
 		};
 		99FA703E1EF0111500552D01 /* 相册管理 */ = {
@@ -2034,6 +2022,7 @@
 				99E81CE41EB21A3D00BB0875 /* baiduNaviSDK.bundle in Resources */,
 				99E81CAC1EB217E600BB0875 /* 11111.png in Resources */,
 				99E81CE71EB21A3D00BB0875 /* readme.txt in Resources */,
+				99DFB9C41EFB6C9C00CE5645 /* 主页逻辑说明.txt in Resources */,
 				99E81CAE1EB217E600BB0875 /* 33333.png in Resources */,
 				99F1C0FF1EA0CF0600415F0C /* Info.plist in Resources */,
 				99F836991ED3BDD300CB3714 /* CommonView in Resources */,
@@ -2174,7 +2163,6 @@
 				99019DC71ECAE36C002BC164 /* TJMPickUpCollectionViewCell.m in Sources */,
 				991B091D1EDEECD4009DB296 /* TJMLocation.m in Sources */,
 				99E81CB11EB217E600BB0875 /* TJMProvinceData.m in Sources */,
-				99FA702B1EEF872700552D01 /* HZIndicatorView.m in Sources */,
 				99E81CBC1EB217E600BB0875 /* TJMHelpToBuyViewController.m in Sources */,
 				991B092C1EE01093009DB296 /* TJMMyOrderDetailViewController.m in Sources */,
 				99E81CBD1EB217E700BB0875 /* TJMMineViewController.m in Sources */,
@@ -2293,7 +2281,8 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: lin lin (HKDFP9CX4W)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: lin lin (HKDFP9CX4W)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2312,7 +2301,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -2342,7 +2331,8 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: lin lin (HKDFP9CX4W)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: lin lin (HKDFP9CX4W)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -2355,7 +2345,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2369,6 +2359,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TJMJinDouYun/TJMJinDouYun.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer: lin lin (HKDFP9CX4W)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = EA69B4VRFP;
@@ -2401,6 +2392,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TJMJinDouYun/TJMJinDouYun.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer: lin lin (HKDFP9CX4W)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = EA69B4VRFP;

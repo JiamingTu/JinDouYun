@@ -62,6 +62,7 @@
     [TJMRequestH freeManRandomGenerationTestQuestionSuccess:^(id successObj, NSString *msg) {
         self.questionData = successObj;
         [self.tableView reloadData];
+        self.tableView.scrollsToTop = YES;
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         [TJMHUDHandle hiddenHUDForView:self.view];
     } fial:^(NSString *failString) {
@@ -106,6 +107,7 @@
     } else if (alertView.tag == 10001) {
         if (itemIndex == 0) {
              [self getExamQuestions];
+            
         } else {
             [self.navigationController popViewControllerAnimated:YES];
         }

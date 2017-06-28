@@ -7,7 +7,6 @@
 //
 
 #import "TJMBrowserCollectionViewCell.h"
-#import "HZIndicatorView.h"
 
 //图片缩放比例
 #define kMinZoomScale 0.6f

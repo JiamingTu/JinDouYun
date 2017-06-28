@@ -152,7 +152,7 @@
                     break;
                 //如果是密码登录
                 case 0: {
-                    NSDictionary *form = @{@"mobile":self.phoneNumberTF.text,@"pwd":[self.passwordTF.text MD5]};
+                    NSDictionary *form = @{@"mobile":self.phoneNumberTF.text,@"pwd":self.passwordTF.text};
                     [TJMRequestH accountCheckWithForm:form checkType:TJMLogin success:^(id successObj,NSString *msg) {
                         [self loginSuccessWithObject:successObj progressHUD:progressHUD];
                     } fail:^(NSString *failString) {

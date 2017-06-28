@@ -19,6 +19,8 @@ const NSInteger _myOrderSize = 5;
 @property (nonatomic,strong) MJRefreshAutoNormalFooter *footer;
 
 @property (nonatomic,strong) BMKUserLocation *myLoc;
+
+@property (nonatomic,assign) BOOL isWorking;
 @end
 
 @implementation TJMMyOrderViewController
@@ -61,7 +63,7 @@ const NSInteger _myOrderSize = 5;
     [self setBackNaviItem];
     [self configViews];
     
-    [self.header beginRefreshing];
+    [self getWorkingStatus];
     
 }
 
@@ -88,10 +90,30 @@ const NSInteger _myOrderSize = 5;
 - (void)reloadDataTableView {
     [self.tableView reloadData];
 }
+
+#pragma  mark 获取开工状态
+- (void)getWorkingStatus {
+    //判断开工状态
+    TJMTokenModel *tokenModel = [TJMSandBoxManager getTokenModel];
+    if (tokenModel) {
+        [TJMHUDHandle showRequestHUDAtView:self.view message:nil];
+        [TJMRequestH getUploadRelevantInfoWithType:TJMFreeManGetInfo(tokenModel.userId.description) form:nil success:^(id successObj, NSString *msg) {
+            TJMFreeManInfo *freeManInfo = (TJMFreeManInfo *)successObj;
+            //赋值KVO
+            self.isWorking = [freeManInfo.workStatus boolValue];
+            [self.header beginRefreshing];
+            [TJMHUDHandle hiddenHUDForView:self.view];
+        } fail:^(NSString *failString) {
+            [TJMHUDHandle hiddenHUDForView:self.view];
+        }];
+    }
+}
+
 #pragma  mark - 订单列表
 - (void)setOrderList {
     //请求
-    [TJMRequestH getOrderListWithType:TJMFreeManAllOrder page:_myOrderPage size:_myOrderSize sort:nil dir:@"ASC" status:0 success:^(id successObj, NSString *msg) {
+    NSString *cityName = [TJMSandBoxManager getModelFromInfoPlistWithKey:kTJMCityName];
+    [TJMRequestH getOrderListWithType:TJMFreeManAllOrder myLocation:self.myLoc.location.coordinate page:_myOrderPage size:_myOrderSize sort:nil dir:@"ASC" status:0 cityName:cityName success:^(id successObj, NSString *msg) {
         TJMMyOrderData *myOrderData = (TJMMyOrderData *)successObj;
         //如果没有更多数据 就 结束刷新
         if (myOrderData.data == nil || myOrderData.data.count == 0) {
@@ -131,9 +153,9 @@ const NSInteger _myOrderSize = 5;
     TJMOrderModel *model = self.dataSourceArray[indexPath.row];
     //计算距离
     
-    CLLocationCoordinate2D getLoc = CLLocationCoordinate2DMake(model.consignerLat.floatValue, model.consignerLng.floatValue);
-    CLLocationDistance distance = [[TJMLocationService sharedLocationService] calculateDistanceFromMyLocation:self.myLoc.location.coordinate toGetLocation:getLoc];
-    model.getDistance = distance;
+//    CLLocationCoordinate2D getLoc = CLLocationCoordinate2DMake(model.consignerLat.floatValue, model.consignerLng.floatValue);
+//    CLLocationDistance distance = [[TJMLocationService sharedLocationService] calculateDistanceFromMyLocation:self.myLoc.location.coordinate toGetLocation:getLoc];
+//    model.getDistance = distance;
     [cell setValueWithModel:model];
     
     
@@ -146,6 +168,7 @@ const NSInteger _myOrderSize = 5;
     return self.tableView.rowHeight;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     [self performSegueWithIdentifier:@"MyOrderToOrderDetail" sender:self.dataSourceArray[indexPath.row]];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -168,6 +191,10 @@ const NSInteger _myOrderSize = 5;
 
 #pragma  mark 确认取货按钮
 - (void)waitPickUpWithOrder:(TJMOrderModel *)model cell:(TJMHomeOrderTableViewCell *)cell {
+    if (!self.isWorking) {
+        [TJMHUDHandle transientNoticeAtView:self.view withMessage:@"收工状态无法取货"];
+        return;
+    }
     //确认取货
     [self performSegueWithIdentifier:@"MyOrderToPickUp" sender:model];
 }
@@ -207,6 +234,9 @@ const NSInteger _myOrderSize = 5;
     // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:@"MyOrderToOrderDetail"] || [segue.identifier isEqualToString:@"MyOrderToPickUp"] || [segue.identifier isEqualToString:@"MyOrderToDeliveryPay"] || [segue.identifier isEqualToString:@"MyOrderToSignIn"]) {
         [segue.destinationViewController setValue:sender forKey:@"orderModel"];
+    }
+    if ([segue.identifier isEqualToString:@"MyOrderToOrderDetail"]) {
+        [segue.destinationViewController setValue:[NSString stringWithFormat:@"%zd",self.isWorking] forKey:@"isWorking"];
     }
 }
 

@@ -73,17 +73,34 @@
             break;
     }
 }
+
+#pragma  mark - 拨打电话
+- (void)callWithTel:(NSString *)tel {
+    //点击拨打电话
+    [TJMHUDHandle showRequestHUDAtView:self.view message:nil];
+    NSMutableString *str=[[NSMutableString alloc] initWithFormat:@"tel:%@",tel];
+    UIWebView *callWebview = [[UIWebView alloc] init];
+    callWebview.delegate = self;
+    [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
+    [self.view addSubview:callWebview];
+}
 #pragma  mark - 按钮方法
 
 - (void)rightItemAction:(UIButton *)button {
     //点击申报异常后执行的方法
     TJMLog(@"申报异常");
+    [self callWithTel:@"0592-911006"];
 }
 #pragma  mark 确认取货 确认收货按钮
 - (IBAction)leftYellowAction:(UIButton *)sender {
     NSString *identifier;
     if (self.orderModel.orderStatus.integerValue == 2) {
         //确认取货
+        
+        if (!self.isWorking.boolValue) {
+            [TJMHUDHandle transientNoticeAtView:self.view withMessage:@"收工状态无法取货"];
+            return;
+        }
         identifier = @"DetailToPickUp";
     } else if (self.orderModel.orderStatus.integerValue == 3) {
         if (self.orderModel.payType.integerValue == 4) {
@@ -131,12 +148,7 @@
     [cell setSelected:NO animated:YES];
     TJMOrderDetailInfoModel *model = self.dataSource.data[indexPath.section][indexPath.row];
     if (model.isTel) {
-        [TJMHUDHandle showRequestHUDAtView:self.view message:nil];
-        NSMutableString *str=[[NSMutableString alloc] initWithFormat:@"tel:%@",model.detail];
-        UIWebView *callWebview = [[UIWebView alloc] init];
-        callWebview.delegate = self;
-        [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
-        [self.view addSubview:callWebview];
+        [self callWithTel:model.detail];
     }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

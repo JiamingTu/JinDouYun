@@ -13,7 +13,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (nonatomic,strong) TJMOrderModel *orderModel;
-
+@property (nonatomic,assign) NSString *isWorking;
 @property (weak, nonatomic) IBOutlet UIButton *leftYellowButton;
 @property (weak, nonatomic) IBOutlet UIButton *rightWhiteButton;
 

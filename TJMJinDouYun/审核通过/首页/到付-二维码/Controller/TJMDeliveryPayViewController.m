@@ -41,11 +41,16 @@
     // Do any additional setup after loading the view.
     [self setTitle:@"支付费用" fontSize:17 colorHexValue:0x333333];
     [self setBackNaviItem];
-    [TJMRequestH getPayOnDeliveryQRCodeTextWithOrderNo:self.orderModel.orderNo success:^(id successObj, NSString *msg) {
-        
-    } fail:^(NSString *failString) {
-        
-    }];
+    //菊花转
+    //获取地理位置，判断取货范围
+    [[TJMLocationService sharedLocationService] getFreeManLocationWith:TJMGetLocationTypeLocation target:CLLocationCoordinate2DMake(0, 0)];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationDidChange:) name:kTJMLocationDidChange object:nil];
+    
+//    [TJMRequestH getPayOnDeliveryQRCodeTextWithOrderNo:self.orderModel.orderNo success:^(id successObj, NSString *msg) {
+//        
+//    } fail:^(NSString *failString) {
+//        
+//    }];
 }
 
 #pragma  mark - 设置页面
@@ -59,6 +64,23 @@
     [self tjm_adjustFont:18 forView:self.helpPayButton, nil];
 }
 
+#pragma  mark - 通知
+- (void)locationDidChange:(NSNotification *)notification {
+    BMKUserLocation *location = notification.userInfo[@"myLocation"];
+    CLLocationCoordinate2D toCoordinate = CLLocationCoordinate2DMake(_orderModel.receiverLat.doubleValue, _orderModel.receiverLng.doubleValue);
+    CLLocationDistance distance = [[TJMLocationService sharedLocationService] calculateDistanceFromMyLocation:location.location.coordinate toGetLocation:toCoordinate];
+    if (distance > 1000) {
+        [self alertViewWithTag:1000 delegate:self title:@"不在签收范围" cancelItem:nil sureItem:@"确定"];
+    } else {
+        //获取二维码
+    }
+}
+
+- (void)alertView:(TDAlertView *)alertView didClickItemWithIndex:(NSInteger)itemIndex {
+    if (itemIndex == 0) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
 
 
 #pragma  mark - memory warning

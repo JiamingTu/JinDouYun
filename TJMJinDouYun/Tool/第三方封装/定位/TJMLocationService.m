@@ -7,8 +7,8 @@
 //
 
 #import "TJMLocationService.h"
-
-@interface TJMLocationService ()<BMKLocationServiceDelegate,BNNaviRoutePlanDelegate,BMKGeoCodeSearchDelegate,BNNaviUIManagerDelegate>
+#import "LocationTracker.h"
+@interface TJMLocationService ()<BMKLocationServiceDelegate,BNNaviRoutePlanDelegate,BMKGeoCodeSearchDelegate,BNNaviUIManagerDelegate,BMKRouteSearchDelegate>
 {
     BMKLocationService *_locService;
     BMKGeoCodeSearch *_searcher;
@@ -16,6 +16,12 @@
 }
 
 @property (nonatomic,strong) AppDelegate *appDelegate;
+
+//定时上传定位
+@property (nonatomic,strong) NSTimer *updateLocTimer;
+@property (nonatomic,strong) NSThread *updateLocThread;
+@property (nonatomic,strong) LocationTracker *locationTracker;
+
 @end
 
 @implementation TJMLocationService
@@ -46,6 +52,31 @@
     return _searcher;
 }
 
+- (BMKRouteSearch *)routeSearch {
+    if (!_routeSearch) {
+        //初始化检索对象
+        self.routeSearch = [[BMKRouteSearch alloc] init];
+        //设置delegate，用于接收检索结果
+        _routeSearch.delegate = self;
+    }
+    return _routeSearch;
+}
+
+
+#pragma  mark 位置服务
+- (LocationTracker *)locationTracker {
+    if (!_locationTracker) {
+        self.locationTracker = [[LocationTracker alloc]init];
+        _locationTracker.updateFreeManLoc = ^(CLLocationCoordinate2D coordinate){
+            [TJMRequestH updateFreeManLocationWithCoordinate:coordinate withType:TJMUploadFreeManLocation success:^(id successObj, NSString *msg) {
+                
+            } fail:^(NSString *failString) {
+                
+            }];
+        };
+    }
+    return _locationTracker;
+}
 
 #pragma  mark singleton
 SingletonM(LocationService)
@@ -111,9 +142,6 @@ SingletonM(LocationService)
 }
 
 
-
-
-
 - (void)getFreeManLocationWith:(TJMGetLocationType)type target:(CLLocationCoordinate2D)coordinate {
     [self startBaiduMapEngine];
     self.targetCoordinate = coordinate;
@@ -121,7 +149,7 @@ SingletonM(LocationService)
     if (_locService) {
         [_locService startUserLocationService];
     }
-    [TJMHUDHandle showRequestHUDAtView:self.appDelegate.window message:nil];
+    [TJMHUDHandle showRequestHUDAtView:[self.appDelegate topViewController].view message:nil];
 }
 
 
@@ -145,7 +173,7 @@ SingletonM(LocationService)
         case TJMGetLocationTypeLocation:
         {
             [[NSNotificationCenter defaultCenter] postNotificationName:kTJMLocationDidChange object:nil userInfo:@{@"myLocation":userLocation}];
-            [TJMHUDHandle hiddenHUDForView:self.appDelegate.window];
+            [TJMHUDHandle hiddenHUDForView:[self.appDelegate topViewController].view];
         }
             break;
         case TJMGetLocationTypeNaviService:
@@ -159,6 +187,10 @@ SingletonM(LocationService)
             break;
     }
     [_locService stopUserLocationService];
+}
+#pragma  mark 定位失败后
+- (void)didFailToLocateUserWithError:(NSError *)error {
+    
 }
 
 #pragma  mark - 获取城市名字
@@ -181,7 +213,7 @@ SingletonM(LocationService)
         //发送通知
         [[NSNotificationCenter defaultCenter] postNotificationName:kTJMLocationCityNameDidChange object:nil userInfo:@{@"cityName":result.addressDetail.city}];
         [TJMSandBoxManager saveInInfoPlistWithModel:result.addressDetail.city key:kTJMCityName];
-        [TJMHUDHandle hiddenHUDForView:self.appDelegate.window];
+        [TJMHUDHandle hiddenHUDForView:[self.appDelegate topViewController].view];
     } else {
         TJMLog(@"抱歉，未找到结果");
     }
@@ -212,7 +244,7 @@ SingletonM(LocationService)
                 [nodesArray addObject:endNode];
                 // 发起算路
                 [BNCoreServices_RoutePlan  startNaviRoutePlan: BNRoutePlanMode_Recommend naviNodes:nodesArray time:nil delegete:self userInfo:nil];
-                [TJMHUDHandle hiddenHUDForView:self.appDelegate.window];
+                [TJMHUDHandle hiddenHUDForView:[self.appDelegate topViewController].view];
             }
         });
     }];
@@ -252,14 +284,102 @@ SingletonM(LocationService)
     [self.appDelegate stopBaiduMapNaviServices];
 }
 
-#pragma  mark - 计算两点大致距离
+
+
+
+#pragma  mark - 定时上传定位
+#pragma  mark 
+-(void)setUpLocationTrakerWithWorkStatus:(BOOL)isOn timeInterval:(NSTimeInterval)timeInterval {
+    [self cancelTiemr];
+    if (isOn) {
+        [self.locationTracker startLocationTracking];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.locationTracker updateLocationToServer];
+        });
+        //开启计时器
+        [self startLocationTimerWithTimeInterval:timeInterval];
+    }
+    
+    
+}
+#pragma  mark 开启定时器
+- (void)startLocationTimerWithTimeInterval:(NSTimeInterval)timeInterval {
+    //如果timer还存在（没有停止），那就不重新创建子线程 和 timer 了
+    if (!self.updateLocTimer) {
+        __weak __typeof(self) weakSelf = self;
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            __strong __typeof(weakSelf) strongSelf = weakSelf;
+            if (strongSelf) {
+                strongSelf.updateLocThread = [NSThread currentThread];
+                [strongSelf.updateLocThread setName:@"updateLocThread"];
+                strongSelf.updateLocTimer = [NSTimer scheduledTimerWithTimeInterval:timeInterval target:strongSelf selector:@selector(locTimerAction:) userInfo: nil repeats:YES];
+                NSRunLoop *runloop = [NSRunLoop currentRunLoop];
+                [runloop addTimer:strongSelf.updateLocTimer forMode:NSDefaultRunLoopMode];
+                [runloop run];
+            }
+        });
+    }
+}
+#pragma  mark 定时器绑定方法
+- (void)locTimerAction:(NSTimer *)timer {
+    //上传定位信息
+    [self.locationTracker updateLocationToServer];
+}
+#pragma  mark 销毁定时器
+- (void)cancel{
+    if (self.updateLocTimer) {
+        [self.updateLocTimer invalidate];
+        self.updateLocTimer = nil;
+    }
+}
+//需在开启的线程中销毁
+- (void)cancelTiemr {
+    if (self.updateLocTimer && self.updateLocThread) {
+        [self performSelector:@selector(cancel) onThread:self.updateLocThread withObject:nil waitUntilDone:YES];
+    }
+}
+
+#pragma  mark - 进行路径规划
+#pragma  mark 计算两点大致距离
 - (CLLocationDistance)calculateDistanceFromMyLocation:(CLLocationCoordinate2D)mineLoc toGetLocation:(CLLocationCoordinate2D)getLoc {
     CLLocation *fromLoc = [[CLLocation alloc]initWithLatitude:mineLoc.latitude longitude:mineLoc.longitude];
     CLLocation *toLoc = [[CLLocation alloc]initWithLatitude:getLoc.latitude longitude:getLoc.longitude];
     CLLocationDistance distance = [fromLoc distanceFromLocation:toLoc];
-    return distance / 1000;
+    return distance;
 }
 
+
+#pragma mark 驾车路线
+-(void)calculateDriveDistanceWithStartPoint:(CLLocationCoordinate2D)startCoordinate endPoint:(CLLocationCoordinate2D)endCoordinate {
+    //线路检索节点信息
+    BMKPlanNode *start = [[BMKPlanNode alloc] init];
+    start.pt = startCoordinate;
+    BMKPlanNode *end = [[BMKPlanNode alloc] init];
+    end.pt = endCoordinate;
+    BMKDrivingRoutePlanOption *drivingRouteSearchOption = [[BMKDrivingRoutePlanOption alloc] init];
+    drivingRouteSearchOption.from = start;
+    drivingRouteSearchOption.to = end;
+    BOOL flag = [self.routeSearch drivingSearch:drivingRouteSearchOption];
+    if (flag) {
+    }
+}
+
+#pragma mark 返回驾乘搜索结果
+- (void)onGetDrivingRouteResult:(BMKRouteSearch*)searcher result:(BMKDrivingRouteResult*)result errorCode:(BMKSearchErrorCode)error
+{
+    //    NSArray* array = [NSArray arrayWithArray:_mapView.annotations];
+    //    [_mapView removeAnnotations:array];
+    NSArray *array = [NSArray arrayWithArray:_mapView.overlays];
+    [_mapView removeOverlays:array];
+    if (error == BMK_SEARCH_NO_ERROR) {
+        //表示一条驾车路线
+        BMKDrivingRouteLine* plan = (BMKDrivingRouteLine *)[result.routes objectAtIndex:0];
+        // 计算路线方案中的路段数目
+        if (self.routeResult) {
+            self.routeResult(plan.distance / 1000.0);
+        }
+    }
+}
 
 
 

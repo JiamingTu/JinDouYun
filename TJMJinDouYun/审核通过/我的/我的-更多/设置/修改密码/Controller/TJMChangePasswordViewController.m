@@ -49,7 +49,7 @@
     [self setTitle:@"修改密码" fontSize:17 colorHexValue:0x333333];
     //增加监听
     [self.appDelegate getPersonInfoWithViewController:self];
-    
+    [self configViews];
 }
 - (void)dealloc {
     if (self.countDownTimer) {
@@ -85,7 +85,7 @@
         [[NSRunLoop currentRunLoop] addTimer:self.countDownTimer forMode:NSRunLoopCommonModes];
     }
     if (self.phoneNum) {
-        [TJMRequestH shrotMessageCheckRequestWithPhoneNumber:self.phoneNum getCodeType:TJMChageSecret success:^(id successObj, NSString *msg) {
+        [TJMRequestH shrotMessageCheckRequestWithPhoneNumber:self.phoneNum getCodeType:TJMGetForgetSecretCode success:^(id successObj, NSString *msg) {
             [TJMHUDHandle transientNoticeAtView:self.view withMessage:msg];
         } fail:^(NSString *failString) {
             [TJMHUDHandle transientNoticeAtView:self.view withMessage:failString];

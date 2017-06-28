@@ -142,20 +142,24 @@
         //至少6位密码
         if (self.passwordTF.text.length >= 6) {
             //验证码不少于6位
-            if (self.authCodeTF.text.length <= 6) {
+            if (self.authCodeTF.text.length == 6) {
                 //提交表单
-                NSDictionary *form = @{@"mobile":_phoneNumberTF.text,@"pwd":[_passwordTF.text MD5],@"code":_authCodeTF.text};
+                NSDictionary *form = @{@"mobile":_phoneNumberTF.text,@"pwd":_passwordTF.text,@"code":_authCodeTF.text};
                 [TJMRequestH accountCheckWithForm:form checkType:_requestType success:^(id successObj,NSString *msg) {
-                    
+                    [TJMHUDHandle transientNoticeAtView:self.view withMessage:msg];
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [self.navigationController popViewControllerAnimated:YES];
+                    });
                 } fail:^(NSString *failString) {
-                    
+                    [TJMHUDHandle transientNoticeAtView:self.view withMessage:failString];
                 }];
-                
-            }else {
+            } else {
                 TJMLog(@"验证码不足6位");
+                [TJMHUDHandle transientNoticeAtView:self.view withMessage:@"验证码不足6位"];
             }
         }else {
             TJMLog(@"密码不能少于6位");
+            [TJMHUDHandle transientNoticeAtView:self.view withMessage:@"密码不能少于6位"];
         }
     }else {
         TJMLog(@"请输入正确的手机号");
@@ -204,8 +208,6 @@
             
         }];
     }
-    
-    
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {

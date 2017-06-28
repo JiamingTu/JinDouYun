@@ -12,12 +12,15 @@
 #pragma  mark - set
 - (void)setIsHeaderImageView:(BOOL)isHeaderImageView {
     _isHeaderImageView = isHeaderImageView;
+    self.selected = NO;
     if (_isHeaderImageView) {
         self.headerImageView.hidden = NO;
         self.detailLabel.hidden = YES;
+        self.selectionStyle = UITableViewCellSelectionStyleBlue;
     } else {
         self.headerImageView.hidden = YES;
         self.detailLabel.hidden = NO;
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
 }
 #pragma  mark -

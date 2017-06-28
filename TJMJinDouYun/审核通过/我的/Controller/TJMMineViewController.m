@@ -156,14 +156,13 @@
         TJMPersonInfoModel *personInfo = change[@"new"];
         if (![personInfo isEqual:[NSNull null]]) {
             //头像
-            NSString *path = [TJMPhotoBasicAddress stringByAppendingString:personInfo.photo];
-            
-            [[SDWebImageManager sharedManager] loadImageWithURL:[NSURL URLWithString:path] options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
-                image = [image getCropImage];
-                [self.headerButton setBackgroundImage:image forState:UIControlStateNormal];
-            }];
-            
-            
+            if (personInfo.photo != nil) {
+                NSString *path = [TJMPhotoBasicAddress stringByAppendingString:personInfo.photo];
+                [[SDWebImageManager sharedManager] loadImageWithURL:[NSURL URLWithString:path] options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+                    image = [image getCropImage];
+                    [self.headerButton setBackgroundImage:image forState:UIControlStateNormal];
+                }];
+            }
             //
             self.nameLabel.text = personInfo.realName;
             self.phoneNumLabel.text = personInfo.tel;

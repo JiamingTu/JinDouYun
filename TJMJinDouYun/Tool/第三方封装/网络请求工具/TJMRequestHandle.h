@@ -49,10 +49,9 @@ SingletonH(RequestHandle)
 - (void)uploadFreeManInfoWithForm:(NSDictionary *)form photos:(NSDictionary *)photos progress:(ProgressBlock)progress success:(SuccessBlock)success fail:(FailBlock)failure;
 
 /*
- *获取周边自由人，顾客定位
- * @param type TJMCustomerLocationNearby or TJMFreeManLocationNearby
+ *上传自由人定位
  */
-- (void)freeManOrCustomerLocationWithCoordinate:(CLLocationCoordinate2D)coordinate withType:(NSString *)type success:(SuccessBlock)success fail:(FailBlock)failure;
+- (void)updateFreeManLocationWithCoordinate:(CLLocationCoordinate2D)coordinate withType:(NSString *)type success:(SuccessBlock)success fail:(FailBlock)failure;
 /**自由人随机生成题库*/
 - (void)freeManRandomGenerationTestQuestionSuccess:(SuccessBlock)success fial:(FailBlock)failure;
 /**自由人获取学习视频*/
@@ -72,7 +71,7 @@ SingletonH(RequestHandle)
 
 
 /**获取订单列表*/
-- (void)getOrderListWithType:(NSString *)type page:(NSInteger)page size:(NSInteger)size sort:(NSString *)sort dir:(NSString *)dir status:(NSInteger)status success:(SuccessBlock)success fial:(FailBlock)failure;
+- (void)getOrderListWithType:(NSString *)type myLocation:(CLLocationCoordinate2D)coordinate page:(NSInteger)page size:(NSInteger)size sort:(NSString *)sort dir:(NSString *)dir status:(NSInteger)status cityName:(NSString *)cityName success:(SuccessBlock)success fial:(FailBlock)failure;
 /**抢单*/
 - (void)robOrderWithOrderId:(NSNumber *)orderId success:(SuccessBlock)success fail:(FailBlock)failure;
 /**确认取货上传图片*/

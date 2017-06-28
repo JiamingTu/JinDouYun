@@ -10,6 +10,8 @@
 #import <CoreLocation/CoreLocation.h>
 #import "LocationShareModel.h"
 
+typedef void(^UpdateFreeManLocation)(CLLocationCoordinate2D coordinate);
+
 @interface LocationTracker : NSObject <CLLocationManagerDelegate>
 
 @property (nonatomic) CLLocationCoordinate2D myLastLocation;
@@ -21,11 +23,17 @@
 @property (nonatomic,strong) CLLocation *myLocation;
 @property (nonatomic) CLLocationAccuracy myLocationAccuracy;
 
+
+
 + (CLLocationManager *)sharedLocationManager;
 
 - (void)startLocationTracking;
 - (void)stopLocationTracking;
 - (void)updateLocationToServer;
 
+@property (nonatomic,copy) UpdateFreeManLocation updateFreeManLoc;
+@property (nonatomic,copy) UpdateFreeManLocation didUpdateFreeManLoc;
+
+@property (nonatomic,assign) BOOL isFirstUpdateLoc;
 
 @end

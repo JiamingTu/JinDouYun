@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-
+@class TJMOrderModel;
 @interface TJMOrderData : NSObject
 
-@property (nonatomic,copy) NSArray *content;
+@property (nonatomic,copy) NSArray<TJMOrderModel *> *content;
 @property (nonatomic,assign) BOOL last;
 @property (nonatomic,strong) NSNumber *totalPages;
 @property (nonatomic,strong) NSNumber *totalElements;
@@ -75,7 +75,7 @@
 @property (nonatomic,copy) NSString *carrierShowMoney;
 //计算后得到
 
-@property (nonatomic,assign) CGFloat getDistance;
+@property (nonatomic,assign) double getDistance;
 
 @end
 

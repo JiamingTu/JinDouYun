@@ -8,7 +8,6 @@
 
 #import "TJMBrowserViewController.h"
 #import "TJMBrowserCollectionViewCell.h"
-#import "HZPhotoBrowserConfig.h"
 @interface TJMBrowserViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,TJMBrowserCollectionViewCellDelegate>
 
 @property (nonatomic,strong) UICollectionView *collectionView;
@@ -257,7 +256,7 @@
     _indexLabel.hidden = YES;
     _deleteButton.hidden = YES;
     
-    [UIView animateWithDuration:kPhotoBrowserShowDuration animations:^{
+    [UIView animateWithDuration:0.4 animations:^{
         tempImageView.frame = targetTemp;
     } completion:^(BOOL finished) {
         _hasShowedPhotoBrowser = YES;

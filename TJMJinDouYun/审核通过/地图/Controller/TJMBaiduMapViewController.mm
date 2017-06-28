@@ -11,7 +11,7 @@
 
 @interface TJMBaiduMapViewController ()<BMKLocationServiceDelegate,BMKMapViewDelegate,BMKRouteSearchDelegate>
 {
-    BMKPolyline * _polyLine;
+    
     BMKMapView *_mapView;
 }
 @property (nonatomic,strong) BMKRouteSearch *routeSearch;
@@ -112,6 +112,9 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [_locServiceForMap stopUserLocationService];
     [_mapView removeHeatMap];
+    NSArray *array = [NSArray arrayWithArray:_mapView.overlays];
+    [_mapView removeOverlays:array];
+    [_mapView removeAnnotations:_annotationArray];
     [BMKMapView enableCustomMapStyle:NO];//关闭个性化地图
     [_mapView viewWillDisappear];
     _mapView.delegate = nil; // 不用时，置nil
@@ -125,9 +128,6 @@
 
 #pragma  mark - 返回按钮
 - (void)itemAction:(UIButton *)button {
-    [_mapView removeOverlay:_polyLine];
-    _polyLine = nil;
-     [_mapView removeAnnotations:_annotationArray];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -145,8 +145,11 @@
         TJMLocation *myLocation = [[TJMLocation alloc]initWithCoordinate2D:userLocation.location.coordinate title:@"我的位置"];
         [self mapViewFitAnnotations:@[self.reciverLoc,self.consignerLoc,myLocation]];
     } else {
-//        [_mapView setCenterCoordinate:userLocation.location.coordinate animated:YES];
-        [self mapViewFitHeatMapData:self.heatMapData andUserLocation:userLocation];
+        if (self.heatMapData.data.count == 0) {
+            [_mapView setCenterCoordinate:userLocation.location.coordinate animated:YES];
+        } else {
+            [self mapViewFitHeatMapData:self.heatMapData andUserLocation:userLocation];
+        }
     }
 }
 
@@ -271,7 +274,7 @@
     [_mapView removeOverlays:array];
     if (error == BMK_SEARCH_NO_ERROR) {
         //表示一条驾车路线
-        BMKDrivingRouteLine* plan = (BMKDrivingRouteLine*)[result.routes objectAtIndex:0];
+        BMKDrivingRouteLine* plan = (BMKDrivingRouteLine *)[result.routes objectAtIndex:0];
         // 计算路线方案中的路段数目
         int size = (int)[plan.steps count];
         int planPointCounts = 0;
@@ -310,7 +313,7 @@
         for (int j = 0; j < size; j++) {
             BMKDrivingStep* transitStep = [plan.steps objectAtIndex:j];
             int k=0;
-            for(k=0;k<transitStep.pointsCount;k++) {
+            for(k = 0; k < transitStep.pointsCount; k++) {
                 temppoints[i].x = transitStep.points[k].x;
                 temppoints[i].y = transitStep.points[k].y;
                 i++;
@@ -318,8 +321,8 @@
             
         }
          //通过points构建BMKPolyline
-        _polyLine = [BMKPolyline polylineWithPoints:temppoints count:planPointCounts];
-        [_mapView addOverlay:_polyLine]; // 添加路线overlay
+        BMKPolyline * polyLine = [BMKPolyline polylineWithPoints:temppoints count:planPointCounts];
+        [_mapView addOverlay:polyLine]; // 添加路线overlay
         delete []temppoints;
 
     }
