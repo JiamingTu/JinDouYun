@@ -59,6 +59,7 @@
     [self configViews];
     [self resetConstraints];
     //获取地理位置，判断取货范围
+    [TJMHUDHandle showRequestHUDAtView:self.view message:nil];
     [[TJMLocationService sharedLocationService] getFreeManLocationWith:TJMGetLocationTypeLocation target:CLLocationCoordinate2DMake(0, 0)];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationDidChange:) name:kTJMLocationDidChange object:nil];
 }
@@ -92,6 +93,7 @@
     BMKUserLocation *location = notification.userInfo[@"myLocation"];
     CLLocationCoordinate2D toCoordinate = CLLocationCoordinate2DMake(_orderModel.receiverLat.doubleValue, _orderModel.receiverLng.doubleValue);
     CLLocationDistance distance = [[TJMLocationService sharedLocationService] calculateDistanceFromMyLocation:location.location.coordinate toGetLocation:toCoordinate];
+    [TJMHUDHandle hiddenHUDForView:self.view];
     if (distance > 1000) {
         [self alertViewWithTag:1000 delegate:self title:@"不在签收范围" cancelItem:nil sureItem:@"确定"];
     } else {

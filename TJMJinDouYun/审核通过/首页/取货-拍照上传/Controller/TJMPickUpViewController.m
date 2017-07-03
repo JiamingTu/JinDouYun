@@ -52,6 +52,7 @@
     [self configViews];
     [self resetConstraints];
     //获取地理位置，判断取货范围
+    [TJMHUDHandle showRequestHUDAtView:self.view message:nil];
     [[TJMLocationService sharedLocationService] getFreeManLocationWith:TJMGetLocationTypeLocation target:CLLocationCoordinate2DMake(0, 0)];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationDidChange:) name:kTJMLocationDidChange object:nil];
 }
@@ -80,6 +81,7 @@
         progressHUD.label.text = msg;
         [progressHUD hideAnimated:YES afterDelay:1.5];
         //成功后返回
+        _orderModel.orderStatus = @3;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.navigationController popViewControllerAnimated:YES];
         });
@@ -94,6 +96,7 @@
     BMKUserLocation *location = notification.userInfo[@"myLocation"];
     CLLocationCoordinate2D toCoordinate = CLLocationCoordinate2DMake(_orderModel.consignerLat.doubleValue, _orderModel.consignerLng.doubleValue);
     CLLocationDistance distance = [[TJMLocationService sharedLocationService] calculateDistanceFromMyLocation:location.location.coordinate toGetLocation:toCoordinate];
+    [TJMHUDHandle hiddenHUDForView:self.view];
     if (distance > 1000) {
         [TJMHUDHandle hiddenHUDForView:self.view];
         [self alertViewWithTag:1000 delegate:self title:@"不在取货范围" cancelItem:nil sureItem:@"确定"];
@@ -148,10 +151,10 @@
     }
 }
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    return 15 * TJMWidthRatio;
+    return floorf(15 * TJMWidthRatio);
 }
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
-    return 15 * TJMWidthRatio;
+    return floorf(15 * TJMWidthRatio);
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     return CGSizeMake(75 * TJMWidthRatio, 75 * TJMWidthRatio);

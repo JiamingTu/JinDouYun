@@ -110,12 +110,6 @@
     _locServiceForMap.delegate = self;
 }
 - (void)viewWillDisappear:(BOOL)animated {
-    [_locServiceForMap stopUserLocationService];
-    [_mapView removeHeatMap];
-    NSArray *array = [NSArray arrayWithArray:_mapView.overlays];
-    [_mapView removeOverlays:array];
-    [_mapView removeAnnotations:_annotationArray];
-    [BMKMapView enableCustomMapStyle:NO];//关闭个性化地图
     [_mapView viewWillDisappear];
     _mapView.delegate = nil; // 不用时，置nil
     _routeSearch.delegate = nil;
@@ -123,7 +117,13 @@
 }
 
 - (void)dealloc {
-
+    [_locServiceForMap stopUserLocationService];
+    [_mapView removeHeatMap];
+    NSArray *array = [NSArray arrayWithArray:_mapView.overlays];
+    [_mapView removeOverlays:array];
+    [_mapView removeAnnotations:_annotationArray];
+    [BMKMapView enableCustomMapStyle:NO];//关闭个性化地图
+    
 }
 
 #pragma  mark - 返回按钮

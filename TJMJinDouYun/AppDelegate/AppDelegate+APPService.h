@@ -31,4 +31,5 @@
 
 /**获取当前视图控制器*/
 - (UIViewController *)topViewController;
+
 @end

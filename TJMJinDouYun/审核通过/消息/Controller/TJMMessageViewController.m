@@ -111,9 +111,7 @@ const NSInteger _messageSize = 15;
     TJMMessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MessageCell" forIndexPath:indexPath];
     //设置cell
     TJMMessageModel *model = self.dataSourceArray[indexPath.row];
-    cell.messageLabel.text = model.content;
-    NSString *timeString = [NSString getTimeWithTimestamp:model.updateTime formatterStr:@"MM-dd HH:mm"];
-    cell.dateLabel.text = timeString;
+    [cell setViewWithModel:model];
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

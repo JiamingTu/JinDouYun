@@ -71,4 +71,6 @@
 //
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *selectLineViewLeft;
 
+- (void)reloadOrderList;
+
 @end

@@ -71,7 +71,7 @@
 @property (nonatomic,strong) NSNumber *version;
 @property (nonatomic,copy) NSString *codeUrl;
 @property (nonatomic,copy) NSString *perpayId;
-@property (nonatomic,assign) BOOL atOnce;
+@property (nonatomic,assign) BOOL atOnce;//1:及时取 0:预约货
 @property (nonatomic,copy) NSString *carrierShowMoney;
 //计算后得到
 

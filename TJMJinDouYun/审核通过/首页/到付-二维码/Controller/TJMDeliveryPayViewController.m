@@ -43,14 +43,9 @@
     [self setBackNaviItem];
     //菊花转
     //获取地理位置，判断取货范围
+    [TJMHUDHandle showRequestHUDAtView:self.view message:nil];
     [[TJMLocationService sharedLocationService] getFreeManLocationWith:TJMGetLocationTypeLocation target:CLLocationCoordinate2DMake(0, 0)];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationDidChange:) name:kTJMLocationDidChange object:nil];
-    
-//    [TJMRequestH getPayOnDeliveryQRCodeTextWithOrderNo:self.orderModel.orderNo success:^(id successObj, NSString *msg) {
-//        
-//    } fail:^(NSString *failString) {
-//        
-//    }];
 }
 
 #pragma  mark - 设置页面
@@ -69,10 +64,12 @@
     BMKUserLocation *location = notification.userInfo[@"myLocation"];
     CLLocationCoordinate2D toCoordinate = CLLocationCoordinate2DMake(_orderModel.receiverLat.doubleValue, _orderModel.receiverLng.doubleValue);
     CLLocationDistance distance = [[TJMLocationService sharedLocationService] calculateDistanceFromMyLocation:location.location.coordinate toGetLocation:toCoordinate];
+    [TJMHUDHandle hiddenHUDForView:self.view];
     if (distance > 1000) {
         [self alertViewWithTag:1000 delegate:self title:@"不在签收范围" cancelItem:nil sureItem:@"确定"];
     } else {
         //获取二维码
+        [self getQRCode];
     }
 }
 
@@ -80,6 +77,39 @@
     if (itemIndex == 0) {
         [self.navigationController popViewControllerAnimated:YES];
     }
+}
+
+#pragma  mark - 获取到付二维码
+- (void)getQRCode {
+    [TJMRequestH getPayOnDeliveryQRCodeTextWithOrderNo:self.orderModel.orderNo success:^(id successObj, NSString *msg) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            UIImage *image = [UIImage createQRCodeWithCodeText:successObj];
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                self.QRCodeImageView.image = image;
+            }];
+        });
+    } fail:^(NSString *failString) {
+    }];
+}
+
+#pragma  mark - 代付按钮
+- (IBAction)helpPayAction:(UIButton *)sender {
+    [TJMHUDHandle showRequestHUDAtView:self.view message:nil];
+    [TJMRequestH getHelpPayInfoWithOrderNo:_orderModel.orderNo success:^(id successObj, NSString *msg) {
+        PayReq *request = successObj;
+        //判断是否安装微信，且微信版本是否支持当前API
+        if ([WXApi isWXAppInstalled] && [WXApi isWXAppSupportApi]) {
+            BOOL result = [WXApi sendReq:request];
+            if (!result) {
+                [TJMHUDHandle hiddenHUDForView:self.view];
+            }
+        } else {
+            [TJMHUDHandle hiddenHUDForView:self.view];
+            [TJMHUDHandle transientNoticeAtView:self.view withMessage:@"未安装微信或微信版本过低"];
+        }
+    } fail:^(NSString *failString) {
+        [TJMHUDHandle hiddenHUDForView:self.view];
+    }];
 }
 
 

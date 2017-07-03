@@ -11,6 +11,7 @@
 @interface TJMMyOrderDetailTableViewCell ()
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *nameLabelTopConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *nameLabelBottomConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *phoneImageHeightConstraint;
 
 @end
 
@@ -25,7 +26,7 @@
 
 #pragma  mark - 设置页面
 - (void)configViews {
-    [self tjm_resetVerticalConstraints:self.nameLabelTopConstraint,self.nameLabelBottomConstraint, nil];
+    [self tjm_resetVerticalConstraints:self.nameLabelTopConstraint,self.nameLabelBottomConstraint,self.phoneImageHeightConstraint, nil];
     [self tjm_adjustFont:15 forView:self.titleLabel,self.nameLabel, nil];
 }
 #pragma  mark - 完成cell

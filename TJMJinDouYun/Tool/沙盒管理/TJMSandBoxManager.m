@@ -102,8 +102,8 @@
     NSDictionary *fileInfo = [[NSFileManager defaultManager] attributesOfItemAtPath:cachePath error:&error];
     NSDate *createDate = fileInfo[NSFileCreationDate];
     double offsetTime = [[NSDate date] timeIntervalSinceDate:createDate];
-    double towWeeksSecond = 14 * 24 * 60 * 60;
-    if (offsetTime - towWeeksSecond >= 0) {
+    double twoWeeksSecond = 14 * 24 * 60 * 60;
+    if (offsetTime - twoWeeksSecond >= 0) {
         [self clearCache];
     }
 }

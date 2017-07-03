@@ -123,7 +123,7 @@
     }];
 }
 #pragma  mark - 提交按钮
-- (IBAction)commitAction:(UIButton *)sender {
+- (IBAction)commitAction:(UIButton *)sender {    
     if (self.codeTextField.text.length == 6) {
         //位数正确
         NSDictionary *parameters = @{@"code":self.codeTextField.text,@"orderNo":self.orderModel.orderNo};
@@ -131,6 +131,7 @@
             //签收成功
             [TJMHUDHandle transientNoticeAtView:self.view withMessage:msg];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                _orderModel.orderStatus = @4;
                 UIViewController *VC = [self popTargetViewControllerWithViewControllerNumber:2];
                 [self.navigationController popToViewController:VC animated:YES];
             });

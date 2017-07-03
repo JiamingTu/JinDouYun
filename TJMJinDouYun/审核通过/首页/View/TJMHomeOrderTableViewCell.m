@@ -97,9 +97,11 @@
 }
 
 - (void)setValueWithModel:(TJMOrderModel *)model {
+    if (!model) return;
+    
     //根据model状态 设置 按钮 title
     self.currentModel = model;
-    NSString *dateString = [self tjm_setDateFormatterWithTimestamp:[model.createTime integerValue]];
+    NSString *dateString = [self tjm_setDateFormatterWithTimestamp:[model.requestTime integerValue]];
     NSString *titleLabelText;
     if ([self.currentModel.orderStatus integerValue] == 2) {
         self.rightButtonWidthConstraint.constant = TJMScreenWidth / 2;
@@ -107,7 +109,6 @@
         [self.checkMapButton setTitle:@"地图导航" forState:UIControlStateNormal];
         titleLabelText = [NSString stringWithFormat:@"待取货：%@",dateString];
         self.titleLabel.textColor = TJMFUIColorFromRGB(0xff8600);
-
     } else if ([self.currentModel.orderStatus integerValue] == 3){
         self.rightButtonWidthConstraint.constant = TJMScreenWidth / 2;
         [self.robOrderButton setTitle:@"确认送达" forState:UIControlStateNormal];
@@ -118,7 +119,8 @@
         self.rightButtonWidthConstraint.constant = TJMScreenWidth / 2;
         [self.robOrderButton setTitle:@"抢 单！" forState:UIControlStateNormal];
         [self.checkMapButton setTitle:@"查看地图" forState:UIControlStateNormal];
-        titleLabelText = [NSString stringWithFormat:@"及时取：%@",dateString];
+        NSString *pickUpType = model.atOnce ? @"及时取：" : @"预约取：";
+        titleLabelText = [NSString stringWithFormat:@"%@%@",pickUpType,dateString];
         self.titleLabel.textColor = TJMFUIColorFromRGB(0xff8600);
     } else if (self.currentModel.orderStatus.integerValue == 5) {
         //已取消
@@ -129,7 +131,8 @@
     } else {
         //已完成
         self.rightButtonWidthConstraint.constant = TJMScreenWidth;
-        titleLabelText = [NSString stringWithFormat:@"已完成：%@",dateString];
+        NSString *finishDateString = [self tjm_setDateFormatterWithTimestamp:model.finishTime.integerValue];
+        titleLabelText = [NSString stringWithFormat:@"已完成：%@",finishDateString];
         [self.checkMapButton setTitle:@"查看详情" forState:UIControlStateNormal];
         self.titleLabel.textColor = TJMFUIColorFromRGB(0x999999);
     }
@@ -138,7 +141,13 @@
         titleLabelText = [NSString stringWithFormat:@"——  %@  ——",titleLabelText];
     }
     self.titleLabel.text = titleLabelText;
-    self.priceLabel.text = [@"￥" stringByAppendingString:model.carrierShowMoney.description];
+    NSString *showPrice = nil;
+    if (model.payType.integerValue == 4) {
+        showPrice = [NSString stringWithFormat:@"￥%@",model.actualMoney.description];
+    } else {
+        showPrice = [NSString stringWithFormat:@"￥%@",model.carrierShowMoney.description];
+    }
+    self.priceLabel.text = showPrice;
     //地址
     self.startAddressLabel.text = model.consignerAddress;
     self.endAddressLabel.text = model.receiverAddress;
@@ -180,7 +189,7 @@
         } break;
         case 3: {
             if (sender.tag == 10) {
-                if ([self.currentModel.payStatus integerValue] == 4) {
+                if ([self.currentModel.payType integerValue] == 4) {
                     //到付
                     if ([self isDelegateAndResponseSelector:@selector(payOnDeliveryWithOrder:cell:)]) {
                         [self.delegate payOnDeliveryWithOrder:self.currentModel cell:self];

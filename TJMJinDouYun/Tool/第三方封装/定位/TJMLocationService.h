@@ -10,7 +10,6 @@
 #import "LocationTracker.h"
 
 typedef enum : NSUInteger {
-    TJMGetLocationTypeLocAndCityName,
     TJMGetLocationTypeLocation,
     TJMGetLocationTypeCityName,
     TJMGetLocationTypeNaviService,

@@ -18,7 +18,9 @@
     
     UIButton *_selectButton;
     TJMOrderModel *_selectModel;
+    NSInteger _selectModelOrderStatus;
     NSIndexPath *_selectIndexPath;
+    NSMutableArray *_selectDataArray;
     NSInteger _loadViewStatus;
     NSString *_cityName;
 }
@@ -28,7 +30,6 @@
 @property (nonatomic,assign) BOOL isWorking;
 
 @property (weak, nonatomic) IBOutlet UIView *imaginaryLineView;
-
 
 //数据源
 @property (nonatomic,strong) NSMutableDictionary *dataSourceDictionary;
@@ -81,11 +82,11 @@
     if (!_header) {
         self.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
             //清空当前状态（抢单，待取，待送）下 字典的值
-            [self.dataSourceDictionary removeObjectForKey:@(_selectButton.tag)];
+            [self.dataSourceDictionary removeObjectForKey:[self dataKey]];
             [self.dataSourceDictionary removeObjectForKey:[NSString stringWithFormat:@"%zdnumber",_selectButton.tag]];
             [self.dataSourceDictionary removeObjectForKey:[NSString stringWithFormat:@"%zdtotal",_selectButton.tag]];
             //重新获取位置后请求
-            [[TJMLocationService sharedLocationService] getFreeManLocationWith:TJMGetLocationTypeLocation target:CLLocationCoordinate2DMake(0, 0)];
+            [[TJMLocationService sharedLocationService] getFreeManLocationWith:TJMGetLocationTypeCityName target:CLLocationCoordinate2DMake(0, 0)];
             //重置footer no more data
             [self.footer resetNoMoreData];
         }];
@@ -96,7 +97,7 @@
     if (!_footer) {
         self.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
             //重新获取位置后请求
-            [[TJMLocationService sharedLocationService] getFreeManLocationWith:TJMGetLocationTypeLocation target:CLLocationCoordinate2DMake(0, 0)];
+            [[TJMLocationService sharedLocationService] getFreeManLocationWith:TJMGetLocationTypeCityName target:CLLocationCoordinate2DMake(0, 0)];
         }];
     }
     return _footer;
@@ -124,8 +125,9 @@
     };
     //获取个人信息
     [self.appDelegate getPersonInfoWithViewController:self];
+    [self getWorkingStatus];
     //获取位置后请求
-    [[TJMLocationService sharedLocationService] getFreeManLocationWith:TJMGetLocationTypeLocAndCityName target:CLLocationCoordinate2DMake(0, 0)];
+    [[TJMLocationService sharedLocationService] getFreeManLocationWith:TJMGetLocationTypeCityName target:CLLocationCoordinate2DMake(0, 0)];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -135,12 +137,8 @@
     [self addObserver:self forKeyPath:@"isWorking" options:NSKeyValueObservingOptionNew context:nil];
     //接收通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityDidChange:) name:kTJMLocationCityNameDidChange object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationDidChange:) name:kTJMLocationDidChange object:nil];
-    //页面将要显示时获取工作状态，更新页面
-    [self.dataSourceDictionary removeAllObjects];
-    //获取开工状态
-    [self getWorkingStatus];
-    //开启定位服务
+    //根据orderStatus 更新 页面
+    [self updateListAccountSelectModel];
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
@@ -149,10 +147,13 @@
     //移除通知
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NSCalendarDayChangedNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kTJMLocationCityNameDidChange object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:kTJMLocationDidChange object:nil];
     [self removeObserver:self forKeyPath:@"isWorking"];
     //停止计时
     [self cancelTiemr];
+    //记录 _selectModel 的 orderStatus
+    if (_selectModel) {
+        _selectModelOrderStatus = _selectModel.orderStatus.integerValue;
+    }
 }
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
@@ -189,7 +190,12 @@
     _selectButton = self.rabOrderButton;
     
 }
-
+- (void)reloadOrderList {
+    //页面将要显示时获取工作状态，更新页面
+    [self.dataSourceDictionary removeAllObjects];
+    //获取开工状态
+    [self getWorkingStatus];
+}
 
 #pragma  mark - 按钮方法
 #pragma  mark 导航按钮
@@ -227,6 +233,7 @@
     if (!self.isWorking) {
         //如果是收工状态 就设置
         [self setOrderListWithknockOff];
+        [self.header beginRefreshing];
     }
     self.selectLineViewLeft.constant = (sender.tag - 100) * TJMScreenWidth / 3;
     if (self.isWorking) {
@@ -259,9 +266,9 @@
     } else {
         //确认抢单？
         if (itemIndex == 0) {
-            NSMutableArray *arr = self.dataSourceDictionary[@(_selectButton.tag)];
-            _selectModel = [arr objectAtIndex:_selectIndexPath.row];
-            [TJMRequestH robOrderWithOrderId:_selectModel.orderId success:^(id successObj, NSString *msg) {
+            NSMutableArray *arr = self.dataSourceDictionary[[self dataKey]];
+            TJMOrderModel *model = [arr objectAtIndex:_selectIndexPath.row];
+            [TJMRequestH robOrderWithOrderId:model.orderId success:^(id successObj, NSString *msg) {
                 [TJMHUDHandle transientNoticeAtView:self.view withMessage:msg];
                 //删除数据
                 [arr removeObjectAtIndex:_selectIndexPath.row];
@@ -284,7 +291,7 @@
             //赋值KVO
             self.isWorking = [freeManInfo.workStatus boolValue];
         } fail:^(NSString *failString) {
-            [TJMHUDHandle hiddenHUDForView:self.appDelegate.window];
+            [TJMHUDHandle hiddenHUDForView:self.view];
             [TJMHUDHandle tapHUDWithTarget:self atView:self.view withMessage:@"加载失败，点击重试"];
         }];
     }
@@ -292,7 +299,7 @@
 - (void)tap:(UIGestureRecognizer *)gestureRecognizer {
     [TJMHUDHandle hiddenHUDForView:self.view];
     [self getWorkingStatus];
-    [[TJMLocationService sharedLocationService] getFreeManLocationWith:TJMGetLocationTypeLocAndCityName target:CLLocationCoordinate2DMake(0, 0)];
+    [[TJMLocationService sharedLocationService] getFreeManLocationWith:TJMGetLocationTypeCityName target:CLLocationCoordinate2DMake(0, 0)];
 }
 #pragma  mark 获取开工时间/当前金额 更新UI
 - (void)getWorkingTimeAndConfigWithWorkingStatus:(BOOL)workStatus {
@@ -324,8 +331,8 @@
             [self startTimerWithTimestamp:[data[@"workTime"] integerValue]];
         }
     } fail:^(NSString *failString) {
-//        self.progressHUD.label.text = failString;
-//        [self.progressHUD hideAnimated:YES afterDelay:1.5];
+        //self.progressHUD.label.text = failString;
+        //[self.progressHUD hideAnimated:YES afterDelay:1.5];
         TJMLog(@"%@",failString);
     }];
     
@@ -372,7 +379,6 @@
         [self.footer setTitle:@"已经全部加载完毕" forState:MJRefreshStateNoMoreData];
         //重设header
         self.tableView.mj_header = self.header;
-        [self.header beginRefreshing];
         //开始刷新后 收工原因不会调用setOrderList 方法  需手动调用一次
         [self setOrderList];
     }
@@ -408,12 +414,11 @@
         page = 0;
     }
     //请求
-    [TJMRequestH getOrderListWithType:type myLocation:self.myLoc.location.coordinate page:page size:5 sort:nil dir:@"DESC" status:status cityName:_cityName success:^(id successObj, NSString *msg) {
+    [TJMRequestH getOrderListWithType:type myLocation:self.myLoc.location.coordinate page:page size:5 sort:nil dir:@"ASC" status:status cityName:_cityName success:^(id successObj, NSString *msg) {
         TJMOrderData *orderData = (TJMOrderData *)successObj;
         //如果 为空 则不能进行下列操作
         if (orderData.totalPages == nil) return;
         NSMutableArray *array = [NSMutableArray arrayWithArray:orderData.content];
-        NSLog(@"%@",array);
         //确定数据数组的key
         if ([self.dataSourceDictionary.allKeys containsObject:[NSString stringWithFormat:@"%zdtotal",_selectButton.tag]]) {
             //上拉加载
@@ -430,7 +435,6 @@
             [self.tableView reloadData];
             //停止刷新
             [self.tableView.mj_header endRefreshing];
-            NSLog(@"%@",self.dataSourceDictionary);
         }
     } fial:^(NSString *failString) {
         if (self.header.isRefreshing) {
@@ -452,20 +456,16 @@
     [self getWorkingStatus];
 }
 - (void)cityDidChange:(NSNotification *)notification {
-    NSString *city = notification.userInfo[@"cityName"];
-    city =  [city substringWithRange:NSMakeRange(0, city.length - 1)];
+    TJMLog(@"位置已更新，开始刷新列表");
+    _cityName = notification.userInfo[@"cityName"];
+    NSString *city =  [_cityName substringWithRange:NSMakeRange(0, _cityName.length - 1)];
     [self.naviLeftButton setTitle:city forState:UIControlStateNormal];
-    [self setNaviLeftButtonFrameWithButton:_naviLeftButton]; 
-}
-- (void)locationDidChange:(NSNotification *)notification {
-    //位置信息
-    BMKUserLocation *location = notification.userInfo[@"myLocation"];
-    self.myLoc = location;
-    if (self.myLoc) {
+    [self setNaviLeftButtonFrameWithButton:_naviLeftButton];
+    self.myLoc = notification.userInfo[@"myLocation"];
+    if (self.myLoc && _cityName) {
         [self getWorkingTimeAndConfigWithWorkingStatus:self.isWorking];
     }
 }
-
 
 #pragma  mark - UITableViewDelegate,UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -485,8 +485,8 @@
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     cell.delegate = self;
     NSString *dataKey = [self dataKey];
-    NSArray *arr = self.dataSourceDictionary[dataKey];
-    TJMOrderModel *model = arr[indexPath.row];
+    _selectDataArray = self.dataSourceDictionary[dataKey];
+    TJMOrderModel *model = _selectDataArray[indexPath.row];
 
     [cell setValueWithModel:model];
     
@@ -510,6 +510,7 @@
     TJMHomeOrderTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     TJMLog(@"%@",cell.currentModel.orderStatus);
     if (cell.currentModel.orderStatus.integerValue != 1) {
+        _selectModel = cell.currentModel;
         [self performSegueWithIdentifier:@"HomeToOrderDetail" sender:cell.currentModel];
     }
 }
@@ -524,11 +525,12 @@
         
     } else {
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        NSArray *arr = self.dataSourceDictionary[@(_selectButton.tag)];
+        NSArray *arr = self.dataSourceDictionary[[self dataKey]];
         TJMOrderModel *model = arr[indexPath.row];
         //查看地图
         TJMLocation *consignerLoc = [[TJMLocation alloc]initWithCoordinate2D:CLLocationCoordinate2DMake(model.consignerLat.floatValue, model.consignerLng.floatValue) title:@"取货点"];
         TJMLocation *reciverLoc = [[TJMLocation alloc]initWithCoordinate2D:CLLocationCoordinate2DMake(model.receiverLat.floatValue, model.receiverLng.floatValue) title:@"送货点"];
+        _selectModel = cell.currentModel;
         [self performSegueWithIdentifier:@"BaiduMap" sender:@[consignerLoc,reciverLoc]];
     }
 }
@@ -538,17 +540,20 @@
     if (self.isWorking == NO) {
         [TJMHUDHandle transientNoticeAtView:self.view withMessage:@"收工状态无法取货"];
     } else {
+        _selectModel = model;
         [self performSegueWithIdentifier:@"SurePickUp" sender:model];
     }
     
 }
 #pragma  mark 到付
 - (void)payOnDeliveryWithOrder:(TJMOrderModel *)model cell:(TJMHomeOrderTableViewCell *)cell {
+    _selectModel = model;
      [self performSegueWithIdentifier:@"HelpPay" sender:model];
 }
 #pragma  mark 验证码 签收
 - (void)codeSignInWithOrder:(TJMOrderModel *)model cell:(TJMHomeOrderTableViewCell *)cell {
     //先跳到二维码界面
+    _selectModel = model;
     [self performSegueWithIdentifier:@"QRCodeSingIn" sender:model];
 
 }
@@ -557,20 +562,44 @@
     [[TJMLocationService sharedLocationService] getFreeManLocationWith:TJMGetLocationTypeNaviService target:CLLocationCoordinate2DMake(lat, lng)];
 }
 
+#pragma - 判断selectModel 状态 更新页面
+//在页面将要消失时 记录 被选中的model 的 订单状态
+//页面将要出现时 判断状态是否一致，从而刷新页面
+- (void)updateListAccountSelectModel {
+    if ([_selectDataArray containsObject:_selectModel] ) {
+        if (_selectModelOrderStatus == 2) {
+            //是从 待取货 界面 push的
+            if (_selectModel.orderStatus.integerValue != _selectModelOrderStatus) {
+                [self deleteOrder];
+            }
+        } else if (_selectModelOrderStatus == 3) {
+            if (_selectModel.orderStatus.integerValue != _selectModelOrderStatus) {
+                [self deleteOrder];
+            }
+        }
+    }
+}
+//删除对应model
+- (void)deleteOrder {
+    NSInteger index = [_selectDataArray indexOfObject:_selectModel];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+    [_selectDataArray removeObject:_selectModel];
+    [_tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+}
 
 
 #pragma  mark - KVO
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
     if ([keyPath isEqualToString:@"isWorking"]) {
         BOOL isWorking = [change[@"new"] boolValue];
-        if (self.myLoc) {
+        if (self.myLoc && _cityName) {
             [self getWorkingTimeAndConfigWithWorkingStatus:isWorking];
         }
     } else if ([keyPath isEqualToString:kKVOPersonInfo]) {
         TJMPersonInfoModel *personInfo = change[@"new"];
         if (![personInfo isEqual:[NSNull null]]) {
             if (personInfo.photo != nil) {
-                NSString *path = [TJMPhotoBasicAddress stringByAppendingString:personInfo.photo];
+                NSString *path = [NSString stringWithFormat:@"%@%@",TJMPhotoBasicAddress,personInfo.photo];
                 [[SDWebImageManager sharedManager] loadImageWithURL:[NSURL URLWithString:path] options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
                     image = [image getCropImage];
                     self.headerImageView.image = image;

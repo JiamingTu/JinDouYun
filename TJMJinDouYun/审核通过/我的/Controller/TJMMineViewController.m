@@ -157,7 +157,7 @@
         if (![personInfo isEqual:[NSNull null]]) {
             //头像
             if (personInfo.photo != nil) {
-                NSString *path = [TJMPhotoBasicAddress stringByAppendingString:personInfo.photo];
+                NSString *path = [NSString stringWithFormat:@"%@%@",TJMPhotoBasicAddress,personInfo.photo];
                 [[SDWebImageManager sharedManager] loadImageWithURL:[NSURL URLWithString:path] options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
                     image = [image getCropImage];
                     [self.headerButton setBackgroundImage:image forState:UIControlStateNormal];
@@ -172,7 +172,7 @@
                 if (self.performanceModel) {
                     NSString *starCount = _performanceModel.starCount;
                     if (![starCount containsString:@"."]) {
-                        starCount = [starCount stringByAppendingString:@".0"];
+                        starCount = [NSString stringWithFormat:@"%@.0",starCount];
                     }
                     self.evaluateValueLabel.text = starCount;
                     self.totalOrderNumLabel.text = _performanceModel.orderCount;

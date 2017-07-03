@@ -115,7 +115,7 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
     [formatter setDateFormat:@"hh:mm"];
     NSString *dateString = [formatter stringFromDate:date];
-    return [whatDay stringByAppendingString:dateString];
+    return [NSString stringWithFormat:@"%@%@",whatDay,dateString];
     
 }
 #pragma  mark 返回 今天 昨天 前天 等

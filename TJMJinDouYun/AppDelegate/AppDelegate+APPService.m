@@ -139,40 +139,59 @@
 - (void)receivedSignInMessageWithBlock:(SignInBlock)signIn {
     NSString *msg = signIn();
     UIViewController *VC = [self topViewController];
+    [TJMHUDHandle hiddenHUDForView:VC.view];
     [TJMHUDHandle transientNoticeAtView:self.window withMessage:msg];
     if ([VC isKindOfClass:NSClassFromString(@"TJMQRCodeSingInViewController")]) {
         TJMOrderModel *model = [VC valueForKey:@"orderModel"];
         model.orderStatus = @4;
+        model.payStatus = @1;
         //如果是 当前扫描界面 那就 pop 回去
         [VC.navigationController popViewControllerAnimated:YES];
-    } else if ([VC isKindOfClass:NSClassFromString(@"TJMCodeSignInViewController")]) {
+    }
+    else if ([VC isKindOfClass:NSClassFromString(@"TJMCodeSignInViewController")]) {
         TJMOrderModel *model = [VC valueForKey:@"orderModel"];
         model.orderStatus = @4;
+        model.payStatus = @1;
         UIViewController *targetVC = [VC popTargetViewControllerWithViewControllerNumber:2];
         [VC.navigationController popToViewController:targetVC animated:YES];
-    } else if ([VC isKindOfClass:NSClassFromString(@"TJMMyOrderDetailViewController")]) {
+    }
+    else if ([VC isKindOfClass:NSClassFromString(@"TJMMyOrderDetailViewController")]) {
         TJMOrderModel *model = [VC valueForKey:@"orderModel"];
+        UITableView *tableView = [VC valueForKey:@"tableView"];
         model.orderStatus = @4;
+        model.payStatus = @1;
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wundeclared-selector"
         if ([VC respondsToSelector:@selector(setBottomButton)]) {
+            [tableView reloadData];
             [VC performSelector:@selector(setBottomButton) withObject:nil];
         }
-    } else if ([VC isKindOfClass:NSClassFromString(@"TJMMyOrderViewController.h")]) {
+    }
+    else if ([VC isKindOfClass:NSClassFromString(@"TJMMyOrderViewController.h")]) {
         //我的订单页面
         TJMOrderModel *model = [VC valueForKey:@"orderModel"];
         model.orderStatus = @4;
+        model.payStatus = @1;
         if ([VC respondsToSelector:@selector(reloadDataTableView)]) {
             [VC performSelector:@selector(reloadDataTableView) withObject:nil];
 #pragma clang diagnostic pop
-        } else if ([VC isKindOfClass:NSClassFromString(@"TJMHomepageViewController")]) {
-            [[TJMLocationService sharedLocationService] getFreeManLocationWith:TJMGetLocationTypeLocAndCityName target:CLLocationCoordinate2DMake(0, 0)];
         }
     }
-
-    
-    
+    else if ([VC isKindOfClass:NSClassFromString(@"TJMHomepageViewController")]) {
+        [[TJMLocationService sharedLocationService] getFreeManLocationWith:TJMGetLocationTypeCityName target:CLLocationCoordinate2DMake(0, 0)];
+    }
+    else if ([VC isKindOfClass:NSClassFromString(@"TJMDeliveryPayViewController")])
+    {
+        TJMOrderModel *model = [VC valueForKey:@"orderModel"];
+        model.orderStatus = @4;
+        model.payStatus = @1;
+        //如果是 当前扫描界面 那就 pop 回去
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [VC.navigationController popViewControllerAnimated:YES];
+        });
+    }
 }
+
 
 
 @end

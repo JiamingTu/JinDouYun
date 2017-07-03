@@ -1680,6 +1680,7 @@
                                             <outlet property="nameLabel" destination="DdD-Nd-x7U" id="JQM-0v-xFZ"/>
                                             <outlet property="nameLabelBottomConstraint" destination="jDa-zD-Z5h" id="QI3-Js-kwW"/>
                                             <outlet property="nameLabelTopConstraint" destination="vHc-M6-QlG" id="uuM-DW-e0p"/>
+                                            <outlet property="phoneImageHeightConstraint" destination="StT-EN-bOE" id="1Yz-kf-Scu"/>
                                             <outlet property="telImageView" destination="b6Q-Fw-wZH" id="wi1-46-cEB"/>
                                             <outlet property="titleLabel" destination="K4s-Mf-AFt" id="M45-10-Zbz"/>
                                         </connections>
@@ -1735,6 +1736,7 @@
                     <navigationItem key="navigationItem" id="IjQ-dQ-AOz"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="leftButtonHeightConstraint" destination="gco-ep-RBJ" id="UAY-es-83A"/>
                         <outlet property="leftYellowButton" destination="gXK-oZ-T7m" id="Qfx-Bi-M9q"/>
                         <outlet property="rightButtonWidthConstraint" destination="iZt-fR-MOD" id="xGa-cq-nup"/>
                         <outlet property="rightWhiteButton" destination="GPX-KF-gWz" id="2wW-A3-tUb"/>
@@ -2070,7 +2072,7 @@
                                         <state key="normal" title="登 录">
                                             <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
-                                        <state key="disabled" title="登 录">
+                                        <state key="disabled">
                                             <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
@@ -3442,6 +3444,9 @@
                                 <state key="normal" title="代 付">
                                     <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="helpPayAction:" destination="OZx-dl-108" eventType="touchUpInside" id="94z-p9-Ob6"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -4625,7 +4630,7 @@
                                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="再次输入新密码已验证" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ahF-a7-For">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="再次输入新密码以验证" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ahF-a7-For">
                                         <rect key="frame" x="132" y="111" width="228" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>

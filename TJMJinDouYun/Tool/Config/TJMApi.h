@@ -88,13 +88,13 @@
  *Parameters
  *  carrierId          ->path
  */
-#define TJMStartWork(carrierId) [@"/carrier/users/start/" stringByAppendingString:carrierId]
+#define TJMStartWork(carrierId) [NSString stringWithFormat:@"/carrier/users/start/%@",carrierId]
 /*
  *收工 PUT
  *Parameters
  *  carrierId          ->path
  */
-#define TJMStopWork(carrierId) [@"/carrier/users/stop/" stringByAppendingString:carrierId]
+#define TJMStopWork(carrierId) [NSString stringWithFormat:@"/carrier/users/stop/%@",carrierId]
 
 
 /*
@@ -163,7 +163,7 @@
  *  CarrierId         ->path
  */
 //[NSString stringWithFormat:@"/carrier/info/%@",CarrierId]
-#define TJMFreeManGetInfo(carrierId) [@"/carrier/info/" stringByAppendingString:carrierId]
+#define TJMFreeManGetInfo(carrierId) [NSString stringWithFormat:@"/carrier/info/%@",carrierId]
 
 #pragma  mark - 自由人上传定位
 /*
@@ -183,9 +183,9 @@
  */
 #define TJMRandomGenerationTestQuestion @"/carrier/exams"
 
-#define TJMPassExam(chapter) [@"/carrier/exams/" stringByAppendingString:chapter]
+#define TJMPassExam(chapter) [NSString stringWithFormat:@"/carrier/exams/%@",chapter]
 
-#define TJMGetLearnResource(chapter) [@"/carrier/exams/resource/" stringByAppendingString:chapter]
+#define TJMGetLearnResource(chapter) [NSString stringWithFormat:@"/carrier/exams/resource/%@",chapter]
 
 #pragma  mark - 用户定位
 /*
@@ -259,6 +259,13 @@
  *获取到付二维码
  */
 #define TJMPayOnDeliveryQRCode @"/pay/cod"
+#pragma  mark 代付
+/*
+ *代付接口
+ *  orderNo
+ */
+#define TJMHelpPay @"/pay/helpPay"
+
 #pragma  mark 获取单个订单
 /*
  *获取单个订单 GET
@@ -266,7 +273,7 @@
  *  Authorization     ->header
  *  orderNo
  */
-#define TJMGetSingleOrder(orderNo) [@"/orders/auth/" stringByAppendingString:orderNo]
+#define TJMGetSingleOrder(orderNo) [NSString stringWithFormat:@"/orders/auth/%@",orderNo]
 #pragma  mark - 我的钱包（绑定银行卡、提现等）
 /*
  *绑定银行卡 POST
@@ -284,7 +291,7 @@
  *  Authorization     ->header
  *  carrierId         ->path
  */
-#define TJMGetBoundBankCardList(carrierId) [@"/carrier/users/bankCards/" stringByAppendingString:carrierId]
+#define TJMGetBoundBankCardList(carrierId) [NSString stringWithFormat:@"/carrier/users/bankCards/%@",carrierId]
 /*
  *获取可用银行列表 GET
  *
@@ -313,7 +320,7 @@
  *  Authorization     ->header
  *  carrierId         ->path
  */
-#define TJMGetTradingRecord(carrierId) [@"/carrier/users/account/" stringByAppendingString:carrierId]
+#define TJMGetTradingRecord(carrierId) [NSString stringWithFormat:@"/carrier/users/account/%@",carrierId]
 #pragma  mark - 评论
 /*
  *获取评论 GET
@@ -330,7 +337,7 @@
  *  Authorization     ->header
  *  carrierId         ->path
  */
-#define TJMGetPersonInfo(carrierId) [@"/carrier/users/info/" stringByAppendingString:carrierId]
+#define TJMGetPersonInfo(carrierId) [NSString stringWithFormat:@"/carrier/users/info/%@",carrierId]
 /*
  *修改头像 PUT
  *Parameters
@@ -355,7 +362,7 @@
  *  Authorization     ->header
  *  carrierId         ->path
  */
-#define TJMFreeManPerformance(carrierId) [@"/carrier/users/performance/" stringByAppendingString:carrierId]
+#define TJMFreeManPerformance(carrierId) [NSString stringWithFormat:@"/carrier/users/performance/%@",carrierId]
 
 #pragma  mark - 获取消息列表
 /*
@@ -364,7 +371,7 @@
  *  Authorization     ->header
  *  carrierId         ->path
  */
-#define TJMGetMessageList(carrierId) [@"/carrier/message/" stringByAppendingString:carrierId]
+#define TJMGetMessageList(carrierId) [NSString stringWithFormat:@"/carrier/message/%@",carrierId]
 
 #pragma  mark - 热力图
 /*
@@ -376,7 +383,14 @@
  */
 #define TJMGetHeatMapData @"/carrier/locations/k_chart"
 
-
+#pragma  mark - 版本控制
+/*
+ *获取热力图数据 GET
+ *Parameters
+ *  Authorization     ->header
+ *  type
+ */
+#define TJMCheckVersion @"/carrier/version"
 
 
 

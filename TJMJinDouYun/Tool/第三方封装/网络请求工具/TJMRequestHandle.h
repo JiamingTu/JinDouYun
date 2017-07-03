@@ -80,6 +80,8 @@ SingletonH(RequestHandle)
 - (void)getQRCodeTextWithOrderId:(NSNumber *)orderId success:(SuccessBlock)success fail:(FailBlock)failure;
 /**获取到付二维码链接*/
 - (void)getPayOnDeliveryQRCodeTextWithOrderNo:(NSString *)orderNo success:(SuccessBlock)success fail:(FailBlock)failure;
+/**代付*/
+- (void)getHelpPayInfoWithOrderNo:(NSString *)orderNo success:(SuccessBlock)success fail:(FailBlock)failure;
 /**生成语音、短信验证码 & 签收*/
 - (void)getSignInCodeOrSignWithType:(NSString *)type parameters:(NSDictionary *)parameters success:(SuccessBlock)success fail:(FailBlock)failure;
 /**查询单个订单*/
@@ -108,4 +110,6 @@ SingletonH(RequestHandle)
 #pragma  mark - 热力图
 /**获取热力图数据*/
 - (void)heatMapDataSuccessWithDay:(NSInteger)day cityName:(NSString *)cityName success:(SuccessBlock)success fail:(FailBlock)failure;
+/**检查更新*/
+- (void)checkVersionSuccess:(SuccessBlock)success fail:(FailBlock)failure;
 @end

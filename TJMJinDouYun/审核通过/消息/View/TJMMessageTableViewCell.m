@@ -36,6 +36,32 @@
     [self tjm_adjustFont:12 forView:self.dateLabel, nil];
 }
 
+
+#pragma  mark - 根据model配置页面
+- (void)setViewWithModel:(TJMMessageModel *)model {
+    self.messageLabel.text = model.content;
+    NSString *timeString = [NSString getTimeWithTimestamp:model.updateTime formatterStr:@"MM-dd HH:mm"];
+    self.dateLabel.text = timeString;
+    self.titleLabel.text = [self getTitleWithType:model.type.integerValue];
+}
+- (NSString *)getTitleWithType:(NSInteger)type {
+    NSString *title = @"";
+    switch (type) {
+        case 0:
+            title = @"通知";
+            break;
+        case 1:
+            title = @"自由人通知";
+            break;
+        case 3:
+            title = @"个人通知";
+            break;
+            
+        default:
+            break;
+    }
+    return  title;
+}
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

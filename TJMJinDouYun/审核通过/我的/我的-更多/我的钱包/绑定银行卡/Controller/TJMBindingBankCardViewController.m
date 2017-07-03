@@ -153,7 +153,7 @@
             }
         }
         [self.parameters setObject:value forKey:cell.inputType];
-        NSLog(@"%@",self.parameters);
+        TJMLog(@"%@",self.parameters);
     }
 }
 #pragma  mrak - memory warning

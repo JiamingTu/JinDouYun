@@ -14,6 +14,8 @@
 //约束
 //按钮宽度
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *rightButtonWidthConstraint;
+//按钮高度
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftButtonHeightConstraint;
 
 
 @property (nonatomic,strong) TJMOrderDetailData *dataSource;
@@ -33,6 +35,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setTitle:@"订单详情" fontSize:17 colorHexValue:0x333333];
+    [self resetConstraints];
     [self configViews];
 }
 - (void)viewWillAppear:(BOOL)animated {
@@ -46,7 +49,11 @@
     [self setRightNaviItemWithImageName:nil orTitle:@"申报异常" titleColorHexValue:0x333333 fontSize:15];
     [self setBackNaviItem];
 }
+- (void)resetConstraints {
+    [self tjm_resetVerticalConstraints:self.leftButtonHeightConstraint, nil];
+}
 - (void)setBottomButton {
+    self.dataSource = [[TJMOrderDetailData alloc]initWithOrderModel:_orderModel];
     self.rightButtonWidthConstraint.constant = TJMScreenWidth / 2;
     switch (self.orderModel.orderStatus.integerValue) {
         case 1: {
@@ -114,6 +121,9 @@
     [self performSegueWithIdentifier:identifier sender:self.orderModel];
 }
 - (IBAction)naviAction:(UIButton *)sender {
+    if ([sender.titleLabel.text isEqualToString:@"已完成"]) {
+        return;
+    }
     CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(0, 0);
     if (self.orderModel.orderStatus.integerValue == 2) {
         //我到取件处的导航

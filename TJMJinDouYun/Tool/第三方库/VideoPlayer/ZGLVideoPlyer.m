@@ -356,7 +356,7 @@
                 
             } else if (self.player.status == AVPlayerStatusFailed){
                 [self.videoMaskView.activityView startAnimating];
-                NSLog(@"不能播放");
+                TJMLog(@"不能播放");
             }
         } else if ([keyPath isEqualToString:@"loadedTimeRanges"]) {
             NSTimeInterval timeInterval = [self availableDuration];// 计算缓冲进度
@@ -392,7 +392,7 @@
 
 -(void)dealloc {
     
-    NSLog(@"VideoPlayer销毁了");
+    TJMLog(@"VideoPlayer销毁了");
     
     [[NSNotificationCenter defaultCenter]removeObserver:self];
     

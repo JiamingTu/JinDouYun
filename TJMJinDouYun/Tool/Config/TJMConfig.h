@@ -24,26 +24,11 @@
 #define TJMRGBColorAlpha(r,g,b,a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
 #define TJMFUIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
-//第三方APPKey等
-//百度地图
-#define TJMBaiduMapAK @"dMCzzquQYybYamac5VfEk7fVk0MRLp4b"
-//百度鹰眼 serviceId
-#define TJMBaiduTraceServiceID 138290
-//极光推送
-#define TJMJPushAppKey @"3b84de949bd1c8230a9198d4"
-static NSString *JPushChannel = @"Publish channel";
-// static BOOL JPushIsProduction = NO;
-#ifdef DEBUG
-// 开发 极光FALSE为开发环境
-static BOOL const JPushIsProduction = NO;
-#else
-// 生产 极光TRUE为生产环境
-static BOOL const JPushIsProduction = YES;
-#endif
-//IQ
+//appkey 等
+#import "TJMAppKey.h"
+
+//YYKeyboard
 #define TJMYYKeyboardManager [YYKeyboardManager defaultManager]
-
-
 
 
 //请求类实例

@@ -13,4 +13,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *messageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
+- (void)setViewWithModel:(TJMMessageModel *)model;
 @end

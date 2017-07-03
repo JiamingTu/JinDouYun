@@ -45,6 +45,13 @@
 		9969883C1EE80FA00095E9B0 /* UIFont+runtime.m in Sources */ = {isa = PBXBuildFile; fileRef = 9969883B1EE80FA00095E9B0 /* UIFont+runtime.m */; };
 		996988401EE80FCE0095E9B0 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 9969883F1EE80FCE0095E9B0 /* NSString+MD5.m */; };
 		996988791EEA3D1D0095E9B0 /* TJMHomepageViewController+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 996988781EEA3D1D0095E9B0 /* TJMHomepageViewController+Category.m */; };
+		997985CF1F063C960089CC9C /* baiduNaviSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 997985BD1F063C960089CC9C /* baiduNaviSDK.bundle */; };
+		997985D01F063C960089CC9C /* baiduNaviSDK.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 997985BE1F063C960089CC9C /* baiduNaviSDK.xcassets */; };
+		997985D11F063C960089CC9C /* libbaiduNaviSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 997985C91F063C960089CC9C /* libbaiduNaviSDK.a */; };
+		997985D21F063C960089CC9C /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 997985CA1F063C960089CC9C /* readme.txt */; };
+		997985D31F063C960089CC9C /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 997985CC1F063C960089CC9C /* libcrypto.a */; };
+		997985D41F063C960089CC9C /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 997985CD1F063C960089CC9C /* libssl.a */; };
+		997985D51F063C960089CC9C /* updatelog.txt in Resources */ = {isa = PBXBuildFile; fileRef = 997985CE1F063C960089CC9C /* updatelog.txt */; };
 		997FF0601ED41F06005FD8E2 /* NSString+Format.m in Sources */ = {isa = PBXBuildFile; fileRef = 997FF05F1ED41F06005FD8E2 /* NSString+Format.m */; };
 		998377081ED91F660007DD85 /* TJMLearningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 998377071ED91F660007DD85 /* TJMLearningViewController.m */; };
 		998377151ED9660F0007DD85 /* ZGLVideoMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 998377121ED9660F0007DD85 /* ZGLVideoMaskView.m */; };
@@ -76,20 +83,11 @@
 		99E81CBC1EB217E600BB0875 /* TJMHelpToBuyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81C811EB217E600BB0875 /* TJMHelpToBuyViewController.m */; };
 		99E81CBD1EB217E700BB0875 /* TJMMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81C871EB217E600BB0875 /* TJMMineViewController.m */; };
 		99E81CBE1EB217E700BB0875 /* TJMMineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81C8B1EB217E600BB0875 /* TJMMineTableViewCell.m */; };
-		99E81CC01EB217E700BB0875 /* TJMScanQRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81C951EB217E600BB0875 /* TJMScanQRCodeViewController.m */; };
-		99E81CC11EB217E700BB0875 /* TJMOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81C991EB217E600BB0875 /* TJMOverlayView.m */; };
 		99E81CC21EB217E700BB0875 /* TJMMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81C9D1EB217E600BB0875 /* TJMMessageViewController.m */; };
 		99E81CC31EB217E700BB0875 /* TJMHomepageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81CA31EB217E600BB0875 /* TJMHomepageViewController.m */; };
 		99E81CCE1EB2184600BB0875 /* BackgroundTaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81CC91EB2184600BB0875 /* BackgroundTaskManager.m */; };
 		99E81CCF1EB2184600BB0875 /* LocationShareModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81CCB1EB2184600BB0875 /* LocationShareModel.m */; };
 		99E81CD01EB2184600BB0875 /* LocationTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81CCD1EB2184600BB0875 /* LocationTracker.m */; };
-		99E81CE41EB21A3D00BB0875 /* baiduNaviSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 99E81CD21EB21A3D00BB0875 /* baiduNaviSDK.bundle */; };
-		99E81CE51EB21A3D00BB0875 /* baiduNaviSDK.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99E81CD31EB21A3D00BB0875 /* baiduNaviSDK.xcassets */; };
-		99E81CE61EB21A3D00BB0875 /* libbaiduNaviSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 99E81CDE1EB21A3D00BB0875 /* libbaiduNaviSDK.a */; };
-		99E81CE71EB21A3D00BB0875 /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 99E81CDF1EB21A3D00BB0875 /* readme.txt */; };
-		99E81CE81EB21A3D00BB0875 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 99E81CE11EB21A3D00BB0875 /* libcrypto.a */; };
-		99E81CE91EB21A3D00BB0875 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 99E81CE21EB21A3D00BB0875 /* libssl.a */; };
-		99E81CEA1EB21A3D00BB0875 /* updatelog.txt in Resources */ = {isa = PBXBuildFile; fileRef = 99E81CE31EB21A3D00BB0875 /* updatelog.txt */; };
 		99E81CED1EB2E1B000BB0875 /* TJMTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81CEC1EB2E1B000BB0875 /* TJMTabBarViewController.m */; };
 		99E81CF01EB31F4700BB0875 /* UIViewController+Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81CEF1EB31F4700BB0875 /* UIViewController+Config.m */; };
 		99E81CF71EB8B05100BB0875 /* UINavigationBar+BackgroundColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81CF61EB8B05100BB0875 /* UINavigationBar+BackgroundColor.m */; };
@@ -127,7 +125,6 @@
 		99F1C1891EA445AB00415F0C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F1C1881EA445AB00415F0C /* libc++.tbd */; };
 		99F1C18B1EA445B200415F0C /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F1C18A1EA445B200415F0C /* libsqlite3.0.tbd */; };
 		99F1C18D1EA445BD00415F0C /* libz.1.2.5.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F1C18C1EA445BD00415F0C /* libz.1.2.5.tbd */; };
-		99F20D681EC1AB7A003CF114 /* QRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F20D671EC1AB7A003CF114 /* QRCodeViewController.m */; };
 		99F691801EEAB1AC00D7FA80 /* BaiduTraceSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F6917F1EEAB1AC00D7FA80 /* BaiduTraceSDK.framework */; };
 		99F691811EEAB1AC00D7FA80 /* BaiduTraceSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 99F6917F1EEAB1AC00D7FA80 /* BaiduTraceSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		99F691841EEAB3AD00D7FA80 /* BaiduMapAPI_Base.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F691831EEAB3AD00D7FA80 /* BaiduMapAPI_Base.framework */; };
@@ -244,6 +241,7 @@
 		995644911ECC7FEC00339D0C /* UIImage+QRCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+QRCode.m"; sourceTree = "<group>"; };
 		995644971ECC82F700339D0C /* TJMDeliveryPayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMDeliveryPayViewController.h; sourceTree = "<group>"; };
 		995644981ECC82F700339D0C /* TJMDeliveryPayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMDeliveryPayViewController.m; sourceTree = "<group>"; };
+		9964CBD11F0359BC004B8D7C /* TJMAppKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TJMAppKey.h; sourceTree = "<group>"; };
 		9966AA2E1ED6C511004A09F7 /* TJMFeedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMFeedBackViewController.h; sourceTree = "<group>"; };
 		9966AA2F1ED6C511004A09F7 /* TJMFeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMFeedBackViewController.m; sourceTree = "<group>"; };
 		9966AA341ED70628004A09F7 /* TJMMsgDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMMsgDetailViewController.h; sourceTree = "<group>"; };
@@ -260,6 +258,22 @@
 		9969883F1EE80FCE0095E9B0 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
 		996988771EEA3D1D0095E9B0 /* TJMHomepageViewController+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TJMHomepageViewController+Category.h"; sourceTree = "<group>"; };
 		996988781EEA3D1D0095E9B0 /* TJMHomepageViewController+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TJMHomepageViewController+Category.m"; sourceTree = "<group>"; };
+		997985BD1F063C960089CC9C /* baiduNaviSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = baiduNaviSDK.bundle; sourceTree = "<group>"; };
+		997985BE1F063C960089CC9C /* baiduNaviSDK.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = baiduNaviSDK.xcassets; sourceTree = "<group>"; };
+		997985C01F063C960089CC9C /* BNaviModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNaviModel.h; sourceTree = "<group>"; };
+		997985C11F063C960089CC9C /* BNCommonDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNCommonDef.h; sourceTree = "<group>"; };
+		997985C21F063C960089CC9C /* BNCoreServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNCoreServices.h; sourceTree = "<group>"; };
+		997985C31F063C960089CC9C /* BNLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNLocation.h; sourceTree = "<group>"; };
+		997985C41F063C960089CC9C /* BNLocationManagerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNLocationManagerProtocol.h; sourceTree = "<group>"; };
+		997985C51F063C960089CC9C /* BNRoutePlanManagerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRoutePlanManagerProtocol.h; sourceTree = "<group>"; };
+		997985C61F063C960089CC9C /* BNRoutePlanModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRoutePlanModel.h; sourceTree = "<group>"; };
+		997985C71F063C960089CC9C /* BNStrategyManagerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNStrategyManagerProtocol.h; sourceTree = "<group>"; };
+		997985C81F063C960089CC9C /* BNUIManagerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNUIManagerProtocol.h; sourceTree = "<group>"; };
+		997985C91F063C960089CC9C /* libbaiduNaviSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaiduNaviSDK.a; sourceTree = "<group>"; };
+		997985CA1F063C960089CC9C /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
+		997985CC1F063C960089CC9C /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
+		997985CD1F063C960089CC9C /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
+		997985CE1F063C960089CC9C /* updatelog.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = updatelog.txt; sourceTree = "<group>"; };
 		997FF05E1ED41F06005FD8E2 /* NSString+Format.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Format.h"; sourceTree = "<group>"; };
 		997FF05F1ED41F06005FD8E2 /* NSString+Format.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Format.m"; sourceTree = "<group>"; };
 		998377061ED91F660007DD85 /* TJMLearningViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMLearningViewController.h; sourceTree = "<group>"; };
@@ -319,10 +333,6 @@
 		99E81C871EB217E600BB0875 /* TJMMineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMMineViewController.m; sourceTree = "<group>"; };
 		99E81C8A1EB217E600BB0875 /* TJMMineTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMMineTableViewCell.h; sourceTree = "<group>"; };
 		99E81C8B1EB217E600BB0875 /* TJMMineTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMMineTableViewCell.m; sourceTree = "<group>"; };
-		99E81C941EB217E600BB0875 /* TJMScanQRCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMScanQRCodeViewController.h; sourceTree = "<group>"; };
-		99E81C951EB217E600BB0875 /* TJMScanQRCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMScanQRCodeViewController.m; sourceTree = "<group>"; };
-		99E81C981EB217E600BB0875 /* TJMOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMOverlayView.h; sourceTree = "<group>"; };
-		99E81C991EB217E600BB0875 /* TJMOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMOverlayView.m; sourceTree = "<group>"; };
 		99E81C9C1EB217E600BB0875 /* TJMMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMMessageViewController.h; sourceTree = "<group>"; };
 		99E81C9D1EB217E600BB0875 /* TJMMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMMessageViewController.m; sourceTree = "<group>"; };
 		99E81CA21EB217E600BB0875 /* TJMHomepageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMHomepageViewController.h; sourceTree = "<group>"; };
@@ -333,22 +343,6 @@
 		99E81CCB1EB2184600BB0875 /* LocationShareModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationShareModel.m; sourceTree = "<group>"; };
 		99E81CCC1EB2184600BB0875 /* LocationTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationTracker.h; sourceTree = "<group>"; };
 		99E81CCD1EB2184600BB0875 /* LocationTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationTracker.m; sourceTree = "<group>"; };
-		99E81CD21EB21A3D00BB0875 /* baiduNaviSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = baiduNaviSDK.bundle; sourceTree = "<group>"; };
-		99E81CD31EB21A3D00BB0875 /* baiduNaviSDK.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = baiduNaviSDK.xcassets; sourceTree = "<group>"; };
-		99E81CD51EB21A3D00BB0875 /* BNaviModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNaviModel.h; sourceTree = "<group>"; };
-		99E81CD61EB21A3D00BB0875 /* BNCommonDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNCommonDef.h; sourceTree = "<group>"; };
-		99E81CD71EB21A3D00BB0875 /* BNCoreServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNCoreServices.h; sourceTree = "<group>"; };
-		99E81CD81EB21A3D00BB0875 /* BNLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNLocation.h; sourceTree = "<group>"; };
-		99E81CD91EB21A3D00BB0875 /* BNLocationManagerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNLocationManagerProtocol.h; sourceTree = "<group>"; };
-		99E81CDA1EB21A3D00BB0875 /* BNRoutePlanManagerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRoutePlanManagerProtocol.h; sourceTree = "<group>"; };
-		99E81CDB1EB21A3D00BB0875 /* BNRoutePlanModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRoutePlanModel.h; sourceTree = "<group>"; };
-		99E81CDC1EB21A3D00BB0875 /* BNStrategyManagerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNStrategyManagerProtocol.h; sourceTree = "<group>"; };
-		99E81CDD1EB21A3D00BB0875 /* BNUIManagerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNUIManagerProtocol.h; sourceTree = "<group>"; };
-		99E81CDE1EB21A3D00BB0875 /* libbaiduNaviSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaiduNaviSDK.a; sourceTree = "<group>"; };
-		99E81CDF1EB21A3D00BB0875 /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
-		99E81CE11EB21A3D00BB0875 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
-		99E81CE21EB21A3D00BB0875 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
-		99E81CE31EB21A3D00BB0875 /* updatelog.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = updatelog.txt; sourceTree = "<group>"; };
 		99E81CEB1EB2E1B000BB0875 /* TJMTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMTabBarViewController.h; sourceTree = "<group>"; };
 		99E81CEC1EB2E1B000BB0875 /* TJMTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMTabBarViewController.m; sourceTree = "<group>"; };
 		99E81CEE1EB31F4700BB0875 /* UIViewController+Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Config.h"; sourceTree = "<group>"; };
@@ -407,8 +401,6 @@
 		99F1C1881EA445AB00415F0C /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		99F1C18A1EA445B200415F0C /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		99F1C18C1EA445BD00415F0C /* libz.1.2.5.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.5.tbd; path = usr/lib/libz.1.2.5.tbd; sourceTree = SDKROOT; };
-		99F20D661EC1AB7A003CF114 /* QRCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeViewController.h; sourceTree = "<group>"; };
-		99F20D671EC1AB7A003CF114 /* QRCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeViewController.m; sourceTree = "<group>"; };
 		99F6917F1EEAB1AC00D7FA80 /* BaiduTraceSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduTraceSDK.framework; sourceTree = "<group>"; };
 		99F691831EEAB3AD00D7FA80 /* BaiduMapAPI_Base.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BaiduMapAPI_Base.framework; path = Pods/BaiduMapKit/BaiduMapKit/BaiduMapAPI_Base.framework; sourceTree = "<group>"; };
 		99F836831ED3BDD300CB3714 /* TJMBindingBankCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMBindingBankCardViewController.h; sourceTree = "<group>"; };
@@ -449,20 +441,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				997985D11F063C960089CC9C /* libbaiduNaviSDK.a in Frameworks */,
 				99F691841EEAB3AD00D7FA80 /* BaiduMapAPI_Base.framework in Frameworks */,
-				99E81CE91EB21A3D00BB0875 /* libssl.a in Frameworks */,
+				997985D41F063C960089CC9C /* libssl.a in Frameworks */,
 				99F1C18D1EA445BD00415F0C /* libz.1.2.5.tbd in Frameworks */,
 				99F1C18B1EA445B200415F0C /* libsqlite3.0.tbd in Frameworks */,
 				99F1C1891EA445AB00415F0C /* libc++.tbd in Frameworks */,
 				99F1C1871EA4459800415F0C /* libstdc++.6.0.9.tbd in Frameworks */,
-				99E81CE61EB21A3D00BB0875 /* libbaiduNaviSDK.a in Frameworks */,
 				99F1C1851EA4458300415F0C /* GLKit.framework in Frameworks */,
 				99F1C1831EA4457B00415F0C /* OpenGLES.framework in Frameworks */,
 				99F1C1811EA4457300415F0C /* Security.framework in Frameworks */,
 				99F1C17F1EA4456B00415F0C /* JavaScriptCore.framework in Frameworks */,
 				99F1C17D1EA4456200415F0C /* SystemConfiguration.framework in Frameworks */,
 				99F1C17B1EA4455B00415F0C /* AVFoundation.framework in Frameworks */,
-				99E81CE81EB21A3D00BB0875 /* libcrypto.a in Frameworks */,
 				99F1C1791EA4455100415F0C /* MediaPlayer.framework in Frameworks */,
 				99F1C1771EA4454700415F0C /* CoreTelephony.framework in Frameworks */,
 				99F1C1751EA4454000415F0C /* CoreLocation.framework in Frameworks */,
@@ -471,6 +462,7 @@
 				99F691801EEAB1AC00D7FA80 /* BaiduTraceSDK.framework in Frameworks */,
 				99F1C16F1EA4452700415F0C /* AudioToolbox.framework in Frameworks */,
 				B3430058D86B1BD9C99AB40E /* libPods-TJMJinDouYun.a in Frameworks */,
+				997985D31F063C960089CC9C /* libcrypto.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -958,6 +950,45 @@
 			path = "MD5加密";
 			sourceTree = "<group>";
 		};
+		997985BC1F063C960089CC9C /* BaiduNaviSDK */ = {
+			isa = PBXGroup;
+			children = (
+				997985BD1F063C960089CC9C /* baiduNaviSDK.bundle */,
+				997985BE1F063C960089CC9C /* baiduNaviSDK.xcassets */,
+				997985BF1F063C960089CC9C /* inc */,
+				997985C91F063C960089CC9C /* libbaiduNaviSDK.a */,
+				997985CA1F063C960089CC9C /* readme.txt */,
+				997985CB1F063C960089CC9C /* thirdlibs */,
+				997985CE1F063C960089CC9C /* updatelog.txt */,
+			);
+			path = BaiduNaviSDK;
+			sourceTree = "<group>";
+		};
+		997985BF1F063C960089CC9C /* inc */ = {
+			isa = PBXGroup;
+			children = (
+				997985C01F063C960089CC9C /* BNaviModel.h */,
+				997985C11F063C960089CC9C /* BNCommonDef.h */,
+				997985C21F063C960089CC9C /* BNCoreServices.h */,
+				997985C31F063C960089CC9C /* BNLocation.h */,
+				997985C41F063C960089CC9C /* BNLocationManagerProtocol.h */,
+				997985C51F063C960089CC9C /* BNRoutePlanManagerProtocol.h */,
+				997985C61F063C960089CC9C /* BNRoutePlanModel.h */,
+				997985C71F063C960089CC9C /* BNStrategyManagerProtocol.h */,
+				997985C81F063C960089CC9C /* BNUIManagerProtocol.h */,
+			);
+			path = inc;
+			sourceTree = "<group>";
+		};
+		997985CB1F063C960089CC9C /* thirdlibs */ = {
+			isa = PBXGroup;
+			children = (
+				997985CC1F063C960089CC9C /* libcrypto.a */,
+				997985CD1F063C960089CC9C /* libssl.a */,
+			);
+			path = thirdlibs;
+			sourceTree = "<group>";
+		};
 		998377101ED9660F0007DD85 /* VideoPlayer */ = {
 			isa = PBXGroup;
 			children = (
@@ -1152,7 +1183,6 @@
 				99E81C9A1EB217E600BB0875 /* 消息 */,
 				99E81C841EB217E600BB0875 /* 我的 */,
 				99E81C771EB217E600BB0875 /* 地图 */,
-				99E81C921EB217E600BB0875 /* 扫描二维码 */,
 			);
 			path = "审核通过";
 			sourceTree = "<group>";
@@ -1278,43 +1308,6 @@
 			path = "我的-更多";
 			sourceTree = "<group>";
 		};
-		99E81C921EB217E600BB0875 /* 扫描二维码 */ = {
-			isa = PBXGroup;
-			children = (
-				99E81C931EB217E600BB0875 /* Controller */,
-				99E81C961EB217E600BB0875 /* Model */,
-				99E81C971EB217E600BB0875 /* View */,
-				99F20D661EC1AB7A003CF114 /* QRCodeViewController.h */,
-				99F20D671EC1AB7A003CF114 /* QRCodeViewController.m */,
-			);
-			path = "扫描二维码";
-			sourceTree = "<group>";
-		};
-		99E81C931EB217E600BB0875 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				99E81C941EB217E600BB0875 /* TJMScanQRCodeViewController.h */,
-				99E81C951EB217E600BB0875 /* TJMScanQRCodeViewController.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		99E81C961EB217E600BB0875 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		99E81C971EB217E600BB0875 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				99E81C981EB217E600BB0875 /* TJMOverlayView.h */,
-				99E81C991EB217E600BB0875 /* TJMOverlayView.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		99E81C9A1EB217E600BB0875 /* 消息 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1413,45 +1406,6 @@
 				99E81CCD1EB2184600BB0875 /* LocationTracker.m */,
 			);
 			path = Location;
-			sourceTree = "<group>";
-		};
-		99E81CD11EB21A3D00BB0875 /* BaiduNaviSDK */ = {
-			isa = PBXGroup;
-			children = (
-				99E81CD21EB21A3D00BB0875 /* baiduNaviSDK.bundle */,
-				99E81CD31EB21A3D00BB0875 /* baiduNaviSDK.xcassets */,
-				99E81CD41EB21A3D00BB0875 /* inc */,
-				99E81CDE1EB21A3D00BB0875 /* libbaiduNaviSDK.a */,
-				99E81CDF1EB21A3D00BB0875 /* readme.txt */,
-				99E81CE01EB21A3D00BB0875 /* thirdlibs */,
-				99E81CE31EB21A3D00BB0875 /* updatelog.txt */,
-			);
-			path = BaiduNaviSDK;
-			sourceTree = "<group>";
-		};
-		99E81CD41EB21A3D00BB0875 /* inc */ = {
-			isa = PBXGroup;
-			children = (
-				99E81CD51EB21A3D00BB0875 /* BNaviModel.h */,
-				99E81CD61EB21A3D00BB0875 /* BNCommonDef.h */,
-				99E81CD71EB21A3D00BB0875 /* BNCoreServices.h */,
-				99E81CD81EB21A3D00BB0875 /* BNLocation.h */,
-				99E81CD91EB21A3D00BB0875 /* BNLocationManagerProtocol.h */,
-				99E81CDA1EB21A3D00BB0875 /* BNRoutePlanManagerProtocol.h */,
-				99E81CDB1EB21A3D00BB0875 /* BNRoutePlanModel.h */,
-				99E81CDC1EB21A3D00BB0875 /* BNStrategyManagerProtocol.h */,
-				99E81CDD1EB21A3D00BB0875 /* BNUIManagerProtocol.h */,
-			);
-			path = inc;
-			sourceTree = "<group>";
-		};
-		99E81CE01EB21A3D00BB0875 /* thirdlibs */ = {
-			isa = PBXGroup;
-			children = (
-				99E81CE11EB21A3D00BB0875 /* libcrypto.a */,
-				99E81CE21EB21A3D00BB0875 /* libssl.a */,
-			);
-			path = thirdlibs;
 			sourceTree = "<group>";
 		};
 		99E81CF41EB8229C00BB0875 /* View */ = {
@@ -1652,6 +1606,7 @@
 				99F1C0BA1EA0CEE000415F0C /* TJMPrefixHeader.pch */,
 				99E81B7C1EAF50DC00BB0875 /* TJMSingleton.h */,
 				991673141ED686B700A50A3F /* Constant.h */,
+				9964CBD11F0359BC004B8D7C /* TJMAppKey.h */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -1696,12 +1651,12 @@
 		99F1C0C51EA0CEE000415F0C /* 第三方库 */ = {
 			isa = PBXGroup;
 			children = (
+				997985BC1F063C960089CC9C /* BaiduNaviSDK */,
 				9969883D1EE80FCE0095E9B0 /* MD5加密 */,
 				996988391EE80FA00095E9B0 /* 字体自适应 */,
 				9946011B1EE57AB100B831A6 /* LaunchIntroduction */,
 				998377101ED9660F0007DD85 /* VideoPlayer */,
 				990E9CA71EC2ED42009C7792 /* Alert */,
-				99E81CD11EB21A3D00BB0875 /* BaiduNaviSDK */,
 				99E81CC71EB2184600BB0875 /* Location */,
 				99A3BC701EBCC79300688692 /* 导航栏透明度 */,
 			);
@@ -2016,22 +1971,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				997985D51F063C960089CC9C /* updatelog.txt in Resources */,
+				997985D21F063C960089CC9C /* readme.txt in Resources */,
 				99E81CAF1EB217E600BB0875 /* 44444.png in Resources */,
 				99E855D11EC06436000C9A6F /* TJMViewExplain in Resources */,
+				997985CF1F063C960089CC9C /* baiduNaviSDK.bundle in Resources */,
 				99F1C1041EA0CF2900415F0C /* LaunchScreen.storyboard in Resources */,
-				99E81CE41EB21A3D00BB0875 /* baiduNaviSDK.bundle in Resources */,
 				99E81CAC1EB217E600BB0875 /* 11111.png in Resources */,
-				99E81CE71EB21A3D00BB0875 /* readme.txt in Resources */,
 				99DFB9C41EFB6C9C00CE5645 /* 主页逻辑说明.txt in Resources */,
 				99E81CAE1EB217E600BB0875 /* 33333.png in Resources */,
 				99F1C0FF1EA0CF0600415F0C /* Info.plist in Resources */,
+				997985D01F063C960089CC9C /* baiduNaviSDK.xcassets in Resources */,
 				99F836991ED3BDD300CB3714 /* CommonView in Resources */,
-				99E81CE51EB21A3D00BB0875 /* baiduNaviSDK.xcassets in Resources */,
 				99E81CBA1EB217E600BB0875 /* category_1@2x.png in Resources */,
 				99F1C0FD1EA0CEFA00415F0C /* Assets.xcassets in Resources */,
 				99E81CAD1EB217E600BB0875 /* 22222.png in Resources */,
 				99F1C1051EA0CF2900415F0C /* Main.storyboard in Resources */,
-				99E81CEA1EB21A3D00BB0875 /* updatelog.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2111,7 +2066,6 @@
 				99E81CB31EB217E600BB0875 /* TJMPickerView.m in Sources */,
 				99E81CBB1EB217E600BB0875 /* TJMBaiduMapViewController.mm in Sources */,
 				991B091A1EDE991D009DB296 /* UITextField+InputRule.m in Sources */,
-				99F20D681EC1AB7A003CF114 /* QRCodeViewController.m in Sources */,
 				99A3BC751EBCC79300688692 /* UINavigationController+Cloudox.m in Sources */,
 				99F1C0FA1EA0CEFA00415F0C /* AppDelegate+APPService.m in Sources */,
 				991B092E1EE01093009DB296 /* TJMMyOrderDetailTableViewCell.m in Sources */,
@@ -2137,7 +2091,6 @@
 				991B09341EE14281009DB296 /* TJMMyOrderData.m in Sources */,
 				99E855D01EC06436000C9A6F /* TJMMyOrderViewController.h.m in Sources */,
 				99A3BC131EBB18FD00688692 /* TJMHomeHeaderView.m in Sources */,
-				99E81CC01EB217E700BB0875 /* TJMScanQRCodeViewController.m in Sources */,
 				994600CB1EE4E62B00B831A6 /* TJMMessageData.m in Sources */,
 				998377161ED9660F0007DD85 /* ZGLVideoPlyer.m in Sources */,
 				99FA70411EF0113500552D01 /* TJMPhotoManager.m in Sources */,
@@ -2187,7 +2140,6 @@
 				99E81CD01EB2184600BB0875 /* LocationTracker.m in Sources */,
 				99019DCB1ECC3582002BC164 /* TJMLocationService.m in Sources */,
 				99019DC31ECAD841002BC164 /* TJMPickUpViewController.m in Sources */,
-				99E81CC11EB217E700BB0875 /* TJMOverlayView.m in Sources */,
 				998377191ED96AE70007DD85 /* UIImage+Scale.m in Sources */,
 				992BCFD81ED564410053B4BE /* TJMSettingTableViewCell.m in Sources */,
 				992BCFDE1ED56C2F0053B4BE /* TJMPersonInfoViewController.m in Sources */,
@@ -2281,8 +2233,8 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: lin lin (HKDFP9CX4W)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: lin lin (HKDFP9CX4W)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: lin lin (EA69B4VRFP)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: lin lin (EA69B4VRFP)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2331,8 +2283,8 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: lin lin (HKDFP9CX4W)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: lin lin (HKDFP9CX4W)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: lin lin (EA69B4VRFP)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: lin lin (EA69B4VRFP)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -2359,10 +2311,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TJMJinDouYun/TJMJinDouYun.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: lin lin (HKDFP9CX4W)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: lin lin (EA69B4VRFP)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = EA69B4VRFP;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
@@ -2380,9 +2332,14 @@
 					"$(PROJECT_DIR)/TJMJinDouYun/Tool/第三方库/BaiduNaviSDK",
 					"$(PROJECT_DIR)/TJMJinDouYun/Tool/第三方库/BaiduNaviSDK/thirdlibs",
 					"$(PROJECT_DIR)/TJMJinDouYun/Tool/第三方库/BaiduMap_IOSSDK_v3.3.2_All/thirdlibs",
+					"$(PROJECT_DIR)/TJMJinDouYun/Tool/第三方库/BaiduNaviSDK\\ 3.2.0",
+					"$(PROJECT_DIR)/TJMJinDouYun/Tool/第三方库/BaiduNaviSDK\\ 3.2.0/thirdlibs",
+					"$(PROJECT_DIR)/TJMJinDouYun/Tool/第三方库/BaiduNaviSDK\\ 3.2.0/thirdlibs",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhongzhichuangying.TJMJinDouYun;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -2392,10 +2349,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TJMJinDouYun/TJMJinDouYun.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: lin lin (HKDFP9CX4W)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: lin lin (EA69B4VRFP)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = EA69B4VRFP;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
@@ -2413,9 +2370,14 @@
 					"$(PROJECT_DIR)/TJMJinDouYun/Tool/第三方库/BaiduNaviSDK",
 					"$(PROJECT_DIR)/TJMJinDouYun/Tool/第三方库/BaiduNaviSDK/thirdlibs",
 					"$(PROJECT_DIR)/TJMJinDouYun/Tool/第三方库/BaiduMap_IOSSDK_v3.3.2_All/thirdlibs",
+					"$(PROJECT_DIR)/TJMJinDouYun/Tool/第三方库/BaiduNaviSDK\\ 3.2.0",
+					"$(PROJECT_DIR)/TJMJinDouYun/Tool/第三方库/BaiduNaviSDK\\ 3.2.0/thirdlibs",
+					"$(PROJECT_DIR)/TJMJinDouYun/Tool/第三方库/BaiduNaviSDK\\ 3.2.0/thirdlibs",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhongzhichuangying.TJMJinDouYun;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
@@ -2423,6 +2385,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: lin lin (EA69B4VRFP)";
 				INFOPLIST_FILE = TJMJinDouYunTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhongzhichuangying.TJMJinDouYunTests;
@@ -2435,6 +2398,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: lin lin (EA69B4VRFP)";
 				INFOPLIST_FILE = TJMJinDouYunTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhongzhichuangying.TJMJinDouYunTests;
@@ -2446,6 +2410,7 @@
 		99F1C0B41EA0CEB800415F0C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution: lin lin (EA69B4VRFP)";
 				INFOPLIST_FILE = TJMJinDouYunUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhongzhichuangying.TJMJinDouYunUITests;
@@ -2457,6 +2422,7 @@
 		99F1C0B51EA0CEB800415F0C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution: lin lin (EA69B4VRFP)";
 				INFOPLIST_FILE = TJMJinDouYunUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhongzhichuangying.TJMJinDouYunUITests;

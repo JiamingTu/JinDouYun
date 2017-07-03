@@ -8,11 +8,13 @@
 
 #import "TJMLocationService.h"
 #import "LocationTracker.h"
+#import <MapKit/MapKit.h>
 @interface TJMLocationService ()<BMKLocationServiceDelegate,BNNaviRoutePlanDelegate,BMKGeoCodeSearchDelegate,BNNaviUIManagerDelegate,BMKRouteSearchDelegate>
 {
     BMKLocationService *_locService;
     BMKGeoCodeSearch *_searcher;
     BOOL _baiduMapEngineStatus;
+    BMKUserLocation *_myLocation;
 }
 
 @property (nonatomic,strong) AppDelegate *appDelegate;
@@ -149,7 +151,6 @@ SingletonM(LocationService)
     if (_locService) {
         [_locService startUserLocationService];
     }
-    [TJMHUDHandle showRequestHUDAtView:[self.appDelegate topViewController].view message:nil];
 }
 
 
@@ -157,23 +158,16 @@ SingletonM(LocationService)
 #pragma  mark - BMKLocationServiceDelegate
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation {
     switch (self.getLocationType) {
-        case TJMGetLocationTypeLocAndCityName:
-        {
-            //获取城市名字
-            [self locationCurrentCityWithUserLocation:userLocation.location.coordinate];
-             [[NSNotificationCenter defaultCenter] postNotificationName:kTJMLocationDidChange object:nil userInfo:@{@"myLocation":userLocation}];
-        }
-            break;
         case TJMGetLocationTypeCityName:
         {
             //获取城市名字
+            _myLocation = userLocation;
             [self locationCurrentCityWithUserLocation:userLocation.location.coordinate];
         }
             break;
         case TJMGetLocationTypeLocation:
         {
             [[NSNotificationCenter defaultCenter] postNotificationName:kTJMLocationDidChange object:nil userInfo:@{@"myLocation":userLocation}];
-            [TJMHUDHandle hiddenHUDForView:[self.appDelegate topViewController].view];
         }
             break;
         case TJMGetLocationTypeNaviService:
@@ -211,9 +205,8 @@ SingletonM(LocationService)
         //在此处理正常结果
         TJMLog(@"%@",result.addressDetail.city);
         //发送通知
-        [[NSNotificationCenter defaultCenter] postNotificationName:kTJMLocationCityNameDidChange object:nil userInfo:@{@"cityName":result.addressDetail.city}];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kTJMLocationCityNameDidChange object:nil userInfo:@{@"cityName":result.addressDetail.city,@"myLocation":_myLocation}];
         [TJMSandBoxManager saveInInfoPlistWithModel:result.addressDetail.city key:kTJMCityName];
-        [TJMHUDHandle hiddenHUDForView:[self.appDelegate topViewController].view];
     } else {
         TJMLog(@"抱歉，未找到结果");
     }
@@ -224,29 +217,28 @@ SingletonM(LocationService)
 - (void)routePlanFromMyLocation:(CLLocationCoordinate2D)mineLoc toGetLocation:(CLLocationCoordinate2D)getLoc {
     //开启导航
     [self.appDelegate startBaiduMapNaviServicesWithResult:^(BOOL isOK) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            if (isOK) {
-                NSMutableArray *nodesArray = [[NSMutableArray alloc] initWithCapacity: 2];
-                //起点
-                BNRoutePlanNode *startNode = [[BNRoutePlanNode alloc] init];
-                startNode.pos = [[BNPosition alloc] init];
-                startNode.pos.x = mineLoc.longitude;
-                startNode.pos.y = mineLoc.latitude;
-                startNode.pos.eType = BNCoordinate_BaiduMapSDK;
-                [nodesArray addObject:startNode];
-                
-                //终点
-                BNRoutePlanNode *endNode = [[BNRoutePlanNode alloc] init];
-                endNode.pos = [[BNPosition alloc] init];
-                endNode.pos.x = getLoc.longitude;
-                endNode.pos.y = getLoc.latitude;
-                endNode.pos.eType = BNCoordinate_BaiduMapSDK;
-                [nodesArray addObject:endNode];
-                // 发起算路
-                [BNCoreServices_RoutePlan  startNaviRoutePlan: BNRoutePlanMode_Recommend naviNodes:nodesArray time:nil delegete:self userInfo:nil];
-                [TJMHUDHandle hiddenHUDForView:[self.appDelegate topViewController].view];
-            }
-        });
+        
+        if (isOK) {
+            NSMutableArray *nodesArray = [[NSMutableArray alloc] initWithCapacity: 2];
+            //起点
+            BNRoutePlanNode *startNode = [[BNRoutePlanNode alloc] init];
+            startNode.pos = [[BNPosition alloc] init];
+            startNode.pos.x = mineLoc.longitude;
+            startNode.pos.y = mineLoc.latitude;
+            startNode.pos.eType = BNCoordinate_BaiduMapSDK;
+            [nodesArray addObject:startNode];
+            
+            //终点
+            BNRoutePlanNode *endNode = [[BNRoutePlanNode alloc] init];
+            endNode.pos = [[BNPosition alloc] init];
+            endNode.pos.x = getLoc.longitude;
+            endNode.pos.y = getLoc.latitude;
+            endNode.pos.eType = BNCoordinate_BaiduMapSDK;
+            [nodesArray addObject:endNode];
+            // 发起算路
+            [BNCoreServices_RoutePlan  startNaviRoutePlan: BNRoutePlanMode_Recommend naviNodes:nodesArray time:nil delegete:self userInfo:nil];
+            [TJMHUDHandle hiddenHUDForView:[self.appDelegate topViewController].view];
+        }
     }];
 }
 #pragma  mark 路算完成后回调
@@ -259,23 +251,23 @@ SingletonM(LocationService)
 //算路失败回调
 - (void)routePlanDidFailedWithError:(NSError *)error andUserInfo:(NSDictionary *)userInfo
 {
-    NSLog(@"算路失败");
+    TJMLog(@"算路失败");
     switch ([error code]%10000)
     {
         case BNAVI_ROUTEPLAN_ERROR_LOCATIONFAILED:
-            NSLog(@"暂时无法获取您的位置,请稍后重试");
+            TJMLog(@"暂时无法获取您的位置,请稍后重试");
             break;
         case BNAVI_ROUTEPLAN_ERROR_ROUTEPLANFAILED:
-            NSLog(@"无法发起导航");
+            TJMLog(@"无法发起导航");
             break;
         case BNAVI_ROUTEPLAN_ERROR_LOCATIONSERVICECLOSED:
-            NSLog(@"定位服务未开启,请到系统设置中打开定位服务。");
+            TJMLog(@"定位服务未开启,请到系统设置中打开定位服务。");
             break;
         case BNAVI_ROUTEPLAN_ERROR_NODESTOONEAR:
-            NSLog(@"起终点距离起终点太近");
+            TJMLog(@"起终点距离起终点太近");
             break;
         default:
-            NSLog(@"算路失败");
+            TJMLog(@"算路失败");
             break;
     }
 }
@@ -352,25 +344,50 @@ SingletonM(LocationService)
 #pragma mark 驾车路线
 -(void)calculateDriveDistanceWithStartPoint:(CLLocationCoordinate2D)startCoordinate endPoint:(CLLocationCoordinate2D)endCoordinate {
     //线路检索节点信息
-    BMKPlanNode *start = [[BMKPlanNode alloc] init];
-    start.pt = startCoordinate;
-    BMKPlanNode *end = [[BMKPlanNode alloc] init];
-    end.pt = endCoordinate;
-    BMKDrivingRoutePlanOption *drivingRouteSearchOption = [[BMKDrivingRoutePlanOption alloc] init];
-    drivingRouteSearchOption.from = start;
-    drivingRouteSearchOption.to = end;
-    BOOL flag = [self.routeSearch drivingSearch:drivingRouteSearchOption];
-    if (flag) {
-    }
+//    BMKPlanNode *start = [[BMKPlanNode alloc] init];
+//    start.pt = startCoordinate;
+//    BMKPlanNode *end = [[BMKPlanNode alloc] init];
+//    end.pt = endCoordinate;
+//    BMKDrivingRoutePlanOption *drivingRouteSearchOption = [[BMKDrivingRoutePlanOption alloc] init];
+//    drivingRouteSearchOption.from = start;
+//    drivingRouteSearchOption.to = end;
+//    TJMLog(@"计算驾车路线------------%@",[NSThread currentThread]);
+//    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+//        BOOL flag = [self.routeSearch drivingSearch:drivingRouteSearchOption];
+//        if (flag) {
+//        }
+//    }];
+    
+    //起点终点的详细信息
+    MKPlacemark *startPlace = [[MKPlacemark alloc]initWithCoordinate:startCoordinate addressDictionary:nil];
+    MKPlacemark *endPlace = [[MKPlacemark alloc]initWithCoordinate:endCoordinate addressDictionary:nil];
+    //起点 终点的 节点
+    MKMapItem *startItem = [[MKMapItem alloc]initWithPlacemark:startPlace];
+    MKMapItem *endItem = [[MKMapItem alloc]initWithPlacemark:endPlace];
+    
+    //路线请求
+    MKDirectionsRequest *request = [[MKDirectionsRequest alloc]init];
+    request.source = startItem;
+    request.destination = endItem;
+    
+    //发送请求
+    MKDirections *directions = [[MKDirections alloc]initWithRequest:request];
+    
+    
+    //计算
+    [directions calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse * _Nullable response, NSError * _Nullable error) {
+        MKRoute *route = response.routes.firstObject;
+        double distance = route.distance;
+        if (self.routeResult) {
+            self.routeResult(distance / 1000.0);
+        }
+    }];
+    
+    
 }
 
 #pragma mark 返回驾乘搜索结果
-- (void)onGetDrivingRouteResult:(BMKRouteSearch*)searcher result:(BMKDrivingRouteResult*)result errorCode:(BMKSearchErrorCode)error
-{
-    //    NSArray* array = [NSArray arrayWithArray:_mapView.annotations];
-    //    [_mapView removeAnnotations:array];
-    NSArray *array = [NSArray arrayWithArray:_mapView.overlays];
-    [_mapView removeOverlays:array];
+- (void)onGetDrivingRouteResult:(BMKRouteSearch*)searcher result:(BMKDrivingRouteResult*)result errorCode:(BMKSearchErrorCode)error {
     if (error == BMK_SEARCH_NO_ERROR) {
         //表示一条驾车路线
         BMKDrivingRouteLine* plan = (BMKDrivingRouteLine *)[result.routes objectAtIndex:0];

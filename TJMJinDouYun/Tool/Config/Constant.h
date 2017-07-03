@@ -14,7 +14,7 @@ static NSString *kTJMIsChangePersonInfo = @"TJMIsChangePersonInfo";
 static NSString *kTJMPerformanceInfo = @"PerformanceInfo";
 static NSString *kTJMFreeManInfo = @"TJMFreeManInfo";
 static NSString *kTJMCityName = @"TJMCityName";
-
+static NSString *kTJMCheckVersionDate = @"TJMCheckVersionDate";
 
 
 static NSString *kKVOPersonInfo = @"personInfo";

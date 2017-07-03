@@ -60,6 +60,21 @@
  */
 - (void)initServices:(NSString *)ak;
 
+/**
+ *
+ * 初始化tts引擎在线授权的信息
+ *
+ *  @param appId 开发者在地图平台申请的应用id，需要在百度语音开放平台为该应用开通语音合成服务
+ */
+-(void)setTTSAppId:(NSString *)appId;
+
+/**
+ *
+ * 设置导航结束时是否自动退出
+ *
+ *  @param autoExit
+ */
+-(void)setAutoExitNavi:(BOOL)autoExit;
 
 /**
  *  启动服务,同步方法,会导致阻塞
@@ -67,7 +82,6 @@
  *  @return  启动结果
  */
 - (BOOL)startServices;
-
 
 /**
  *  启动服务,异步方法

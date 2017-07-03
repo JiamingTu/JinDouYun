@@ -36,7 +36,7 @@
  *  获取城市ID
  *
  *  @param location 要获取城市ID的定位点,wgs84ll坐标
- *  @param sucess 启动成功后回调 success block
+ *  @param success 启动成功后回调 success block
  *  @param fail    启动失败后回调 fail block
  */
 - (void)getCityIDByLocation:(CLLocationCoordinate2D)location

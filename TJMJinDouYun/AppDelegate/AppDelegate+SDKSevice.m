@@ -14,6 +14,8 @@
 #pragma  mark - 配置百度地图导航
 #pragma  mari 初始化
 - (void)startBaiduMapNaviServicesWithResult:(ResultBlock)result {
+    //初始化TTS
+    [BNCoreServices_Instance setTTSAppId:TJMBaiduNaviTTSKey];
     //初始化导航SDK
     //初始化服务，需要在AppDelegate的 application:didFinishLaunchingWithOptions:
     //中调用
@@ -80,11 +82,15 @@
     // init Push
     // notice: 2.1.5版本的SDK新增的注册方法，改成可上报IDFA，如果没有使用IDFA直接传nil
     // 如需继续使用pushConfig.plist文件声明appKey等配置内容，请依旧使用[JPUSHService setupWithOption:launchOptions]方式初始化。
+    
     [JPUSHService setupWithOption:launchOptions appKey:TJMJPushAppKey
                           channel:JPushChannel
                  apsForProduction:JPushIsProduction];
     NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
     [defaultCenter addObserver:self selector:@selector(networkDidReceiveMessage:) name:kJPFNetworkDidReceiveMessageNotification object:nil];
+#ifdef DEBUG
+    [JPUSHService setLogOFF];
+#endif
 }
 
 
@@ -93,14 +99,14 @@
     NSDictionary * userInfo = [notification userInfo];
     NSString *content = [userInfo valueForKey:@"content"];
     NSDictionary *extras = [userInfo valueForKey:@"extras"];
-    NSString *customizeField1 = [extras valueForKey:@"customizeField1"]; //服务端传递的Extras附加字段，key是自己定义的
     NSInteger type = [extras[@"type"] integerValue];
-    if (type == 0) {
-        //签收成功
-        
+    if (type == 0 || type == 1) {
+        //扫码签收成功，到付扫码支付成功
         [self receivedSignInMessageWithBlock:^NSString *{
             return content;
         }];
+    } else if (type == 2){
+        [TJMHUDHandle transientNoticeAtView:self.window withMessage:@"新订单来了"];
     }
 }
 
@@ -109,7 +115,7 @@
 //iOS 7 Remote Notification
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:  (NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     
-    NSLog(@"this is iOS7 Remote Notification");
+    TJMLog(@"this is iOS7 Remote Notification");
     //前台通知需要弹框处理
     // iOS 10 以下 Required
     [JPUSHService handleRemoteNotification:userInfo];

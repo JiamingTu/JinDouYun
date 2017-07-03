@@ -7,9 +7,11 @@
 //
 
 #import "TJMTabBarViewController.h"
-
-@interface TJMTabBarViewController ()
-
+#import "TJMHomepageViewController.h"
+@interface TJMTabBarViewController ()<UITabBarControllerDelegate,TDAlertViewDelegate>
+{
+    NSString *_newVersionURL;
+}
 @end
 
 @implementation TJMTabBarViewController
@@ -28,9 +30,62 @@
         item.image = [item.image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         item.selectedImage = [item.selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     }
+    [self checkNewVersion];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+}
+
+#pragma  mark - UITabBarControllerDelegate
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
+    if ([item.title isEqualToString:@"首页"]) {
+        UINavigationController *naviC = self.viewControllers.firstObject;
+        TJMHomepageViewController *homeVC = naviC.viewControllers.firstObject;
+        [homeVC reloadOrderList];
+    }
+}
+
+
+- (void)checkNewVersion {
+    NSDate *checkDate = [[NSUserDefaults standardUserDefaults] objectForKey:kTJMCheckVersionDate];
+    if (checkDate) {
+        double offsetTime = [[NSDate date] timeIntervalSinceDate:checkDate];
+        double oneWeekSecond = 7 * 24 * 60 * 60;
+        if (offsetTime - oneWeekSecond >= 0) {
+            //检查更新
+            [self checkVersionRequest];
+            
+            
+        }
+        //暂时放在这里
+        [self checkVersionRequest];
+        
+    } else {
+        //如果没有得到这个日期 则检查更新 并 储存日期
+        [self checkVersionRequest];
+    }
+    
+}
+
+- (void)checkVersionRequest {
+    [TJMRequestH checkVersionSuccess:^(id successObj, NSString *msg) {
+        if (successObj != nil) {
+            _newVersionURL = successObj;
+            [self alertViewWithTag:9999 delegate:self title:@"提示：有新版本可更新" cancelItem:@"取消" sureItem:@"更新"];
+        }
+    } fail:^(NSString *failString) {
+        
+    }];
+    //储存检查日期
+    NSDate *date = [NSDate date];
+    [[NSUserDefaults standardUserDefaults] setObject:date forKey:kTJMCheckVersionDate];
+}
+
+- (void)alertView:(TDAlertView *)alertView didClickItemWithIndex:(NSInteger)itemIndex {
+    if (itemIndex == 0) {
+        // 跳转
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"itms-apps:%@",_newVersionURL]]];
+    }
 }
 
 

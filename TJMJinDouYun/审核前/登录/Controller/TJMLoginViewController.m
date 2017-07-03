@@ -86,7 +86,7 @@
     _selectButton = self.messageLoginButton;
     //键盘监听
     [TJMYYKeyboardManager addObserver:self];
-    
+    [self.loginButton setTitle:@"登 录" forState:UIControlStateNormal];
 
 }
 - (void)viewWillAppear:(BOOL)animated {
@@ -278,10 +278,7 @@
     CGRect stratRect = transition.fromFrame;
     CGRect endRect = transition.toFrame;
     
-    NSLog(@"%@------%@",NSStringFromCGRect(stratRect),NSStringFromCGRect(endRect));
-//
-//    NSLog(@"%d-----%d",transition.fromVisible,transition.toVisible);
-    
+    TJMLog(@"%@------%@",NSStringFromCGRect(stratRect),NSStringFromCGRect(endRect));    
     if (transition.toVisible) {
         //弹出
         //如果起始位置是屏幕外 才执行

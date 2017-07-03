@@ -157,7 +157,7 @@ const char *kTJMAppDelegateKey = "AppDelegateKey";
 - (__kindof UIViewController *)popTargetViewControllerWithViewControllerNumber:(NSInteger)number {
     
     NSArray *viewControllerArray = self.navigationController.viewControllers;
-    if (viewControllerArray.count != 0 && viewControllerArray.count > number + 1) {
+    if (viewControllerArray.count != 0 && viewControllerArray.count >= number + 1) {
         UIViewController *VC = viewControllerArray[viewControllerArray.count - number - 1];
 
         return VC;
