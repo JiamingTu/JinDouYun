@@ -153,10 +153,32 @@
     self.endAddressLabel.text = model.receiverAddress;
     //距离
     self.getToSendDistanceLabel.text = [NSString stringWithFormat:@"约%.2fKM",[model.distance floatValue]];
-    self.myToGetDistanceLabel.text = [NSString stringWithFormat:@"约%.2fKM",model.getDistance];
+    //我倒取货点位置
+    //先置为零
+    self.myToGetDistanceLabel.text = @"约0.0KM";
+    if (model.getDistance) {
+        //如果有就更新label
+        self.myToGetDistanceLabel.text = [NSString stringWithFormat:@"约%.2fKM",[model.getDistance doubleValue]];
+    } else {
+        //如果没有，就添加通知
+        NSString *notiKey = [NSString stringWithFormat:@"%p",_currentModel];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(modelDistanceDidGet:) name:notiKey object:nil];
+    }
     //种类 尺寸
     self.typeNameLabel.text = model.item.itemName;
     self.remarkLabel.text = [NSString stringWithFormat:@"%@kg",model.objectWeight];
+}
+
+#pragma  mark - 通知
+- (void)modelDistanceDidGet:(NSNotification *)notification {
+    TJMOrderModel *model = notification.userInfo[@"model"];
+    if ([model isEqual:self.currentModel]) {
+        self.myToGetDistanceLabel.text =  [NSString stringWithFormat:@"约%.2fKM",[model.getDistance doubleValue]];
+    }
+    NSString *notiKey = [NSString stringWithFormat:@"%p",_currentModel];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:notiKey object:nil];
+    
+    
 }
 
 #pragma  mark - 设置label 边框

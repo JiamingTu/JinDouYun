@@ -51,7 +51,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string></string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>只有开启定位功能才能正常使用地图</string>
+	<string>只有开启定位功能才能正常使用App</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string></string>
 	<key>UIBackgroundModes</key>

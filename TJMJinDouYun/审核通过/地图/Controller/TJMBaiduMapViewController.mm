@@ -257,52 +257,29 @@
     BMKPlanNode *end = [[BMKPlanNode alloc] init];
     CLLocationCoordinate2D endCoordinate = self.reciverLoc.coordinate2D;
     end.pt = endCoordinate;
-    BMKDrivingRoutePlanOption *drivingRouteSearchOption = [[BMKDrivingRoutePlanOption alloc] init];
-    drivingRouteSearchOption.from = start;
-    drivingRouteSearchOption.to = end;
-    BOOL flag = [self.routeSearch drivingSearch:drivingRouteSearchOption];
+    BMKRidingRoutePlanOption *ridingRoutePlanOption = [[BMKRidingRoutePlanOption alloc]init];
+    ridingRoutePlanOption.from = start;
+    ridingRoutePlanOption.to = end;
+    BOOL flag = [self.routeSearch ridingSearch:ridingRoutePlanOption];
     if (flag) {
+        
     }
 }
 
 #pragma mark 返回驾乘搜索结果
-- (void)onGetDrivingRouteResult:(BMKRouteSearch*)searcher result:(BMKDrivingRouteResult*)result errorCode:(BMKSearchErrorCode)error
-{
-//    NSArray* array = [NSArray arrayWithArray:_mapView.annotations];
-//    [_mapView removeAnnotations:array];
+- (void)onGetRidingRouteResult:(BMKRouteSearch *)searcher result:(BMKRidingRouteResult *)result errorCode:(BMKSearchErrorCode)error {
     NSArray *array = [NSArray arrayWithArray:_mapView.overlays];
     [_mapView removeOverlays:array];
     if (error == BMK_SEARCH_NO_ERROR) {
         //表示一条驾车路线
-        BMKDrivingRouteLine* plan = (BMKDrivingRouteLine *)[result.routes objectAtIndex:0];
+        BMKRidingRouteLine *plan = (BMKRidingRouteLine *)[result.routes objectAtIndex:0];
         // 计算路线方案中的路段数目
         int size = (int)[plan.steps count];
         int planPointCounts = 0;
         for (int i = 0; i < size; i++) {
 //            //表示驾车路线中的一个路段
             BMKDrivingStep * transitStep = [plan.steps objectAtIndex:i];
-//            if(i==0){
-//                RouteAnnotation* item = [[RouteAnnotation alloc]init];
-//                item.coordinate = plan.starting.location;
-//                item.title = @"起点";
-//                item.type = 0;
-//                [_mapView addAnnotation:item]; // 添加起点标注
-//                
-//            }else if(i==size-1){
-//                RouteAnnotation* item = [[RouteAnnotation alloc]init];
-//                item.coordinate = plan.terminal.location;
-//                item.title = @"终点";
-//                item.type = 1;
-//                [_mapView addAnnotation:item]; // 添加终点标注
-//            }
-//            //添加annotation节点
-//            RouteAnnotation* item = [[RouteAnnotation alloc]init];
-//            item.coordinate = transitStep.entrace.location;
-//            item.title = transitStep.entraceInstruction;
-//            item.degree = transitStep.direction * 30;
-//            item.type = 4;
-//            [_mapView addAnnotation:item];
-//            
+            
 //            //轨迹点总数累计
             planPointCounts += transitStep.pointsCount;
         }

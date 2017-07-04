@@ -73,37 +73,39 @@
 }
 
 #pragma  mark - 获取个人信息
-- (void)getPersonInfoWithViewController:(UIViewController *)viewController {
-    [self addObserver:viewController forKeyPath:kKVOPersonInfo options:NSKeyValueObservingOptionNew context:nil];
+- (void)getFreeManInfoWithViewController:(UIViewController *)viewController fail:(AppSerFailBlock)failure {
+    [self addObserver:viewController forKeyPath:kKVOFreeManInfo options:NSKeyValueObservingOptionNew context:nil];
     //判断头像等信息是否更改
     BOOL isChange = [[NSUserDefaults standardUserDefaults] boolForKey:kTJMIsChangePersonInfo];
     if (isChange) {
-        [self getPersonInfoWithView:viewController.view];
+        [self getFreeManInfoWithFail:^(NSString *failString) {
+            failure(failString);
+        }];
     } else {
-        TJMPersonInfoModel *personInfoModel = [TJMSandBoxManager getModelFromInfoPlistWithKey:kTJMPersonInfo];
-        if (!personInfoModel) {
-            [self getPersonInfoWithView:viewController.view];
+        TJMFreeManInfo *freeManInfo = [TJMSandBoxManager getModelFromInfoPlistWithKey:kTJMFreeManInfo];
+        if (!freeManInfo) {
+            [self getFreeManInfoWithFail:^(NSString *failString) {
+                failure(failString);
+            }];
         } else {
-            self.personInfo = personInfoModel;
+            self.freeManInfo = freeManInfo;
         }
     }
 }
 
-- (void)getPersonInfoWithView:(UIView *)view {
-    MBProgressHUD *progressHUD = [TJMHUDHandle showRequestHUDAtView:view message:nil];
-    [TJMRequestH getPersonInfoSuccess:^(id successObj, NSString *msg) {
-        self.personInfo = (TJMPersonInfoModel *)successObj;
+- (void)getFreeManInfoWithFail:(AppSerFailBlock)fail {
+    TJMTokenModel *tokenModel = [TJMSandBoxManager getTokenModel];
+    [TJMRequestH getUploadRelevantInfoWithType:TJMFreeManGetInfo(tokenModel.userId.description) form:nil success:^(id successObj, NSString *msg) {
+        self.freeManInfo = (TJMFreeManInfo *)successObj;
         //将是否修改信息 改为 NO
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kTJMIsChangePersonInfo];
-        [progressHUD hideAnimated:YES];
     } fail:^(NSString *failString) {
-        progressHUD.label.text = failString;
-        [progressHUD hideAnimated:YES afterDelay:1.5];
+        fail(failString);
     }];
 }
 
-- (void)removePersonInfoWithViewController:(UIViewController *)viewController {
-    [self removeObserver:viewController forKeyPath:kKVOPersonInfo];
+- (void)removeFreeManInfoWithViewController:(UIViewController *)viewController {
+    [self removeObserver:viewController forKeyPath:kKVOFreeManInfo];
 }
 
 #pragma  mark - 设置引导页
@@ -192,6 +194,37 @@
     }
 }
 
+- (void)getLocationAuthorization {
+    //请开启定位服务
+    CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
+    if (kCLAuthorizationStatusDenied == status || kCLAuthorizationStatusRestricted == status) {
+        //当前应用名
+        NSString *appCurName = [[[NSBundle mainBundle] infoDictionary]  objectForKey:@"CFBundleDisplayName"];
+        NSString *message = [NSString stringWithFormat:@"为了不影响您的使用，请到设置->隐私->定位服务中开启%@定位服务",appCurName];
+        [self alertViewWithTag:10000 delegate:self title:@"温馨提示" message:message cancelItem:@"取消" sureItem:@"确认"];
+        
+    }
+}
+
+- (void)alertViewWithTag:(NSInteger)tag delegate:(id<TDAlertViewDelegate>)delegate title:(NSString *)title message:(NSString *)message cancelItem:(NSString *)cancel sureItem:(NSString *)sure {
+    TDAlertItem *sureItem = [[TDAlertItem alloc]initWithTitle:sure titleColor:TJMFUIColorFromRGB(0x666666)];
+    TDAlertItem *cancelItem = [[TDAlertItem alloc]initWithTitle:cancel titleColor:TJMFUIColorFromRGB(0xffdf22)];
+    NSArray *items = @[sureItem,cancelItem];
+    TDAlertView *alertView = [[TDAlertView alloc]initWithTitle:title message:message items:items delegate:delegate];
+    alertView.tag = tag;
+    alertView.alertWidth = 280 * TJMHeightRatio;
+    alertView.optionsRowHeight = 45 * TJMHeightRatio;
+    [alertView show];
+}
+
+- (void)alertView:(TDAlertView *)alertView didClickItemWithIndex:(NSInteger)itemIndex {
+    if (itemIndex == 0) {
+        NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+        if ([[UIApplication sharedApplication] canOpenURL:url]) {
+            [[UIApplication sharedApplication] openURL:url];
+        }
+    }
+}
 
 
 @end

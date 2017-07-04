@@ -64,6 +64,7 @@
 		99A3BC751EBCC79300688692 /* UINavigationController+Cloudox.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A3BC721EBCC79300688692 /* UINavigationController+Cloudox.m */; };
 		99A3BC761EBCC79300688692 /* UIViewController+Cloudox.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A3BC741EBCC79300688692 /* UIViewController+Cloudox.m */; };
 		99BD04AD1EE691C900F56351 /* TJMHeatMapData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99BD04AC1EE691C900F56351 /* TJMHeatMapData.m */; };
+		99DDF3E01F0A298600D733B0 /* UIButton+touch.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DDF3DF1F0A298600D733B0 /* UIButton+touch.m */; };
 		99DFB9C41EFB6C9C00CE5645 /* 主页逻辑说明.txt in Resources */ = {isa = PBXBuildFile; fileRef = 99DFB9C31EFB6C9C00CE5645 /* 主页逻辑说明.txt */; };
 		99E81CAC1EB217E600BB0875 /* 11111.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E81C521EB217E600BB0875 /* 11111.png */; };
 		99E81CAD1EB217E600BB0875 /* 22222.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E81C531EB217E600BB0875 /* 22222.png */; };
@@ -298,6 +299,8 @@
 		99A3BC741EBCC79300688692 /* UIViewController+Cloudox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Cloudox.m"; sourceTree = "<group>"; };
 		99BD04AB1EE691C900F56351 /* TJMHeatMapData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMHeatMapData.h; sourceTree = "<group>"; };
 		99BD04AC1EE691C900F56351 /* TJMHeatMapData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMHeatMapData.m; sourceTree = "<group>"; };
+		99DDF3DE1F0A298600D733B0 /* UIButton+touch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+touch.h"; sourceTree = "<group>"; };
+		99DDF3DF1F0A298600D733B0 /* UIButton+touch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+touch.m"; sourceTree = "<group>"; };
 		99DFB9C31EFB6C9C00CE5645 /* 主页逻辑说明.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "主页逻辑说明.txt"; sourceTree = "<group>"; };
 		99E74D161EA8BB1700BFD422 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		99E74D171EA8BB1800BFD422 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
@@ -1666,6 +1669,8 @@
 		99F1C0C81EA0CEE000415F0C /* 类别 */ = {
 			isa = PBXGroup;
 			children = (
+				99DDF3DE1F0A298600D733B0 /* UIButton+touch.h */,
+				99DDF3DF1F0A298600D733B0 /* UIButton+touch.m */,
 				99F1C0C91EA0CEE000415F0C /* NSString+RegEx.h */,
 				99F1C0CA1EA0CEE000415F0C /* NSString+RegEx.m */,
 				997FF05E1ED41F06005FD8E2 /* NSString+Format.h */,
@@ -2064,6 +2069,7 @@
 				99F836A31ED3DA4000CB3714 /* TJMBankData.m in Sources */,
 				9966AA361ED70628004A09F7 /* TJMMsgDetailViewController.m in Sources */,
 				99E81CB31EB217E600BB0875 /* TJMPickerView.m in Sources */,
+				99DDF3E01F0A298600D733B0 /* UIButton+touch.m in Sources */,
 				99E81CBB1EB217E600BB0875 /* TJMBaiduMapViewController.mm in Sources */,
 				991B091A1EDE991D009DB296 /* UITextField+InputRule.m in Sources */,
 				99A3BC751EBCC79300688692 /* UINavigationController+Cloudox.m in Sources */,

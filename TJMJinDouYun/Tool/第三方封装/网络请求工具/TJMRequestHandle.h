@@ -28,6 +28,10 @@ SingletonH(RequestHandle)
 
 @property (nonatomic,strong) TJMTokenModel *tokenModel;
 
+
+#pragma  mark - 取消请求
+- (void)httpRequestManagerCancelRequest;
+- (void)jsonRequestManagerCancelRequest;
 #pragma  mrak - 登录、注册、忘记、修改密码
 /*
  *短息验证(注册、忘记密码、快捷登录验证)

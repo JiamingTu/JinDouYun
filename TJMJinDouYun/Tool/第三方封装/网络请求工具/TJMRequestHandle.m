@@ -33,7 +33,7 @@
         
         // 设置超时时间
         [_httpRequestManager.requestSerializer willChangeValueForKey:@"timeoutInterval"];
-        _httpRequestManager.requestSerializer.timeoutInterval = 10.0f;
+        _httpRequestManager.requestSerializer.timeoutInterval = 6.0f;
         [_httpRequestManager.requestSerializer didChangeValueForKey:@"timeoutInterval"];
     }
     return _httpRequestManager;
@@ -49,7 +49,7 @@
         _jsonRequestManager.requestSerializer = [AFJSONRequestSerializer serializer];
         // 设置超时时间
         [_jsonRequestManager.requestSerializer willChangeValueForKey:@"timeoutInterval"];
-        _jsonRequestManager.requestSerializer.timeoutInterval = 10.0f;
+        _jsonRequestManager.requestSerializer.timeoutInterval = 6.0f;
         [_jsonRequestManager.requestSerializer didChangeValueForKey:@"timeoutInterval"];
     }
     return _jsonRequestManager;
@@ -67,6 +67,14 @@ SingletonM(RequestHandle)
 #pragma  mark - 基础Api拼接
 - (NSString *)basicApiAppend:(NSString *)query {
     return [NSString stringWithFormat:@"%@%@",TJMApiBasicAddress,query];
+}
+
+#pragma  mark - 取消请求
+- (void)httpRequestManagerCancelRequest {
+    [self.httpRequestManager.operationQueue cancelAllOperations];
+}
+- (void)jsonRequestManagerCancelRequest {
+    [self.jsonRequestManager.operationQueue cancelAllOperations];
 }
 
 #pragma  mark - 请求方法
@@ -88,11 +96,12 @@ SingletonM(RequestHandle)
             //操作成功
             success(responseObject,TJMResponseMessage);
             TJMLog(@"%@",responseObject[@"msg"]);
-        }else {
-            //操作失败
-            //失败原因
-            failure(responseObject[@"msg"]);
-            TJMLog(@"%@",responseObject[@"msg"]);
+        } else {
+            if ([TJMResponseMessage isEqual:[NSNull null]]) {
+                failure(@"未知错误");
+            } else {
+                failure(TJMResponseMessage);
+            }
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         failure(error.localizedDescription);
@@ -116,9 +125,11 @@ SingletonM(RequestHandle)
             success(responseObject,TJMResponseMessage);
             TJMLog(@"%@",responseObject[@"msg"]);
         } else {
-            //非网络问题
-            failure(responseObject[@"msg"]);
-            TJMLog(@"%@",TJMResponseMessage);
+            if ([TJMResponseMessage isEqual:[NSNull null]]) {
+                failure(@"未知错误");
+            } else {
+                failure(TJMResponseMessage);
+            }
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         //网络问题
@@ -186,8 +197,11 @@ SingletonM(RequestHandle)
                 TJMLog(@"%@",TJMResponseMessage);
                 success(responseObject,TJMResponseMessage);
             } else {
-                TJMLog(@"%@",TJMResponseMessage);
-                failure(TJMResponseMessage);
+                if ([TJMResponseMessage isEqual:[NSNull null]]) {
+                    failure(@"未知错误");
+                } else {
+                    failure(TJMResponseMessage);
+                }
             }
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             TJMLog(@"%@",error.localizedDescription);
@@ -207,7 +221,11 @@ SingletonM(RequestHandle)
         if (TJMRightCode) {
             success(responseObject,TJMResponseMessage);
         } else {
-            failure(TJMResponseMessage);
+            if ([TJMResponseMessage isEqual:[NSNull null]]) {
+                failure(@"未知错误");
+            } else {
+                failure(TJMResponseMessage);
+            }
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         failure(error.localizedDescription);
@@ -224,8 +242,8 @@ SingletonM(RequestHandle)
         //token存在 继续获取
         TJMLog(@"token存在，上传资料");
         //设置请求头
-        [self.jsonRequestManager.requestSerializer setValue:_tokenModel.token forHTTPHeaderField:@"Authorization"];
-        [self.jsonRequestManager GET:URLString parameters:form progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [self.httpRequestManager.requestSerializer setValue:_tokenModel.token forHTTPHeaderField:@"Authorization"];
+        [self.httpRequestManager GET:URLString parameters:form progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             if (TJMRightCode) {
                 //如果code == 200
                 if ([type isEqualToString:TJMFreeManGetCity]) {
@@ -242,10 +260,13 @@ SingletonM(RequestHandle)
                     [TJMSandBoxManager saveInInfoPlistWithModel:freeManInfo key:kTJMFreeManInfo];
                     success(freeManInfo,TJMResponseMessage);
                 }
-            }else {
-                failure(TJMResponseMessage);
+            } else {
+                if ([TJMResponseMessage isEqual:[NSNull null]]) {
+                    failure(@"未知错误");
+                } else {
+                    failure(TJMResponseMessage);
+                }
             }
-
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             TJMLog(@"请求失败，%@",error);
             failure(error.localizedDescription);
@@ -310,12 +331,14 @@ SingletonM(RequestHandle)
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (TJMRightCode) {
-            TJMLog(@"code正确，定位%@",TJMResponseMessage);
             //处理
             success(responseObject,responseObject[@"msg"]);
-        }else {
-            TJMLog(@"code错误，定位%@",TJMResponseMessage);
-            failure(TJMResponseMessage);
+        } else {
+            if ([TJMResponseMessage isEqual:[NSNull null]]) {
+                failure(@"未知错误");
+            } else {
+                failure(TJMResponseMessage);
+            }
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         TJMLog(@"%@",error.localizedDescription);
@@ -337,7 +360,11 @@ SingletonM(RequestHandle)
                 TJMTestQuestionData *tqd = [TJMTestQuestionData mj_objectWithKeyValues:responseObject[@"data"]];
                 success(tqd,TJMResponseMessage);
             } else {
-                failure(TJMResponseMessage);
+                if ([TJMResponseMessage isEqual:[NSNull null]]) {
+                    failure(@"未知错误");
+                } else {
+                    failure(TJMResponseMessage);
+                }
             }
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             failure(error.localizedRecoverySuggestion);
@@ -353,7 +380,11 @@ SingletonM(RequestHandle)
             if (TJMRightCode) {
                 success(responseObject,TJMResponseMessage);
             } else {
-                failure(TJMResponseMessage);
+                if ([TJMResponseMessage isEqual:[NSNull null]]) {
+                    failure(@"未知错误");
+                } else {
+                    failure(TJMResponseMessage);
+                }
             }
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             failure(error.localizedDescription);
@@ -370,7 +401,11 @@ SingletonM(RequestHandle)
                 TJMStudyResource *studyResource = [TJMStudyResource mj_objectWithKeyValues:responseObject[@"data"]];
                 success(studyResource,TJMResponseMessage);
             } else {
-                failure(TJMResponseMessage);
+                if ([TJMResponseMessage isEqual:[NSNull null]]) {
+                    failure(@"未知错误");
+                } else {
+                    failure(TJMResponseMessage);
+                }
             }
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             failure(error.localizedDescription);
@@ -413,17 +448,19 @@ SingletonM(RequestHandle)
             if (TJMRightCode) {
                 if ([type isEqualToString:TJMFreeManAllOrder]) {
                     TJMMyOrderData *myOrderData = [TJMMyOrderData mj_objectWithKeyValues:responseObject];
-                    [self addDistanceWithModelData:myOrderData myLocation:coordinate reslut:^(id successObj, NSString *msg) {
-                        success(successObj,TJMResponseMessage);
-                    }];
+                    success(myOrderData,TJMResponseMessage);
+                    [self addDistanceWithModelData:myOrderData myLocation:coordinate];
                 } else {
                     TJMOrderData *orderData = [TJMOrderData mj_objectWithKeyValues:responseObject[@"data"]];
-                    [self addDistanceWithModelData:orderData myLocation:coordinate reslut:^(id successObj, NSString *msg) {
-                        success(successObj,TJMResponseMessage);
-                    }];
+                    success(orderData,TJMResponseMessage);
+                    [self addDistanceWithModelData:orderData myLocation:coordinate];    
                 }
             } else {
-                failure(TJMResponseMessage);
+                if ([TJMResponseMessage isEqual:[NSNull null]]) {
+                    failure(@"未知错误");
+                } else {
+                    failure(TJMResponseMessage);
+                }
             }
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             failure(error.localizedDescription);
@@ -432,70 +469,20 @@ SingletonM(RequestHandle)
     }
 }
 
-- (void)addDistanceWithModelData:(id)data myLocation:(CLLocationCoordinate2D)coordinate reslut:(SuccessBlock)result {
+- (void)addDistanceWithModelData:(id)data myLocation:(CLLocationCoordinate2D)coordinate {
     //创建组
     dispatch_group_t group = dispatch_group_create();
     //创建队列
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    __block NSInteger count = 0;
     dispatch_group_async(group, queue, ^{
-        //创建信号量
-//        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
         NSArray *array = [data isKindOfClass:[TJMOrderData class]] ? ((TJMOrderData *)data).content : ((TJMMyOrderData *)data).data;
         [array enumerateObjectsUsingBlock:^(TJMOrderModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            TJMLog(@"这时还没有回调----%zd------%@",idx,[NSThread currentThread]);
-            [[TJMLocationService sharedLocationService] calculateDriveDistanceWithStartPoint:coordinate endPoint:CLLocationCoordinate2DMake(obj.consignerLat.doubleValue, obj.consignerLng.doubleValue)];
-            [TJMLocationService sharedLocationService].routeResult = ^(double distance){
-                obj.getDistance = distance;
-                TJMLog(@"回调了回调了-----%zd------%@",idx,[NSThread currentThread]);
-                NSInteger index = [array indexOfObject:obj];
-                TJMLog(@"%zd++++++++%zd",index,idx);
-//                dispatch_semaphore_signal(semaphore);
-            };
-//            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-            usleep(200000);
-        }];
-    });
-    
-    dispatch_group_notify(group, queue, ^{
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            TJMLog(@"-----距离计算完成-----");
-            result(data,@"成功");
+            CLLocationCoordinate2D endCoordinate = CLLocationCoordinate2DMake(obj.consignerLat.doubleValue, obj.consignerLng.doubleValue);
+            [[TJMLocationService sharedLocationService] calculateDriveDistanceWithDelegate:obj startPoint:coordinate endPoint:endCoordinate];
         }];
     });
 }
 
-/*
-- (void)addDistanceWithModelData:(id)data myLocation:(CLLocationCoordinate2D)coordinate reslut:(SuccessBlock)result {
-    //创建组
-    dispatch_group_t group = dispatch_group_create();
-    //创建队列
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    
-    dispatch_group_async(group, queue, ^{
-        //创建信号量
-        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-        NSArray *array = [data isKindOfClass:[TJMOrderData class]] ? ((TJMOrderData *)data).content : ((TJMMyOrderData *)data).data;
-        [array enumerateObjectsUsingBlock:^(TJMOrderModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            
-            [[TJMLocationService sharedLocationService] calculateDriveDistanceWithStartPoint:coordinate endPoint:CLLocationCoordinate2DMake(obj.consignerLat.doubleValue, obj.consignerLng.doubleValue)];
-            [TJMLocationService sharedLocationService].routeResult = ^(double distance){
-                obj.getDistance = distance;
-                TJMLog(@"%zd",idx);
-                //回调成功后，标记1
-                dispatch_semaphore_signal(semaphore);
-            };
-            //若标记为0，一直等待
-            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-        }];
-        dispatch_group_notify(group, queue, ^{
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                result(data,@"成功");
-            }];
-        });
-    });
-}
-*/
 #pragma  mark 抢单
 - (void)robOrderWithOrderId:(NSNumber *)orderId success:(SuccessBlock)success fail:(FailBlock)failure {
     if (self.tokenModel) {
@@ -506,7 +493,11 @@ SingletonM(RequestHandle)
             if (TJMRightCode) {
                 success(responseObject,TJMResponseMessage);
             } else {
-                failure(TJMResponseMessage);
+                if ([TJMResponseMessage isEqual:[NSNull null]]) {
+                    failure(@"未知错误");
+                } else {
+                    failure(TJMResponseMessage);
+                }
             }
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             failure(error.localizedDescription);
@@ -534,7 +525,11 @@ SingletonM(RequestHandle)
                 TJMLog(@"%@",TJMResponseMessage);
                 success(responseObject,TJMResponseMessage);
             } else {
-                failure(TJMResponseMessage);
+                if ([TJMResponseMessage isEqual:[NSNull null]]) {
+                    failure(@"未知错误");
+                } else {
+                    failure(TJMResponseMessage);
+                }
             }
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             failure(error.localizedDescription);
@@ -552,7 +547,11 @@ SingletonM(RequestHandle)
             if (TJMRightCode) {
                 success(responseObject[@"data"],TJMResponseMessage);
             } else {
-                failure(TJMResponseMessage);
+                if ([TJMResponseMessage isEqual:[NSNull null]]) {
+                    failure(@"未知错误");
+                } else {
+                    failure(TJMResponseMessage);
+                }
             }
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             failure(error.localizedDescription);
@@ -579,7 +578,11 @@ SingletonM(RequestHandle)
             if (TJMRightCode) {
                 success(responseObject,TJMResponseMessage);
             } else {
-                failure(TJMResponseMessage);
+                if ([TJMResponseMessage isEqual:[NSNull null]]) {
+                    failure(@"未知错误");
+                } else {
+                    failure(TJMResponseMessage);
+                }
             }
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             failure(error.localizedDescription);
@@ -597,7 +600,11 @@ SingletonM(RequestHandle)
             if (TJMRightCode) {
                 success(responseObject[@"data"],TJMResponseMessage);
             } else {
-                failure(TJMResponseMessage);
+                if ([TJMResponseMessage isEqual:[NSNull null]]) {
+                    failure(@"未知错误");
+                } else {
+                    failure(TJMResponseMessage);
+                }
             }
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             failure(error.localizedDescription);
@@ -673,7 +680,11 @@ SingletonM(RequestHandle)
             if (TJMRightCode) {
                 success(responseObject,TJMResponseMessage);
             } else {
-                failure(TJMResponseMessage);
+                if ([TJMResponseMessage isEqual:[NSNull null]]) {
+                    failure(@"未知错误");
+                } else {
+                    failure(TJMResponseMessage);
+                }
             }
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             failure(error.localizedDescription);
@@ -697,7 +708,11 @@ SingletonM(RequestHandle)
                     success(data,TJMResponseMessage);
                 }
             } else {
-                failure(TJMResponseMessage);
+                if ([TJMResponseMessage isEqual:[NSNull null]]) {
+                    failure(@"未知错误");
+                } else {
+                    failure(TJMResponseMessage);
+                }
             }
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             failure(error.localizedDescription);
@@ -716,7 +731,11 @@ SingletonM(RequestHandle)
             if (TJMRightCode) {
                 success(responseObject,TJMResponseMessage);
             } else {
-                failure(TJMResponseMessage);
+                if ([TJMResponseMessage isEqual:[NSNull null]]) {
+                    failure(@"未知错误");
+                } else {
+                    failure(TJMResponseMessage);
+                }
             }
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             failure(error.localizedDescription);
@@ -758,7 +777,6 @@ SingletonM(RequestHandle)
             if (TJMRightCode) {
                 TJMPersonInfoModel *personInfoModel = [TJMPersonInfoModel mj_objectWithKeyValues:responseObject[@"data"]];
                 //存入 info
-                [TJMSandBoxManager saveInInfoPlistWithModel:personInfoModel key:kTJMPersonInfo];
                 success(personInfoModel,TJMResponseMessage);
             } else if ([TJMResponseMessage isEqual:[NSNull null]]) {
                 failure(@"未知错误");
@@ -813,7 +831,11 @@ SingletonM(RequestHandle)
             if (TJMRightCode) {
                 success(responseObject,TJMResponseMessage);
             } else {
-                failure(TJMResponseMessage);
+                if ([TJMResponseMessage isEqual:[NSNull null]]) {
+                    failure(@"未知错误");
+                } else {
+                    failure(TJMResponseMessage);
+                }
             }
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             failure(error.localizedDescription);

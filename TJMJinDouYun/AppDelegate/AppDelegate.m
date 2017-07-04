@@ -30,6 +30,7 @@
     //微信
     BOOL result = [WXApi registerApp:TJM_WX_AppID];
     TJMLog(@"%zd",result);
+    
     return YES;
 }
 

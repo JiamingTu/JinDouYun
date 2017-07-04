@@ -63,7 +63,7 @@
         [self performSegueWithIdentifier:@"Feedback" sender:nil];
     } else {
         
-        [self alertViewWithTag:1000 delegate:self title:@"确定退出登录？" cancelItem:@"取消" sureItem:@"确定"];
+        [self alertViewWithTag:10000 delegate:self title:@"确定退出登录？" cancelItem:@"取消" sureItem:@"确定"];
         
         
         
@@ -73,6 +73,7 @@
 - (void)alertView:(TDAlertView *)alertView didClickItemWithIndex:(NSInteger)itemIndex {
     if (itemIndex == 0) {
         [self getWorkStatus];
+//        [self exitLogin];
     }
 }
 
@@ -111,7 +112,7 @@
         [TJMHUDHandle hiddenHUDForView:self.view];
     } fail:^(NSString *failString) {
         TJMLog(@"%@",failString);
-        _progressHUD.label.text = [NSString stringWithFormat:@"%@，无法退出登录",failString];
+        _progressHUD.label.text = [NSString stringWithFormat:@"%@,无法退出登录",failString];
         [_progressHUD hideAnimated:YES afterDelay:1.5];
     }];
 }

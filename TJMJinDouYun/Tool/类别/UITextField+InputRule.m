@@ -143,7 +143,7 @@
     [newValue replaceCharactersInRange:range withString:string];
     if (newValue.length <= 17 && [newValue isNumber]) {
         return YES;
-    } else if (newValue.length == 18 && [[newValue substringToIndex:16] isNumber] && ([[newValue substringFromIndex:17] isNumber] || [[newValue substringFromIndex:17] isEqualToString:@"X"])) {
+    } else if (newValue.length == 18 && [[newValue substringToIndex:16] isNumber] && ([[newValue substringFromIndex:17] isNumber] || [[newValue substringFromIndex:17] isEqualToString:@"X"] || [[newValue substringFromIndex:17] isEqualToString:@"x"])) {
         return YES;
     }
     return NO;

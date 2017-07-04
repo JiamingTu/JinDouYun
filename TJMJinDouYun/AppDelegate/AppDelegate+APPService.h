@@ -8,7 +8,9 @@
 
 #import "AppDelegate.h"
 
-@interface AppDelegate (APPService)
+typedef void(^AppSerFailBlock)(NSString *failMsg);
+
+@interface AppDelegate (APPService)<TDAlertViewDelegate>
 /*
  *验证登录状态并进入相应界面
  */
@@ -20,9 +22,9 @@
  */
 - (void)restoreRootViewController:(UIViewController *)rootViewController;
 /**获取个人信息并监听*/
-- (void)getPersonInfoWithViewController:(UIViewController *)viewController;
+- (void)getFreeManInfoWithViewController:(UIViewController *)viewController fail:(AppSerFailBlock)failure;
 /**移除个人信息监听*/
-- (void)removePersonInfoWithViewController:(UIViewController *)viewController;
+- (void)removeFreeManInfoWithViewController:(UIViewController *)viewController;
 
 /**设置引导页*/
 - (void)setGuidePage;
@@ -32,4 +34,6 @@
 /**获取当前视图控制器*/
 - (UIViewController *)topViewController;
 
+/**位置权限*/
+- (void)getLocationAuthorization;
 @end

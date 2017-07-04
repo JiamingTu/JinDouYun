@@ -124,7 +124,9 @@
         [weakSelf cancelTiemr];
     };
     //获取个人信息
-    [self.appDelegate getPersonInfoWithViewController:self];
+    [self.appDelegate getFreeManInfoWithViewController:self fail:^(NSString *failMsg) {
+        
+    }];
     [self getWorkingStatus];
     //获取位置后请求
     [[TJMLocationService sharedLocationService] getFreeManLocationWith:TJMGetLocationTypeCityName target:CLLocationCoordinate2DMake(0, 0)];
@@ -154,6 +156,14 @@
     if (_selectModel) {
         _selectModelOrderStatus = _selectModel.orderStatus.integerValue;
     }
+    //如果正在刷新 需要停止刷新
+    if (self.header.isRefreshing) {
+        [self.header endRefreshing];
+    }
+    if (self.footer.isRefreshing) {
+        [self.footer endRefreshing];
+    }
+    
 }
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
@@ -167,7 +177,7 @@
     //关闭定时器
     [self cancelTiemr];
     //关闭通知
-    [self.appDelegate removePersonInfoWithViewController:self];
+    [self.appDelegate removeFreeManInfoWithViewController:self];
 }
 
 #pragma  mark - 页面设置
@@ -194,7 +204,7 @@
     //页面将要显示时获取工作状态，更新页面
     [self.dataSourceDictionary removeAllObjects];
     //获取开工状态
-    [self getWorkingStatus];
+    [[TJMLocationService sharedLocationService] getFreeManLocationWith:TJMGetLocationTypeCityName target:CLLocationCoordinate2DMake(0, 0)];
 }
 
 #pragma  mark - 按钮方法
@@ -263,7 +273,7 @@
                 [TJMHUDHandle transientNoticeAtView:self.view withMessage:failString];
             }];
         }
-    } else {
+    } else if(alertView.tag == 10001) {
         //确认抢单？
         if (itemIndex == 0) {
             NSMutableArray *arr = self.dataSourceDictionary[[self dataKey]];
@@ -457,6 +467,20 @@
 }
 - (void)cityDidChange:(NSNotification *)notification {
     TJMLog(@"位置已更新，开始刷新列表");
+    if ([notification.userInfo[@"myLocation"] isKindOfClass:[NSString class]]) {
+        if (self.header.isRefreshing) {
+            [self.header endRefreshing];
+        }
+        if (self.footer.isRefreshing) {
+            [self.footer endRefreshing];
+        }
+        [self.appDelegate getLocationAuthorization];
+        return;
+    }
+    if ([notification.userInfo[@"cityName"] isEqualToString:@"fail"]) {
+        //反检索失败
+        [self alertViewWithTag:10002 delegate:self title:@"定位失败，请刷新重试" cancelItem:nil sureItem:@"确定"];
+    }
     _cityName = notification.userInfo[@"cityName"];
     NSString *city =  [_cityName substringWithRange:NSMakeRange(0, _cityName.length - 1)];
     [self.naviLeftButton setTitle:city forState:UIControlStateNormal];
@@ -595,17 +619,17 @@
         if (self.myLoc && _cityName) {
             [self getWorkingTimeAndConfigWithWorkingStatus:isWorking];
         }
-    } else if ([keyPath isEqualToString:kKVOPersonInfo]) {
-        TJMPersonInfoModel *personInfo = change[@"new"];
-        if (![personInfo isEqual:[NSNull null]]) {
-            if (personInfo.photo != nil) {
-                NSString *path = [NSString stringWithFormat:@"%@%@",TJMPhotoBasicAddress,personInfo.photo];
+    } else if ([keyPath isEqualToString:kKVOFreeManInfo]) {
+        TJMFreeManInfo *freeManInfo = change[@"new"];
+        if (![freeManInfo isEqual:[NSNull null]] && freeManInfo != nil) {
+            if (freeManInfo.photo != nil) {
+                NSString *path = [NSString stringWithFormat:@"%@%@",TJMPhotoBasicAddress,freeManInfo.photo];
                 [[SDWebImageManager sharedManager] loadImageWithURL:[NSURL URLWithString:path] options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
                     image = [image getCropImage];
                     self.headerImageView.image = image;
                 }];
             }
-            self.nameLabel.text = personInfo.tel;
+            self.nameLabel.text = freeManInfo.realName;
         }
     }
 }

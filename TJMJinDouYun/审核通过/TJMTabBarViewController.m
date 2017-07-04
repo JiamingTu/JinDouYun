@@ -38,6 +38,8 @@
 
 #pragma  mark - UITabBarControllerDelegate
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
+    //取消所有请求
+    [TJMRequestH httpRequestManagerCancelRequest];
     if ([item.title isEqualToString:@"首页"]) {
         UINavigationController *naviC = self.viewControllers.firstObject;
         TJMHomepageViewController *homeVC = naviC.viewControllers.firstObject;

@@ -20,6 +20,8 @@
 
 @property (nonatomic,copy) NSString *phoneNum;
 
+@property (nonatomic,strong) MBProgressHUD *progressHUD;
+
 @end
 
 @implementation TJMFeedBackViewController
@@ -34,12 +36,15 @@
     [self configViews];
     [self resetConstraints];
     //
-
-    [self.appDelegate getPersonInfoWithViewController:self];
+    self.progressHUD = [TJMHUDHandle showRequestHUDAtView:self.view message:nil];
+    [self.appDelegate getFreeManInfoWithViewController:self fail:^(NSString *failMsg) {
+        _progressHUD.label.text = failMsg;
+        [_progressHUD hideAnimated:YES afterDelay:1.5];
+    }];
     
 }
 - (void)dealloc {
-    [self.appDelegate removePersonInfoWithViewController:self];
+    [self.appDelegate removeFreeManInfoWithViewController:self];
 }
 #pragma  mark - 设置页面
 - (void)resetConstraints {
@@ -81,9 +86,10 @@
 }
 #pragma  mark - KVO
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
-    if ([keyPath isEqualToString:kKVOPersonInfo]) {
-        TJMPersonInfoModel *model = change[@"new"];
-        self.phoneNum = model.tel;
+    if ([keyPath isEqualToString:kKVOFreeManInfo]) {
+        TJMFreeManInfo *model = change[@"new"];
+        self.phoneNum = model.mobile.description;
+        [_progressHUD hideAnimated:YES];
     }
 }
 #pragma  mark - momory warning

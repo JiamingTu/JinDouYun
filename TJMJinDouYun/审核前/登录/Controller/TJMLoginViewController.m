@@ -207,6 +207,7 @@
 
     } fail:^(NSString *failString) {
         [self loginFailWithProgressHUD:progressHUD failString:failString];
+        [TJMSandBoxManager deleteTokenModel];
     }];
 
 }

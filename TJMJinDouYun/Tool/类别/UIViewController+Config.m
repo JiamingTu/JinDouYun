@@ -201,11 +201,10 @@ const char *kTJMAppDelegateKey = "AppDelegateKey";
 - (void)deleteCarrierInfo {
     //退出登录
     TJMRequestH.tokenModel = nil;
-    self.appDelegate.personInfo = nil;
+    self.appDelegate.freeManInfo = nil;
     [[SDWebImageManager sharedManager].imageCache clearDiskOnCompletion:nil];
     [TJMSandBoxManager deleteTokenModel];
     [TJMSandBoxManager deleteModelFromInfoPlistWithKey:kTJMFreeManInfo];
-    [TJMSandBoxManager deleteModelFromInfoPlistWithKey:kTJMPersonInfo];
     [TJMSandBoxManager deleteModelFromInfoPlistWithKey:kTJMPerformanceInfo];
     [TJMSandBoxManager deleteModelFromInfoPlistWithKey:kTJMIsChangePersonInfo];
     [TJMSandBoxManager deleteMessages];

@@ -66,8 +66,14 @@
 
 #pragma  mark 设置别名
 - (void)setAlias {
-    NSNumber *userId = [TJMSandBoxManager getTokenModel].userId;
-    [JPUSHService setTags:nil alias:userId.description fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias) {
+    NSString *userId = [TJMSandBoxManager getTokenModel].userId.description;
+    NSString *alias = nil;
+    if (userId) {
+        alias = userId;
+    } else {
+        alias = @"";
+    }
+    [JPUSHService setTags:nil alias:[NSNull null] fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias) {
         TJMLog(@"+++++++++rescode: %d, \ntags: %@, \nalias: %@\n", iResCode, iTags, iAlias);
     }];
 }

@@ -64,6 +64,8 @@
 
 @property (nonatomic,strong) TJMPerformanceModel *performanceModel;
 
+//菊花
+@property (nonatomic,strong) MBProgressHUD *progressHUD;
 @end
 
 @implementation TJMMineViewController
@@ -97,7 +99,11 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     //获取个人信息并监听
-    [self.appDelegate getPersonInfoWithViewController:self];
+    self.progressHUD = [TJMHUDHandle showRequestHUDAtView:self.view message:nil];
+    [self.appDelegate getFreeManInfoWithViewController:self fail:^(NSString *failMsg) {
+        _progressHUD.label.text = failMsg;
+        [_progressHUD hideAnimated:YES afterDelay:1.5];
+    }];
     
     self.naviBgWidthConstraint.constant = TJMScreenWidth;
     self.navBarBgAlpha = @"0.0";
@@ -106,7 +112,7 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     //移除个人信息的监听
-    [self.appDelegate removePersonInfoWithViewController:self];
+    [self.appDelegate removeFreeManInfoWithViewController:self];
     [UIView animateWithDuration:0.35 animations:^{
         self.naviBgWidthConstraint.constant = 0;
         [self.navigationController.navigationBar tjm_hideShadowImageOrNot:NO];
@@ -152,21 +158,21 @@
 }
 #pragma  mark - KVO
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
-    if ([keyPath isEqualToString:kKVOPersonInfo]) {
-        TJMPersonInfoModel *personInfo = change[@"new"];
-        if (![personInfo isEqual:[NSNull null]]) {
+    if ([keyPath isEqualToString:kKVOFreeManInfo]) {
+        TJMFreeManInfo *freeManInfo = change[@"new"];
+        if (![freeManInfo isEqual:[NSNull null]] && freeManInfo != nil) {
             //头像
-            if (personInfo.photo != nil) {
-                NSString *path = [NSString stringWithFormat:@"%@%@",TJMPhotoBasicAddress,personInfo.photo];
+            if (freeManInfo.photo != nil) {
+                NSString *path = [NSString stringWithFormat:@"%@%@",TJMPhotoBasicAddress,freeManInfo.photo];
                 [[SDWebImageManager sharedManager] loadImageWithURL:[NSURL URLWithString:path] options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
                     image = [image getCropImage];
                     [self.headerButton setBackgroundImage:image forState:UIControlStateNormal];
                 }];
             }
             //
-            self.nameLabel.text = personInfo.realName;
-            self.phoneNumLabel.text = personInfo.tel;
-            MBProgressHUD *progressHUD = [TJMHUDHandle showRequestHUDAtView:self.view message:nil];
+            self.nameLabel.text = freeManInfo.realName;
+            self.phoneNumLabel.text = freeManInfo.mobile.description;
+            //获取评价、成交单数
             [TJMRequestH getFreeManPerformanceSuccess:^(id successObj, NSString *msg) {
                 self.performanceModel = successObj;
                 if (self.performanceModel) {
@@ -179,8 +185,8 @@
                 }
                 [TJMHUDHandle hiddenHUDForView:self.view];
             } fail:^(NSString *failString) {
-                progressHUD.label.text = failString;
-                [progressHUD hideAnimated:YES afterDelay:1.3];
+                _progressHUD.label.text = failString;
+                [_progressHUD hideAnimated:YES afterDelay:1.3];
             }];
         }
     }

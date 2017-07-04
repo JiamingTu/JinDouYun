@@ -9,7 +9,7 @@
 #import "TJMMyOrderViewController.h"
 #import "TJMHomeOrderTableViewCell.h"
 const NSInteger _myOrderSize = 5;
-@interface TJMMyOrderViewController ()<UITableViewDelegate,UITableViewDataSource,TJMHomeOrderTableViewCellDelegate>
+@interface TJMMyOrderViewController ()<UITableViewDelegate,UITableViewDataSource,TJMHomeOrderTableViewCellDelegate,TDAlertViewDelegate>
 {
     NSInteger _myOrderPage;
 }
@@ -152,10 +152,7 @@ const NSInteger _myOrderSize = 5;
     cell.delegate = self;
     TJMOrderModel *model = self.dataSourceArray[indexPath.row];
     //计算距离
-    
-//    CLLocationCoordinate2D getLoc = CLLocationCoordinate2DMake(model.consignerLat.floatValue, model.consignerLng.floatValue);
-//    CLLocationDistance distance = [[TJMLocationService sharedLocationService] calculateDistanceFromMyLocation:self.myLoc.location.coordinate toGetLocation:getLoc];
-//    model.getDistance = distance;
+
     [cell setValueWithModel:model];
     
     
@@ -180,11 +177,27 @@ const NSInteger _myOrderSize = 5;
 
 #pragma  mark - 通知
 - (void)myLocationDidChage:(NSNotification *)notification {
+    if ([notification.userInfo[@"myLocation"] isKindOfClass:[NSString class]]) {
+        //定位失败
+        [self alertViewWithTag:10000 delegate:self title:@"定位失败，请重试" cancelItem:nil sureItem:@"确定"];
+        if (self.header.isRefreshing) {
+            [self.header endRefreshing];
+        }
+        if (self.footer.isRefreshing) {
+            [self.footer endRefreshing];
+        }
+        return;
+    }
     self.myLoc = notification.userInfo[@"myLocation"];
     if (self.myLoc) {
         
         [self setOrderList];
     }
+}
+
+#pragma  mark - TDAlertViewDelegate
+- (void)alertView:(TDAlertView *)alertView didClickItemWithIndex:(NSInteger)itemIndex {
+    
 }
 
 #pragma  mark - TJMHomeOrderTableViewCellDelegate

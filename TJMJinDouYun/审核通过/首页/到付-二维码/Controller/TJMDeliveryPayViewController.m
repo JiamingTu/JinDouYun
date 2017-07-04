@@ -61,12 +61,17 @@
 
 #pragma  mark - 通知
 - (void)locationDidChange:(NSNotification *)notification {
+    if ([notification.userInfo[@"myLocation"] isKindOfClass:[NSString class]]) {
+        //定位失败
+        [self alertViewWithTag:10001 delegate:self title:@"定位失败，请退出重试" cancelItem:nil sureItem:@"确定"];
+        return;
+    }
     BMKUserLocation *location = notification.userInfo[@"myLocation"];
     CLLocationCoordinate2D toCoordinate = CLLocationCoordinate2DMake(_orderModel.receiverLat.doubleValue, _orderModel.receiverLng.doubleValue);
     CLLocationDistance distance = [[TJMLocationService sharedLocationService] calculateDistanceFromMyLocation:location.location.coordinate toGetLocation:toCoordinate];
     [TJMHUDHandle hiddenHUDForView:self.view];
     if (distance > 1000) {
-        [self alertViewWithTag:1000 delegate:self title:@"不在签收范围" cancelItem:nil sureItem:@"确定"];
+        [self alertViewWithTag:10000 delegate:self title:@"不在签收范围" cancelItem:nil sureItem:@"确定"];
     } else {
         //获取二维码
         [self getQRCode];
@@ -74,8 +79,10 @@
 }
 
 - (void)alertView:(TDAlertView *)alertView didClickItemWithIndex:(NSInteger)itemIndex {
-    if (itemIndex == 0) {
-        [self.navigationController popViewControllerAnimated:YES];
+    if (alertView.tag == 10000) {
+        if (itemIndex == 0) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
     }
 }
 

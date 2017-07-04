@@ -117,7 +117,7 @@
     NSString *idCardLast= [self substringWithRange:NSMakeRange(17, 1)];
     //如果等于2，则说明校验码是10，身份证号码最后一位应该是X
     if(idCardMod==2) {
-        if(![idCardLast isEqualToString:@"X"]||[idCardLast isEqualToString:@"x"]) {
+        if(![idCardLast isEqualToString:@"X"] || ![idCardLast isEqualToString:@"x"]) {
             return NO;
         }
     }

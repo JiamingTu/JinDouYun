@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@class TJMPersonInfoModel;
+@class TJMFreeManInfo;
 
 @class AppDelegate;
 typedef void(^WorkTimeBlock)();
@@ -19,7 +19,7 @@ typedef NSString *(^SignInBlock)();
 
 @property (nonatomic,copy) WorkTimeBlock workTimeBlock;
 @property (nonatomic,copy) WorkTimeBlock stopTimer;
-@property (nonatomic,strong) TJMPersonInfoModel *personInfo;
+@property (nonatomic,strong) TJMFreeManInfo *freeManInfo;
 
 
 @end

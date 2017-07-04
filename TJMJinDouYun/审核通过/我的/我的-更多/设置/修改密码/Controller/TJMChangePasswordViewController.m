@@ -48,7 +48,9 @@
     // Do any additional setup after loading the view.
     [self setTitle:@"修改密码" fontSize:17 colorHexValue:0x333333];
     //增加监听
-    [self.appDelegate getPersonInfoWithViewController:self];
+    [self.appDelegate getFreeManInfoWithViewController:self fail:^(NSString *failMsg) {
+        
+    }];
     [self configViews];
 }
 - (void)dealloc {
@@ -57,7 +59,7 @@
         self.countDownTimer = nil;
     }
     //移除监听
-    [self.appDelegate removePersonInfoWithViewController:self];
+    [self.appDelegate removeFreeManInfoWithViewController:self];
     
 }
 #pragma  mark - 设置页面
@@ -157,9 +159,9 @@
 
 #pragma  mark - KVO
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
-    if ([keyPath isEqualToString:kKVOPersonInfo]) {
-        TJMPersonInfoModel *model = change[@"new"];
-        self.phoneNum = model.tel;
+    if ([keyPath isEqualToString:kKVOFreeManInfo]) {
+        TJMFreeManInfo *model = change[@"new"];
+        self.phoneNum = model.mobile.description;
         NSString *starPhoneNum = [self.phoneNum stringByReplacingCharactersInRange:NSMakeRange(3, 4) withString:@"****"];
         self.noticeLabel.text = [NSString stringWithFormat:@"温馨提示：为了验证您的身份，需向%@发送一条验证码，请点击获取按钮后输入验证码",starPhoneNum];
     }

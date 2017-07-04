@@ -20,12 +20,14 @@
 @property (nonatomic,strong) NSNumber *size;
 @property (nonatomic,strong) NSNumber *number;
 
+
+
 @end
 
 
 @class TJMOrderItem;
 
-@interface TJMOrderModel : NSObject
+@interface TJMOrderModel : NSObject<BMKRouteSearchDelegate>
 
 @property (nonatomic,strong) NSNumber *orderId;
 @property (nonatomic,strong) NSNumber *userId;
@@ -75,8 +77,8 @@
 @property (nonatomic,copy) NSString *carrierShowMoney;
 //计算后得到
 
-@property (nonatomic,assign) double getDistance;
-
+@property (nonatomic,strong) NSNumber *getDistance;
+//@property (nonatomic,copy) RouteResultBolck routeResult;
 @end
 
 
