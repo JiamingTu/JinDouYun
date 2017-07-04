@@ -143,25 +143,38 @@
     UIViewController *VC = [self topViewController];
     [TJMHUDHandle hiddenHUDForView:VC.view];
     [TJMHUDHandle transientNoticeAtView:self.window withMessage:msg];
-    if ([VC isKindOfClass:NSClassFromString(@"TJMQRCodeSingInViewController")]) {
+    //判断
+    if ([VC isKindOfClass:NSClassFromString(@"TJMHomepageViewController")]) {
+        [[TJMLocationService sharedLocationService] getFreeManLocationWith:TJMGetLocationTypeCityName target:CLLocationCoordinate2DMake(0, 0)];
+    } else {
+        //除了上一种情况 其他的 都需要更新model状态
         TJMOrderModel *model = [VC valueForKey:@"orderModel"];
-        model.orderStatus = @4;
-        model.payStatus = @1;
+        [TJMRequestH getSingleOrderWithOrderNumber:model.orderNo success:^(id successObj, NSString *msg) {
+            TJMOrderModel *newModel = successObj;
+            model.payStatus = newModel.payStatus;
+            model.orderStatus = newModel.orderStatus;
+            [self receivedSignInMessageAndOrderDidUpdateWithViewController:VC];
+        } fail:^(NSString *failString) {
+            [TJMHUDHandle transientNoticeAtView:self.window withMessage:@"订单更新失败，请返回刷新"];
+        }];
+    }
+    
+}
+
+- (void)receivedSignInMessageAndOrderDidUpdateWithViewController:(UIViewController *)VC {
+    if ([VC isKindOfClass:NSClassFromString(@"TJMQRCodeSingInViewController")])
+    {
         //如果是 当前扫描界面 那就 pop 回去
         [VC.navigationController popViewControllerAnimated:YES];
     }
-    else if ([VC isKindOfClass:NSClassFromString(@"TJMCodeSignInViewController")]) {
-        TJMOrderModel *model = [VC valueForKey:@"orderModel"];
-        model.orderStatus = @4;
-        model.payStatus = @1;
+    else if ([VC isKindOfClass:NSClassFromString(@"TJMCodeSignInViewController")])
+    {
         UIViewController *targetVC = [VC popTargetViewControllerWithViewControllerNumber:2];
         [VC.navigationController popToViewController:targetVC animated:YES];
     }
-    else if ([VC isKindOfClass:NSClassFromString(@"TJMMyOrderDetailViewController")]) {
-        TJMOrderModel *model = [VC valueForKey:@"orderModel"];
+    else if ([VC isKindOfClass:NSClassFromString(@"TJMMyOrderDetailViewController")])
+    {
         UITableView *tableView = [VC valueForKey:@"tableView"];
-        model.orderStatus = @4;
-        model.payStatus = @1;
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wundeclared-selector"
         if ([VC respondsToSelector:@selector(setBottomButton)]) {
@@ -169,24 +182,16 @@
             [VC performSelector:@selector(setBottomButton) withObject:nil];
         }
     }
-    else if ([VC isKindOfClass:NSClassFromString(@"TJMMyOrderViewController.h")]) {
+    else if ([VC isKindOfClass:NSClassFromString(@"TJMMyOrderViewController.h")])
+    {
         //我的订单页面
-        TJMOrderModel *model = [VC valueForKey:@"orderModel"];
-        model.orderStatus = @4;
-        model.payStatus = @1;
         if ([VC respondsToSelector:@selector(reloadDataTableView)]) {
             [VC performSelector:@selector(reloadDataTableView) withObject:nil];
 #pragma clang diagnostic pop
         }
     }
-    else if ([VC isKindOfClass:NSClassFromString(@"TJMHomepageViewController")]) {
-        [[TJMLocationService sharedLocationService] getFreeManLocationWith:TJMGetLocationTypeCityName target:CLLocationCoordinate2DMake(0, 0)];
-    }
     else if ([VC isKindOfClass:NSClassFromString(@"TJMDeliveryPayViewController")])
     {
-        TJMOrderModel *model = [VC valueForKey:@"orderModel"];
-        model.orderStatus = @4;
-        model.payStatus = @1;
         //如果是 当前扫描界面 那就 pop 回去
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [VC.navigationController popViewControllerAnimated:YES];

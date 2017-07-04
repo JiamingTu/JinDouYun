@@ -655,7 +655,8 @@ SingletonM(RequestHandle)
         [self.httpRequestManager.requestSerializer setValue:_tokenModel.token forHTTPHeaderField:@"Authorization"];
         [self.httpRequestManager GET:path parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             if (TJMRightCode) {
-                
+                TJMOrderModel *model = [TJMOrderModel mj_objectWithKeyValues:responseObject[@"data"]];
+                success(model,TJMResponseMessage);
             } else if ([TJMResponseMessage isEqual:[NSNull null]]) {
                 failure(@"未知错误");
             } else {

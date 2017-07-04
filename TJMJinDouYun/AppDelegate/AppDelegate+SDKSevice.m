@@ -71,9 +71,9 @@
     if (userId) {
         alias = userId;
     } else {
-        alias = @"";
+        alias = nil;
     }
-    [JPUSHService setTags:nil alias:[NSNull null] fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias) {
+    [JPUSHService setTags:nil alias:alias fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias) {
         TJMLog(@"+++++++++rescode: %d, \ntags: %@, \nalias: %@\n", iResCode, iTags, iAlias);
     }];
 }

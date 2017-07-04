@@ -23,6 +23,7 @@
     NSMutableArray *_selectDataArray;
     NSInteger _loadViewStatus;
     NSString *_cityName;
+    BOOL _isNeed;
 }
 
 
@@ -118,7 +119,7 @@
     //进入后台，进入程序 对应操作
     __weak TJMHomepageViewController *weakSelf = self;
     self.appDelegate.workTimeBlock = ^ {
-        [weakSelf getWorkingStatus];
+        [weakSelf getWorkingStatusWithIsNeedUpdateDataSource:YES];
     };
     self.appDelegate.stopTimer = ^ {
         [weakSelf cancelTiemr];
@@ -127,7 +128,7 @@
     [self.appDelegate getFreeManInfoWithViewController:self fail:^(NSString *failMsg) {
         
     }];
-    [self getWorkingStatus];
+    [self getWorkingStatusWithIsNeedUpdateDataSource:YES];
     //获取位置后请求
     [[TJMLocationService sharedLocationService] getFreeManLocationWith:TJMGetLocationTypeCityName target:CLLocationCoordinate2DMake(0, 0)];
 }
@@ -139,8 +140,10 @@
     [self addObserver:self forKeyPath:@"isWorking" options:NSKeyValueObservingOptionNew context:nil];
     //接收通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityDidChange:) name:kTJMLocationCityNameDidChange object:nil];
+    [self getWorkingStatusWithIsNeedUpdateDataSource:NO];
     //根据orderStatus 更新 页面
     [self updateListAccountSelectModel];
+    
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
@@ -292,7 +295,7 @@
 
 #pragma  mark - 请求处理
 #pragma  mark 获取开工状态
-- (void)getWorkingStatus {
+- (void)getWorkingStatusWithIsNeedUpdateDataSource:(BOOL)isNeed {
     //判断开工状态
     TJMTokenModel *tokenModel = [TJMSandBoxManager getTokenModel];
     if (tokenModel) {
@@ -308,7 +311,7 @@
 }
 - (void)tap:(UIGestureRecognizer *)gestureRecognizer {
     [TJMHUDHandle hiddenHUDForView:self.view];
-    [self getWorkingStatus];
+    [self getWorkingStatusWithIsNeedUpdateDataSource:YES];
     [[TJMLocationService sharedLocationService] getFreeManLocationWith:TJMGetLocationTypeCityName target:CLLocationCoordinate2DMake(0, 0)];
 }
 #pragma  mark 获取开工时间/当前金额 更新UI
@@ -318,8 +321,10 @@
     self.workButton.selected = workStatus;
     //修改出工状态label
     self.statusLabel.text = workStatus ? @"出工中" : @"待出工";
-    //设置刷新视图，并获取数据
-    [self configHeaderAndFooterWithWorkStatus:workStatus];
+    if (_isNeed) {
+        //设置刷新视图，并获取数据
+        [self configHeaderAndFooterWithWorkStatus:workStatus];
+    }
     //鹰眼服务
     [self configbaiduTraceWithWorkStatus:workStatus];
     //上传FreeMan 位置
@@ -463,10 +468,11 @@
 #pragma  mark - 通知
 - (void)dayChange:(NSNotification *)notification {
     //日期变更后 重新请求 开工状态
-    [self getWorkingStatus];
+    [self getWorkingStatusWithIsNeedUpdateDataSource:YES];
 }
 - (void)cityDidChange:(NSNotification *)notification {
     TJMLog(@"位置已更新，开始刷新列表");
+    _isNeed = YES;
     if ([notification.userInfo[@"myLocation"] isKindOfClass:[NSString class]]) {
         if (self.header.isRefreshing) {
             [self.header endRefreshing];
@@ -657,7 +663,6 @@
         [segue.destinationViewController setValue:sender forKey:@"locations"];
     } else if ([segue.identifier isEqualToString:@"HomeToOrderDetail"]) {
         [segue.destinationViewController setValue:sender forKey:@"orderModel"];
-        
         [segue.destinationViewController setValue:[NSString stringWithFormat:@"%zd",_isWorking] forKey:@"isWorking"];
     }
 }

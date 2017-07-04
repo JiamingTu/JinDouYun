@@ -37,6 +37,11 @@
     [self setTitle:@"订单详情" fontSize:17 colorHexValue:0x333333];
     [self resetConstraints];
     [self configViews];
+    [TJMRequestH getSingleOrderWithOrderNumber:self.orderModel.orderNo success:^(id successObj, NSString *msg) {
+        
+    } fail:^(NSString *failString) {
+        
+    }];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];

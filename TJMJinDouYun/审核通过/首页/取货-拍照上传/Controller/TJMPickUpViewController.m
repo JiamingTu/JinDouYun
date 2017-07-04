@@ -73,18 +73,28 @@
 - (IBAction)commitAction:(UIButton *)sender {
     MBProgressHUD *progressHUD = [TJMHUDHandle showProgressHUDAtView:self.view message:@"正在上传"];
     NSMutableArray *images = [self.dataSourceArray mutableCopy];
+    //上传图片 取货
     [TJMRequestH upLoadPickedOrderImage:images orderNo:self.orderModel.orderNo pregress:^(NSProgress *progress) {
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             progressHUD.progressObject = progress;
         }];
     } success:^(id successObj, NSString *msg) {
         progressHUD.label.text = msg;
-        [progressHUD hideAnimated:YES afterDelay:1.5];
-        //成功后返回
-        _orderModel.orderStatus = @3;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.navigationController popViewControllerAnimated:YES];
-        });
+        //成功后返回 ， 更新订单状态
+        [TJMRequestH getSingleOrderWithOrderNumber:_orderModel.orderNo success:^(id successObj, NSString *msg) {
+            TJMOrderModel *newModel = successObj;
+            _orderModel.orderStatus = newModel.orderStatus;
+            //隐藏HUD
+            [progressHUD hideAnimated:YES afterDelay:1.5];
+            //pop
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self.navigationController popViewControllerAnimated:YES];
+            });
+        } fail:^(NSString *failString) {
+            [progressHUD hideAnimated:YES];
+            [TJMHUDHandle transientNoticeAtView:self.view withMessage:@"订单更新失败，请返回刷新"];
+        }];
+        
     } fail:^(NSString *failString) {
         progressHUD.label.text = failString;
         [progressHUD hideAnimated:YES afterDelay:0.8];
