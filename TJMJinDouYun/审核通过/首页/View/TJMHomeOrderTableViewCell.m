@@ -104,18 +104,21 @@
     NSString *dateString = [self tjm_setDateFormatterWithTimestamp:[model.requestTime integerValue]];
     NSString *titleLabelText;
     if ([self.currentModel.orderStatus integerValue] == 2) {
+        //待取货
         self.rightButtonWidthConstraint.constant = TJMScreenWidth / 2;
         [self.robOrderButton setTitle:@"确认取货" forState:UIControlStateNormal];
         [self.checkMapButton setTitle:@"地图导航" forState:UIControlStateNormal];
         titleLabelText = [NSString stringWithFormat:@"待取货：%@",dateString];
         self.titleLabel.textColor = TJMFUIColorFromRGB(0xff8600);
     } else if ([self.currentModel.orderStatus integerValue] == 3){
+        //待配送
         self.rightButtonWidthConstraint.constant = TJMScreenWidth / 2;
         [self.robOrderButton setTitle:@"确认送达" forState:UIControlStateNormal];
         [self.checkMapButton setTitle:@"地图导航" forState:UIControlStateNormal];
         titleLabelText = [NSString stringWithFormat:@"待配送：%@",dateString];
         self.titleLabel.textColor = TJMFUIColorFromRGB(0x7ab8ff);
     } else if (self.currentModel.orderStatus.integerValue == 1) {
+        //待抢单
         self.rightButtonWidthConstraint.constant = TJMScreenWidth / 2;
         [self.robOrderButton setTitle:@"抢 单！" forState:UIControlStateNormal];
         [self.checkMapButton setTitle:@"查看地图" forState:UIControlStateNormal];
@@ -128,11 +131,17 @@
         titleLabelText = [NSString stringWithFormat:@"已取消：%@",dateString];
         [self.checkMapButton setTitle:@"已取消" forState:UIControlStateNormal];
         self.titleLabel.textColor = TJMFUIColorFromRGB(0x999999);
-    } else {
+    } else if (self.currentModel.orderStatus.integerValue == 4){
         //已完成
         self.rightButtonWidthConstraint.constant = TJMScreenWidth;
         NSString *finishDateString = [self tjm_setDateFormatterWithTimestamp:model.finishTime.integerValue];
         titleLabelText = [NSString stringWithFormat:@"已完成：%@",finishDateString];
+        [self.checkMapButton setTitle:@"查看详情" forState:UIControlStateNormal];
+        self.titleLabel.textColor = TJMFUIColorFromRGB(0x999999);
+    } else {
+        //异常单（长期未配送）
+        self.rightButtonWidthConstraint.constant = TJMScreenWidth;
+        titleLabelText = [NSString stringWithFormat:@"异常订单：%@",dateString];
         [self.checkMapButton setTitle:@"查看详情" forState:UIControlStateNormal];
         self.titleLabel.textColor = TJMFUIColorFromRGB(0x999999);
     }
@@ -174,11 +183,9 @@
     TJMOrderModel *model = notification.userInfo[@"model"];
     if ([model isEqual:self.currentModel]) {
         self.myToGetDistanceLabel.text =  [NSString stringWithFormat:@"约%.2fKM",[model.getDistance doubleValue]];
+        NSString *notiKey = [NSString stringWithFormat:@"%p",model];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:notiKey object:nil];
     }
-    NSString *notiKey = [NSString stringWithFormat:@"%p",_currentModel];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:notiKey object:nil];
-    
-    
 }
 
 #pragma  mark - 设置label 边框
@@ -228,13 +235,26 @@
                 }
             }
         } break;
+            // 状态4 5 6 分别为 已完成 已取消 异常订单
         case 4: {
             //查看详情
             if ([self isDelegateAndResponseSelector:@selector(checkDetailsWithOrder:cell:)]) {
                 [self.delegate checkDetailsWithOrder:self.currentModel cell:self];
             }
-        }
-            
+        } break;
+        case 5: {
+            //查看详情
+            if ([self isDelegateAndResponseSelector:@selector(checkDetailsWithOrder:cell:)]) {
+                [self.delegate checkDetailsWithOrder:self.currentModel cell:self];
+            }
+        } break;
+        case 6: {
+            //查看详情
+            if ([self isDelegateAndResponseSelector:@selector(checkDetailsWithOrder:cell:)]) {
+                [self.delegate checkDetailsWithOrder:self.currentModel cell:self];
+            }
+        } break;
+    
         default:
             break;
     }

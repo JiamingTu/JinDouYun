@@ -82,18 +82,17 @@
 - (MJRefreshNormalHeader *)header {
     if (!_header) {
         self.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-            //清空当前状态（抢单，待取，待送）下 字典的值
-            [self.dataSourceDictionary removeObjectForKey:[self dataKey]];
-            [self.dataSourceDictionary removeObjectForKey:[NSString stringWithFormat:@"%zdnumber",_selectButton.tag]];
-            [self.dataSourceDictionary removeObjectForKey:[NSString stringWithFormat:@"%zdtotal",_selectButton.tag]];
+            [self deleteDataSourceDict];
             //重新获取位置后请求
             [[TJMLocationService sharedLocationService] getFreeManLocationWith:TJMGetLocationTypeCityName target:CLLocationCoordinate2DMake(0, 0)];
+            TJMLog(@"刷新了刷新了刷新了");
             //重置footer no more data
             [self.footer resetNoMoreData];
         }];
     }
     return _header;
 }
+
 - (MJRefreshAutoNormalFooter *)footer {
     if (!_footer) {
         self.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
@@ -131,6 +130,7 @@
     [self getWorkingStatusWithIsNeedUpdateDataSource:YES];
     //获取位置后请求
     [[TJMLocationService sharedLocationService] getFreeManLocationWith:TJMGetLocationTypeCityName target:CLLocationCoordinate2DMake(0, 0)];
+    [TJMHUDHandle showRequestHUDAtView:self.view message:nil];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -208,6 +208,8 @@
     [self.dataSourceDictionary removeAllObjects];
     //获取开工状态
     [[TJMLocationService sharedLocationService] getFreeManLocationWith:TJMGetLocationTypeCityName target:CLLocationCoordinate2DMake(0, 0)];
+    [TJMHUDHandle hiddenHUDForView:self.view];
+    [TJMHUDHandle showRequestHUDAtView:self.view message:nil];
 }
 
 #pragma  mark - 按钮方法
@@ -236,6 +238,7 @@
 }
 #pragma  mark 抢单、待取货、待送货按钮
 - (IBAction)selectStatusOrder:(UIButton *)sender {
+    [TJMRequestH httpRequestManagerCancelRequest];
     if ([_selectButton isEqual:sender]) {
         return;
     }
@@ -245,16 +248,27 @@
     [self.tableView reloadData];
     if (!self.isWorking) {
         //如果是收工状态 就设置
-        [self setOrderListWithknockOff];
+        [self setOrderListWithKnockOff];
         [self.header beginRefreshing];
     }
     self.selectLineViewLeft.constant = (sender.tag - 100) * TJMScreenWidth / 3;
     if (self.isWorking) {
         //如果是开工状态，才刷新列表
         //刷新
-        [self.header beginRefreshing];
+        //如果正在刷新的时候 点击 这三个按钮 不会触发刷新 所以需要进行下列判断
+        if (self.header.state == MJRefreshStateRefreshing) {
+            [self deleteDataSourceDict];
+            [[TJMLocationService sharedLocationService] getFreeManLocationWith:TJMGetLocationTypeCityName target:CLLocationCoordinate2DMake(0, 0)];
+        } else {
+            [self.header beginRefreshing];
+        }
     }
-    
+}
+- (void)deleteDataSourceDict {
+    //清空当前状态（抢单，待取，待送）下 字典的值
+    [self.dataSourceDictionary removeObjectForKey:[self dataKey]];
+    [self.dataSourceDictionary removeObjectForKey:[NSString stringWithFormat:@"%zdnumber",_selectButton.tag]];
+    [self.dataSourceDictionary removeObjectForKey:[NSString stringWithFormat:@"%zdtotal",_selectButton.tag]];
 }
 
 #pragma  mark - TDAlertViewDelegate
@@ -323,6 +337,7 @@
     self.statusLabel.text = workStatus ? @"出工中" : @"待出工";
     if (_isNeed) {
         //设置刷新视图，并获取数据
+        TJMLog(@"准备刷新");
         [self configHeaderAndFooterWithWorkStatus:workStatus];
     }
     //鹰眼服务
@@ -344,10 +359,10 @@
         if (workStatus) {
             //如果是开工，就异步开启定时器
             [self startTimerWithTimestamp:[data[@"workTime"] integerValue]];
+        } else {
+            [self cancelTiemr];
         }
     } fail:^(NSString *failString) {
-        //self.progressHUD.label.text = failString;
-        //[self.progressHUD hideAnimated:YES afterDelay:1.5];
         TJMLog(@"%@",failString);
     }];
     
@@ -364,13 +379,13 @@
         [self setOrderList];
     } else {
         //收工
-        [self setOrderListWithknockOff];
+        [self setOrderListWithKnockOff];
         //停止定时器
         [self cancelTiemr];
     }
 }
 #pragma  mark - 收工状态下的表 （抢单：空！其余可见）
-- (void)setOrderListWithknockOff {
+- (void)setOrderListWithKnockOff {
     if (_selectButton.tag != 101) {
         //tableView 空白
         [self.footer setTitle:@"" forState:MJRefreshStateNoMoreData];
@@ -429,6 +444,7 @@
         page = 0;
     }
     //请求
+    TJMLog(@"请求了请求了请求了请求了请求了请求了++%@++%zd",type,status);
     [TJMRequestH getOrderListWithType:type myLocation:self.myLoc.location.coordinate page:page size:5 sort:nil dir:@"ASC" status:status cityName:_cityName success:^(id successObj, NSString *msg) {
         TJMOrderData *orderData = (TJMOrderData *)successObj;
         //如果 为空 则不能进行下列操作
@@ -451,6 +467,7 @@
             //停止刷新
             [self.tableView.mj_header endRefreshing];
         }
+        [TJMHUDHandle hiddenHUDForView:self.view];
     } fial:^(NSString *failString) {
         if (self.header.isRefreshing) {
             [self.header endRefreshing];
@@ -458,6 +475,7 @@
         if (self.footer.isRefreshing) {
             [self.footer endRefreshing];
         }
+        [TJMHUDHandle hiddenHUDForView:self.view];
     }];
 }
 

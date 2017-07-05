@@ -470,15 +470,13 @@ SingletonM(RequestHandle)
 }
 
 - (void)addDistanceWithModelData:(id)data myLocation:(CLLocationCoordinate2D)coordinate {
-    //创建组
-    dispatch_group_t group = dispatch_group_create();
     //创建队列
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_group_async(group, queue, ^{
+    dispatch_async(queue, ^{
         NSArray *array = [data isKindOfClass:[TJMOrderData class]] ? ((TJMOrderData *)data).content : ((TJMMyOrderData *)data).data;
         [array enumerateObjectsUsingBlock:^(TJMOrderModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             CLLocationCoordinate2D endCoordinate = CLLocationCoordinate2DMake(obj.consignerLat.doubleValue, obj.consignerLng.doubleValue);
-            [[TJMLocationService sharedLocationService] calculateDriveDistanceWithDelegate:obj startPoint:coordinate endPoint:endCoordinate];
+            [[TJMLocationService sharedLocationService] calculateRidingDistanceWithDelegate:obj startPoint:coordinate endPoint:endCoordinate];
         }];
     });
 }

@@ -368,10 +368,9 @@ SingletonM(LocationService)
 }
 
 
-#pragma mark 驾车路线
 
 #pragma mark 驾车路线
--(void)calculateDriveDistanceWithDelegate:(id<BMKRouteSearchDelegate>)delegate startPoint:(CLLocationCoordinate2D)startCoordinate endPoint:(CLLocationCoordinate2D)endCoordinate {
+-(void)calculateRidingDistanceWithDelegate:(id<BMKRouteSearchDelegate>)delegate startPoint:(CLLocationCoordinate2D)startCoordinate endPoint:(CLLocationCoordinate2D)endCoordinate {
     BMKRouteSearch *routeSearch = [[BMKRouteSearch alloc] init];
     //设置delegate，用于接收检索结果
     routeSearch.delegate = delegate;//路算结果在orderModel中回调

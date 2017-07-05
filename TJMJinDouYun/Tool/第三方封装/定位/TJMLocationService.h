@@ -39,6 +39,6 @@ SingletonH(LocationService)
 @property (nonatomic,strong) BMKRouteSearch *routeSearch;
 @property (nonatomic,copy) RouteResultBolck routeResult;
 /**计算我到取货点距离*/
--(void)calculateDriveDistanceWithDelegate:(id<BMKRouteSearchDelegate>)delegate startPoint:(CLLocationCoordinate2D)startCoordinate endPoint:(CLLocationCoordinate2D)endCoordinate;
+-(void)calculateRidingDistanceWithDelegate:(id<BMKRouteSearchDelegate>)delegate startPoint:(CLLocationCoordinate2D)startCoordinate endPoint:(CLLocationCoordinate2D)endCoordinate;
 @end
 

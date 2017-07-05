@@ -41,11 +41,10 @@
         TJMOrderDetailInfoModel *objWeight = [self setInfoWithTitle:@"物品重量" detail:weightString isTel:NO];
         //订单编号
         TJMOrderDetailInfoModel *orderNo = [self setInfoWithTitle:@"订单编号" detail:orderModel.orderNo isTel:NO];
+        
+        
         //订单状态
-        NSString *orderStatusText;
-        if (orderModel.orderStatus.integerValue == 2) orderStatusText = @"待取件";
-        else if (orderModel.orderStatus.integerValue == 3) orderStatusText = @"待配送";
-        else if (orderModel.orderStatus.integerValue == 4) orderStatusText = @"已完成";
+        NSString *orderStatusText = [self setOrderStatusStringWithOrderStatus:orderModel.orderStatus.integerValue];
         TJMOrderDetailInfoModel *orderStatus = [self setInfoWithTitle:@"订单状态" detail:orderStatusText isTel:NO];
         
         NSString *payStatusString;
@@ -63,6 +62,29 @@
     return self;
 }
 
+- (NSString *)setOrderStatusStringWithOrderStatus:(NSInteger)orderStatus {
+    NSString *orderStatusString;
+    switch (orderStatus) {
+        case 2:
+            orderStatusString = @"待取件";
+            break;
+        case 3:
+            orderStatusString = @"待配送";
+            break;
+        case 4:
+            orderStatusString = @"已完成";
+            break;
+        case 5:
+            orderStatusString = @"已取消";
+            break;
+        case 6:
+            orderStatusString = @"异常订单";
+            break;
+        default:
+            break;
+    }
+    return orderStatusString;
+}
 
 - (TJMOrderDetailInfoModel *)setInfoWithTitle:(NSString *)title detail:(NSString *)detail isTel:(BOOL)isTel {
     TJMOrderDetailInfoModel *model = [[TJMOrderDetailInfoModel alloc]init];
