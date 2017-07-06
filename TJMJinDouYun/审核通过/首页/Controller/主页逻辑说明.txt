@@ -1,23 +1,28 @@
-1.如何刷新
-    1）同时获取两个数据：workStatus（是否开工 KVO） myLoc&cityName（当前位置&城市名 notify），获取位置成功，且处于开工状态时刷新
-        a.workStatus，KVO中 得到工作状态后 如果 myLoc != nil && cityName != nil 调用如下方法，完成各项操作
-        b.myLoc&cityName， 通知中，获取当前位置和城市名后，调用如下方法，完成各项操作
+1.viewDidLaod
+    同时获取开工状态（_isNeed = YES）和位置信息，
+    可能性（默认开工状态）：
+    1.先得到位置，后得到工作状态：得到位置后：工作状态为0（初始值），不会刷新；得到工作状态后：已经有位置，且_isNeed = YES 调用刷新方法刷新界面
+    2.先得到工作状态，后得到位置：得到工作状态后：位置信息为空，不刷新界面；得到位置后，刷新界面
 
-        - (void)getWorkingTimeAndConfigWithWorkingStatus:(BOOL)workStatus
+2.点击TabBar item(0)按钮（获取位置信息）
+    1）且viewWillAppear：获取开工状态（_isNeed = NO）
+        获取位置信息后 根据开工状态 是否刷新界面
+        获取工作装填后，_isNeed = NO，不刷新
+    2）没有其他约束
+        获取位置信息后 根据开工状态 是否刷新界面
 
-2.何时刷新
-    //1）视图将要出现时，获取工作状态，若为YES，且myLoc != nil，则刷新 //此条废弃
-    2）下拉刷新时
-    3）确认开工后（点击开工按钮），改变工作状态，若myLoc != nil，则刷新
-    4）后台进入前台，获取工作状态，若为YES，且myLoc != nil，则刷新
-    5）点击”抢 单！“”待取货“”待送货“按钮后，触发下拉刷新
-    6）点击tabBarItem -> index = 0 获取位置 并刷新
-3.何时获取位置信息
-    1）viewDidLoad
-    2）获取工作状态失败，轻拍重新加载（同时获取workStatus 和 myLoc）
-4.何时获取工作状态
-    //1）视图将要出现时 //此条废弃
-    2）后台进入前台
-    3）获取工作状态失败，轻拍重新加载（同时获取workStatus 和 myLoc）
+3.viewWillAppear 获取工作状态（_isNeed = NO）
+    获取工作状态，_isNeed = NO，不刷新
 
+4.进入前台 两个同时获取 （_isNeed = NO）
+    获取工作状态，_isNeed = NO，不刷新
+    获取位置，根据工作状态刷新
+注：
+***(getWorkingTimeAndConfigWithWorkingStatus:)方法中，
+    1.更改界面状态；
+    2.设置刷新按钮，且是否刷新；//删除2
+    3.开启或关闭鹰眼；
+    4.开启或关闭位置上传
+    5.获取开工时间，并开启或关闭定时器
+***
 ***获取工作状态新增一个是否需要更新参数，解决视图将要出现时开启定时器，且不更新页面的要求***

@@ -118,7 +118,9 @@
     //进入后台，进入程序 对应操作
     __weak TJMHomepageViewController *weakSelf = self;
     self.appDelegate.workTimeBlock = ^ {
-        [weakSelf getWorkingStatusWithIsNeedUpdateDataSource:YES];
+        [weakSelf getWorkingStatusWithIsNeedUpdateDataSource:NO];
+        [[TJMLocationService sharedLocationService] getFreeManLocationWith:TJMGetLocationTypeCityName target:CLLocationCoordinate2DMake(0, 0)];
+        [TJMHUDHandle showRequestHUDAtView:weakSelf.view message:nil];
     };
     self.appDelegate.stopTimer = ^ {
         [weakSelf cancelTiemr];
@@ -310,6 +312,7 @@
 #pragma  mark - 请求处理
 #pragma  mark 获取开工状态
 - (void)getWorkingStatusWithIsNeedUpdateDataSource:(BOOL)isNeed {
+    _isNeed = isNeed;
     //判断开工状态
     TJMTokenModel *tokenModel = [TJMSandBoxManager getTokenModel];
     if (tokenModel) {
@@ -335,11 +338,6 @@
     self.workButton.selected = workStatus;
     //修改出工状态label
     self.statusLabel.text = workStatus ? @"出工中" : @"待出工";
-    if (_isNeed) {
-        //设置刷新视图，并获取数据
-        TJMLog(@"准备刷新");
-        [self configHeaderAndFooterWithWorkStatus:workStatus];
-    }
     //鹰眼服务
     [self configbaiduTraceWithWorkStatus:workStatus];
     //上传FreeMan 位置
@@ -490,7 +488,6 @@
 }
 - (void)cityDidChange:(NSNotification *)notification {
     TJMLog(@"位置已更新，开始刷新列表");
-    _isNeed = YES;
     if ([notification.userInfo[@"myLocation"] isKindOfClass:[NSString class]]) {
         if (self.header.isRefreshing) {
             [self.header endRefreshing];
@@ -511,7 +508,7 @@
     [self setNaviLeftButtonFrameWithButton:_naviLeftButton];
     self.myLoc = notification.userInfo[@"myLocation"];
     if (self.myLoc && _cityName) {
-        [self getWorkingTimeAndConfigWithWorkingStatus:self.isWorking];
+        [self configHeaderAndFooterWithWorkStatus:self.isWorking];
     }
 }
 
@@ -640,8 +637,13 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
     if ([keyPath isEqualToString:@"isWorking"]) {
         BOOL isWorking = [change[@"new"] boolValue];
+        //得到工作状态后开始相关操作
+        [self getWorkingTimeAndConfigWithWorkingStatus:isWorking];
+        //如果这时候，以下两个数据都有了 且 需要进行刷新 则刷新
         if (self.myLoc && _cityName) {
-            [self getWorkingTimeAndConfigWithWorkingStatus:isWorking];
+            if (_isNeed) {
+                [self configHeaderAndFooterWithWorkStatus:isWorking];
+            }
         }
     } else if ([keyPath isEqualToString:kKVOFreeManInfo]) {
         TJMFreeManInfo *freeManInfo = change[@"new"];
