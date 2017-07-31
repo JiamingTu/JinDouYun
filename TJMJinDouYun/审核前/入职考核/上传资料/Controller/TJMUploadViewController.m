@@ -20,6 +20,9 @@
 @property (nonatomic,strong) TJMUserInfos *userInfo;
 @property (weak, nonatomic) IBOutlet UILabel *reminderLabel;
 @property (weak, nonatomic) IBOutlet UIButton *userProtocolButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *agreeProtocolButton;
+
 //约束
 //竖直
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *checkBtnConstraint;
@@ -147,15 +150,22 @@
         if (![realName isChinese] || ![concact isChinese]) {
             //请输入正确的姓名
             noticeString = @"请输入正确的姓名";
-        } else {
+        }
+        else {
             if (![idCard judgeIdentityStringValid]) {
                 noticeString = @"请输入正确的身份证号";
-            } else {
+            }
+            else {
                 if (![concactNum isMobileNumber]) {
                     noticeString = @"请输入正确的电话号码";
-                } else if ([concactNum isEqualToString:self.freeManInfo.mobile.description]) {
+                }
+                else if ([concactNum isEqualToString:self.freeManInfo.mobile.description]) {
                     noticeString = @"紧急联系人电话不可与账号一致";
-                } else {
+                }
+                else if (!self.agreeProtocolButton.selected) {
+                    noticeString = @"请先阅读并同意用户协议";
+                }
+                else {
                     //提交
                     MBProgressHUD *progressHUD = [TJMHUDHandle showRequestHUDAtView:self.view message:@"提交中..."];
                     [TJMRequestH uploadFreeManInfoWithForm:self.form photos:self.photos progress:^(NSProgress *progress) {
@@ -185,6 +195,9 @@
     
 }
 
+- (IBAction)agreeUserProtocolAction:(UIButton *)sender {
+    sender.selected = !sender.selected;
+}
 
 
 
@@ -258,6 +271,7 @@
     NSString *type = indexPath.row == 0 ? TJMFreeManGetCity : TJMFreeManGetVehicle;
     NSObject *unknowObj = indexPath.row == 0 ? self.provinceData : self.vehicleData;
     //如果对象存在 则不用网络请求
+    [TJMHUDHandle showRequestHUDAtView:self.view message:nil];
     if (!unknowObj) {
         [TJMRequestH getUploadRelevantInfoWithType:type form:nil success:^(id successObj, NSString *msg) {
             if (indexPath.row == 0) {
@@ -266,11 +280,14 @@
                 self.vehicleData = successObj;
             }
             [self showPickerViewWithTableView:self.tableView successObj:successObj indexPaht:indexPath parameters:self.form];
+            [TJMHUDHandle hiddenHUDForView:self.view];
         } fail:^(NSString *failString) {
-            
+            [TJMHUDHandle hiddenHUDForView:self.view];
+            [TJMHUDHandle transientNoticeAtView:self.view withMessage:failString];
         }];
     } else {
         [self showPickerViewWithTableView:self.tableView successObj:unknowObj indexPaht:indexPath parameters:self.form];
+        [TJMHUDHandle hiddenHUDForView:self.view];
     }
 }
 

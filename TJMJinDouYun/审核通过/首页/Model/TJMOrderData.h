@@ -44,6 +44,7 @@
 @property (nonatomic,strong) NSNumber *requestTime;
 @property (nonatomic,strong) NSNumber *deliveryTime;
 @property (nonatomic,strong) TJMOrderItem *item;
+@property (nonatomic,copy) NSString *itemName;
 @property (nonatomic,strong) NSNumber *objectValue;
 @property (nonatomic,strong) NSNumber *objectWeight;
 @property (nonatomic,strong) TJMVehicle *tool;

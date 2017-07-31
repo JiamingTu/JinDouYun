@@ -73,17 +73,17 @@ const char *kTJMAppDelegateKey = "AppDelegateKey";
     
 }
 
-#pragma  mark 设置左导航按钮尺寸(首页左导航)
-- (void)setNaviLeftButtonFrameWithButton:(UIButton *)button {
-    CGFloat titleLabelInset = 10.5 * TJMWidthRatio;
-    button.titleEdgeInsets = UIEdgeInsetsMake(0, -titleLabelInset, 0, titleLabelInset);
-    //字的宽度 字体长度 * 字体尺寸 + （图片宽度 + UI偏移量 - titleLabel偏移量）* 比例系数
-    CGFloat imageInset = button.currentTitle.length * button.titleLabel.font.pointSize + (button.currentImage.size.width + 6.5 - titleLabelInset) * TJMWidthRatio;
-    button.imageEdgeInsets = UIEdgeInsetsMake(0, imageInset, 0, -imageInset);
-    CGFloat width = button.currentImage.size.width + button.currentTitle.length * button.titleLabel.font.pointSize + 6.5 * TJMWidthRatio;
-    CGFloat height = button.titleLabel.font.pointSize + 2;
-    button.frame = CGRectMake(button.frame.origin.x, button.frame.origin.y, width, height);
-}
+//#pragma  mark 设置左导航按钮尺寸(首页左导航)
+//- (void)setNaviLeftButtonFrameWithButton:(UIButton *)button {
+//    CGFloat titleLabelInset = 10.5 * TJMWidthRatio;
+//    button.titleEdgeInsets = UIEdgeInsetsMake(0, -titleLabelInset, 0, titleLabelInset);
+//    //字的宽度 字体长度 * 字体尺寸 + （图片宽度 + UI偏移量 - titleLabel偏移量）* 比例系数
+//    CGFloat imageInset = button.currentTitle.length * button.titleLabel.font.pointSize + (button.currentImage.size.width + 6.5 - titleLabelInset) * TJMWidthRatio;
+//    button.imageEdgeInsets = UIEdgeInsetsMake(0, imageInset, 0, -imageInset);
+//    CGFloat width = button.currentImage.size.width + button.currentTitle.length * button.titleLabel.font.pointSize + 6.5 * TJMWidthRatio;
+//    CGFloat height = button.titleLabel.font.pointSize + 2;
+//    button.frame = CGRectMake(button.frame.origin.x, button.frame.origin.y, width, height);
+//}
 
 
 
@@ -180,7 +180,7 @@ const char *kTJMAppDelegateKey = "AppDelegateKey";
     }];
     
     UIAlertAction *photosAction = [UIAlertAction actionWithTitle:@"从相册选择" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        imagePickerVC.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
         [self presentViewController:imagePickerVC animated:YES completion:^{}];
     }];
     

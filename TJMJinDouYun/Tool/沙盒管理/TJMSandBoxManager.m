@@ -96,15 +96,17 @@
 }
 
 #pragma  mark - 清理缓存
-+ (void)clearCacheEveryTwoWeeks {
++ (BOOL)isScratchTimeWithDays:(NSInteger)days {
     NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
     NSError *error = nil;
     NSDictionary *fileInfo = [[NSFileManager defaultManager] attributesOfItemAtPath:cachePath error:&error];
     NSDate *createDate = fileInfo[NSFileCreationDate];
     double offsetTime = [[NSDate date] timeIntervalSinceDate:createDate];
-    double twoWeeksSecond = 14 * 24 * 60 * 60;
+    double twoWeeksSecond = days * 24 * 60 * 60;
     if (offsetTime - twoWeeksSecond >= 0) {
-        [self clearCache];
+        return YES;
+    } else {
+        return NO;
     }
 }
 

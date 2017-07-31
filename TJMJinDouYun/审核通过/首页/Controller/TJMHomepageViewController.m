@@ -13,6 +13,9 @@
 #import "TJMQRCodeSingInViewController.h"
 #import "TJMBaiduMapViewController.h"
 #import "TJMHomepageViewController+Category.h"
+
+static NSInteger homepageOrderSize = 5;
+
 @interface TJMHomepageViewController ()<UITableViewDelegate,UITableViewDataSource,TJMHomeOrderTableViewCellDelegate>
 {
     
@@ -44,8 +47,6 @@
 
 //热力图
 @property (nonatomic,strong) TJMBaiduMapViewController *mapVC;
-//菊花
-@property (nonatomic,strong) MBProgressHUD *progressHUD;
 
 @end
 
@@ -53,10 +54,10 @@
 #pragma  mark - lazy loading
 - (UIButton *)naviLeftButton {
     if (!_naviLeftButton) {
-        UIImage *image = [UIImage imageNamed:@"nav_btn_drop-down-"];
+//        UIImage *image = [UIImage imageNamed:@"nav_btn_drop-down-"];
         UIFont *font = [UIFont systemFontOfSize:15];
         self.naviLeftButton = [[UIButton alloc]init];
-        self.naviLeftButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+//        self.naviLeftButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         self.naviLeftButton.titleLabel.font = font;
         _cityName = [TJMSandBoxManager getModelFromInfoPlistWithKey:kTJMCityName];
         if (_cityName) {
@@ -65,12 +66,17 @@
         } else {
             [self.naviLeftButton setTitle:@"厦门" forState:UIControlStateNormal];
         }
+        [self setNaviLeftButtonFrame];
         [self.naviLeftButton setTitleColor:TJMFUIColorFromRGB(0x333333) forState:UIControlStateNormal];
-        [self.naviLeftButton setImage:image forState:UIControlStateNormal];
+//        [self.naviLeftButton setImage:image forState:UIControlStateNormal];
         [self.naviLeftButton addTarget:self action:@selector(leftItemAction:) forControlEvents:UIControlEventTouchUpInside];
         self.naviLeftButton.tag = 1100;
     }
     return _naviLeftButton;
+}
+- (void)setNaviLeftButtonFrame {
+    UIFont *font = _naviLeftButton.titleLabel.font;
+    _naviLeftButton.frame = CGRectMake(_naviLeftButton.frame.origin.x, _naviLeftButton.frame.origin.y, _naviLeftButton.titleLabel.text.length * font.pointSize + 4, font.pointSize + 2);
 }
 
 - (NSMutableDictionary *)dataSourceDictionary {
@@ -118,6 +124,9 @@
     //进入后台，进入程序 对应操作
     __weak TJMHomepageViewController *weakSelf = self;
     self.appDelegate.workTimeBlock = ^ {
+        //清除原来数据
+        [weakSelf deleteDataSourceDict];
+        //获取工作状态
         [weakSelf getWorkingStatusWithIsNeedUpdateDataSource:NO];
         [[TJMLocationService sharedLocationService] getFreeManLocationWith:TJMGetLocationTypeCityName target:CLLocationCoordinate2DMake(0, 0)];
         [TJMHUDHandle showRequestHUDAtView:weakSelf.view message:nil];
@@ -193,7 +202,7 @@
     //注册区头视图
     [self.tableView registerClass:[TJMHomeHeaderView class] forHeaderFooterViewReuseIdentifier:@"HomeHeader"];
     //设置做导航按钮（城市选择）
-    [self setNaviLeftButtonFrameWithButton:self.naviLeftButton];
+//    [self setNaviLeftButtonFrameWithButton:self.naviLeftButton];
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithCustomView:self.naviLeftButton];
     self.navigationItem.leftBarButtonItem = leftItem;
     //设置右边导航按钮
@@ -269,8 +278,7 @@
 - (void)deleteDataSourceDict {
     //清空当前状态（抢单，待取，待送）下 字典的值
     [self.dataSourceDictionary removeObjectForKey:[self dataKey]];
-    [self.dataSourceDictionary removeObjectForKey:[NSString stringWithFormat:@"%zdnumber",_selectButton.tag]];
-    [self.dataSourceDictionary removeObjectForKey:[NSString stringWithFormat:@"%zdtotal",_selectButton.tag]];
+    [self.dataSourceDictionary removeObjectForKey:[self pageKey]];
 }
 
 #pragma  mark - TDAlertViewDelegate
@@ -286,6 +294,11 @@
                 self.isWorking = [type isEqualToString:@"Start"];
                 if (!self.isWorking) {
                     [self cancelTiemr];
+                } else {
+                    //如果是开工的话 配置 刷新
+                    if (self.myLoc && _cityName) {
+                        [self configHeaderAndFooterWithWorkStatus:self.isWorking];
+                    }
                 }
                 [TJMHUDHandle transientNoticeAtView:self.view withMessage:msg];
             } fail:^(NSString *failString) {
@@ -380,6 +393,8 @@
         [self setOrderListWithKnockOff];
         //停止定时器
         [self cancelTiemr];
+        //隐藏hud
+        [TJMHUDHandle hiddenHUDForView:self.view];
     }
 }
 #pragma  mark - 收工状态下的表 （抢单：空！其余可见）
@@ -402,6 +417,7 @@
         }
         [self.dataSourceDictionary removeObjectsForKeys:deletKeys];
         [self.tableView reloadData];
+        
     } else {
         [self.footer resetNoMoreData];
         [self.footer setTitle:@"已经全部加载完毕" forState:MJRefreshStateNoMoreData];
@@ -411,6 +427,7 @@
         [self setOrderList];
     }
 }
+
 
 #pragma  mark - 设置订单列表
 - (void)setOrderList {
@@ -425,46 +442,53 @@
         type = TJMStatusOrder;
         status = 3;
     }
-    NSInteger number,totalPage,page;//设置页数
-    if ([self.dataSourceDictionary.allKeys containsObject:[NSString stringWithFormat:@"%zdtotal",_selectButton.tag]]) {
-        //如果存在 tag&total 这个key 就说明已经请求过 则根据页数 继续请求（下一页）
-        number = [self.dataSourceDictionary[[NSString stringWithFormat:@"%zdnumber",_selectButton.tag]] integerValue];
-        totalPage = [self.dataSourceDictionary[[NSString stringWithFormat:@"%zdtotal",_selectButton.tag]] integerValue];
-        if (number + 1 >= totalPage) {
-            //如果number + 1 >= totalPage 则已经是最后一页
-            //no more data
-            [self.tableView.mj_footer endRefreshingWithNoMoreData];
-            return ;
-        } else {
-            page = number + 1;
-        }
-    } else { //如果不存在，则从零开始
-        page = 0;
+    
+    //如果没有页数 就存一个页数进去
+    NSString *pageKey = [self pageKey];
+    if (!self.dataSourceDictionary[pageKey]) {
+        [self.dataSourceDictionary setObject:@0 forKey:pageKey];
     }
+    NSInteger page = [self.dataSourceDictionary[pageKey] integerValue];
+    TJMLog(@"现在是第%zd页",page);
     //请求
     TJMLog(@"请求了请求了请求了请求了请求了请求了++%@++%zd",type,status);
-    [TJMRequestH getOrderListWithType:type myLocation:self.myLoc.location.coordinate page:page size:5 sort:nil dir:@"ASC" status:status cityName:_cityName success:^(id successObj, NSString *msg) {
+    [TJMRequestH getOrderListWithType:type myLocation:self.myLoc.location.coordinate page:page size:homepageOrderSize sort:nil dir:@"ASC" status:status cityName:_cityName success:^(id successObj, NSString *msg) {
         TJMOrderData *orderData = (TJMOrderData *)successObj;
         //如果 为空 则不能进行下列操作
-        if (orderData.totalPages == nil) return;
+
+        //如果数据是空 则停止刷新 并 noMoreData
+        if (orderData.content.count == 0 || orderData.content == nil) {
+            [self.header endRefreshing];
+            [self.footer endRefreshingWithNoMoreData];
+            [TJMHUDHandle hiddenHUDForView:self.view];
+            return ;
+        }
+        //如果有数据
         NSMutableArray *array = [NSMutableArray arrayWithArray:orderData.content];
-        //确定数据数组的key
-        if ([self.dataSourceDictionary.allKeys containsObject:[NSString stringWithFormat:@"%zdtotal",_selectButton.tag]]) {
+        //确定是下拉 还是 上拉
+        if (page != 0) {
             //上拉加载
             NSMutableArray *dictArray = self.dataSourceDictionary[[self dataKey]];
             [dictArray addObjectsFromArray:array];
             [self.tableView reloadData];
-            [self.dataSourceDictionary  setObject:orderData.number forKey:[NSString stringWithFormat:@"%zdnumber",_selectButton.tag]];
-            [self.tableView.mj_footer endRefreshing];
+            
+            //判断 array.count 是否 小于 homepageOrderSize
+            if (array.count < homepageOrderSize) {
+                //如果小于 就没有更多数据了
+                [self.footer endRefreshingWithNoMoreData];
+            } else {
+                //否则可以继续加载
+                [self.footer endRefreshing];
+            }
         } else {
             //刷新
             [self.dataSourceDictionary setObject:array forKey:[self dataKey]];
-            [self.dataSourceDictionary  setObject:orderData.number forKey:[NSString stringWithFormat:@"%zdnumber",_selectButton.tag]];
-            [self.dataSourceDictionary setObject:orderData.totalPages forKey:[NSString stringWithFormat:@"%zdtotal",_selectButton.tag]];
             [self.tableView reloadData];
             //停止刷新
             [self.tableView.mj_header endRefreshing];
         }
+        //页数 ++
+        [self.dataSourceDictionary  setObject:@(page + 1) forKey:pageKey];
         [TJMHUDHandle hiddenHUDForView:self.view];
     } fial:^(NSString *failString) {
         if (self.header.isRefreshing) {
@@ -479,6 +503,9 @@
 
 - (NSString *)dataKey {
     return  [NSString stringWithFormat:@"%zd",_selectButton.tag];
+}
+- (NSString *)pageKey {
+    return  [NSString stringWithFormat:@"%zdPage",_selectButton.tag];
 }
 
 #pragma  mark - 通知
@@ -505,7 +532,8 @@
     _cityName = notification.userInfo[@"cityName"];
     NSString *city =  [_cityName substringWithRange:NSMakeRange(0, _cityName.length - 1)];
     [self.naviLeftButton setTitle:city forState:UIControlStateNormal];
-    [self setNaviLeftButtonFrameWithButton:_naviLeftButton];
+//    [self setNaviLeftButtonFrameWithButton:_naviLeftButton];
+    [self setNaviLeftButtonFrame];
     self.myLoc = notification.userInfo[@"myLocation"];
     if (self.myLoc && _cityName) {
         [self configHeaderAndFooterWithWorkStatus:self.isWorking];

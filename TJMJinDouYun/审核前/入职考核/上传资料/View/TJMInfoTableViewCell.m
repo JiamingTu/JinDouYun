@@ -43,7 +43,8 @@
     if ([self.inputType isEqualToString:@"bankcard"]) {
         return [textField bankCardInputRuleWithTextFieldShouldChangeCharactersInRange:range replacementString:string];
     }else if ([self.inputType isEqualToString:@"realName"] || [self.inputType isEqualToString:@"concact"]) {
-        return  [textField realNameInputRuleWithTextFieldShouldChangeCharactersInRange:range replacementString:string];
+//        return  [textField realNameInputRuleWithTextFieldShouldChangeCharactersInRange:range replacementString:string];
+        return YES;
     } else if ([self.inputType isEqualToString:@"idCard"]){
         return [textField idCardInputRuleWithTextFieldShouldChangeCharactersInRange:range replacementString:string];
     } else if ([self.inputType isEqualToString:@"concactMobile"]) {

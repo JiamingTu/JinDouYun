@@ -17,7 +17,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     // Add the navigation controller's view to the window and display.
-    [TJMSandBoxManager clearCacheEveryTwoWeeks];
+    if ([TJMSandBoxManager isScratchTimeWithDays:14]) {
+        [TJMSandBoxManager clearCache];
+    }
     //登录验证
     [self checkLoggingStatusWithToken];
     //引导页

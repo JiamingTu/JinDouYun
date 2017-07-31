@@ -10,7 +10,6 @@
 #import "TJMHomepageViewController.h"
 @interface TJMTabBarViewController ()<UITabBarControllerDelegate,TDAlertViewDelegate>
 {
-    NSString *_newVersionURL;
 }
 @end
 
@@ -56,12 +55,7 @@
         if (offsetTime - oneWeekSecond >= 0) {
             //检查更新
             [self checkVersionRequest];
-            
-            
         }
-        //暂时放在这里
-        [self checkVersionRequest];
-        
     } else {
         //如果没有得到这个日期 则检查更新 并 储存日期
         [self checkVersionRequest];
@@ -72,8 +66,10 @@
 - (void)checkVersionRequest {
     [TJMRequestH checkVersionSuccess:^(id successObj, NSString *msg) {
         if (successObj != nil) {
-            _newVersionURL = successObj;
-            [self alertViewWithTag:9999 delegate:self title:@"提示：有新版本可更新" cancelItem:@"取消" sureItem:@"更新"];
+            NSString *nowVersion = [[[NSBundle mainBundle]infoDictionary] objectForKey:@"CFBundleVersion"];
+            if (![nowVersion isEqualToString:successObj]) {
+                [self alertViewWithTag:9999 delegate:self title:@"提示：有新版本可更新" cancelItem:@"取消" sureItem:@"更新"];
+            }
         }
     } fail:^(NSString *failString) {
         
@@ -85,8 +81,9 @@
 
 - (void)alertView:(TDAlertView *)alertView didClickItemWithIndex:(NSInteger)itemIndex {
     if (itemIndex == 0) {
+        NSString  *urlStr = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@",AppleID];
         // 跳转
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"itms-apps:%@",_newVersionURL]]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];
     }
 }
 

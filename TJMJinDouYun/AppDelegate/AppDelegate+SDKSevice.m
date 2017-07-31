@@ -94,7 +94,10 @@
                  apsForProduction:JPushIsProduction];
     NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
     [defaultCenter addObserver:self selector:@selector(networkDidReceiveMessage:) name:kJPFNetworkDidReceiveMessageNotification object:nil];
+    
 #ifdef DEBUG
+    [JPUSHService setDebugMode];
+#else
     [JPUSHService setLogOFF];
 #endif
 }

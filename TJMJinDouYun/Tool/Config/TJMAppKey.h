@@ -33,5 +33,6 @@ static BOOL const JPushIsProduction = NO;
 static BOOL const JPushIsProduction = YES;
 #endif
 
+#define AppleID @"1264354327"
 
 #endif /* TJMAppKey_h */

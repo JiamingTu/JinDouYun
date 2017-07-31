@@ -154,7 +154,7 @@
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeInterval];
     // 3.创建日历
     NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSCalendarUnit type =  NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
+    NSCalendarUnit type =  NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond | NSCalendarUnitDay;
     // 4.利用日历对象比较两个时间的差值
     NSDateComponents *cmps = [calendar components:type fromDate:[[NSDate alloc]initWithTimeIntervalSince1970:0] toDate:date options:0];
     // 5.返回结果

@@ -84,10 +84,10 @@
         [TJMRequestH getSingleOrderWithOrderNumber:_orderModel.orderNo success:^(id successObj, NSString *msg) {
             TJMOrderModel *newModel = successObj;
             _orderModel.orderStatus = newModel.orderStatus;
-            //隐藏HUD
-            [progressHUD hideAnimated:YES afterDelay:1.5];
             //pop
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                //隐藏HUD
+                [progressHUD hideAnimated:YES];
                 [self.navigationController popViewControllerAnimated:YES];
             });
         } fail:^(NSString *failString) {
@@ -123,7 +123,10 @@
 - (void)alertView:(TDAlertView *)alertView didClickItemWithIndex:(NSInteger)itemIndex {
     if (alertView.tag == 10000) {
         if (itemIndex == 0) {
-            [self.navigationController popViewControllerAnimated:YES];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self.navigationController popViewControllerAnimated:YES];
+            });
+//            [self.navigationController popViewControllerAnimated:YES];
         }
     }
 }

@@ -28,7 +28,7 @@
 + (BOOL)deleteMessages;
 
 /**每两周清理一次缓存*/
-+ (void)clearCacheEveryTwoWeeks;
++ (BOOL)isScratchTimeWithDays:(NSInteger)days;
 /**清理缓存*/
 + (void)clearCache;
 @end

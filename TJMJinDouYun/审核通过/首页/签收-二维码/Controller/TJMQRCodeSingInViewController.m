@@ -60,8 +60,9 @@
     [self resetConstraints];
     //获取地理位置，判断取货范围
     [TJMHUDHandle showRequestHUDAtView:self.view message:nil];
-    [[TJMLocationService sharedLocationService] getFreeManLocationWith:TJMGetLocationTypeLocation target:CLLocationCoordinate2DMake(0, 0)];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationDidChange:) name:kTJMLocationDidChange object:nil];
+//    [[TJMLocationService sharedLocationService] getFreeManLocationWith:TJMGetLocationTypeLocation target:CLLocationCoordinate2DMake(0, 0)];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationDidChange:) name:kTJMLocationDidChange object:nil];
+    [self getQRCode];
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
@@ -88,31 +89,31 @@
     [self setBackNaviItem];
 }
 
-#pragma  mark - 通知
-- (void)locationDidChange:(NSNotification *)notification {
-    if ([notification.userInfo[@"myLocation"] isKindOfClass:[NSString class]]) {
-        //定位失败
-        [self alertViewWithTag:10001 delegate:self title:@"定位失败，请重试" cancelItem:nil sureItem:@"确定"];
-        return;
-    }    BMKUserLocation *location = notification.userInfo[@"myLocation"];
-    CLLocationCoordinate2D toCoordinate = CLLocationCoordinate2DMake(_orderModel.receiverLat.doubleValue, _orderModel.receiverLng.doubleValue);
-    CLLocationDistance distance = [[TJMLocationService sharedLocationService] calculateDistanceFromMyLocation:location.location.coordinate toGetLocation:toCoordinate];
-    [TJMHUDHandle hiddenHUDForView:self.view];
-    if (distance > 1000) {
-        [self alertViewWithTag:10000 delegate:self title:@"不在签收范围" cancelItem:nil sureItem:@"确定"];
-    } else {
-        //获取二维码
-        [self getQRCode];
-    }
-}
+//#pragma  mark - 通知
+//- (void)locationDidChange:(NSNotification *)notification {
+//    if ([notification.userInfo[@"myLocation"] isKindOfClass:[NSString class]]) {
+//        //定位失败
+//        [self alertViewWithTag:10001 delegate:self title:@"定位失败，请重试" cancelItem:nil sureItem:@"确定"];
+//        return;
+//    }    BMKUserLocation *location = notification.userInfo[@"myLocation"];
+//    CLLocationCoordinate2D toCoordinate = CLLocationCoordinate2DMake(_orderModel.receiverLat.doubleValue, _orderModel.receiverLng.doubleValue);
+//    CLLocationDistance distance = [[TJMLocationService sharedLocationService] calculateDistanceFromMyLocation:location.location.coordinate toGetLocation:toCoordinate];
+//    [TJMHUDHandle hiddenHUDForView:self.view];
+//    if (distance > 1000) {
+//        [self alertViewWithTag:10000 delegate:self title:@"不在签收范围" cancelItem:nil sureItem:@"确定"];
+//    } else {
+//        //获取二维码
+//        [self getQRCode];
+//    }
+//}
 
-- (void)alertView:(TDAlertView *)alertView didClickItemWithIndex:(NSInteger)itemIndex {
-    if (alertView.tag == 10000) {
-        if (itemIndex == 0) {
-            [self.navigationController popViewControllerAnimated:YES];
-        }
-    }
-}
+//- (void)alertView:(TDAlertView *)alertView didClickItemWithIndex:(NSInteger)itemIndex {
+//    if (alertView.tag == 10000) {
+//        if (itemIndex == 0) {
+//            [self.navigationController popViewControllerAnimated:YES];
+//        }
+//    }
+//}
 #pragma  mark - 获取二维码
 - (void)getQRCode {
     //请求 ->菊花 ->得到二维码字符串 ->菊花消失 ->跳转

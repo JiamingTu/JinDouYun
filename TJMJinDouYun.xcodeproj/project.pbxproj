@@ -32,6 +32,7 @@
 		992BCFDB1ED56C0F0053B4BE /* TJMPersonInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 992BCFDA1ED56C0F0053B4BE /* TJMPersonInfoTableViewCell.m */; };
 		992BCFDE1ED56C2F0053B4BE /* TJMPersonInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 992BCFDD1ED56C2F0053B4BE /* TJMPersonInfoViewController.m */; };
 		992BCFE11ED570EE0053B4BE /* TJMPersonInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 992BCFE01ED570EE0053B4BE /* TJMPersonInfoModel.m */; };
+		993AE7C41F287CA10076ADE4 /* TJMUserProtocolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 993AE7C31F287CA10076ADE4 /* TJMUserProtocolViewController.m */; };
 		9943EDEF1EC5BBA2006D083D /* TJMOrderData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9943EDEE1EC5BBA2006D083D /* TJMOrderData.m */; };
 		994600CB1EE4E62B00B831A6 /* TJMMessageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 994600CA1EE4E62B00B831A6 /* TJMMessageData.m */; };
 		9946011E1EE57AB100B831A6 /* LaunchIntroductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9946011D1EE57AB100B831A6 /* LaunchIntroductionView.m */; };
@@ -66,9 +67,6 @@
 		99BD04AD1EE691C900F56351 /* TJMHeatMapData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99BD04AC1EE691C900F56351 /* TJMHeatMapData.m */; };
 		99DDF3E01F0A298600D733B0 /* UIButton+touch.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DDF3DF1F0A298600D733B0 /* UIButton+touch.m */; };
 		99DFB9C41EFB6C9C00CE5645 /* 主页逻辑说明.txt in Resources */ = {isa = PBXBuildFile; fileRef = 99DFB9C31EFB6C9C00CE5645 /* 主页逻辑说明.txt */; };
-		99E81CAC1EB217E600BB0875 /* 11111.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E81C521EB217E600BB0875 /* 11111.png */; };
-		99E81CAD1EB217E600BB0875 /* 22222.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E81C531EB217E600BB0875 /* 22222.png */; };
-		99E81CAE1EB217E600BB0875 /* 33333.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E81C541EB217E600BB0875 /* 33333.png */; };
 		99E81CAF1EB217E600BB0875 /* 44444.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E81C551EB217E600BB0875 /* 44444.png */; };
 		99E81CB01EB217E600BB0875 /* TJMUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81C571EB217E600BB0875 /* TJMUploadViewController.m */; };
 		99E81CB11EB217E600BB0875 /* TJMProvinceData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81C5A1EB217E600BB0875 /* TJMProvinceData.m */; };
@@ -232,6 +230,8 @@
 		992BCFDD1ED56C2F0053B4BE /* TJMPersonInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMPersonInfoViewController.m; sourceTree = "<group>"; };
 		992BCFDF1ED570EE0053B4BE /* TJMPersonInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMPersonInfoModel.h; sourceTree = "<group>"; };
 		992BCFE01ED570EE0053B4BE /* TJMPersonInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMPersonInfoModel.m; sourceTree = "<group>"; };
+		993AE7C21F287CA10076ADE4 /* TJMUserProtocolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMUserProtocolViewController.h; sourceTree = "<group>"; };
+		993AE7C31F287CA10076ADE4 /* TJMUserProtocolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMUserProtocolViewController.m; sourceTree = "<group>"; };
 		9943EDED1EC5BBA2006D083D /* TJMOrderData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMOrderData.h; sourceTree = "<group>"; };
 		9943EDEE1EC5BBA2006D083D /* TJMOrderData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMOrderData.m; sourceTree = "<group>"; };
 		994600C91EE4E62B00B831A6 /* TJMMessageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMMessageData.h; sourceTree = "<group>"; };
@@ -305,9 +305,6 @@
 		99E74D161EA8BB1700BFD422 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		99E74D171EA8BB1800BFD422 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		99E81B7C1EAF50DC00BB0875 /* TJMSingleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TJMSingleton.h; sourceTree = "<group>"; };
-		99E81C521EB217E600BB0875 /* 11111.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 11111.png; sourceTree = "<group>"; };
-		99E81C531EB217E600BB0875 /* 22222.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 22222.png; sourceTree = "<group>"; };
-		99E81C541EB217E600BB0875 /* 33333.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 33333.png; sourceTree = "<group>"; };
 		99E81C551EB217E600BB0875 /* 44444.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 44444.png; sourceTree = "<group>"; };
 		99E81C561EB217E600BB0875 /* TJMUploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMUploadViewController.h; sourceTree = "<group>"; };
 		99E81C571EB217E600BB0875 /* TJMUploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMUploadViewController.m; sourceTree = "<group>"; };
@@ -830,6 +827,15 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		993AE7C11F287CA10076ADE4 /* 用户协议 */ = {
+			isa = PBXGroup;
+			children = (
+				993AE7C21F287CA10076ADE4 /* TJMUserProtocolViewController.h */,
+				993AE7C31F287CA10076ADE4 /* TJMUserProtocolViewController.m */,
+			);
+			path = "用户协议";
+			sourceTree = "<group>";
+		};
 		9946011B1EE57AB100B831A6 /* LaunchIntroduction */ = {
 			isa = PBXGroup;
 			children = (
@@ -1057,6 +1063,7 @@
 		99E81C501EB217E600BB0875 /* 上传资料 */ = {
 			isa = PBXGroup;
 			children = (
+				993AE7C11F287CA10076ADE4 /* 用户协议 */,
 				99E81C511EB217E600BB0875 /* Controller */,
 				99E81C581EB217E600BB0875 /* Model */,
 				99E81C5D1EB217E600BB0875 /* View */,
@@ -1067,9 +1074,6 @@
 		99E81C511EB217E600BB0875 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				99E81C521EB217E600BB0875 /* 11111.png */,
-				99E81C531EB217E600BB0875 /* 22222.png */,
-				99E81C541EB217E600BB0875 /* 33333.png */,
 				99E81C551EB217E600BB0875 /* 44444.png */,
 				99E81C561EB217E600BB0875 /* TJMUploadViewController.h */,
 				99E81C571EB217E600BB0875 /* TJMUploadViewController.m */,
@@ -1982,15 +1986,12 @@
 				99E855D11EC06436000C9A6F /* TJMViewExplain in Resources */,
 				997985CF1F063C960089CC9C /* baiduNaviSDK.bundle in Resources */,
 				99F1C1041EA0CF2900415F0C /* LaunchScreen.storyboard in Resources */,
-				99E81CAC1EB217E600BB0875 /* 11111.png in Resources */,
 				99DFB9C41EFB6C9C00CE5645 /* 主页逻辑说明.txt in Resources */,
-				99E81CAE1EB217E600BB0875 /* 33333.png in Resources */,
 				99F1C0FF1EA0CF0600415F0C /* Info.plist in Resources */,
 				997985D01F063C960089CC9C /* baiduNaviSDK.xcassets in Resources */,
 				99F836991ED3BDD300CB3714 /* CommonView in Resources */,
 				99E81CBA1EB217E600BB0875 /* category_1@2x.png in Resources */,
 				99F1C0FD1EA0CEFA00415F0C /* Assets.xcassets in Resources */,
-				99E81CAD1EB217E600BB0875 /* 22222.png in Resources */,
 				99F1C1051EA0CF2900415F0C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2143,6 +2144,7 @@
 				99E81CC21EB217E700BB0875 /* TJMMessageViewController.m in Sources */,
 				99E81CF71EB8B05100BB0875 /* UINavigationBar+BackgroundColor.m in Sources */,
 				991B092D1EE01093009DB296 /* TJMMyOrderDetailHeaderView.m in Sources */,
+				993AE7C41F287CA10076ADE4 /* TJMUserProtocolViewController.m in Sources */,
 				99E81CD01EB2184600BB0875 /* LocationTracker.m in Sources */,
 				99019DCB1ECC3582002BC164 /* TJMLocationService.m in Sources */,
 				99019DC31ECAD841002BC164 /* TJMPickUpViewController.m in Sources */,
@@ -2320,7 +2322,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: lin lin (EA69B4VRFP)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = EA69B4VRFP;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
@@ -2358,7 +2360,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: lin lin (EA69B4VRFP)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = EA69B4VRFP;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",

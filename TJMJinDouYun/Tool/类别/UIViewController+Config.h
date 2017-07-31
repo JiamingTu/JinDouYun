@@ -20,7 +20,7 @@ typedef void(^ButtonBlock)(UIButton *button);
 - (UIButton *)setRightNaviItemWithImageName:(NSString *)imageName orTitle:(NSString *)title titleColorHexValue:(int)value fontSize:(CGFloat)fontSize;
 - (void)rightItemAction:(UIButton *)button;
 /**设置首页左导航按钮尺寸*/
-- (void)setNaviLeftButtonFrameWithButton:(UIButton *)button;
+//- (void)setNaviLeftButtonFrameWithButton:(UIButton *)button;
 
 /**设置视图阴影*/
 - (void)setShadowWithView:(UIView *)view shadowColor:(UIColor *)color;

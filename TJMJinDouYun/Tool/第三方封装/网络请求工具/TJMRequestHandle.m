@@ -249,7 +249,14 @@ SingletonM(RequestHandle)
                 if ([type isEqualToString:TJMFreeManGetCity]) {
                     //省市
                     TJMProvinceData *provinceData = [TJMProvinceData mj_objectWithKeyValues:responseObject];
-                    success(provinceData,TJMResponseMessage);
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                        [provinceData deleteDisableProvince];
+                        //回到主线程
+                        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                            success(provinceData,TJMResponseMessage);
+                        }];
+                    });
+                    
                 } else if ([type isEqualToString:TJMFreeManGetVehicle]) {
                     //交通工具
                     TJMVehicleData *vehicleData = [TJMVehicleData mj_objectWithKeyValues:responseObject];
@@ -439,8 +446,11 @@ SingletonM(RequestHandle)
             //如果type 为 TJMFreeManAllOrder 需要增加参数 carrierId
             [parameters setObject:self.tokenModel.userId forKey:@"carrierId"];
         } else if ([type isEqualToString:TJMWaitRobOrder]) {
-            //如果type 为 TJMWaitRobOrder 需要增加参数 cityName
+            //如果type 为 TJMWaitRobOrder 需要增加参数 cityName 和 经纬度
             [parameters setObject:cityName forKey:@"cityName"];
+            [parameters setObject:@(coordinate.latitude) forKey:@"lat"];
+            [parameters setObject:@(coordinate.longitude) forKey:@"lng"];
+            [parameters setObject:_tokenModel.userId forKey:@"carrierId"];
         }
         [self.httpRequestManager.requestSerializer setValue:_tokenModel.token forHTTPHeaderField:@"Authorization"];
         [self.httpRequestManager GET:path parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -450,6 +460,12 @@ SingletonM(RequestHandle)
                     TJMMyOrderData *myOrderData = [TJMMyOrderData mj_objectWithKeyValues:responseObject];
                     success(myOrderData,TJMResponseMessage);
                     [self addDistanceWithModelData:myOrderData myLocation:coordinate];
+                } else if ([type isEqualToString:TJMWaitRobOrder]) {
+                    TJMMyOrderData *data = [TJMMyOrderData mj_objectWithKeyValues:responseObject];
+                    TJMOrderData *orderData = [[TJMOrderData alloc]init];
+                    orderData.content = data.data;
+                    success(orderData,TJMResponseMessage);
+                    [self addDistanceWithModelData:orderData myLocation:coordinate];
                 } else {
                     TJMOrderData *orderData = [TJMOrderData mj_objectWithKeyValues:responseObject[@"data"]];
                     success(orderData,TJMResponseMessage);
@@ -913,30 +929,20 @@ SingletonM(RequestHandle)
 #pragma  mark - 版本更新
 - (void)checkVersionSuccess:(SuccessBlock)success fail:(FailBlock)failure {
     if (_tokenModel) {
-        NSString *path = [self basicApiAppend:TJMCheckVersion];
-        [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        NSDictionary *parameters = @{@"type":@"1"};
-        [self.httpRequestManager.requestSerializer setValue:_tokenModel.token forHTTPHeaderField:@"Authorization"];
+        NSString *path = @"http://itunes.apple.com/lookup";
+        NSDictionary *parameters = @{@"id":AppleID};
         [_httpRequestManager GET:path parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            if (TJMRightCode) {
-                NSString *appVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-                NSString *newVersion = responseObject[@"data"][@"versionName"];
-                if ([newVersion isEqualToString:appVersion]) {
-                    success(nil,TJMResponseMessage);
+            NSArray *array = responseObject[@"results"];
+            if (array.count != 0) {// 先判断返回的数据是否为空
+                NSDictionary *dict = array[0];
+                NSString *version = dict[@"version"];
+                if (version) {
+                    success(version, @"获取版本成功");
                 } else {
-                    id linkUrl = responseObject[@"data"][@"linkUrl"];
-                    //null 判断
-                    if ([linkUrl isEqual:[NSNull null]]) {
-                        success(nil,TJMResponseMessage);
-                    } else {
-                        success(linkUrl,TJMResponseMessage);
-                    }
-                    
+                    failure(@"没有获取到版本号");
                 }
-            } else if ([TJMResponseMessage isEqual:[NSNull null]]) {
-                failure(@"未知错误");
             } else {
-                failure(TJMResponseMessage);
+                failure(@"版本数据为空");
             }
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             failure(error.localizedDescription);

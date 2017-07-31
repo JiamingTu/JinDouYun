@@ -174,7 +174,7 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(modelDistanceDidGet:) name:notiKey object:nil];
     }
     //种类 尺寸
-    self.typeNameLabel.text = model.item.itemName;
+    self.typeNameLabel.text = model.itemName ? model.itemName : model.item.itemName;
     self.remarkLabel.text = [NSString stringWithFormat:@"%@kg",model.objectWeight];
 }
 

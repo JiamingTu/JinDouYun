@@ -33,7 +33,8 @@
 
 
 @end
-
+//修改：
+//1.签收时取消签收范围判断
 @implementation TJMDeliveryPayViewController
 #pragma  mark - view life cycle
 - (void)viewDidLoad {
@@ -44,9 +45,24 @@
     //菊花转
     //获取地理位置，判断取货范围
     [TJMHUDHandle showRequestHUDAtView:self.view message:nil];
-    [[TJMLocationService sharedLocationService] getFreeManLocationWith:TJMGetLocationTypeLocation target:CLLocationCoordinate2DMake(0, 0)];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationDidChange:) name:kTJMLocationDidChange object:nil];
+//    [[TJMLocationService sharedLocationService] getFreeManLocationWith:TJMGetLocationTypeLocation target:CLLocationCoordinate2DMake(0, 0)];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationDidChange:) name:kTJMLocationDidChange object:nil];
+    //获取二维码
+    [self getQRCode];
 }
+
+//- (void)viewWillAppear:(BOOL)animated {
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector (enterForeground) name: UIApplicationWillEnterForegroundNotification object:nil];
+//    [super viewWillAppear:animated];
+//    
+//}
+//
+//- (void)viewWillDisappear:(BOOL)animated {
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name: UIApplicationWillEnterForegroundNotification object:nil];
+//    [super viewWillDisappear:animated];
+//    
+//}
+
 
 #pragma  mark - 设置页面
 - (void)resetConstraints {
@@ -60,31 +76,31 @@
 }
 
 #pragma  mark - 通知
-- (void)locationDidChange:(NSNotification *)notification {
-    if ([notification.userInfo[@"myLocation"] isKindOfClass:[NSString class]]) {
-        //定位失败
-        [self alertViewWithTag:10001 delegate:self title:@"定位失败，请退出重试" cancelItem:nil sureItem:@"确定"];
-        return;
-    }
-    BMKUserLocation *location = notification.userInfo[@"myLocation"];
-    CLLocationCoordinate2D toCoordinate = CLLocationCoordinate2DMake(_orderModel.receiverLat.doubleValue, _orderModel.receiverLng.doubleValue);
-    CLLocationDistance distance = [[TJMLocationService sharedLocationService] calculateDistanceFromMyLocation:location.location.coordinate toGetLocation:toCoordinate];
-    [TJMHUDHandle hiddenHUDForView:self.view];
-    if (distance > 1000) {
-        [self alertViewWithTag:10000 delegate:self title:@"不在签收范围" cancelItem:nil sureItem:@"确定"];
-    } else {
-        //获取二维码
-        [self getQRCode];
-    }
-}
+//- (void)locationDidChange:(NSNotification *)notification {
+//    if ([notification.userInfo[@"myLocation"] isKindOfClass:[NSString class]]) {
+//        //定位失败
+//        [self alertViewWithTag:10001 delegate:self title:@"定位失败，请退出重试" cancelItem:nil sureItem:@"确定"];
+//        return;
+//    }
+//    BMKUserLocation *location = notification.userInfo[@"myLocation"];
+//    CLLocationCoordinate2D toCoordinate = CLLocationCoordinate2DMake(_orderModel.receiverLat.doubleValue, _orderModel.receiverLng.doubleValue);
+//    CLLocationDistance distance = [[TJMLocationService sharedLocationService] calculateDistanceFromMyLocation:location.location.coordinate toGetLocation:toCoordinate];
+//    [TJMHUDHandle hiddenHUDForView:self.view];
+//    if (distance > 1000) {
+//        [self alertViewWithTag:10000 delegate:self title:@"不在签收范围" cancelItem:nil sureItem:@"确定"];
+//    } else {
+//        //获取二维码
+//        [self getQRCode];
+//    }
+//}
 
-- (void)alertView:(TDAlertView *)alertView didClickItemWithIndex:(NSInteger)itemIndex {
-    if (alertView.tag == 10000) {
-        if (itemIndex == 0) {
-            [self.navigationController popViewControllerAnimated:YES];
-        }
-    }
-}
+//- (void)alertView:(TDAlertView *)alertView didClickItemWithIndex:(NSInteger)itemIndex {
+//    if (alertView.tag == 10000) {
+//        if (itemIndex == 0) {
+//            [self.navigationController popViewControllerAnimated:YES];
+//        }
+//    }
+//}
 
 #pragma  mark - 获取到付二维码
 - (void)getQRCode {
@@ -94,8 +110,10 @@
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 self.QRCodeImageView.image = image;
             }];
+            [TJMHUDHandle hiddenHUDForView:self.view];
         });
     } fail:^(NSString *failString) {
+         [TJMHUDHandle hiddenHUDForView:self.view];
     }];
 }
 
@@ -118,6 +136,11 @@
         [TJMHUDHandle hiddenHUDForView:self.view];
     }];
 }
+
+//#pragma  mark - 进入前台通知
+//- (void)enterForeground {
+//    
+//}
 
 
 #pragma  mark - memory warning

@@ -59,7 +59,7 @@
 #pragma  mark 开启定时器
 - (void)startTimerWithTimestamp:(NSInteger)timestamp {
     //如果从服务器获取的时间改了 赋值还是要赋的
-    self.currentTimestamp = timestamp;
+    self.currentTimestamp = 86390;
     //如果timer还存在（没有停止），那就不重新创建子线程 和 timer 了
     if (!self.workingTimeTimer) {
         __weak __typeof(self) weakSelf = self;
