@@ -95,7 +95,10 @@
     if (self.workTimeBlock) {
         self.workTimeBlock();
     }
-    
+    UIViewController *VC = [self topViewController];
+    if ([VC isKindOfClass:NSClassFromString(@"TJMDeliveryPayViewController")]) {
+        [TJMHUDHandle hiddenHUDForView:VC.view];
+    }
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

@@ -84,7 +84,7 @@
                                                 <constraint firstAttribute="height" constant="40" id="Ylx-9R-cBW"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <state key="normal" title="开 工">
+                                            <state key="normal" title="出 工">
                                                 <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
                                             <state key="selected" title="收 工"/>
@@ -575,6 +575,7 @@
                                             <outlet property="priceLabel" destination="PiV-Gp-n20" id="wmk-Pg-YQD"/>
                                             <outlet property="remarkImageHeightConstraint" destination="De3-qg-SV4" id="DAm-x9-0I6"/>
                                             <outlet property="remarkImageRightConstraint" destination="ue6-gh-dxv" id="pPx-nu-WRs"/>
+                                            <outlet property="remarkImageView" destination="lHT-Gu-axt" id="IKw-81-jej"/>
                                             <outlet property="remarkLabel" destination="iEd-uI-t3i" id="x5h-AP-BGD"/>
                                             <outlet property="remarkViewHeightConstraint" destination="PdI-QB-t1Z" id="LrD-xM-b13"/>
                                             <outlet property="robButtonHeightConstraint" destination="7lW-5b-bWY" id="sqF-Bf-I4V"/>
@@ -1567,6 +1568,7 @@
                                             <outlet property="priceLabel" destination="PTN-pw-N9u" id="dKO-hP-rV9"/>
                                             <outlet property="remarkImageHeightConstraint" destination="RMk-7J-ciX" id="Gkd-02-njA"/>
                                             <outlet property="remarkImageRightConstraint" destination="DWn-SF-MbI" id="rqe-P2-qTV"/>
+                                            <outlet property="remarkImageView" destination="18T-cS-fMH" id="WEO-57-tWO"/>
                                             <outlet property="remarkLabel" destination="WdM-aE-jG1" id="UIR-9X-Zan"/>
                                             <outlet property="remarkViewHeightConstraint" destination="V46-nG-s5G" id="vq3-qT-cqx"/>
                                             <outlet property="rightButtonWidthConstraint" destination="7fb-r6-4Kd" id="nkd-7q-O6G"/>
@@ -2033,20 +2035,20 @@
                                             <constraint firstAttribute="width" secondItem="sJP-CO-xHc" secondAttribute="height" multiplier="1:1" id="3od-lX-Rew"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_icon_Vc" translatesAutoresizingMaskIntoConstraints="NO" id="CcG-gu-zlY">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_icon_password" translatesAutoresizingMaskIntoConstraints="NO" id="CcG-gu-zlY">
                                         <rect key="frame" x="30" y="159" width="19" height="23"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="CcG-gu-zlY" secondAttribute="height" multiplier="6:7" id="U6D-9l-jfL"/>
                                         </constraints>
                                     </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入验证码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="yZr-p0-CCb">
-                                        <rect key="frame" x="64" y="160" width="126" height="20"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="yZr-p0-CCb">
+                                        <rect key="frame" x="64" y="160" width="226" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="gER-R3-Jvd"/>
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                         <connections>
                                             <outlet property="delegate" destination="Cf4-5F-3Fi" id="Q5b-AO-9ID"/>
                                         </connections>
@@ -2093,8 +2095,8 @@
                                             <constraint firstAttribute="height" constant="1" id="fxr-7Q-7qU"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GT2-RJ-5qt">
-                                        <rect key="frame" x="195" y="150" width="100" height="35"/>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GT2-RJ-5qt">
+                                        <rect key="frame" x="295" y="150" width="100" height="35"/>
                                         <color key="backgroundColor" red="1" green="0.87450980389999999" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="GT2-RJ-5qt" secondAttribute="height" multiplier="20:7" id="piK-s3-rpz"/>
@@ -2122,7 +2124,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cF6-PF-68f">
                                                 <rect key="frame" x="162.5" y="0.0" width="162.5" height="50"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <state key="normal" title="密码登录">
+                                                <state key="normal" title="快捷登录">
                                                     <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <state key="selected">
@@ -2138,7 +2140,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MsU-ax-MXs">
                                                 <rect key="frame" x="0.0" y="0.0" width="162.5" height="50"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <state key="normal" title="快捷登录">
+                                                <state key="normal" title="密码登录">
                                                     <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <state key="selected">
@@ -2183,7 +2185,7 @@
                                     <constraint firstItem="GT2-RJ-5qt" firstAttribute="leading" secondItem="yZr-p0-CCb" secondAttribute="trailing" constant="5" id="PNd-K3-296"/>
                                     <constraint firstAttribute="bottom" secondItem="TbW-dW-S6J" secondAttribute="bottom" id="Qfb-ny-Nx4"/>
                                     <constraint firstItem="GT2-RJ-5qt" firstAttribute="top" secondItem="aRk-sd-NgC" secondAttribute="bottom" constant="23" id="RH4-DD-l59"/>
-                                    <constraint firstItem="GT2-RJ-5qt" firstAttribute="trailing" secondItem="eza-hn-TKx" secondAttribute="trailing" id="VIT-Hg-AYP"/>
+                                    <constraint firstItem="GT2-RJ-5qt" firstAttribute="leading" secondItem="eza-hn-TKx" secondAttribute="trailing" id="VIT-Hg-AYP"/>
                                     <constraint firstItem="TbW-dW-S6J" firstAttribute="top" secondItem="eza-hn-TKx" secondAttribute="bottom" constant="45" id="Wh4-Ay-9zP"/>
                                     <constraint firstItem="wQJ-fL-lRI" firstAttribute="top" secondItem="mHT-qo-Ixm" secondAttribute="bottom" id="XKi-Wx-9J7"/>
                                     <constraint firstItem="eza-hn-TKx" firstAttribute="leading" secondItem="yZr-p0-CCb" secondAttribute="leading" id="cxh-qe-bKu"/>
@@ -2221,11 +2223,11 @@
                                     <segue destination="qs5-Ub-yc7" kind="show" identifier="Register" id="rBA-tL-a9O"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="44444.png" translatesAutoresizingMaskIntoConstraints="NO" id="im5-zL-Iea">
-                                <rect key="frame" x="158" y="94" width="60" height="60"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="im5-zL-Iea">
+                                <rect key="frame" x="154.5" y="94" width="67.5" height="60"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" secondItem="im5-zL-Iea" secondAttribute="height" multiplier="135:120" id="fWx-BT-Nnn"/>
                                     <constraint firstAttribute="height" constant="60" id="hFR-A0-B1W"/>
-                                    <constraint firstAttribute="width" constant="60" id="qGk-Nv-HZF"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -2276,7 +2278,7 @@
                         <outlet property="logoHeightConstraint" destination="hFR-A0-B1W" id="KdA-du-pfy"/>
                         <outlet property="logoTopConstraint" destination="Dgj-Fj-6hc" id="LUB-sg-ZcR"/>
                         <outlet property="mainView" destination="35u-KD-Gf8" id="4WN-Lh-PaM"/>
-                        <outlet property="messageLoginButton" destination="MsU-ax-MXs" id="Kfm-ct-TYa"/>
+                        <outlet property="messageLoginButton" destination="cF6-PF-68f" id="q3H-G6-p00"/>
                         <outlet property="passwordTF" destination="yZr-p0-CCb" id="ovD-5P-x81"/>
                         <outlet property="phoneNumTFLineConstraint" destination="pQc-nJ-L7J" id="688-lp-Mmb"/>
                         <outlet property="phoneNumberTF" destination="9rF-K7-eJu" id="dcA-qL-JNb"/>
@@ -2284,7 +2286,7 @@
                         <outlet property="pwdImageView" destination="CcG-gu-zlY" id="QEY-bK-XhO"/>
                         <outlet property="registerButton" destination="dqQ-wA-CAb" id="Ap8-NN-Iho"/>
                         <outlet property="registerButtonConstraint" destination="hwF-wK-FtB" id="r9e-kk-Mjn"/>
-                        <outlet property="secretLoginButton" destination="cF6-PF-68f" id="11j-rp-SyU"/>
+                        <outlet property="secretLoginButton" destination="MsU-ax-MXs" id="pMT-S6-86d"/>
                         <outlet property="selectLineConstraint" destination="MPI-vj-yls" id="XzY-DB-jnk"/>
                         <outlet property="selectLineView" destination="wQJ-fL-lRI" id="C0N-r6-8iU"/>
                         <outlet property="shadowView" destination="FNc-Lg-yuN" id="ENN-tr-JSg"/>
@@ -2329,10 +2331,10 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="44444.png" translatesAutoresizingMaskIntoConstraints="NO" id="l1N-9f-Xoe">
-                                <rect key="frame" x="157" y="94" width="60" height="60"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="l1N-9f-Xoe">
+                                <rect key="frame" x="153.5" y="94" width="67.5" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="K39-KP-flg"/>
+                                    <constraint firstAttribute="width" secondItem="l1N-9f-Xoe" secondAttribute="height" multiplier="135:120" id="N33-zL-06I"/>
                                     <constraint firstAttribute="height" constant="60" id="xkS-Ta-x7w"/>
                                 </constraints>
                             </imageView>
@@ -6228,7 +6230,6 @@ DQ
         </scene>
     </scenes>
     <resources>
-        <image name="44444.png" width="512" height="512"/>
         <image name="IMG_DIERJIE" width="165" height="92"/>
         <image name="IMG_DIERJIE_ON" width="165" height="92"/>
         <image name="IMG_DISANJIE" width="165" height="94"/>
@@ -6292,12 +6293,12 @@ DQ
         <image name="矢量智能对象4" width="21" height="18"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="rBA-tL-a9O"/>
-        <segue reference="Utp-6e-MRh"/>
-        <segue reference="hc3-tj-ldE"/>
         <segue reference="6YC-oX-7Ha"/>
-        <segue reference="nHj-RB-jZK"/>
         <segue reference="Exj-kd-E8d"/>
         <segue reference="9P3-VV-xjG"/>
+        <segue reference="nHj-RB-jZK"/>
+        <segue reference="Utp-6e-MRh"/>
+        <segue reference="hc3-tj-ldE"/>
+        <segue reference="rBA-tL-a9O"/>
     </inferredMetricsTieBreakers>
 </document>

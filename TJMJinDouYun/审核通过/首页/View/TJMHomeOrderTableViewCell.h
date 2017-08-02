@@ -30,6 +30,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *startAddressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *endAddressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *remarkLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *remarkImageView;
 
 @property (weak, nonatomic) IBOutlet UIButton *robOrderButton;
 @property (weak, nonatomic) IBOutlet UIButton *checkMapButton;

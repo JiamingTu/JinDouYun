@@ -51,17 +51,6 @@
     [self getQRCode];
 }
 
-//- (void)viewWillAppear:(BOOL)animated {
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector (enterForeground) name: UIApplicationWillEnterForegroundNotification object:nil];
-//    [super viewWillAppear:animated];
-//    
-//}
-//
-//- (void)viewWillDisappear:(BOOL)animated {
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name: UIApplicationWillEnterForegroundNotification object:nil];
-//    [super viewWillDisappear:animated];
-//    
-//}
 
 
 #pragma  mark - 设置页面
@@ -109,8 +98,8 @@
             UIImage *image = [UIImage createQRCodeWithCodeText:successObj];
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 self.QRCodeImageView.image = image;
+                [TJMHUDHandle hiddenHUDForView:self.view];
             }];
-            [TJMHUDHandle hiddenHUDForView:self.view];
         });
     } fail:^(NSString *failString) {
          [TJMHUDHandle hiddenHUDForView:self.view];

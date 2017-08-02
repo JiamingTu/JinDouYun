@@ -116,19 +116,24 @@
 
 
 #pragma  mark - 界面按钮方法
+#pragma  mark - 获取验证码
 - (IBAction)getShortMessageAction:(UIButton *)sender {
     //判断是否是手机号
     if ([self.phoneNumberTF.text isMobileNumber]) {
-        //获取验证码按钮进入倒计时
-        [self countDownTimer];
-        [sender setTitle:@"59秒" forState:UIControlStateDisabled];
+        MBProgressHUD *progressHUD = [TJMHUDHandle showRequestHUDAtView:self.view message:nil];
         sender.enabled = NO;
         //请求验证码
         NSString *getCodeType = [_requestType isEqualToString:TJMRegister] ? TJMGetRegisterCode : TJMGetForgetSecretCode;
         [TJMRequestH shrotMessageCheckRequestWithPhoneNumber:_phoneNumberTF.text getCodeType:getCodeType success:^(id successObj,NSString *msg) {
-            
+            //获取验证码 成功后，按钮进入倒计时
+            [self countDownTimer];
+            [sender setTitle:@"59秒" forState:UIControlStateDisabled];
+            progressHUD.label.text = msg;
+            [progressHUD hideAnimated:YES afterDelay:1.5];
         } fail:^(NSString *failString) {
-            
+            progressHUD.label.text = failString;
+            [progressHUD hideAnimated:YES afterDelay:1.5];
+            sender.enabled = YES;
         }];
     } else {
         TJMLog(@"请输入正确的手机号");
@@ -143,15 +148,18 @@
         if (self.passwordTF.text.length >= 6) {
             //验证码不少于6位
             if (self.authCodeTF.text.length == 6) {
+                //菊花
+                MBProgressHUD *progressHUD = [TJMHUDHandle showRequestHUDAtView:self.view message:nil];
                 //提交表单
                 NSDictionary *form = @{@"mobile":_phoneNumberTF.text,@"pwd":_passwordTF.text,@"code":_authCodeTF.text};
                 [TJMRequestH accountCheckWithForm:form checkType:_requestType success:^(id successObj,NSString *msg) {
-                    [TJMHUDHandle transientNoticeAtView:self.view withMessage:msg];
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                        [self.navigationController popViewControllerAnimated:YES];
-                    });
+                    progressHUD.label.text = msg;
+                    [progressHUD hideAnimated:YES afterDelay:1.5];
+                    [self.navigationController popViewControllerAnimated:YES];
                 } fail:^(NSString *failString) {
-                    [TJMHUDHandle transientNoticeAtView:self.view withMessage:failString];
+                    progressHUD.label.text = failString;
+                    [progressHUD hideAnimated:YES afterDelay:1.5];
+
                 }];
             } else {
                 TJMLog(@"验证码不足6位");
@@ -201,7 +209,6 @@
         CGRect frame = self.view.frame;
         frame.origin.y = 0;
         [UIView animateWithDuration:transition.animationDuration delay:0 options:transition.animationOption animations:^{
-            
             self.view.frame = frame;
             
         } completion:^(BOOL finished) {
@@ -246,7 +253,12 @@
             self.getMessageButton.enabled = NO;
         }
         else if (newValue.length == 11 && [newValue isNumber]){
-            self.getMessageButton.enabled = YES;
+            //还在计时的话也不能点击
+            if (_countDownTimer) {
+                self.getMessageButton.enabled = NO;
+            } else {
+                self.getMessageButton.enabled = YES;
+            }
         }else {
             return NO;
         }
@@ -268,6 +280,10 @@
         }
     }
     
+    return YES;
+}
+- (BOOL)textFieldShouldClear:(UITextField *)textField {
+    _getMessageButton.enabled = NO;
     return YES;
 }
 

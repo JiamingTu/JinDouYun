@@ -175,7 +175,20 @@
     }
     //种类 尺寸
     self.typeNameLabel.text = model.itemName ? model.itemName : model.item.itemName;
-    self.remarkLabel.text = [NSString stringWithFormat:@"%@kg",model.objectWeight];
+    TJMLog(@"remark:%@",model.remark);
+    if (![model.remark isEqualToString:@""]) {
+        [self remarkViewIsHidden:NO];
+        self.remarkViewHeightConstraint.constant = 35 * TJMHeightRatio;
+        self.remarkLabel.text = [NSString stringWithFormat:@"%@",model.remark];
+    } else {
+        self.remarkViewHeightConstraint.constant = 0.0;
+        [self remarkViewIsHidden:YES];
+    }
+}
+
+- (void)remarkViewIsHidden:(BOOL)isHidden {
+    self.remarkLabel.hidden = isHidden;
+    self.remarkImageView.hidden = isHidden;
 }
 
 #pragma  mark - 通知

@@ -96,7 +96,7 @@
             //添加热力图
             [self addHeatMapWithHeatMapData:successObj];
         } fail:^(NSString *failString) {
-            
+            [TJMHUDHandle transientNoticeAtView:self.view withMessage:failString];
         }];
     }
     //添加百度地图视图
@@ -164,7 +164,7 @@
         //创建大头针模型，用mapView来添加
         BMKPointAnnotation* annotation = [[BMKPointAnnotation alloc]init];
         annotation.coordinate = obj.coordinate2D;
-        annotation.title = @"哈哈";
+//        annotation.title = @"哈哈";
         [self.annotationArray addObject:annotation];
     }];
     [_mapView addAnnotations:_annotationArray];
@@ -179,7 +179,12 @@
         if (!newAnnotationView) {
             newAnnotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
         }
-        newAnnotationView.image = [UIImage imageNamed:@"category_1"];
+        if ([self.annotationArray indexOfObject:annotation] == 0) {
+            //起点
+            newAnnotationView.image = [UIImage imageNamed:@"position_g"];
+        } else {
+            newAnnotationView.image = [UIImage imageNamed:@"position_r"];
+        }
         newAnnotationView.annotation = annotation;
         newAnnotationView.centerOffset = CGPointMake(0, -newAnnotationView.image.size.height/2);
         //newAnnotationView.animatesDrop = YES;// 设置该标注点动画显示

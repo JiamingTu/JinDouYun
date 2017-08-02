@@ -59,7 +59,7 @@
     [self configViews];
     [self resetConstraints];
     //获取地理位置，判断取货范围
-    [TJMHUDHandle showRequestHUDAtView:self.view message:nil];
+//    [TJMHUDHandle showRequestHUDAtView:self.view message:nil];
 //    [[TJMLocationService sharedLocationService] getFreeManLocationWith:TJMGetLocationTypeLocation target:CLLocationCoordinate2DMake(0, 0)];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationDidChange:) name:kTJMLocationDidChange object:nil];
     [self getQRCode];

@@ -133,6 +133,7 @@
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 _orderModel.orderStatus = @4;
                 UIViewController *VC = [self popTargetViewControllerWithViewControllerNumber:2];
+                VC.navBarBgAlpha = @"1.0";
                 [self.navigationController popToViewController:VC animated:YES];
             });
         } fail:^(NSString *failString) {

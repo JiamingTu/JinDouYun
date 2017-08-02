@@ -77,7 +77,6 @@
 		99E81CB71EB217E600BB0875 /* TJMRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81C6E1EB217E600BB0875 /* TJMRegisterViewController.m */; };
 		99E81CB81EB217E600BB0875 /* TJMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81C721EB217E600BB0875 /* TJMLoginViewController.m */; };
 		99E81CB91EB217E600BB0875 /* TJMTokenModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81C751EB217E600BB0875 /* TJMTokenModel.m */; };
-		99E81CBA1EB217E600BB0875 /* category_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E81C791EB217E600BB0875 /* category_1@2x.png */; };
 		99E81CBB1EB217E600BB0875 /* TJMBaiduMapViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 99E81C7B1EB217E600BB0875 /* TJMBaiduMapViewController.mm */; };
 		99E81CBC1EB217E600BB0875 /* TJMHelpToBuyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81C811EB217E600BB0875 /* TJMHelpToBuyViewController.m */; };
 		99E81CBD1EB217E700BB0875 /* TJMMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E81C871EB217E600BB0875 /* TJMMineViewController.m */; };
@@ -324,7 +323,6 @@
 		99E81C721EB217E600BB0875 /* TJMLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMLoginViewController.m; sourceTree = "<group>"; };
 		99E81C741EB217E600BB0875 /* TJMTokenModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMTokenModel.h; sourceTree = "<group>"; };
 		99E81C751EB217E600BB0875 /* TJMTokenModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMTokenModel.m; sourceTree = "<group>"; };
-		99E81C791EB217E600BB0875 /* category_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "category_1@2x.png"; sourceTree = "<group>"; };
 		99E81C7A1EB217E600BB0875 /* TJMBaiduMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMBaiduMapViewController.h; sourceTree = "<group>"; };
 		99E81C7B1EB217E600BB0875 /* TJMBaiduMapViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TJMBaiduMapViewController.mm; sourceTree = "<group>"; };
 		99E81C801EB217E600BB0875 /* TJMHelpToBuyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMHelpToBuyViewController.h; sourceTree = "<group>"; };
@@ -1207,7 +1205,6 @@
 		99E81C781EB217E600BB0875 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				99E81C791EB217E600BB0875 /* category_1@2x.png */,
 				99E81C7A1EB217E600BB0875 /* TJMBaiduMapViewController.h */,
 				99E81C7B1EB217E600BB0875 /* TJMBaiduMapViewController.mm */,
 			);
@@ -1990,7 +1987,6 @@
 				99F1C0FF1EA0CF0600415F0C /* Info.plist in Resources */,
 				997985D01F063C960089CC9C /* baiduNaviSDK.xcassets in Resources */,
 				99F836991ED3BDD300CB3714 /* CommonView in Resources */,
-				99E81CBA1EB217E600BB0875 /* category_1@2x.png in Resources */,
 				99F1C0FD1EA0CEFA00415F0C /* Assets.xcassets in Resources */,
 				99F1C1051EA0CF2900415F0C /* Main.storyboard in Resources */,
 			);

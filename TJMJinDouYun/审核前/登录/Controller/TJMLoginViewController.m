@@ -83,7 +83,7 @@
     [self resetConstraints];
     [self configSubviews];
     TJMLog(@"路径：%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]);
-    _selectButton = self.messageLoginButton;
+    _selectButton = self.secretLoginButton;
     //键盘监听
     [TJMYYKeyboardManager addObserver:self];
     [self.loginButton setTitle:@"登 录" forState:UIControlStateNormal];
@@ -165,9 +165,10 @@
                     break;
             }
         }
-    }else {
+    } else {
         TJMLog(@"请输入正确的电话号码");
         //提示框HUD
+        [TJMHUDHandle transientNoticeAtView:self.view withMessage:@"请输入正确的电话号码"];
     }
 }
 //登录成功调用
@@ -223,13 +224,15 @@
     _selectButton.selected = !_selectButton.selected;
     _selectButton = sender;
     //改变细线 位置
-    CGFloat constant = [sender isEqual:self.messageLoginButton] ? 0 : self.selectLineView.frame.size.width;
+    CGFloat constant = [sender isEqual:self.messageLoginButton] ? self.selectLineView.frame.size.width : 0;
     self.selectLineConstraint.constant = constant;
     //验证码按钮是否隐藏
     self.getMessageButton.hidden = [_selectButton isEqual:self.messageLoginButton] ? NO : YES;
-    self.getMessageButtonTrailingConstraint.constant = [_selectButton isEqual:self.messageLoginButton] ? 0 : self.getMessageButton.frame.size.width + 5;
+    self.getMessageButtonTrailingConstraint.constant = [_selectButton isEqual:self.messageLoginButton] ? -(self.getMessageButton.frame.size.width + 5) : 0 ;
     //密码框的placeholder
     self.passwordTF.placeholder = self.getMessageButton.hidden ? @"请输入密码" : @"请输入验证码";
+    //清空密码框
+    self.passwordTF.text = nil;
     //键盘类型
     self.passwordTF.keyboardType = self.getMessageButton.hidden ? UIKeyboardTypeDefault : UIKeyboardTypeNumberPad;
     //是否密码输入
@@ -241,18 +244,23 @@
 - (IBAction)getMessageAction:(UIButton *)sender {
     //判断是否是手机号
     if ([self.phoneNumberTF.text isMobileNumber]) {
-        //获取验证码按钮进入倒计时
-        [self countDownTimer];
-        [sender setTitle:@"59秒" forState:UIControlStateNormal];
         sender.enabled = NO;
+        MBProgressHUD *progressHUD = [TJMHUDHandle showRequestHUDAtView:self.view message:nil];
         //请求验证码
         [TJMRequestH shrotMessageCheckRequestWithPhoneNumber:_phoneNumberTF.text getCodeType:TJMGetLoginCode success:^(id successObj,NSString *msg) {
             TJMLog(@"%@",msg);
+            //获取验证码按钮进入倒计时
+            [self countDownTimer];
+            [sender setTitle:@"59秒" forState:UIControlStateNormal];
+            progressHUD.label.text = msg;
+            [progressHUD hideAnimated:YES afterDelay:1.5];
         } fail:^(NSString *failString) {
-            
+            progressHUD.label.text = failString;
+            [progressHUD hideAnimated:YES afterDelay:1.5];
         }];
     } else {
         TJMLog(@"请输入正确的手机号");
+        [TJMHUDHandle transientNoticeAtView:self.view withMessage:@"请输入正确的手机号"];
     }
     
     
@@ -361,7 +369,11 @@
             self.getMessageButton.enabled = NO;
         }
         else if (newValue.length == 11 && [newValue isNumber]){
-            self.getMessageButton.enabled = YES;
+            if (_countDownTimer) {
+                self.getMessageButton.enabled = NO;
+            } else {
+                self.getMessageButton.enabled = YES;
+            }
         }else {
             return NO;
         }

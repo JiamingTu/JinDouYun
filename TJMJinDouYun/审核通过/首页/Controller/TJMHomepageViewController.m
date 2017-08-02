@@ -27,6 +27,7 @@ static NSInteger homepageOrderSize = 5;
     NSInteger _loadViewStatus;
     NSString *_cityName;
     BOOL _isNeed;
+    BOOL _locationDidUpdate;
 }
 
 
@@ -138,6 +139,9 @@ static NSInteger homepageOrderSize = 5;
     [self.appDelegate getFreeManInfoWithViewController:self fail:^(NSString *failMsg) {
         
     }];
+    //接收位置更新的通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityDidChange:) name:kTJMLocationCityNameDidChange object:nil];
+    //获取工作状态以改变页面
     [self getWorkingStatusWithIsNeedUpdateDataSource:YES];
     //获取位置后请求
     [[TJMLocationService sharedLocationService] getFreeManLocationWith:TJMGetLocationTypeCityName target:CLLocationCoordinate2DMake(0, 0)];
@@ -149,8 +153,6 @@ static NSInteger homepageOrderSize = 5;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dayChange:) name:NSCalendarDayChangedNotification object:nil];
     //KVO 当工作状态改变时 调用
     [self addObserver:self forKeyPath:@"isWorking" options:NSKeyValueObservingOptionNew context:nil];
-    //接收通知
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityDidChange:) name:kTJMLocationCityNameDidChange object:nil];
     [self getWorkingStatusWithIsNeedUpdateDataSource:NO];
     //根据orderStatus 更新 页面
     [self updateListAccountSelectModel];
@@ -162,7 +164,7 @@ static NSInteger homepageOrderSize = 5;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NSCalendarDayChangedNotification object:nil];
     //移除通知
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NSCalendarDayChangedNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:kTJMLocationCityNameDidChange object:nil];
+    
     [self removeObserver:self forKeyPath:@"isWorking"];
     //停止计时
     [self cancelTiemr];
@@ -190,8 +192,9 @@ static NSInteger homepageOrderSize = 5;
 - (void)dealloc {
     //关闭定时器
     [self cancelTiemr];
-    //关闭通知
+    //关闭KVO
     [self.appDelegate removeFreeManInfoWithViewController:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kTJMLocationCityNameDidChange object:nil];
 }
 
 #pragma  mark - 页面设置
@@ -215,12 +218,17 @@ static NSInteger homepageOrderSize = 5;
     
 }
 - (void)reloadOrderList {
-    //页面将要显示时获取工作状态，更新页面
-    [self.dataSourceDictionary removeAllObjects];
-    //获取开工状态
-    [[TJMLocationService sharedLocationService] getFreeManLocationWith:TJMGetLocationTypeCityName target:CLLocationCoordinate2DMake(0, 0)];
-    [TJMHUDHandle hiddenHUDForView:self.view];
-    [TJMHUDHandle showRequestHUDAtView:self.view message:nil];
+    if (_locationDidUpdate) {
+        //页面将要显示时获取工作状态，更新页面
+        [self.dataSourceDictionary removeAllObjects];
+        //获取出工状态
+        [[TJMLocationService sharedLocationService] getFreeManLocationWith:TJMGetLocationTypeCityName target:CLLocationCoordinate2DMake(0, 0)];
+        [TJMHUDHandle hiddenHUDForView:self.view];
+        [TJMHUDHandle showRequestHUDAtView:self.view message:nil];
+        _locationDidUpdate = NO;
+    } else {
+        [TJMHUDHandle hiddenHUDForView:self.view];
+    }
 }
 
 #pragma  mark - 按钮方法
@@ -241,9 +249,9 @@ static NSInteger homepageOrderSize = 5;
         self.mapVC = nil;
     }
 }
-#pragma  mark 开工/收工按钮
+#pragma  mark 出工/收工按钮
 - (IBAction)startOrStopWorkingAction:(UIButton *)sender {
-    NSString *mainString = sender.selected ? @"收工" : @"开工";
+    NSString *mainString = sender.selected ? @"收工" : @"出工";
     NSString *title = [NSString stringWithFormat:@"确定%@？",mainString];
     [self alertViewWithTag:10000 delegate:self title:title cancelItem:@"取消" sureItem:@"确定"];
 }
@@ -264,7 +272,7 @@ static NSInteger homepageOrderSize = 5;
     }
     self.selectLineViewLeft.constant = (sender.tag - 100) * TJMScreenWidth / 3;
     if (self.isWorking) {
-        //如果是开工状态，才刷新列表
+        //如果是出工状态，才刷新列表
         //刷新
         //如果正在刷新的时候 点击 这三个按钮 不会触发刷新 所以需要进行下列判断
         if (self.header.state == MJRefreshStateRefreshing) {
@@ -284,10 +292,10 @@ static NSInteger homepageOrderSize = 5;
 #pragma  mark - TDAlertViewDelegate
 - (void)alertView:(TDAlertView *)alertView didClickItemWithIndex:(NSInteger)itemIndex {
     if (alertView.tag == 10000) {
-        //如果是开工alert
+        //如果是出工alert
         if (itemIndex == 0) {
-            NSString *type = [alertView.title containsString:@"开工"] ? @"Start" : @"Stop";
-            //出工或开工请求
+            NSString *type = [alertView.title containsString:@"出工"] ? @"Start" : @"Stop";
+            //收工或出工请求
             [TJMRequestH putFreeManWorkingStatusWithType:type success:^(id successObj, NSString *msg) {
                 //请求成功后
                 //设置isWorking KVO 修改界面等
@@ -295,7 +303,7 @@ static NSInteger homepageOrderSize = 5;
                 if (!self.isWorking) {
                     [self cancelTiemr];
                 } else {
-                    //如果是开工的话 配置 刷新
+                    //如果是出工的话 配置 刷新
                     if (self.myLoc && _cityName) {
                         [self configHeaderAndFooterWithWorkStatus:self.isWorking];
                     }
@@ -323,10 +331,10 @@ static NSInteger homepageOrderSize = 5;
 }
 
 #pragma  mark - 请求处理
-#pragma  mark 获取开工状态
+#pragma  mark 获取出工状态
 - (void)getWorkingStatusWithIsNeedUpdateDataSource:(BOOL)isNeed {
     _isNeed = isNeed;
-    //判断开工状态
+    //判断出工状态
     TJMTokenModel *tokenModel = [TJMSandBoxManager getTokenModel];
     if (tokenModel) {
         [TJMRequestH getUploadRelevantInfoWithType:TJMFreeManGetInfo(tokenModel.userId.description) form:nil success:^(id successObj, NSString *msg) {
@@ -344,9 +352,9 @@ static NSInteger homepageOrderSize = 5;
     [self getWorkingStatusWithIsNeedUpdateDataSource:YES];
     [[TJMLocationService sharedLocationService] getFreeManLocationWith:TJMGetLocationTypeCityName target:CLLocationCoordinate2DMake(0, 0)];
 }
-#pragma  mark 获取开工时间/当前金额 更新UI
+#pragma  mark 获取出工时间/当前金额 更新UI
 - (void)getWorkingTimeAndConfigWithWorkingStatus:(BOOL)workStatus {
-#pragma  mark 根据开工状态修改界面 和 设置定时器及定位
+#pragma  mark 根据出工状态修改界面 和 设置定时器及定位
     //设置相应界面
     self.workButton.selected = workStatus;
     //修改出工状态label
@@ -362,13 +370,13 @@ static NSInteger homepageOrderSize = 5;
         //设置今日收益label、今日工作时间label
         CGFloat income = [data[@"income"] doubleValue];
         self.totalMoneyLabel.text = [NSString stringWithFormat:@"￥%.2f",income];
-        //获取当前开工时间
+        //获取当前出工时间
         self.totalTimeLabel.text = [self tjm_getTimeStringWithTimestamp:[data[@"workTime"] integerValue]];
         //判断工作状态
-#pragma mark 必须在得到开工时间后 判断 开启定时器
+#pragma mark 必须在得到出工时间后 判断 开启定时器
 #warning tiemr on-off must in different method
         if (workStatus) {
-            //如果是开工，就异步开启定时器
+            //如果是出工，就异步开启定时器
             [self startTimerWithTimestamp:[data[@"workTime"] integerValue]];
         } else {
             [self cancelTiemr];
@@ -379,7 +387,7 @@ static NSInteger homepageOrderSize = 5;
     
 }
 
-#pragma  mark 根据开工状态设置刷新控件
+#pragma  mark 根据出工状态设置刷新控件
 - (void)configHeaderAndFooterWithWorkStatus:(BOOL)workStatus {
     if (workStatus) {
         //如果是出工状态
@@ -510,11 +518,12 @@ static NSInteger homepageOrderSize = 5;
 
 #pragma  mark - 通知
 - (void)dayChange:(NSNotification *)notification {
-    //日期变更后 重新请求 开工状态
+    //日期变更后 重新请求 出工状态
     [self getWorkingStatusWithIsNeedUpdateDataSource:YES];
 }
 - (void)cityDidChange:(NSNotification *)notification {
     TJMLog(@"位置已更新，开始刷新列表");
+    _locationDidUpdate = YES;
     if ([notification.userInfo[@"myLocation"] isKindOfClass:[NSString class]]) {
         if (self.header.isRefreshing) {
             [self.header endRefreshing];
@@ -528,6 +537,7 @@ static NSInteger homepageOrderSize = 5;
     if ([notification.userInfo[@"cityName"] isEqualToString:@"fail"]) {
         //反检索失败
         [self alertViewWithTag:10002 delegate:self title:@"定位失败，请刷新重试" cancelItem:nil sureItem:@"确定"];
+        return;
     }
     _cityName = notification.userInfo[@"cityName"];
     NSString *city =  [_cityName substringWithRange:NSMakeRange(0, _cityName.length - 1)];
