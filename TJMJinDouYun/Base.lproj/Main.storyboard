@@ -2786,7 +2786,7 @@
                                                     <constraint firstItem="Coh-Ji-buH" firstAttribute="leading" secondItem="hpe-dk-yWw" secondAttribute="trailing" constant="15" id="otP-47-kt6"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fYw-PN-qiO">
+                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fYw-PN-qiO">
                                                 <rect key="frame" x="0.0" y="70" width="374" height="269"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="list_icon_second" translatesAutoresizingMaskIntoConstraints="NO" id="E61-se-SA4">
@@ -2859,10 +2859,10 @@
                                                     <constraint firstItem="E61-se-SA4" firstAttribute="leading" secondItem="fYw-PN-qiO" secondAttribute="leading" id="sFA-eq-QjP"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K9C-Lj-ot7">
+                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K9C-Lj-ot7">
                                                 <rect key="frame" x="0.0" y="349" width="374" height="50"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="list_icon_third" translatesAutoresizingMaskIntoConstraints="NO" id="Ty8-4p-eM0">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="list_icon_second" translatesAutoresizingMaskIntoConstraints="NO" id="Ty8-4p-eM0">
                                                         <rect key="frame" x="0.0" y="15" width="68" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="Ty8-4p-eM0" secondAttribute="height" multiplier="17:5" id="MOF-vk-cL4"/>
@@ -2909,10 +2909,10 @@
                                                     <constraint firstItem="I72-GZ-Rrd" firstAttribute="leading" secondItem="pMI-hr-296" secondAttribute="trailing" constant="5" id="vPC-Jr-oE2"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tdt-cR-Tzx">
+                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tdt-cR-Tzx">
                                                 <rect key="frame" x="0.0" y="409" width="374" height="50"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="list_icon_fourth" translatesAutoresizingMaskIntoConstraints="NO" id="nqe-N3-x5l">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="list_icon_third" translatesAutoresizingMaskIntoConstraints="NO" id="nqe-N3-x5l">
                                                         <rect key="frame" x="0.0" y="15" width="68" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="nqe-N3-x5l" secondAttribute="height" multiplier="17:5" id="LPW-fn-0SJ"/>
@@ -2953,6 +2953,7 @@
                                             <constraint firstItem="nqe-N3-x5l" firstAttribute="height" secondItem="hpe-dk-yWw" secondAttribute="height" id="AgC-tO-GUJ"/>
                                             <constraint firstItem="I72-GZ-Rrd" firstAttribute="height" secondItem="GJw-ll-rlf" secondAttribute="height" id="Cs8-ms-kpr"/>
                                             <constraint firstItem="Tdt-cR-Tzx" firstAttribute="leading" secondItem="xaK-EF-Qbh" secondAttribute="leading" id="Kve-ge-rfv"/>
+                                            <constraint firstItem="K9C-Lj-ot7" firstAttribute="top" secondItem="xqH-AK-QK5" secondAttribute="bottom" constant="10" id="LRb-fm-iHX"/>
                                             <constraint firstAttribute="height" constant="603" id="THN-gh-TFM"/>
                                             <constraint firstItem="fYw-PN-qiO" firstAttribute="top" secondItem="xqH-AK-QK5" secondAttribute="bottom" constant="10" id="YsD-G0-jgc"/>
                                             <constraint firstAttribute="trailing" secondItem="Tdt-cR-Tzx" secondAttribute="trailing" id="aLS-rr-BfI"/>
@@ -2961,7 +2962,6 @@
                                             <constraint firstItem="Tdt-cR-Tzx" firstAttribute="height" secondItem="xqH-AK-QK5" secondAttribute="height" id="m0e-4H-zwD"/>
                                             <constraint firstAttribute="trailing" secondItem="fYw-PN-qiO" secondAttribute="trailing" id="qxG-Kb-nT3"/>
                                             <constraint firstItem="E61-se-SA4" firstAttribute="height" secondItem="hpe-dk-yWw" secondAttribute="height" id="sJb-kA-UIL"/>
-                                            <constraint firstItem="K9C-Lj-ot7" firstAttribute="top" secondItem="fYw-PN-qiO" secondAttribute="bottom" constant="10" id="xge-Wl-2qj"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -6262,7 +6262,6 @@ DQ
         <image name="list_icon_earnings-" width="19" height="15"/>
         <image name="list_icon_emergency-" width="19" height="19"/>
         <image name="list_icon_first" width="68" height="20"/>
-        <image name="list_icon_fourth" width="68" height="20"/>
         <image name="list_icon_location1" width="44" height="20"/>
         <image name="list_icon_location2" width="44" height="20"/>
         <image name="list_icon_location3" width="44" height="20"/>

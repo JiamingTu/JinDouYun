@@ -206,20 +206,25 @@
 #pragma  mark - 考试按钮
 - (IBAction)examAction:(UIButton *)sender {
     NSInteger materialStatus = self.freeManInfo.materialStatus.integerValue;
-    if (materialStatus == 0 || materialStatus == 3 || materialStatus == 1) {
-        [TJMHUDHandle transientNoticeAtView:self.view withMessage:@"审核未完成"];
+    if (materialStatus == 0) {
+        [TJMHUDHandle transientNoticeAtView:self.view withMessage:@"请先完善资料"];
         return;
-    }
-    NSInteger examStatus = self.freeManInfo.examStatus.integerValue;
-    if (examStatus == 3) {
-        //可以进行考试
-        [self performSegueWithIdentifier:@"GoToExam" sender:nil];
-    } else if (examStatus < 3) {
-        //请完成学习
-        [TJMHUDHandle transientNoticeAtView:self.view withMessage:@"请先完成学习"];
+    } else if (materialStatus == 1) {
+        [TJMHUDHandle transientNoticeAtView:self.view withMessage:@"审核未完成"];
+    } else if (materialStatus == 3) {
+        [TJMHUDHandle transientNoticeAtView:self.view withMessage:@"资料审核未通过，请重新提交"];
     } else {
-        //已完成考试 提交审核 成为自由人
-        [TJMHUDHandle transientNoticeAtView:self.view withMessage:@"考试已完成，提交审核，成为自由人吧！"];
+        NSInteger examStatus = self.freeManInfo.examStatus.integerValue;
+        if (examStatus == 3) {
+            //可以进行考试
+            [self performSegueWithIdentifier:@"GoToExam" sender:nil];
+        } else if (examStatus < 3) {
+            //请完成学习
+            [TJMHUDHandle transientNoticeAtView:self.view withMessage:@"请先完成学习"];
+        } else {
+            //已完成考试 提交审核 成为自由人
+            [TJMHUDHandle transientNoticeAtView:self.view withMessage:@"考试已完成，提交审核，成为自由人吧！"];
+        }
     }
 }
 #pragma  mark - 成为自由人
@@ -252,7 +257,7 @@
                         break;
                     case 2:
                     {
-                        noticeString = @"请完成学习及考试";
+                        noticeString = @"请完成入职考核";
                     }
                         break;
                     case 3:

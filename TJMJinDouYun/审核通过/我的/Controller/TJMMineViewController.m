@@ -166,7 +166,8 @@
                 NSString *path = [NSString stringWithFormat:@"%@%@",TJMPhotoBasicAddress,freeManInfo.photo];
                 [[SDWebImageManager sharedManager] loadImageWithURL:[NSURL URLWithString:path] options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
                     image = [image getCropImage];
-                    [self.headerButton setBackgroundImage:image forState:UIControlStateNormal];
+                    
+                    [self.headerButton setBackgroundImage:image ? image : [UIImage imageNamed:@"image"] forState:UIControlStateNormal];
                 }];
             }
             //
