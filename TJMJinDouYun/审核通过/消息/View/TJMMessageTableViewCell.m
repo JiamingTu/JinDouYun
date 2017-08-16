@@ -43,6 +43,7 @@
     NSString *timeString = [NSString getTimeWithTimestamp:model.updateTime formatterStr:@"MM-dd HH:mm"];
     self.dateLabel.text = timeString;
     self.titleLabel.text = [self getTitleWithType:model.type.integerValue];
+    self.isReadView.hidden = model.read;
 }
 - (NSString *)getTitleWithType:(NSInteger)type {
     NSString *title = @"";

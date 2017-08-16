@@ -53,7 +53,7 @@
 #pragma  mark - 按钮方法
 #pragma  mark 右导航按钮 提交绑定
 - (void)rightItemAction:(UIButton *)button {
-    [self.view endEditing:NO];//去除对话框第一响应
+    [self.view endEditing:YES];//去除对话框第一响应
     MBProgressHUD *progressHUD = [TJMHUDHandle showRequestHUDAtView:self.view message:@"请稍后..."];
     [TJMRequestH bindingBankCardWithParameters:self.parameters success:^(id successObj, NSString *msg) {
         progressHUD.label.text = msg;
@@ -97,7 +97,7 @@
 }
 #pragma  mark - 手势
 - (IBAction)tap:(UITapGestureRecognizer *)sender {
-    [self.view endEditing:NO];
+    [self.view endEditing:YES];
 }
 #pragma  mark - #pragma mark - UIGestureRecognizerDelegate
 -(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
@@ -122,7 +122,7 @@
     return 50 * TJMHeightRatio;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self.view endEditing:NO];
+    [self.view endEditing:YES];
     TJMInfoTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     [cell setSelected:NO animated:YES];
     if (!cell.infoTextField.enabled) {

@@ -26,6 +26,8 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *lineViewTopConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *lineViewBottomConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *serviceSingViewTopConstraint;
+
 
 //水平
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *signInStepLabelLeftConstraint;
@@ -43,6 +45,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *remindMsgCodeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *msgCodeButton;
+@property (weak, nonatomic) IBOutlet UILabel *serviceSignInNoticeLabel;
+@property (weak, nonatomic) IBOutlet UIButton *serviceSignInNoticeButton;
 
 
 
@@ -66,9 +70,7 @@
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [UIView animateWithDuration:0.35 animations:^{
-        self.navBarBgAlpha = @"0.0";
-    }];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -77,12 +79,12 @@
 }
 #pragma  mark - 设置页面
 - (void)resetConstraints {
-    [self tjm_resetVerticalConstraints:self.QRCodeImageTopConstraint,self.QRCodeImageBottomConstraint,self.QRCodeImageHeightConstraint,self.weiChatImageTopConstraint,self.weiChatImageHeightConstraint,self.checkImageHeightConstraint,self.checkImageBottomConstraint,self.scanImageHeightConstraint,self.lineViewTopConstraint,self.lineViewBottomConstraint, nil];
+    [self tjm_resetVerticalConstraints:self.QRCodeImageTopConstraint,self.QRCodeImageBottomConstraint,self.QRCodeImageHeightConstraint,self.weiChatImageTopConstraint,self.weiChatImageHeightConstraint,self.checkImageHeightConstraint,self.checkImageBottomConstraint,self.scanImageHeightConstraint,self.lineViewTopConstraint,self.lineViewBottomConstraint,self.serviceSingViewTopConstraint, nil];
 }
 - (void)adjustFonts {
     [self tjm_adjustFont:15 forView:self.signInStepLabel, nil];
     [self tjm_adjustFont:12 forView:self.checkLabel,self.remindLabel,self.openWeiChatLabel,self.openScanLabel,self.scanLabel, nil];
-    [self tjm_adjustFont:14 forView:self.remindMsgCodeLabel,self.msgCodeButton, nil];
+    [self tjm_adjustFont:14 forView:self.remindMsgCodeLabel,self.msgCodeButton,self.serviceSignInNoticeLabel,self.serviceSignInNoticeButton, nil];
 }
 - (void)configViews {
     //设置返回按钮
@@ -155,6 +157,8 @@
         TJMCodeSignInViewController *codeSignInVC = segue.destinationViewController;
         codeSignInVC.navBarBgAlpha = @"0.0";
         codeSignInVC.orderModel = self.orderModel;
+    } else if ([segue.identifier isEqualToString:@"ServiceSign"]) {
+        [segue.destinationViewController setValue:self.orderModel forKey:@"orderModel"];
     }
 }
 

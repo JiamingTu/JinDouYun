@@ -106,8 +106,8 @@ const char *kTJMAppDelegateKey = "AppDelegateKey";
 
 #pragma  mark - 弹窗提示
 - (void)alertViewWithTag:(NSInteger)tag delegate:(id<TDAlertViewDelegate>)delegate title:(NSString *)title cancelItem:(NSString *)cancel sureItem:(NSString *)sure {
-    TDAlertItem *sureItem = [[TDAlertItem alloc]initWithTitle:sure titleColor:TJMFUIColorFromRGB(0x666666)];
-    TDAlertItem *cancelItem = [[TDAlertItem alloc]initWithTitle:cancel titleColor:TJMFUIColorFromRGB(0xffdf22)];
+    TDAlertItem *sureItem = [[TDAlertItem alloc]initWithTitle:sure titleColor:TJMFUIColorFromRGB(0x9ACD32)];
+    TDAlertItem *cancelItem = [[TDAlertItem alloc]initWithTitle:cancel titleColor:TJMFUIColorFromRGB(0x666666)];
     NSArray *items = nil;
     if (cancel == nil) {
         items = @[sureItem];

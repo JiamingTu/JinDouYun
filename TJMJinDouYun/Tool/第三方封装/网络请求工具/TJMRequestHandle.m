@@ -681,6 +681,27 @@ SingletonM(RequestHandle)
         }];
     }
 }
+#pragma  mark 异常申报
+- (void)commitUnusualOrderWithMessage:(NSString *)message orderNo:(NSString *)orderNo success:(SuccessBlock)success fail:(FailBlock)failure {
+    if (self.tokenModel) {
+        NSString *path = [self basicApiAppend:TJMErrorReport];
+        NSDictionary *parameters = @{@"orderNo":orderNo,@"errorMsg":message};
+        [self.httpRequestManager.requestSerializer setValue:_tokenModel.token forHTTPHeaderField:@"Authorization"];
+        [_httpRequestManager PUT:path parameters:parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            if (TJMRightCode) {
+                success(TJMResponseMessage,TJMResponseMessage);
+            } else {
+                if ([TJMResponseMessage isEqual:[NSNull null]]) {
+                    failure(@"未知错误");
+                } else {
+                    failure(TJMResponseMessage);
+                }
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            failure(error.localizedDescription);
+        }];
+    }
+}
 #pragma  mark - 我的钱包（银行卡、提现等）
 #pragma  mark 获取可用银行
 
@@ -878,7 +899,7 @@ SingletonM(RequestHandle)
     }
 }
 
-#pragma  mark - 获取消息列表
+#pragma  mark - 消息
 - (void)getFreeManMessageListWithPage:(NSInteger)page size:(NSInteger)size sort:(NSString *)sort success:(SuccessBlock)success fail:(FailBlock)failure {
     if (self.tokenModel) {
         NSString *path = [self basicApiAppend:TJMGetMessageList(self.tokenModel.userId.description)];
@@ -888,10 +909,11 @@ SingletonM(RequestHandle)
         if (sort) [parameters setObject:sort forKey:@"sort"];
         [self.httpRequestManager.requestSerializer setValue:_tokenModel.token forHTTPHeaderField:@"Authorization"];
         [self.httpRequestManager GET:path parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//            TJMLog(@"%@",responseObject);
             if (TJMRightCode) {
-                [TJMSandBoxManager deleteMessages];
+//                [TJMSandBoxManager deleteMessages];
                 TJMMessageData *data = [TJMMessageData mj_objectWithKeyValues:responseObject];
-                [TJMSandBoxManager saveMessagesToPath:data.data];
+//                [TJMSandBoxManager saveMessagesToPath:data.data];
                 success(data,TJMResponseMessage);
             } else if ([TJMResponseMessage isEqual:[NSNull null]]) {
                 failure(@"未知错误");
@@ -901,6 +923,46 @@ SingletonM(RequestHandle)
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             
         }];
+    }
+}
+
+#pragma  mark 阅读消息
+- (void)readMessageWithMessageId:(NSNumber *)messageId success:(SuccessBlock)success fail:(FailBlock)failure {
+    if (self.tokenModel) {
+        NSString *path = [self basicApiAppend:TJMReadMessage(_tokenModel.userId, messageId)];
+        [self.httpRequestManager.requestSerializer setValue:_tokenModel.token forHTTPHeaderField:@"Authorization"];
+        [self.httpRequestManager PUT:path parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            if (TJMRightCode) {
+                success(TJMResponseMessage,TJMResponseMessage);
+            } else if ([TJMResponseMessage isEqual:[NSNull null]]) {
+                failure(@"未知错误");
+            } else {
+                failure(TJMResponseMessage);
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            failure(error.localizedDescription);
+        }];
+    }
+}
+#pragma  mark 获取未读消息数量
+- (void)getUnreadMessageNumberWithSuccess:(SuccessBlock)success fail:(FailBlock)failure {
+    if (self.tokenModel) {
+        NSString *path = [self basicApiAppend:TJMGetUnreadMsgNum(_tokenModel.userId)];
+        [self.httpRequestManager.requestSerializer setValue:_tokenModel.token forHTTPHeaderField:@"Authorization"];
+        [self.httpRequestManager GET:path parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            if (TJMRightCode) {
+                [TJMSandBoxManager saveInInfoPlistWithModel:responseObject[@"data"] key:kTJMUnreadMessageNum];
+                success(responseObject[@"data"],TJMResponseMessage);
+            } else if ([TJMResponseMessage isEqual:[NSNull null]]) {
+                failure(@"未知错误");
+            } else {
+                failure(TJMResponseMessage);
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            
+        }];
+    
+    
     }
 }
 

@@ -21,6 +21,8 @@ typedef NSString *(^SignInBlock)();
 @property (nonatomic,copy) WorkTimeBlock stopTimer;
 @property (nonatomic,strong) TJMFreeManInfo *freeManInfo;
 
+/**消息角标值*/
+@property (nonatomic,strong) NSNumber *msgBadgeValue;
 
 @end
 

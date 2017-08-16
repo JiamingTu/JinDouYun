@@ -14,6 +14,9 @@ static NSString *kTJMPerformanceInfo = @"PerformanceInfo";
 static NSString *kTJMFreeManInfo = @"TJMFreeManInfo";
 static NSString *kTJMCityName = @"TJMCityName";
 static NSString *kTJMCheckVersionDate = @"TJMCheckVersionDate";
+static NSString *kTJMUnreadMessageNum = @"TJMUnreadMessageNum";//未读消息数量
+static NSString *kTJMReadedMessageIdList = @"TJMReadedMessageIdList";
+
 
 
 static NSString *kKVOFreeManInfo = @"freeManInfo";

@@ -130,7 +130,7 @@
 #pragma  mark - 界面按钮 手势
 #pragma  mark 轻拍
 - (void)tap:(UIGestureRecognizer *)gesture {
-    [self.view endEditing:NO];
+    [self.view endEditing:YES];
 }
 #pragma  mark - 选择照片
 - (IBAction)takePhotoAction:(UIButton *)sender {

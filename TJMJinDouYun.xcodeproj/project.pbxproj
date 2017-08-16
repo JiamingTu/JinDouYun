@@ -59,11 +59,13 @@
 		998377161ED9660F0007DD85 /* ZGLVideoPlyer.m in Sources */ = {isa = PBXBuildFile; fileRef = 998377141ED9660F0007DD85 /* ZGLVideoPlyer.m */; };
 		998377191ED96AE70007DD85 /* UIImage+Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = 998377181ED96AE70007DD85 /* UIImage+Scale.m */; };
 		999E3B471EE7D276008201BE /* TJMTradingRecordData.m in Sources */ = {isa = PBXBuildFile; fileRef = 999E3B461EE7D276008201BE /* TJMTradingRecordData.m */; };
+		99A1D7611F43D9270036A88A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99A1D7601F43D9270036A88A /* CoreData.framework */; };
 		99A3BC101EBB026800688692 /* TJMHomeOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A3BC0F1EBB026800688692 /* TJMHomeOrderTableViewCell.m */; };
 		99A3BC131EBB18FD00688692 /* TJMHomeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A3BC121EBB18FD00688692 /* TJMHomeHeaderView.m */; };
 		99A3BC161EBC02C100688692 /* TJMMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A3BC151EBC02C100688692 /* TJMMessageTableViewCell.m */; };
 		99A3BC751EBCC79300688692 /* UINavigationController+Cloudox.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A3BC721EBCC79300688692 /* UINavigationController+Cloudox.m */; };
 		99A3BC761EBCC79300688692 /* UIViewController+Cloudox.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A3BC741EBCC79300688692 /* UIViewController+Cloudox.m */; };
+		99A8F8F91F32C6E200EF15AF /* TJMServiceSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A8F8F81F32C6E200EF15AF /* TJMServiceSignInViewController.m */; };
 		99BD04AD1EE691C900F56351 /* TJMHeatMapData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99BD04AC1EE691C900F56351 /* TJMHeatMapData.m */; };
 		99DDF3E01F0A298600D733B0 /* UIButton+touch.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DDF3DF1F0A298600D733B0 /* UIButton+touch.m */; };
 		99DFB9C41EFB6C9C00CE5645 /* 主页逻辑说明.txt in Resources */ = {isa = PBXBuildFile; fileRef = 99DFB9C31EFB6C9C00CE5645 /* 主页逻辑说明.txt */; };
@@ -286,6 +288,7 @@
 		998377181ED96AE70007DD85 /* UIImage+Scale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Scale.m"; sourceTree = "<group>"; };
 		999E3B451EE7D276008201BE /* TJMTradingRecordData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMTradingRecordData.h; sourceTree = "<group>"; };
 		999E3B461EE7D276008201BE /* TJMTradingRecordData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMTradingRecordData.m; sourceTree = "<group>"; };
+		99A1D7601F43D9270036A88A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		99A3BC0E1EBB026800688692 /* TJMHomeOrderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMHomeOrderTableViewCell.h; sourceTree = "<group>"; };
 		99A3BC0F1EBB026800688692 /* TJMHomeOrderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMHomeOrderTableViewCell.m; sourceTree = "<group>"; };
 		99A3BC111EBB18FD00688692 /* TJMHomeHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMHomeHeaderView.h; sourceTree = "<group>"; };
@@ -296,6 +299,8 @@
 		99A3BC721EBCC79300688692 /* UINavigationController+Cloudox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Cloudox.m"; sourceTree = "<group>"; };
 		99A3BC731EBCC79300688692 /* UIViewController+Cloudox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Cloudox.h"; sourceTree = "<group>"; };
 		99A3BC741EBCC79300688692 /* UIViewController+Cloudox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Cloudox.m"; sourceTree = "<group>"; };
+		99A8F8F71F32C6E200EF15AF /* TJMServiceSignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMServiceSignInViewController.h; sourceTree = "<group>"; };
+		99A8F8F81F32C6E200EF15AF /* TJMServiceSignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMServiceSignInViewController.m; sourceTree = "<group>"; };
 		99BD04AB1EE691C900F56351 /* TJMHeatMapData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMHeatMapData.h; sourceTree = "<group>"; };
 		99BD04AC1EE691C900F56351 /* TJMHeatMapData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMHeatMapData.m; sourceTree = "<group>"; };
 		99DDF3DE1F0A298600D733B0 /* UIButton+touch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+touch.h"; sourceTree = "<group>"; };
@@ -439,6 +444,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99A1D7611F43D9270036A88A /* CoreData.framework in Frameworks */,
 				997985D11F063C960089CC9C /* libbaiduNaviSDK.a in Frameworks */,
 				99F691841EEAB3AD00D7FA80 /* BaiduMapAPI_Base.framework in Frameworks */,
 				997985D41F063C960089CC9C /* libssl.a in Frameworks */,
@@ -484,6 +490,7 @@
 		889BC0A7E9955FB8187A2A77 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				99A1D7601F43D9270036A88A /* CoreData.framework */,
 				99F691831EEAB3AD00D7FA80 /* BaiduMapAPI_Base.framework */,
 				99F1C18C1EA445BD00415F0C /* libz.1.2.5.tbd */,
 				99F1C18A1EA445B200415F0C /* libsqlite3.0.tbd */,
@@ -1017,6 +1024,13 @@
 			path = "我的钱包/交易记录/Model";
 			sourceTree = "<group>";
 		};
+		99A1D71A1F42F6F60036A88A /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		99A3BC701EBCC79300688692 /* 导航栏透明度 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1026,6 +1040,23 @@
 				99A3BC741EBCC79300688692 /* UIViewController+Cloudox.m */,
 			);
 			path = "导航栏透明度";
+			sourceTree = "<group>";
+		};
+		99A8F8F51F32C6B000EF15AF /* 客服签收 */ = {
+			isa = PBXGroup;
+			children = (
+				99A8F8F61F32C6B000EF15AF /* Controller */,
+			);
+			path = "客服签收";
+			sourceTree = "<group>";
+		};
+		99A8F8F61F32C6B000EF15AF /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				99A8F8F71F32C6E200EF15AF /* TJMServiceSignInViewController.h */,
+				99A8F8F81F32C6E200EF15AF /* TJMServiceSignInViewController.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		99E81C4B1EB217E600BB0875 /* 审核前 */ = {
@@ -1360,6 +1391,7 @@
 				995644931ECC82AD00339D0C /* 到付-二维码 */,
 				99019DCD1ECC5566002BC164 /* 签收-二维码 */,
 				99019DBF1ECAD6D7002BC164 /* 取货-拍照上传 */,
+				99A8F8F51F32C6B000EF15AF /* 客服签收 */,
 				990E9C9E1EC2B12A009C7792 /* 签收-验证码 */,
 			);
 			path = "首页";
@@ -1592,6 +1624,7 @@
 		99F1C0B61EA0CEE000415F0C /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				99A1D71A1F42F6F60036A88A /* CoreData */,
 				99FA703E1EF0111500552D01 /* 相册管理 */,
 				99F1C0B71EA0CEE000415F0C /* Config */,
 				99F1C0BB1EA0CEE000415F0C /* 沙盒管理 */,
@@ -2098,6 +2131,7 @@
 				998377161ED9660F0007DD85 /* ZGLVideoPlyer.m in Sources */,
 				99FA70411EF0113500552D01 /* TJMPhotoManager.m in Sources */,
 				998377151ED9660F0007DD85 /* ZGLVideoMaskView.m in Sources */,
+				99A8F8F91F32C6E200EF15AF /* TJMServiceSignInViewController.m in Sources */,
 				9966AA301ED6C511004A09F7 /* TJMFeedBackViewController.m in Sources */,
 				99A3BC761EBCC79300688692 /* UIViewController+Cloudox.m in Sources */,
 				99E81CB51EB217E600BB0875 /* TJMExamViewController.m in Sources */,
@@ -2344,6 +2378,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -2382,6 +2417,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

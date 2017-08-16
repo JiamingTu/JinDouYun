@@ -72,8 +72,11 @@
     [self resetConstraints];
     [self configViews];
 }
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+//    [UIView animateWithDuration:0.35 animations:^{
+        self.navBarBgAlpha = @"0.0";
+//    }];
 }
 #pragma  mark - 设置页面
 - (void)resetConstraints {

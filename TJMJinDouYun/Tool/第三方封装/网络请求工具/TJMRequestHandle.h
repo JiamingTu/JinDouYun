@@ -90,6 +90,9 @@ SingletonH(RequestHandle)
 - (void)getSignInCodeOrSignWithType:(NSString *)type parameters:(NSDictionary *)parameters success:(SuccessBlock)success fail:(FailBlock)failure;
 /**查询单个订单*/
 - (void)getSingleOrderWithOrderNumber:(NSString *)orderNo success:(SuccessBlock)success fail:(FailBlock)failure;
+/**异常签收*/
+- (void)commitUnusualOrderWithMessage:(NSString *)message orderNo:(NSString *)orderNo success:(SuccessBlock)success fail:(FailBlock)failure;
+
 #pragma  mark - 银行卡、提现
 /**绑定银行卡*/
 - (void)bindingBankCardWithParameters:(NSMutableDictionary *)parameters success:(SuccessBlock)success fail:(FailBlock)failure;
@@ -108,9 +111,14 @@ SingletonH(RequestHandle)
 - (void)feedBackQuestionWithContent:(NSString *)content phoneNum:(NSString *)phoneNum success:(SuccessBlock)success fail:(FailBlock)failure;
 /**获取业绩 及 评价*/
 - (void)getFreeManPerformanceSuccess:(SuccessBlock)success fail:(FailBlock)failure;
-#pragma  mark - 获取消息列表
+#pragma  mark - 消息
 /**获取消息列表*/
 - (void)getFreeManMessageListWithPage:(NSInteger)page size:(NSInteger)size sort:(NSString *)sort success:(SuccessBlock)success fail:(FailBlock)failure;
+/**阅读消息*/
+- (void)readMessageWithMessageId:(NSNumber *)messageId success:(SuccessBlock)success fail:(FailBlock)failure;
+/**获取未读消息数量*/
+- (void)getUnreadMessageNumberWithSuccess:(SuccessBlock)success fail:(FailBlock)failure;
+
 #pragma  mark - 热力图
 /**获取热力图数据*/
 - (void)heatMapDataSuccessWithDay:(NSInteger)day cityName:(NSString *)cityName success:(SuccessBlock)success fail:(FailBlock)failure;

@@ -11,4 +11,6 @@
 @interface TJMMessageViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+- (void)refreshList;//刷新列表
+
 @end

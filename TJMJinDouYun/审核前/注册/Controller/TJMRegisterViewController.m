@@ -155,7 +155,9 @@
                 [TJMRequestH accountCheckWithForm:form checkType:_requestType success:^(id successObj,NSString *msg) {
                     progressHUD.label.text = msg;
                     [progressHUD hideAnimated:YES afterDelay:1.5];
-                    [self.navigationController popViewControllerAnimated:YES];
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [self.navigationController popViewControllerAnimated:YES];
+                    });
                 } fail:^(NSString *failString) {
                     progressHUD.label.text = failString;
                     [progressHUD hideAnimated:YES afterDelay:1.5];

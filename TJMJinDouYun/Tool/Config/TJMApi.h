@@ -274,6 +274,18 @@
  *  orderNo
  */
 #define TJMGetSingleOrder(orderNo) [NSString stringWithFormat:@"/orders/auth/%@",orderNo]
+#pragma  mark 异常签收申报
+/*
+ *获取单个订单 PUT
+ *Parameters
+ *  Authorization     ->header
+ *  orderNo
+ *  errorMsg
+ */
+#define TJMErrorReport @"/orders/errorReport"
+
+
+
 #pragma  mark - 我的钱包（绑定银行卡、提现等）
 /*
  *绑定银行卡 POST
@@ -364,14 +376,34 @@
  */
 #define TJMFreeManPerformance(carrierId) [NSString stringWithFormat:@"/carrier/users/performance/%@",carrierId]
 
-#pragma  mark - 获取消息列表
+#pragma  mark - 消息
 /*
- *获取评价、业绩 GET
+ *消息列表 GET
+ *Parameters
+ *  Authorization     ->header
+ *  carrierId         ->path
+ *  page
+ *  size
+ *  sort
+ *  dir
+ */
+#define TJMGetMessageList(carrierId) [NSString stringWithFormat:@"/carrier/message/%@",carrierId]
+/*
+ *获取未读消息列表 GET
  *Parameters
  *  Authorization     ->header
  *  carrierId         ->path
  */
-#define TJMGetMessageList(carrierId) [NSString stringWithFormat:@"/carrier/message/%@",carrierId]
+#define TJMGetUnreadMsgNum(carrierId) [NSString stringWithFormat:@"/carrier/%@/message/count",carrierId]
+
+/*
+ *阅读消息 PUT
+ *Parameters
+ *  Authorization     ->header
+ *  carrierId         ->path
+ *  messageId         ->path
+ */
+#define TJMReadMessage(carriderId,messageId) [NSString stringWithFormat:@"/carrier/%@/message/%@",carriderId,messageId]
 
 #pragma  mark - 热力图
 /*

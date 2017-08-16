@@ -301,7 +301,8 @@ static NSInteger homepageOrderSize = 5;
                 //设置isWorking KVO 修改界面等
                 self.isWorking = [type isEqualToString:@"Start"];
                 if (!self.isWorking) {
-                    [self cancelTiemr];
+//                    [self cancelTiemr];
+                    [self configHeaderAndFooterWithWorkStatus:self.isWorking];
                 } else {
                     //如果是出工的话 配置 刷新
                     if (self.myLoc && _cityName) {
@@ -690,6 +691,7 @@ static NSInteger homepageOrderSize = 5;
                 NSString *path = [NSString stringWithFormat:@"%@%@",TJMPhotoBasicAddress,freeManInfo.photo];
                 [[SDWebImageManager sharedManager] loadImageWithURL:[NSURL URLWithString:path] options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
                     image = [image getCropImage];
+                    image = nil;
                     self.headerImageView.image = image ? image : [UIImage imageNamed:@"img_user"];
                 }];
             }

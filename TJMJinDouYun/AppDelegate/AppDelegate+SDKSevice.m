@@ -114,8 +114,15 @@
         [self receivedSignInMessageWithBlock:^NSString *{
             return content;
         }];
-    } else if (type == 2){
-        [TJMHUDHandle transientNoticeAtView:self.window withMessage:@"新订单来了"];
+    } else if (type == 2) {
+        //收到通知后请求获取未读消息数据
+        [TJMRequestH getUnreadMessageNumberWithSuccess:^(id successObj, NSString *msg) {
+            NSNumber *number = successObj;
+            self.msgBadgeValue = number;
+            
+        } fail:^(NSString *failString) {
+            
+        }];
     }
 }
 

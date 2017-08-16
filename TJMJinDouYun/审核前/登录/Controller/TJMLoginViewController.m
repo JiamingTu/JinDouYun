@@ -174,7 +174,7 @@
 //登录成功调用
 - (void)loginSuccessWithObject:(id)object progressHUD:(MBProgressHUD *)progressHUD {
     //收起键盘
-    [self.view endEditing:NO];
+    [self.view endEditing:YES];
     NSDictionary *dict = object[@"data"];
     TJMTokenModel *tokenModel = [[TJMTokenModel alloc]initWithDictionary:dict];
     //存token

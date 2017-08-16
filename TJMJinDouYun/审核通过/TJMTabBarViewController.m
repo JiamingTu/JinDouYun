@@ -8,6 +8,7 @@
 
 #import "TJMTabBarViewController.h"
 #import "TJMHomepageViewController.h"
+#import "TJMMessageViewController.h"
 @interface TJMTabBarViewController ()<UITabBarControllerDelegate,TDAlertViewDelegate>
 {
 }
@@ -30,9 +31,20 @@
         item.selectedImage = [item.selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     }
     [self checkNewVersion];
+    
+    //添加监听，msgBadgeValue改变时，改变角标值
+    [self.appDelegate addObserver:self forKeyPath:@"msgBadgeValue" options:NSKeyValueObservingOptionNew context:nil];
+    //首次加载页面时获取本地badge的值 并显示
+    [self getBadgeFromInfoPlist];
+    
+    
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+}
+
+- (void)dealloc {
+    [self.appDelegate removeObserver:self forKeyPath:@"msgBadgeValue"];
 }
 
 #pragma  mark - UITabBarControllerDelegate
@@ -43,10 +55,40 @@
         UINavigationController *naviC = self.viewControllers.firstObject;
         TJMHomepageViewController *homeVC = naviC.viewControllers.firstObject;
         [homeVC reloadOrderList];
+    } else if ([item.title isEqualToString:@"消息"]) {
+        UINavigationController *naviC = self.viewControllers[2];
+        TJMMessageViewController *msgVC = naviC.viewControllers.firstObject;
+        [msgVC refreshList];
     }
 }
 
+#pragma  mark - 消息模块显示数量
+- (void)getBadgeFromInfoPlist {
+    NSNumber *number = [TJMSandBoxManager getModelFromInfoPlistWithKey:kTJMUnreadMessageNum];
+    self.appDelegate.msgBadgeValue = number;
+    //并网络请求
+    [TJMRequestH getUnreadMessageNumberWithSuccess:^(id successObj, NSString *msg) {
+        NSNumber *number = successObj;
+        self.appDelegate.msgBadgeValue = number;
+    } fail:^(NSString *failString) {
+        
+    }];
+}
+#pragma  mark 消息item 添加badge
+- (void)addMessageBadgeWithValue:(NSNumber *)badge {
+    UITabBarItem *item = self.tabBar.items[2];
+    NSString *badgeString = nil;
+    if ([badge integerValue] > 99) {
+        badgeString = @"...";
+    } else if (badge.integerValue == 0) {
+        badgeString = nil;
+    } else {
+        badgeString = badge.description;
+    }
+    item.badgeValue = badgeString;
+}
 
+#pragma  mark - 版本跟新
 - (void)checkNewVersion {
     NSDate *checkDate = [[NSUserDefaults standardUserDefaults] objectForKey:kTJMCheckVersionDate];
     if (checkDate) {
@@ -87,6 +129,17 @@
     }
 }
 
+#pragma  mark - KVO
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    //self.appDelegate.msgBadgeValue 值改变时跟新badgeValue
+    if ([keyPath isEqualToString:@"msgBadgeValue"]) {
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self addMessageBadgeWithValue:self.appDelegate.msgBadgeValue];
+        }];
+    }
+}
+
+#pragma  mark - memory warning
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

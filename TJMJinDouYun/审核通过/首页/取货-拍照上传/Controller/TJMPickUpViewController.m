@@ -52,9 +52,9 @@
     [self configViews];
     [self resetConstraints];
     //获取地理位置，判断取货范围
-    [TJMHUDHandle showRequestHUDAtView:self.view message:nil];
-    [[TJMLocationService sharedLocationService] getFreeManLocationWith:TJMGetLocationTypeLocation target:CLLocationCoordinate2DMake(0, 0)];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationDidChange:) name:kTJMLocationDidChange object:nil];
+//    [TJMHUDHandle showRequestHUDAtView:self.view message:nil];
+//    [[TJMLocationService sharedLocationService] getFreeManLocationWith:TJMGetLocationTypeLocation target:CLLocationCoordinate2DMake(0, 0)];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationDidChange:) name:kTJMLocationDidChange object:nil];
 }
 #pragma  mark - 设置页面
 - (void)resetConstraints {
@@ -102,34 +102,34 @@
 }
 
 #pragma  mark - 通知
-- (void)locationDidChange:(NSNotification *)notification {
-    if ([notification.userInfo[@"myLocation"] isKindOfClass:[NSString class]]) {
-        //定位失败
-        [self alertViewWithTag:10001 delegate:self title:@"定位失败，请退出重试" cancelItem:nil sureItem:@"确定"];
-        return;
-    }
-    BMKUserLocation *location = notification.userInfo[@"myLocation"];
-    CLLocationCoordinate2D toCoordinate = CLLocationCoordinate2DMake(_orderModel.consignerLat.doubleValue, _orderModel.consignerLng.doubleValue);
-    CLLocationDistance distance = [[TJMLocationService sharedLocationService] calculateDistanceFromMyLocation:location.location.coordinate toGetLocation:toCoordinate];
-    [TJMHUDHandle hiddenHUDForView:self.view];
-    if (distance > 1000) {
-        [TJMHUDHandle hiddenHUDForView:self.view];
-        [self alertViewWithTag:10000 delegate:self title:@"不在取货范围" cancelItem:nil sureItem:@"确定"];
-    } else {
-        
-    }
-}
-
-- (void)alertView:(TDAlertView *)alertView didClickItemWithIndex:(NSInteger)itemIndex {
-    if (alertView.tag == 10000) {
-        if (itemIndex == 0) {
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self.navigationController popViewControllerAnimated:YES];
-            });
+//- (void)locationDidChange:(NSNotification *)notification {
+//    if ([notification.userInfo[@"myLocation"] isKindOfClass:[NSString class]]) {
+//        //定位失败
+//        [self alertViewWithTag:10001 delegate:self title:@"定位失败，请退出重试" cancelItem:nil sureItem:@"确定"];
+//        return;
+//    }
+//    BMKUserLocation *location = notification.userInfo[@"myLocation"];
+//    CLLocationCoordinate2D toCoordinate = CLLocationCoordinate2DMake(_orderModel.consignerLat.doubleValue, _orderModel.consignerLng.doubleValue);
+//    CLLocationDistance distance = [[TJMLocationService sharedLocationService] calculateDistanceFromMyLocation:location.location.coordinate toGetLocation:toCoordinate];
+//    [TJMHUDHandle hiddenHUDForView:self.view];
+//    if (distance > 1000) {
+//        [TJMHUDHandle hiddenHUDForView:self.view];
+//        [self alertViewWithTag:10000 delegate:self title:@"不在取货范围" cancelItem:nil sureItem:@"确定"];
+//    } else {
+//        
+//    }
+//}
+//
+//- (void)alertView:(TDAlertView *)alertView didClickItemWithIndex:(NSInteger)itemIndex {
+//    if (alertView.tag == 10000) {
+//        if (itemIndex == 0) {
+////            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+////                [self.navigationController popViewControllerAnimated:YES];
+////          });
 //            [self.navigationController popViewControllerAnimated:YES];
-        }
-    }
-}
+//        }
+//    }
+//}
 
 #pragma  mark - UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
