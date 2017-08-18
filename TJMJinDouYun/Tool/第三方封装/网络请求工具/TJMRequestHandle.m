@@ -603,7 +603,7 @@ SingletonM(RequestHandle)
         }];
     }
 }
-#pragma  mark 生成到付二维码
+#pragma  mark 生成到付or代收货款二维码
 - (void)getPayOnDeliveryQRCodeTextWithOrderNo:(NSString *)orderNo success:(SuccessBlock)success fail:(FailBlock)failure {
     if (self.tokenModel) {
         NSString *path = [self basicApiAppend:TJMPayOnDeliveryQRCode];
@@ -655,6 +655,50 @@ SingletonM(RequestHandle)
                 failure(@"未知错误");
             } else {
                 failure(TJMResponseMessage);
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            failure(error.localizedDescription);
+        }];
+    }
+}
+#pragma  mark 代收货款二维码
+- (void)collectPayWithOrderNo:(NSString *)orderNo success:(SuccessBlock)success fail:(FailBlock)failure {
+    if (self.tokenModel) {
+        NSString *path = [self basicApiAppend:TJMCollectPay];
+        NSDictionary *parameters = @{@"orderNo":orderNo};
+        [self.httpRequestManager.requestSerializer setValue:_tokenModel.token forHTTPHeaderField:@"Authorization"];
+        [self.httpRequestManager GET:path parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            TJMLog(@"代收货款二维码：%@",responseObject);
+            if (TJMRightCode) {
+                success(responseObject[@"data"],TJMResponseMessage);
+            } else {
+                if ([TJMResponseMessage isEqual:[NSNull null]]) {
+                    failure(@"未知错误");
+                } else {
+                    failure(TJMResponseMessage);
+                }
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            failure(error.localizedDescription);
+        }];
+    }
+}
+//拒绝签收生成二维码
+- (void)collectPayRefuseWithOrderNo:(NSString *)orderNo success:(SuccessBlock)success fail:(FailBlock)failure {
+    if (self.tokenModel) {
+        NSString *path = [self basicApiAppend:TJMCollectPayRefuse];
+        NSDictionary *parameters = @{@"orderNo":orderNo};
+        [self.httpRequestManager.requestSerializer setValue:_tokenModel.token forHTTPHeaderField:@"Authorization"];
+        [self.httpRequestManager PUT:path parameters:parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            TJMLog(@"到付二维码：%@",responseObject);
+            if (TJMRightCode) {
+                success(responseObject[@"data"],TJMResponseMessage);
+            } else {
+                if ([TJMResponseMessage isEqual:[NSNull null]]) {
+                    failure(@"未知错误");
+                } else {
+                    failure(TJMResponseMessage);
+                }
             }
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             failure(error.localizedDescription);

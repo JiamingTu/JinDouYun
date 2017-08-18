@@ -259,12 +259,20 @@
  *获取到付二维码
  */
 #define TJMPayOnDeliveryQRCode @"/pay/cod"
+
 #pragma  mark 代付
 /*
  *代付接口
  *  orderNo
  */
 #define TJMHelpPay @"/pay/helpPay"
+#pragma  mark 代收货款
+/*
+ *代收货款二维码
+ */
+#define TJMCollectPay @"/pay/collectPay"
+/**拒收后生成二维码*/
+#define TJMCollectPayRefuse @"/orders/refuseQRCode"
 
 #pragma  mark 获取单个订单
 /*

@@ -139,7 +139,8 @@ const NSInteger _myOrderSize = 5;
         [self.dataSourceArray addObjectsFromArray:array];
         [self.tableView reloadData];
     } fial:^(NSString *failString) {
-        
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
     }];
 }
 #pragma  mark - UITableViewDelegate,UITableViewDataSource
@@ -220,6 +221,14 @@ const NSInteger _myOrderSize = 5;
     //先跳到二维码界面
     [self performSegueWithIdentifier:@"MyOrderToSignIn" sender:model];
     
+}
+#pragma  mark 代收货款
+- (void)helpToCollectPayMoneyWithOrder:(TJMOrderModel *)model cell:(TJMHomeOrderTableViewCell *)cell {
+    [self performSegueWithIdentifier:@"MyOrderToDeliveryPay" sender:model];
+}
+#pragma  mark 代收货款拒收
+- (void)refuseCollectPayMoneyWithOrder:(TJMOrderModel *)model cell:(TJMHomeOrderTableViewCell *)cell {
+    [self performSegueWithIdentifier:@"MyOrderToDeliveryPay" sender:model];
 }
 #pragma  mark 导航（待取货、待送货）
 - (void)naviToDestinationWithLatitude:(CGFloat)lat longtitude:(CGFloat)lng order:(TJMOrderModel *)model cell:(TJMHomeOrderTableViewCell *)cell {

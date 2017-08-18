@@ -59,7 +59,6 @@
 		998377161ED9660F0007DD85 /* ZGLVideoPlyer.m in Sources */ = {isa = PBXBuildFile; fileRef = 998377141ED9660F0007DD85 /* ZGLVideoPlyer.m */; };
 		998377191ED96AE70007DD85 /* UIImage+Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = 998377181ED96AE70007DD85 /* UIImage+Scale.m */; };
 		999E3B471EE7D276008201BE /* TJMTradingRecordData.m in Sources */ = {isa = PBXBuildFile; fileRef = 999E3B461EE7D276008201BE /* TJMTradingRecordData.m */; };
-		99A1D7611F43D9270036A88A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99A1D7601F43D9270036A88A /* CoreData.framework */; };
 		99A3BC101EBB026800688692 /* TJMHomeOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A3BC0F1EBB026800688692 /* TJMHomeOrderTableViewCell.m */; };
 		99A3BC131EBB18FD00688692 /* TJMHomeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A3BC121EBB18FD00688692 /* TJMHomeHeaderView.m */; };
 		99A3BC161EBC02C100688692 /* TJMMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A3BC151EBC02C100688692 /* TJMMessageTableViewCell.m */; };
@@ -444,7 +443,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				99A1D7611F43D9270036A88A /* CoreData.framework in Frameworks */,
 				997985D11F063C960089CC9C /* libbaiduNaviSDK.a in Frameworks */,
 				99F691841EEAB3AD00D7FA80 /* BaiduMapAPI_Base.framework in Frameworks */,
 				997985D41F063C960089CC9C /* libssl.a in Frameworks */,

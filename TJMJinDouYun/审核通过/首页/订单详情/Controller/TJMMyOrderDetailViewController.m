@@ -80,7 +80,14 @@
             self.rightButtonWidthConstraint.constant = TJMScreenWidth;
             [self.rightWhiteButton setTitle:@"已取消" forState:UIControlStateNormal];
         } break;
-            
+        case 6: {
+            self.rightButtonWidthConstraint.constant = TJMScreenWidth;
+            [self.rightWhiteButton setTitle:@"异常订单" forState:UIControlStateNormal];
+        } break;
+        case 7: {
+            self.rightButtonWidthConstraint.constant = 0;
+            [self.leftYellowButton setTitle:@"商家确认" forState:UIControlStateNormal];
+        } break;
         default:
             break;
     }
@@ -106,22 +113,28 @@
 #pragma  mark 确认取货 确认收货按钮
 - (IBAction)leftYellowAction:(UIButton *)sender {
     NSString *identifier;
-    if (self.orderModel.orderStatus.integerValue == 2) {
-        //确认取货
-        
-        if (!self.isWorking.boolValue) {
-            [TJMHUDHandle transientNoticeAtView:self.view withMessage:@"收工状态无法取货"];
-            return;
+    if (self.orderModel.type == 0) {
+        if (self.orderModel.orderStatus.integerValue == 2) {
+            //确认取货
+            if (!self.isWorking.boolValue) {
+                [TJMHUDHandle transientNoticeAtView:self.view withMessage:@"收工状态无法取货"];
+                return;
+            }
+            identifier = @"DetailToPickUp";
+        } else if (self.orderModel.orderStatus.integerValue == 3) {
+            
+            if (self.orderModel.payType.integerValue == 4) {
+                //到付
+                identifier = @"DetailToDeliveryPay";
+            } else {
+                //签收
+                identifier = @"DetailToSignIn";
+            }
+            
         }
-        identifier = @"DetailToPickUp";
-    } else if (self.orderModel.orderStatus.integerValue == 3) {
-        if (self.orderModel.payType.integerValue == 4) {
-            //到付
-            identifier = @"DetailToDeliveryPay";
-        } else {
-            //签收
-            identifier = @"DetailToSignIn";
-        }
+    } else {
+        //代收货款 或者 商家确认 界面和 到付相同
+        identifier = @"DetailToDeliveryPay";
     }
     [self performSegueWithIdentifier:identifier sender:self.orderModel];
 }

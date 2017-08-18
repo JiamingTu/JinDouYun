@@ -13,4 +13,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *QRCodeImageView;
 @property (nonatomic,strong) TJMOrderModel *orderModel;
 
+
+
 @end

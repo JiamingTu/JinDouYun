@@ -125,6 +125,8 @@
                 [progressHUD hideAnimated:YES afterDelay:1.5];
             }];
         }
+    } else {
+        [TJMHUDHandle transientNoticeAtView:self.view withMessage:@"请先绑定银行卡"];
     }
 }
 #pragma  mark - KVO

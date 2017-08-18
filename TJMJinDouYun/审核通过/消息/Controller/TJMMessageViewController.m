@@ -114,9 +114,7 @@ const NSInteger _messageSize = 15;
                 }
             }];
             //已读列表存入本地
-            if (_localReadedIdArray.count) {
-                [TJMSandBoxManager saveInInfoPlistWithModel:_localReadedIdArray key:kTJMReadedMessageIdList];
-            }
+            [TJMSandBoxManager saveInInfoPlistWithModel:_localReadedIdArray key:kTJMReadedMessageIdList];
             [self.dataSourceArray addObjectsFromArray:data.data];
             //存入本地缓存
             [TJMSandBoxManager saveMessagesToPath:_dataSourceArray];

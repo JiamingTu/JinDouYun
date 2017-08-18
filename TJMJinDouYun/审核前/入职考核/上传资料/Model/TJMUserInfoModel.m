@@ -26,7 +26,7 @@
             TJMUserInfoModel * emergencyNum = [self setInfoWithTitle:@"紧急联系人电话" infoText:@"请输入电话号码" isTextField:YES inputType:@"concactMobile"];
             self.infos = @[cityModel,VehicleModel,nameModel,idNumModel,emergencyContact,emergencyNum];
         } else {
-            TJMUserInfoModel *bankNameModel = [self setInfoWithTitle:@"开户银行" infoText:@"请输入银行名称" isTextField:NO inputType:@"bankId"];
+            TJMUserInfoModel *bankNameModel = [self setInfoWithTitle:@"开户银行" infoText:@"请选择开户银行" isTextField:NO inputType:@"bankId"];
             TJMUserInfoModel *userNameModel = [self setInfoWithTitle:@"持卡人姓名" infoText:@"请输入持卡人姓名" isTextField:YES inputType:@"realname"];
             TJMUserInfoModel *bankNumModel = [self setInfoWithTitle:@"银行卡卡号" infoText:@"请输入银行卡卡号" isTextField:YES inputType:@"bankcard"];
             self.infos = @[bankNameModel,userNameModel,bankNumModel];

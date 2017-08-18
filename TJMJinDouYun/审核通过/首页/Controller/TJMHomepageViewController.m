@@ -469,6 +469,7 @@ static NSInteger homepageOrderSize = 5;
         if (orderData.content.count == 0 || orderData.content == nil) {
             [self.header endRefreshing];
             [self.footer endRefreshingWithNoMoreData];
+            [_tableView reloadData];
             [TJMHUDHandle hiddenHUDForView:self.view];
             return ;
         }
@@ -641,6 +642,16 @@ static NSInteger homepageOrderSize = 5;
     [self performSegueWithIdentifier:@"QRCodeSingIn" sender:model];
 
 }
+#pragma  mark 代收货款
+- (void)helpToCollectPayMoneyWithOrder:(TJMOrderModel *)model cell:(TJMHomeOrderTableViewCell *)cell {
+    _selectModel = model;
+    [self performSegueWithIdentifier:@"HelpPay" sender:model];
+}
+#pragma  mark 代收货款拒收
+- (void)refuseCollectPayMoneyWithOrder:(TJMOrderModel *)model cell:(TJMHomeOrderTableViewCell *)cell {
+    _selectModel = model;
+    [self performSegueWithIdentifier:@"HelpPay" sender:model];
+}
 #pragma  mark 导航（待取货、待送货）
 - (void)naviToDestinationWithLatitude:(CGFloat)lat longtitude:(CGFloat)lng order:(TJMOrderModel *)model cell:(TJMHomeOrderTableViewCell *)cell {
     [[TJMLocationService sharedLocationService] getFreeManLocationWith:TJMGetLocationTypeNaviService target:CLLocationCoordinate2DMake(lat, lng)];
@@ -658,7 +669,13 @@ static NSInteger homepageOrderSize = 5;
             }
         } else if (_selectModelOrderStatus == 3) {
             if (_selectModel.orderStatus.integerValue != _selectModelOrderStatus) {
-                [self deleteOrder];
+                if (_selectModel.orderStatus.integerValue == 7) {
+                    NSInteger index = [_selectDataArray indexOfObject:_selectModel];
+                    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+                    [_tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                } else {
+                    [self deleteOrder];
+                }
             }
         }
     }

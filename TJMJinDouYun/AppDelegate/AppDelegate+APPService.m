@@ -153,6 +153,7 @@
             TJMOrderModel *newModel = successObj;
             model.payStatus = newModel.payStatus;
             model.orderStatus = newModel.orderStatus;
+            model.finishTime = model.finishTime;
             [self receivedSignInMessageAndOrderDidUpdateWithViewController:VC];
         } fail:^(NSString *failString) {
             [TJMHUDHandle transientNoticeAtView:self.window withMessage:@"订单更新失败，请返回刷新"];

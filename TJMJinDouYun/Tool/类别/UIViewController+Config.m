@@ -208,6 +208,8 @@ const char *kTJMAppDelegateKey = "AppDelegateKey";
     [TJMSandBoxManager deleteModelFromInfoPlistWithKey:kTJMPerformanceInfo];
     [TJMSandBoxManager deleteModelFromInfoPlistWithKey:kTJMIsChangePersonInfo];
     [TJMSandBoxManager deleteMessages];
+    [TJMSandBoxManager deleteModelFromInfoPlistWithKey:kTJMUnreadMessageNum];
+    [TJMSandBoxManager deleteModelFromInfoPlistWithKey:kTJMReadedMessageIdList];
     [self.appDelegate setAlias];//清空别名
 }
 

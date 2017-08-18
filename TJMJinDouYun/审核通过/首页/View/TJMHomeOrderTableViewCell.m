@@ -138,6 +138,12 @@
         titleLabelText = [NSString stringWithFormat:@"已完成：%@",finishDateString];
         [self.checkMapButton setTitle:@"查看详情" forState:UIControlStateNormal];
         self.titleLabel.textColor = TJMFUIColorFromRGB(0x999999);
+    } else if (self.currentModel.orderStatus.integerValue == 7) {
+        self.rightButtonWidthConstraint.constant = 0;
+//        [self layoutIfNeeded];
+        titleLabelText = [NSString stringWithFormat:@"已拒绝：%@",dateString];
+        [self.robOrderButton setTitle:@"商家确认" forState:UIControlStateNormal];
+        self.titleLabel.textColor = TJMFUIColorFromRGB(0x999999);
     } else {
         //异常单（长期未配送）
         self.rightButtonWidthConstraint.constant = TJMScreenWidth;
@@ -231,15 +237,23 @@
         } break;
         case 3: {
             if (sender.tag == 10) {
-                if ([self.currentModel.payType integerValue] == 4) {
-                    //到付
-                    if ([self isDelegateAndResponseSelector:@selector(payOnDeliveryWithOrder:cell:)]) {
-                        [self.delegate payOnDeliveryWithOrder:self.currentModel cell:self];
+                if (self.currentModel.type == 0) {
+                    if ([self.currentModel.payType integerValue] == 4) {
+                        //到付
+                        if ([self isDelegateAndResponseSelector:@selector(payOnDeliveryWithOrder:cell:)]) {
+                            [self.delegate payOnDeliveryWithOrder:self.currentModel cell:self];
+                        }
+                    } else {
+                        //验证收货
+                        if ([self isDelegateAndResponseSelector:@selector(codeSignInWithOrder:cell:)]) {
+                            [self.delegate codeSignInWithOrder:self.currentModel cell:self];
+                        }
                     }
                 } else {
+                    //代收货款
                     //验证收货
-                    if ([self isDelegateAndResponseSelector:@selector(codeSignInWithOrder:cell:)]) {
-                        [self.delegate codeSignInWithOrder:self.currentModel cell:self];
+                    if ([self isDelegateAndResponseSelector:@selector(helpToCollectPayMoneyWithOrder:cell:)]) {
+                        [self.delegate helpToCollectPayMoneyWithOrder:self.currentModel cell:self];
                     }
                 }
             } else {
@@ -265,6 +279,12 @@
             //查看详情
             if ([self isDelegateAndResponseSelector:@selector(checkDetailsWithOrder:cell:)]) {
                 [self.delegate checkDetailsWithOrder:self.currentModel cell:self];
+            }
+        } break;
+        case 7: {
+           //拒收 跳到 到付界面(共用界面)
+            if ([self isDelegateAndResponseSelector:@selector(refuseCollectPayMoneyWithOrder:cell:)]) {
+                [self.delegate refuseCollectPayMoneyWithOrder:self.currentModel cell:self];
             }
         } break;
     

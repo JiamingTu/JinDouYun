@@ -76,6 +76,8 @@
 @property (nonatomic,copy) NSString *perpayId;
 @property (nonatomic,assign) BOOL atOnce;//1:及时取 0:预约货
 @property (nonatomic,copy) NSString *carrierShowMoney;
+//新增 代收货款
+@property (nonatomic, assign) NSInteger type;
 //计算后得到
 
 @property (nonatomic,strong) NSNumber *getDistance;

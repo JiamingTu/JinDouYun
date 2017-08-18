@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <AFNetworking.h>
-
+@class TJMOrderModel;
 typedef void(^SuccessBlock)(id successObj,NSString *msg);
 typedef void(^FailBlock)(NSString *failString);
 typedef void(^ProgressBlock)(NSProgress *progress);
@@ -92,7 +92,10 @@ SingletonH(RequestHandle)
 - (void)getSingleOrderWithOrderNumber:(NSString *)orderNo success:(SuccessBlock)success fail:(FailBlock)failure;
 /**异常签收*/
 - (void)commitUnusualOrderWithMessage:(NSString *)message orderNo:(NSString *)orderNo success:(SuccessBlock)success fail:(FailBlock)failure;
-
+/**代收货款二维码*/
+- (void)collectPayWithOrderNo:(NSString *)orderNo success:(SuccessBlock)success fail:(FailBlock)failure;
+/**代收货款拒绝 二维码*/
+- (void)collectPayRefuseWithOrderNo:(NSString *)orderNo success:(SuccessBlock)success fail:(FailBlock)failure;
 #pragma  mark - 银行卡、提现
 /**绑定银行卡*/
 - (void)bindingBankCardWithParameters:(NSMutableDictionary *)parameters success:(SuccessBlock)success fail:(FailBlock)failure;

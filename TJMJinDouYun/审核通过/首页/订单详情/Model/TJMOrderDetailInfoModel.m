@@ -80,6 +80,9 @@
         case 6:
             orderStatusString = @"异常订单";
             break;
+        case 7:
+            orderStatusString = @"已被拒收";
+            break;
         default:
             break;
     }

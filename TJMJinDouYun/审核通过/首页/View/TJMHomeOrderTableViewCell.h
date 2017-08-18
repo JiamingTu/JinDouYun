@@ -16,6 +16,8 @@
 - (void)codeSignInWithOrder:(TJMOrderModel *)model cell:(TJMHomeOrderTableViewCell *)cell;
 - (void)naviToDestinationWithLatitude:(CGFloat)lat longtitude:(CGFloat)lng order:(TJMOrderModel *)model cell:(TJMHomeOrderTableViewCell *)cell;
 - (void)checkDetailsWithOrder:(TJMOrderModel *)model cell:(TJMHomeOrderTableViewCell *)cell;
+- (void)helpToCollectPayMoneyWithOrder:(TJMOrderModel *)model cell:(TJMHomeOrderTableViewCell *)cell;
+- (void)refuseCollectPayMoneyWithOrder:(TJMOrderModel *)model cell:(TJMHomeOrderTableViewCell *)cell;
 @end
 
 @interface TJMHomeOrderTableViewCell : UITableViewCell
